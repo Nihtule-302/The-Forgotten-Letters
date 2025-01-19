@@ -43,8 +43,8 @@ Material:
     - _GroundBlend: 0.8
     - _HorizionBlend: 40
     - _StarHeight: 161.7
-    - _StarIntensity: 262
-    - _StarPower: 52.1
+    - _StarIntensity: 144.9
+    - _StarPower: 45.5
     - _ZenithBlend: 0.9
     m_Colors:
     - _GroundColor: {r: 0, g: 0.16497546, b: 0.3490566, a: 0}
