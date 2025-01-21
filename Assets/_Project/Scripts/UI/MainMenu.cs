@@ -47,16 +47,33 @@ namespace _Project.Scripts.UI
         public void OpenMoonScene()
         {
             LoadScene("Moon");
+            
         }
 
-        public void ReturnToMainMenu()
+        #endregion
+        
+        #region SettingsMenu Methods
+
+        public void GameSettings()
         {
-            ShowMainMenu();
+        }
+
+        public void AudioSettings()
+        {
+        }
+        
+        public void VideoSettings()
+        {
         }
 
         #endregion
 
         #region Helper Methods
+        
+        public void ReturnToMainMenu()
+        {
+            ShowMainMenu();
+        }
 
         private void ShowMainMenu()
         {
@@ -65,7 +82,7 @@ namespace _Project.Scripts.UI
 
         private void ShowMenu(GameObject menuToShow)
         {
-            if (menuToShow == settingsMenu) return;
+            //if (menuToShow == settingsMenu) return;
             
             mainMenu.SetActive(menuToShow == mainMenu);
             scenesMenu.SetActive(menuToShow == scenesMenu);
