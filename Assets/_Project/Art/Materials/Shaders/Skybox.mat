@@ -71,8 +71,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _StarHeight: 166.9
-    - _StarIntensity: 140.6
-    - _StarPower: 43.4
+    - _StarIntensity: 109.3
+    - _StarPower: 47
     - _ZenithBlend: 0.9
     m_Colors:
     - _GroundColor: {r: 0, g: 0.16497546, b: 0.3490566, a: 0}

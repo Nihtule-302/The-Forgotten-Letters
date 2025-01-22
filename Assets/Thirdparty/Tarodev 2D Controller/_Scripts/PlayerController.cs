@@ -2,6 +2,7 @@ using System;
 using TarodevController;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Thirdparty.Tarodev_2D_Controller._Scripts
 {
@@ -70,6 +71,8 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
                 _jumpToConsume = true;
                 _timeJumpWasPressed = _time;
             }
+
+            ApplyMovement();
         }
 
         private void FixedUpdate()
@@ -80,13 +83,13 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
             HandleDirection();
             HandleGravity();
 
-            ApplyMovement();
+            
         }
 
         #region Collisions
 
-        [SerializeField] private float _frameLeftGrounded = float.MinValue;
-        [SerializeField] private bool _grounded;
+        [SerializeField] private float frameLeftGrounded = float.MinValue;
+        [SerializeField] private bool grounded;
 
         private void CheckCollisions()
         {
@@ -100,19 +103,19 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
             if (ceilingHit) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
 
             // Landed on the Ground
-            if (!_grounded && groundHit)
+            if (!grounded && groundHit)
             {
-                _grounded = true;
+                grounded = true;
                 _coyoteUsable = true;
                 _bufferedJumpUsable = true;
                 _endedJumpEarly = false;
                 GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
             }
             // Left the Ground
-            else if (_grounded && !groundHit)
+            else if (grounded && !groundHit)
             {
-                _grounded = false;
-                _frameLeftGrounded = _time;
+                grounded = false;
+                frameLeftGrounded = _time;
                 GroundedChanged?.Invoke(false, 0);
             }
 
@@ -130,15 +133,15 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
         private float _timeJumpWasPressed;
 
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + stats.JumpBuffer;
-        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + stats.CoyoteTime;
+        private bool CanUseCoyote => _coyoteUsable && !grounded && _time < frameLeftGrounded + stats.CoyoteTime;
 
         private void HandleJump()
         {
-            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
+            if (!_endedJumpEarly && !grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
 
             if (!_jumpToConsume && !HasBufferedJump) return;
 
-            if (_grounded || CanUseCoyote) ExecuteJump();
+            if (grounded || CanUseCoyote) ExecuteJump();
 
             _jumpToConsume = false;
         }
@@ -161,12 +164,14 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
         {
             if (_frameInput.Move.x == 0)
             {
-                var deceleration = _grounded ? stats.GroundDeceleration : stats.AirDeceleration;
+                var deceleration = grounded ? stats.GroundDeceleration : stats.AirDeceleration;
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+
             }
             else
             {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * stats.MaxSpeed, stats.Acceleration * Time.fixedDeltaTime);
+                Debug.Log(_frameVelocity);
             }
         }
 
@@ -176,7 +181,7 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
 
         private void HandleGravity()
         {
-            if (_grounded && _frameVelocity.y <= 0f)
+            if (grounded && _frameVelocity.y <= 0f)
             {
                 _frameVelocity.y = stats.GroundingForce;
             }
@@ -199,18 +204,5 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
         }
 #endif
     }
-
-    public struct FrameInput
-    {
-        public bool JumpDown;
-        public bool JumpHeld;
-        public Vector2 Move;
-    }
-
-    public interface IPlayerController
-    {
-        public event Action<bool, float> GroundedChanged;
-        public event Action Jumped;
-        public Vector2 FrameInput { get; }
-    }
+    
 }
