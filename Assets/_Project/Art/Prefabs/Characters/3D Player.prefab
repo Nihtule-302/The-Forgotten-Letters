@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScanRecursively: 1
+  ScanRecursively: 0
   SuppressInputWhileBlending: 1
   IgnoreTimeScale: 0
   m_ControllerManager:
@@ -364,22 +364,22 @@ MonoBehaviour:
       Enabled: 1
       Input:
         InputAction: {fileID: -5630151704836100654, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-        Gain: 0.85
+        Gain: 100
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
-        AccelTime: 0.1
+        AccelTime: 0.2
         DecelTime: 0.1
     - Name: Look Y (Tilt)
       Owner: {fileID: 5644281874450860118}
       Enabled: 1
       Input:
         InputAction: {fileID: -5630151704836100654, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-        Gain: 0.85
+        Gain: -90
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
-        AccelTime: 0.1
+        AccelTime: 0.2
         DecelTime: 0.1
   PlayerIndex: -1
-  AutoEnableInputs: 1
+  AutoEnableInputs: 0

@@ -798,22 +798,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7622199984358502869, guid: c7237608be3150f458d51f2959ed2873, type: 3}
-      propertyPath: m_ControllerManager.Controllers.Array.data[0].Owner
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7622199984358502869, guid: c7237608be3150f458d51f2959ed2873, type: 3}
-      propertyPath: m_ControllerManager.Controllers.Array.data[1].Owner
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864694609754744343, guid: c7237608be3150f458d51f2959ed2873, type: 3}
-      propertyPath: m_Name
-      value: Virtual Camera
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7093365736756445193, guid: c7237608be3150f458d51f2959ed2873, type: 3}
-    - {fileID: 749051188006554582, guid: c7237608be3150f458d51f2959ed2873, type: 3}
-    - {fileID: 8925395305639821532, guid: c7237608be3150f458d51f2959ed2873, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -905,10 +890,6 @@ PrefabInstance:
     - target: {fileID: 2478689302266781794, guid: 843198727c5c3f14ca2e5f8666653cd0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3917846718583657199, guid: 843198727c5c3f14ca2e5f8666653cd0, type: 3}
-      propertyPath: m_ControlPath
-      value: <Gamepad>/rightStick
       objectReference: {fileID: 0}
     - target: {fileID: 8813256606819158239, guid: 843198727c5c3f14ca2e5f8666653cd0, type: 3}
       propertyPath: m_Name

@@ -16,12 +16,12 @@ namespace _Project.Scripts.Gameplay
         private Vector3 _playerVelocity;
         private bool _groundedPlayer;
         private InputManager _inputManager;
-        private Transform camTransform;
+        private Transform _camTransform;
         
         
         private void Start()
         {
-            camTransform = Camera.main.transform; 
+            if (Camera.main != null) _camTransform = Camera.main.transform;
             _inputManager = InputManager.Instance;
             _controller = GetComponent<CharacterController>();
         }
@@ -36,7 +36,7 @@ namespace _Project.Scripts.Gameplay
 
             Vector2 movement = _inputManager.GetMovement();
             Vector3 move = new Vector3(movement.x, 0, movement.y);
-            move = camTransform.forward * move.z + camTransform.right * move.x;
+            move = _camTransform.forward * move.z + _camTransform.right * move.x;
             move.y = 0;
             _controller.Move(move * (Time.deltaTime * playerSpeed));
 
