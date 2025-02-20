@@ -1,14 +1,19 @@
+using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Core.Utilities;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
 
 namespace _Project.Scripts.UI
 {
     public class PauseMenu : MonoBehaviour
     {
+        [Header("Menu Objects")]
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject pauseIcon;
         [SerializeField] private GameObject pauseBackground;
+
+        [Header("Scene To Load")]
+        [SerializeField] private AssetReference MainMenu;
         
         private void Awake()
         {
@@ -31,7 +36,7 @@ namespace _Project.Scripts.UI
 
         public void ReturnToMainMenu()
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneTransitionManager.Instance.TransitionScene(MainMenu);
         }
 
         public void ExitGame()

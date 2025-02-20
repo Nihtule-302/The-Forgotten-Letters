@@ -22,7 +22,6 @@ namespace _Project.Scripts.Core.Managers
                 }
                 // Initialize DeepLink Manager global variable.
                 else deeplinkURL = "[none]";
-                DontDestroyOnLoad(gameObject);
             }
             else
             {

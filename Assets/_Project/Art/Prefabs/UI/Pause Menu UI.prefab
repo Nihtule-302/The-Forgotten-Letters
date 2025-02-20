@@ -651,6 +651,12 @@ MonoBehaviour:
   pauseMenu: {fileID: 4323816528986623477}
   pauseIcon: {fileID: 6990109708333942385}
   pauseBackground: {fileID: 1806529971350883228}
+  MainMenu:
+    m_AssetGUID: ee0d808598249c54684fdaa630cdf697
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
 --- !u!1 &3069734135666482526
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,22 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Project/Scenes/_Test.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/_Project/Scenes/Main Menu.unity
-    guid: ee0d808598249c54684fdaa630cdf697
-  - enabled: 1
-    path: Assets/_Project/Scenes/Bahr El Safa.unity
-    guid: d5291aec99c824c48ae64e8cf15eedde
-  - enabled: 1
-    path: Assets/_Project/Scenes/Moon.unity
-    guid: f242ffa8a234e844ba2f7053a9b31b23
+    path: Assets/_Project/Scenes/Setup/_initialization.unity
+    guid: e8159b89399d4854d8e5a0b89a54c6bd
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: c2ca02e92398d274b9f703efd5eaefb9, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 881d0f98e4ac0dd41ab949bff29d81c9, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: fd3545efc80774243b521de227ecc1d3, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: cd37a1017ab5f6c4c8ae9bbd6fa1f9e0, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: b937b8265884d2849af1974a77e5639c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

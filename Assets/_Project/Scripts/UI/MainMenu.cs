@@ -1,13 +1,24 @@
+
+using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Core.Utilities;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.UI
 {
     public class MainMenu : MonoBehaviour
     {
+
+        [Header("Menu Prefabs")]
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject scenesMenu;
         [SerializeField] private GameObject settingsMenu;
+
+        [Header("Scenes To Load")]
+        [SerializeField] private AssetReference bahrElSafa;
+        [SerializeField] private AssetReference moon;
+
 
         private void Awake()
         {
@@ -41,13 +52,12 @@ namespace _Project.Scripts.UI
 
         public void OpenBahrElSafaScene()
         {
-            LoadScene("Bahr El Safa");
+            SceneTransitionManager.Instance.TransitionScene(bahrElSafa);
         }
 
         public void OpenMoonScene()
         {
-            LoadScene("Moon");
-            
+            SceneTransitionManager.Instance.TransitionScene(moon);
         }
 
         #endregion
