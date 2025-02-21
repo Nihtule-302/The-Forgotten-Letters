@@ -1,10 +1,16 @@
-name: Build project
+name: Build and Deploy
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_NAME: the-forgotten-letters
 
 jobs:
-  buildForAllSupportedPlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
+  buildForAndroid:
+    name: Build for Android
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -12,17 +18,23 @@ jobs:
         targetPlatform:
           - Android # Build an Android .apk standalone app.
     steps:
+      # Checkout repository
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
+      
+      # Free up disk space to avoid build failures
+      - uses: jlumbroso/free-disk-space@v1.3.1
+      
+      # Cache Unity build files
       - uses: actions/cache@v3
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
-      - if: matrix.targetPlatform == 'Android'
-        uses: jlumbroso/free-disk-space@v1.3.1
+
+      # Build APK using Unity GameCI
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -30,7 +42,38 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-      - uses: actions/upload-artifact@v4
+          buildName: ${{ env.PROJECT_NAME }}
+          buildsPath: build/${{ matrix.targetPlatform }}
+
+      # Upload APK to GitHub as a Release
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          tag_name: v1.0.${{ github.run_number }}
+          release_name: "Release v1.0.${{ github.run_number }}"
+          body: "Automated release for the latest Android build."
+          draft: false
+          prerelease: false
+
+      - name: Upload APK to GitHub Release
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/${{ matrix.targetPlatform }}/the-forgotten-letters.apk
+          asset_name: the-forgotten-letters.apk
+          asset_content_type: application/vnd.android.package-archive
+
+      # Deploy APK to itch.io
+      - uses: manleydev/butler-publish-itchio-action@v1.0.3
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: android
+          ITCH_GAME: ${{ vars.ITCH_GAME }}
+          ITCH_USER: ${{ vars.ITCH_USER }}
+          PACKAGE: build/${{ matrix.targetPlatform }}
