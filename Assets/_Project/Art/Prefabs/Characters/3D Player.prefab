@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 7571310271574183431}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
-        AccelTime: 0.2
+        AccelTime: 0.15
         DecelTime: 0.1
     - Name: Look Y (Tilt)
       Owner: {fileID: 5644281874450860118}
@@ -382,4 +382,4 @@ MonoBehaviour:
         AccelTime: 0.2
         DecelTime: 0.1
   PlayerIndex: -1
-  AutoEnableInputs: 0
+  AutoEnableInputs: 1

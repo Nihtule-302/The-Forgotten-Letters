@@ -1,7 +1,5 @@
-using System;
-using Thirdparty.Tarodev_2D_Controller._Scripts;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 namespace _Project.Scripts.Managers
 {
