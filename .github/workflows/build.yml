@@ -1,7 +1,7 @@
 name: Manual Build and Deploy
 
 on:
-  workflow_dispatch: # Allows manual execution from GitHub Actions
+  workflow_dispatch:
 
 env:
   PROJECT_NAME: the-forgotten-letters
@@ -14,25 +14,21 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - Android # Build an Android .apk standalone app.
+          - Android
     steps:
-      # Checkout repository
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
-      
-      # Free up disk space to avoid build failures
+
       - uses: jlumbroso/free-disk-space@v1.3.1
-      
-      # Cache Unity build files
+
       - uses: actions/cache@v3
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
 
-      # Build APK using Unity GameCI
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -43,63 +39,50 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/Android
+          androidAppBundle: false  # Ensures APK is built instead of AAB
 
-      # Debug: List files in build directory
       - name: Check build output
         run: |
-          echo "Checking if APK was built..."
-          ls -R build/Android || echo "No APK found in build/Android"
-          ls -R build || echo "No build directory found"
+          echo "Checking APK..."
+          ls -R build/Android || echo "No APK found"
 
-      # Ensure APK file exists before proceeding
-      - name: Verify APK file
+      - name: Verify APK
         run: |
-          if [ ! -f "build/Android/${{ env.PROJECT_NAME }}.apk" ]; then
-            echo "Error: APK file not found!"
+          APK_PATH="build/Android/${{ env.PROJECT_NAME }}.apk"
+          if [ ! -f "$APK_PATH" ]; then
+            echo "APK not found at $APK_PATH"
             exit 1
           fi
 
-      # Upload Unity logs for debugging if APK is missing
-      - name: Upload Unity Build Logs
+      - name: Upload Unity Logs
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: Unity-Build-Logs
           path: Library/Logs/Unity
 
-      # Upload APK as an Artifact for manual download
-      - name: Upload APK as Artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: the-forgotten-letters-apk
           path: build/Android/${{ env.PROJECT_NAME }}.apk
 
-      # Create GitHub Release
-      - name: Create GitHub Release
-        id: create_release
+      - name: Create and Upload GitHub Release
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v1.0.${{ github.run_number }}
           name: "Release v1.0.${{ github.run_number }}"
-          body: "Automated release for the latest Android build."
+          body: "Automated Android build release."
           draft: false
           prerelease: false
+          files: build/Android/${{ env.PROJECT_NAME }}.apk  # Adjust path if nested
 
-      # Upload APK to GitHub Release
-      - name: Upload APK to GitHub Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: build/Android/${{ env.PROJECT_NAME }}.apk
-
-      # Deploy APK to itch.io
       - uses: manleydev/butler-publish-itchio-action@v1.0.3
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: android
-          ITCH_GAME: ${{ vars.ITCH_GAME }}
+          ITCH_GAME: ${{ vars.ITCH_GAME }}  # Use secrets if sensitive
           ITCH_USER: ${{ vars.ITCH_USER }}
           PACKAGE: build/Android/${{ env.PROJECT_NAME }}.apk
