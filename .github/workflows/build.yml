@@ -38,7 +38,7 @@ jobs:
           projectPath: ./
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
-          buildsPath: build/Android
+          buildsPath: build/
           androidAppBundle: false  # Ensures APK is built instead of AAB
 
       - name: Check build output
