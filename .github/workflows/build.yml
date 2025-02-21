@@ -43,29 +43,41 @@ jobs:
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/${{ matrix.targetPlatform }}
 
-      # Upload APK to GitHub as a Release
+      # Ensure APK file exists before proceeding
+      - name: Verify APK file
+        run: |
+          if [ ! -f "build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk" ]; then
+            echo "Error: APK file not found!"
+            exit 1
+          fi
+
+      # Upload APK as an Artifact for manual download
+      - name: Upload APK as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: the-forgotten-letters-apk
+          path: build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk
+
+      # Create GitHub Release
       - name: Create GitHub Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v1.0.${{ github.run_number }}
-          release_name: "Release v1.0.${{ github.run_number }}"
+          name: "Release v1.0.${{ github.run_number }}"
           body: "Automated release for the latest Android build."
           draft: false
           prerelease: false
 
+      # Upload APK to GitHub Release
       - name: Upload APK to GitHub Release
-        id: upload_release_asset
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/${{ matrix.targetPlatform }}/the-forgotten-letters.apk
-          asset_name: the-forgotten-letters.apk
-          asset_content_type: application/vnd.android.package-archive
+          files: build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk
 
       # Deploy APK to itch.io
       - uses: manleydev/butler-publish-itchio-action@v1.0.3
@@ -74,4 +86,4 @@ jobs:
           CHANNEL: android
           ITCH_GAME: ${{ vars.ITCH_GAME }}
           ITCH_USER: ${{ vars.ITCH_USER }}
-          PACKAGE: build/${{ matrix.targetPlatform }}
+          PACKAGE: build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk
