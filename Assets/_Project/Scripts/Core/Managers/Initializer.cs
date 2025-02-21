@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
-namespace _Project
+namespace _Project.Scripts.Core.Managers
 {
     public class Initializer : MonoBehaviour
     {

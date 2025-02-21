@@ -40,11 +40,11 @@ namespace _Project.Scripts.Core.Managers
             {
                 Debug.Log("Deep link received: " + url);
 
-                Uri uri = new Uri(url);
+                var uri = new Uri(url);
                 if (uri.Scheme != "theforgottenletters") return;
                 
-                string host = uri.Host;
-                string path = uri.AbsolutePath;
+                var host = uri.Host;
+                var path = uri.AbsolutePath;
 
                 switch (host)
                 {

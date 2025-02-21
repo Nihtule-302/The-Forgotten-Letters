@@ -1,10 +1,10 @@
-using _Project.Scripts.Managers;
+using _Project.Scripts.Core.Managers;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay
+namespace _Project.Scripts.Gameplay._3D
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerController3D : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         
         [SerializeField] private float playerSpeed = 2.0f;
@@ -34,8 +34,8 @@ namespace _Project.Scripts.Gameplay
                 _playerVelocity.y = 0f;
             }
 
-            Vector2 movement = _inputManager.GetMovement();
-            Vector3 move = new Vector3(movement.x, 0, movement.y);
+            var movement = _inputManager.GetMovement();
+            var move = new Vector3(movement.x, 0, movement.y);
             move = _camTransform.forward * move.z + _camTransform.right * move.x;
             move.y = 0;
             _controller.Move(move * (Time.deltaTime * playerSpeed));

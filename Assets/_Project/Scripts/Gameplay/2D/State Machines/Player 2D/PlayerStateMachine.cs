@@ -1,7 +1,7 @@
-using _Project.Scripts.Gameplay.State_Machines.Player_2D.States;
+using _Project.Scripts.Gameplay._2D.State_Machines.Player_2D.States;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.State_Machines.Player_2D
+namespace _Project.Scripts.Gameplay._2D.State_Machines.Player_2D
 {
     public class PlayerStateMachine : MonoBehaviour
     {

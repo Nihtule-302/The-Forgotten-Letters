@@ -1,4 +1,4 @@
-namespace _Project.Scripts.Gameplay.State_Machines.Player_2D.States
+namespace _Project.Scripts.Gameplay._2D.State_Machines.Player_2D.States
 {
     public class PlayerAirborneState : PlayerState
     {
