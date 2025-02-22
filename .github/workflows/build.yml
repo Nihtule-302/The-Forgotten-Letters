@@ -1,7 +1,10 @@
 name: Manual Build and Deploy
 
 on:
-  workflow_dispatch: # Allows manual execution from GitHub Actions
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
 
 env:
   PROJECT_NAME: the-forgotten-letters
@@ -16,30 +19,25 @@ jobs:
         targetPlatform:
           - Android # Build an Android .apk standalone app.
     steps:
-      # Checkout repository
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
-      
-      # Free up disk space to avoid build failures
+
       - uses: jlumbroso/free-disk-space@v1.3.1
-      
-      # Cache Unity build files
+
       - uses: actions/cache@v3
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
 
-      # Install Butler for Itch.io Deployment
       - name: Install Butler
         run: |
           curl -L -o butler https://broth.itch.ovh/butler/linux-amd64/latest/butler
           chmod +x butler
           sudo mv butler /usr/local/bin/butler
 
-      # Build APK using Unity GameCI
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -50,7 +48,6 @@ jobs:
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/
 
-      # Verify APK build exists
       - name: Check if APK exists
         run: |
           if [ ! -f "build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk" ]; then
@@ -58,32 +55,31 @@ jobs:
             exit 1
           fi
 
-      # Create a GitHub Release
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: v1.0.${{ github.run_number }}
           release_name: "Release v1.0.${{ github.run_number }}"
           body: "Automated release for the latest Android build."
           draft: false
           prerelease: false
 
-      # Upload APK to GitHub Release
       - name: Upload APK to GitHub Release
+        if: steps.create_release.outputs.upload_url != ''
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk
+          asset_path: build/Android/${{ env.PROJECT_NAME }}.apk
           asset_name: ${{ env.PROJECT_NAME }}.apk
           asset_content_type: application/vnd.android.package-archive
 
-      # Upload APK to Itch.io
       - name: Upload to Itch.io
         run: |
-          butler push build/Android/the-forgotten-letters.apk ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:android
+          butler push build/Android/${{ env.PROJECT_NAME }}.apk ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:android
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
