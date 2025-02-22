@@ -35,9 +35,10 @@ jobs:
       # Install Butler for Itch.io Deployment
       - name: Install Butler
         run: |
-          curl -L -o butler https://broth.itch.ovh/butler/linux-amd64/head/butler
+          curl -L -o butler.tar.gz https://broth.itch.ovh/butler/linux-amd64/latest
+          tar -xzf butler.tar.gz
           chmod +x butler
-          mv butler /usr/local/bin/
+          sudo mv butler /usr/local/bin/butler
 
       # Build APK using Unity GameCI
       - uses: game-ci/unity-builder@v4
@@ -84,6 +85,6 @@ jobs:
       # Upload APK to Itch.io
       - name: Upload to Itch.io
         run: |
-          ~/butler/butler push build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:android
+          butler push build/Android/the-forgotten-letters.apk ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:android
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
