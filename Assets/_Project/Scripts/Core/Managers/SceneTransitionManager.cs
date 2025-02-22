@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
-using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Core.Managers
 {
@@ -65,12 +64,14 @@ namespace _Project.Scripts.Core.Managers
             InitUtilities();
             SubscribeEvents();
 
-            // Optionally load the initial scene directly.
+        }
+
+        void Start()
+        {
             if (initialScene != null)
             {
                 loader.LoadScene(initialScene, OnInitialLoadComplete);
             }
-
         }
 
         #endregion

@@ -335,14 +335,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal - Drawing Letters
       objectReference: {fileID: 0}
-    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: sceneToTravelTo.m_AssetGUID
-      value: 831fe6a53c3b7c6449231d5a81631582
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793728472222084582, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: m_Name
-      value: Portal - Drawing Letters
-      objectReference: {fileID: 0}
     - target: {fileID: 1945226493086817126, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.044016574
@@ -390,6 +382,10 @@ PrefabInstance:
     - target: {fileID: 1945226493086817126, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
+      propertyPath: sceneToTravelTo.m_AssetGUID
+      value: 831fe6a53c3b7c6449231d5a81631582
       objectReference: {fileID: 0}
     - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
       propertyPath: m_text
@@ -830,14 +826,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal - Phonics Exercis
       objectReference: {fileID: 0}
-    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: sceneToTravelTo.m_AssetGUID
-      value: 3a97bd5293aaac04c991c432fd289147
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793728472222084582, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: m_Name
-      value: Portal - Phonics Exercis
-      objectReference: {fileID: 0}
     - target: {fileID: 1945226493086817126, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.044016585
@@ -885,6 +873,10 @@ PrefabInstance:
     - target: {fileID: 1945226493086817126, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
+      propertyPath: sceneToTravelTo.m_AssetGUID
+      value: 3a97bd5293aaac04c991c432fd289147
       objectReference: {fileID: 0}
     - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
       propertyPath: m_text
@@ -1010,17 +1002,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3365724898490436579, guid: c7237608be3150f458d51f2959ed2873, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4333914129621484399, guid: c7237608be3150f458d51f2959ed2873, type: 3}
       propertyPath: m_Name
       value: 3D Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976283868266096469, guid: c7237608be3150f458d51f2959ed2873, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.506
       objectReference: {fileID: 0}
     - target: {fileID: 6079309055499765421, guid: c7237608be3150f458d51f2959ed2873, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,16 +1,30 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class InfinitePortalLine : MonoBehaviour
+namespace _Project.Scripts.Gameplay._3D.Portals
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class InfinitePortalLine : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private PortalLineSettings portalLineSettings;
+        [SerializeField] Vector3 rotation;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private List<GameObject> portals = new List<GameObject>();
+
+        void Start()
+        {
+            // Instantiate the portals and position them in a line.
+            for (int i = 0; i < portalLineSettings.portalCount; i++)
+            {
+                Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, portalLineSettings.spawnZPosition + i * portalLineSettings.spacingBetweenPortals);
+                GameObject portal = Instantiate(portalLineSettings.portalPrefab, spawnPosition, Quaternion.Euler(rotation), transform);
+                
+                portals.Add(portal);
+            }
+        }
+
+        void Update()
+        {
+           
+        }
     }
 }
