@@ -35,8 +35,7 @@ jobs:
       # Install Butler for Itch.io Deployment
       - name: Install Butler
         run: |
-          curl -L -o butler.tar.gz https://broth.itch.ovh/butler/linux-amd64/latest
-          tar -xzf butler.tar.gz
+          curl -L -o butler https://broth.itch.ovh/butler/linux-amd64/latest/butler
           chmod +x butler
           sudo mv butler /usr/local/bin/butler
 
