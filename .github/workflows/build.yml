@@ -29,24 +29,17 @@ jobs:
           echo "ITCH_USER: ${{ vars.ITCH_USER }}"
           echo "ITCH_GAME: ${{ vars.ITCH_GAME }}"
 
-      # Install Stable Version of Butler for Itch.io Deployment
-      - name: Install Butler (Stable Version)
+      # ✅ Proper Butler Installation Using Official Instructions
+      - name: Install Butler
         run: |
-          echo "Downloading Butler..."
-          curl -L -o butler.tar.gz https://broth.itch.ovh/butler/linux-amd64/15.22.0/archive/default
-          tar -xvf butler.tar.gz
-          chmod +x butler
-          mv butler /usr/local/bin/
-          rm butler.tar.gz
+          echo "Downloading and Installing Butler..."
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/latest
+          unzip butler.zip -d butler_dir
+          chmod +x butler_dir/butler
+          sudo mv butler_dir/butler /usr/local/bin/
+          rm -rf butler.zip butler_dir
 
       - name: Verify Butler Installation
-        run: |
-          echo "Checking Butler installation..."
-          file /usr/local/bin/butler || echo "❌ Incorrect file type"
-          chmod +x /usr/local/bin/butler
-          /usr/local/bin/butler -V || echo "❌ Failed to execute Butler"
-
-      - name: Debug Butler Execution
         run: |
           echo "Checking Butler version..."
           butler -V || echo "❌ Butler execution failed"
