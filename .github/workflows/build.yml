@@ -39,59 +39,52 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          projectPath: ./
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/
 
-      # Ensure APK file exists before proceeding
-      - name: Verify APK file
+      # Verify APK build exists
+      - name: Check if APK exists
         run: |
-          if [ ! -f "build/Android/${{ env.PROJECT_NAME }}.apk" ]; then
-            echo "Error: APK file not found!"
+          if [ ! -f "build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk" ]; then
+            echo "❌ Error: APK file not found!"
             exit 1
           fi
 
-      # Generate a unique tag name (e.g., v1.0-<run_number>)
-      - name: Generate Release Tag
-        id: tag_version
-        run: echo "TAG_NAME=v1.0.${{ github.run_number }}" >> $GITHUB_ENV
-
-      # Create and push Git tag
-      - name: Create and Push Git Tag
-        run: |
-          git tag ${{ env.TAG_NAME }}
-          git push origin ${{ env.TAG_NAME }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Create GitHub Release
+      # Create a GitHub Release
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.TAG_NAME }}
-          name: "Release ${{ env.TAG_NAME }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v1.0.${{ github.run_number }}
+          release_name: "Release v1.0.${{ github.run_number }}"
           body: "Automated release for the latest Android build."
           draft: false
           prerelease: false
 
       # Upload APK to GitHub Release
       - name: Upload APK to GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: build/Android/${{ env.PROJECT_NAME }}.apk
-          tag_name: ${{ env.TAG_NAME }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk
+          asset_name: ${{ env.PROJECT_NAME }}.apk
+          asset_content_type: application/vnd.android.package-archive
 
-      # Deploy APK to itch.io
-      - uses: manleydev/butler-publish-itchio-action@v1.0.3
+      # Install Butler for Itch.io Deployment
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/latest/archive/default
+          unzip butler.zip -d ~/butler
+          chmod +x ~/butler/butler
+          echo "$HOME/butler" >> $GITHUB_PATH
+
+      # Upload APK to Itch.io
+      - name: Upload to Itch.io
+        run: |
+          ~/butler/butler push build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:android
         env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: android
-          ITCH_GAME: ${{ vars.ITCH_GAME }}
-          ITCH_USER: ${{ vars.ITCH_USER }}
-          PACKAGE: build/Android/${{ env.PROJECT_NAME }}.apk
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
