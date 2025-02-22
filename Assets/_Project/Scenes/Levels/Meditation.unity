@@ -331,16 +331,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 186908740}
     m_Modifications:
-    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: sceneToTravelTo.m_AssetGUID
-      value: 831fe6a53c3b7c6449231d5a81631582
-      objectReference: {fileID: 0}
-    - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: m_text
-      value: 'Drawing Letters
-
-'
-      objectReference: {fileID: 0}
     - target: {fileID: 1090999934270031502, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_text
       value: Object Detection
@@ -404,6 +394,16 @@ PrefabInstance:
     - target: {fileID: 9130260838598413376, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
+      propertyPath: sceneToTravelTo.m_AssetGUID
+      value: 831fe6a53c3b7c6449231d5a81631582
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
+      propertyPath: m_text
+      value: 'Drawing Letters
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -567,50 +567,6 @@ Transform:
   m_Children:
   - {fileID: 446141333}
   - {fileID: 186908740}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &703160069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 703160071}
-  - component: {fileID: 703160070}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &703160070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703160069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0443e5e906a4467d9a573b4d4dd521c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &703160071
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703160069}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 655.2984, y: 327.84702, z: -5.297911}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878330962
@@ -834,14 +790,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 186908740}
     m_Modifications:
-    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: sceneToTravelTo.m_AssetGUID
-      value: 3a97bd5293aaac04c991c432fd289147
-      objectReference: {fileID: 0}
-    - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: m_text
-      value: Phonics Exercis
-      objectReference: {fileID: 0}
     - target: {fileID: 1090999934270031502, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_text
       value: ' Phonics Exercise'
@@ -902,6 +850,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6253342379952232342, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
+      propertyPath: sceneToTravelTo.m_AssetGUID
+      value: 3a97bd5293aaac04c991c432fd289147
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
+      propertyPath: m_text
+      value: Phonics Exercis
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -953,10 +909,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 186908740}
     m_Modifications:
-    - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
-      propertyPath: m_text
-      value: Object Detection
-      objectReference: {fileID: 0}
     - target: {fileID: 1090999934270031502, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_text
       value: 'Drawing Arabic Letters
@@ -1018,6 +970,10 @@ PrefabInstance:
     - target: {fileID: 9130260838598413376, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741657262420922792, guid: 818155f84f7d4344da6f9afc0f80e472, type: 3}
+      propertyPath: m_text
+      value: Object Detection
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1247,5 +1203,4 @@ SceneRoots:
   - {fileID: 2127345530}
   - {fileID: 587886665}
   - {fileID: 989032565}
-  - {fileID: 703160071}
   - {fileID: 4113841543804092662}
