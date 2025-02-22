@@ -66,3 +66,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Odin Inspector (if not used, otherwise customize as needed)
+/[Aa]ssets/Plugins/Sirenix*
+/[Aa]ssets/_Project/Plugins/Sirenix*
