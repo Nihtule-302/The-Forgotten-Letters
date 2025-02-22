@@ -34,8 +34,8 @@ jobs:
 
       - name: Debug Itch.io Upload
         run: |
-          echo "ITCH_USER: ${{ var.ITCH_USER }}"
-          echo "ITCH_GAME: ${{ var.ITCH_GAME }}"
+          echo "ITCH_USER: ${{ vars.ITCH_USER }}"
+          echo "ITCH_GAME: ${{ vars.ITCH_GAME }}"
 
       - name: Install Butler
         run: |
@@ -93,6 +93,6 @@ jobs:
 
       - name: Upload to Itch.io
         run: |
-          butler push build/Android/${{ env.PROJECT_NAME }}.apk ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:android
+          butler push build/Android/${{ env.PROJECT_NAME }}.apk ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:android
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
