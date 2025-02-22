@@ -34,15 +34,15 @@ jobs:
 
       - name: Debug Itch.io Upload
         run: |
-          echo "ITCH_USER: ${{ secrets.ITCH_USER }}"
-          echo "ITCH_GAME: ${{ secrets.ITCH_GAME }}"
+          echo "ITCH_USER: ${{ var.ITCH_USER }}"
+          echo "ITCH_GAME: ${{ var.ITCH_GAME }}"
 
       - name: Install Butler
         run: |
-          wget -q https://broth.itch.ovh/butler/linux-amd64/latest/butler -O butler
+          curl -L -o butler https://broth.itch.ovh/butler/linux-amd64/latest/butler
           chmod +x butler
           sudo mv butler /usr/local/bin/butler
-          butler -V  # Verify installation
+          butler -V
 
       - name: Verify Butler Installation
         run: |
