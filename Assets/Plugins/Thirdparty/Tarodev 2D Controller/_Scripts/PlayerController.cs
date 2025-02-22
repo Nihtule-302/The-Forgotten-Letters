@@ -171,7 +171,6 @@ namespace Thirdparty.Tarodev_2D_Controller._Scripts
             else
             {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * stats.MaxSpeed, stats.Acceleration * Time.fixedDeltaTime);
-                Debug.Log(_frameVelocity);
             }
         }
 
