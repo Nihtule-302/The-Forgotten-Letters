@@ -42,7 +42,7 @@ jobs:
           projectPath: ./
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
-          buildsPath: build/Android
+          buildsPath: build/
 
       # Ensure APK file exists before proceeding
       - name: Verify APK file
