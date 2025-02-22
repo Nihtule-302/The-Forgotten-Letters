@@ -10,8 +10,9 @@ namespace _Project.Scripts.Gameplay._3D.Portals
         public int portalCount = 10;         
         public float spacingBetweenPortals = 2f;           
         public float movementSpeed = 2f;       
-        public float resetZPosition = -10f;  
-        public float spawnZPosition = 10f;
+        public float resetZPosition = -10f; 
+        public float spawnZPosition = 0f; 
+        public float spawnYPosition = 0f;
     }
 }
 

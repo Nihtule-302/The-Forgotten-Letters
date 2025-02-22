@@ -8,9 +8,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1090999934270031502, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639949912398692528, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639949912398692528, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639949912398692528, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639949912398692528, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992359787351428555, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseDistance
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992359787351428555, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992359787351428555, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992359787351428555, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992359787351428555, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: riseCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8984536537899399872, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_Name
-      value: Portal
+      value: Portal Moving
       objectReference: {fileID: 0}
     - target: {fileID: 9130260838598413376, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_LocalPosition.x

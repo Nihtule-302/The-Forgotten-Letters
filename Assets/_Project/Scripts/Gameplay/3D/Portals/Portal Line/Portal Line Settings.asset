@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Portal Line Settings
   m_EditorClassIdentifier: 
   portalPrefab: {fileID: 7993496750980705685, guid: b19342c76ae47024bbc2ea0a45d3f4c6, type: 3}
-  portalCount: 20
-  spacingBetweenPortals: 15
+  portalCount: 40
+  spacingBetweenPortals: 20
   movementSpeed: 2
   resetZPosition: -10
-  spawnZPosition: -150
+  spawnZPosition: -400
+  spawnYPosition: -5.2
