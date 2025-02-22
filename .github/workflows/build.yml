@@ -74,13 +74,12 @@ jobs:
           asset_name: ${{ env.PROJECT_NAME }}.apk
           asset_content_type: application/vnd.android.package-archive
 
-      # Install Butler for Itch.io Deployment
+       # Install Butler for Itch.io Deployment
       - name: Install Butler
         run: |
-          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/latest/archive/default
-          unzip butler.zip -d ~/butler
-          chmod +x ~/butler/butler
-          echo "$HOME/butler" >> $GITHUB_PATH
+          curl -L -o butler https://broth.itch.ovh/butler/linux-amd64/head/butler
+          chmod +x butler
+          mv butler /usr/local/bin/
 
       # Upload APK to Itch.io
       - name: Upload to Itch.io
