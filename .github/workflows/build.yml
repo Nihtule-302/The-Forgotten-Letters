@@ -32,6 +32,11 @@ jobs:
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
 
+      - name: Debug Itch.io Upload
+        run: |
+          echo "ITCH_USER: ${{ secrets.ITCH_USER }}"
+          echo "ITCH_GAME: ${{ secrets.ITCH_GAME }}"
+
       - name: Install Butler
         run: |
           wget -q https://broth.itch.ovh/butler/linux-amd64/latest/butler -O butler
