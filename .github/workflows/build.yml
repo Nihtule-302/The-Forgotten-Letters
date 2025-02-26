@@ -40,7 +40,7 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/
-          executeMethodPreBuild: AddressableBuildScript.BuildAddressables
+          buildMethod: AddressableBuildScript.BuildAddressables
 
       - name: Check if APK exists
         run: |
