@@ -21,10 +21,5 @@ namespace _Project.Scripts.Gameplay._3D.Portals
                 portals.Add(portal);
             }
         }
-
-        void Update()
-        {
-           
-        }
     }
 }
