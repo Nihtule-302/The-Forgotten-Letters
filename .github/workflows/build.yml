@@ -37,27 +37,10 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: StandaloneWindows64
-          buildMethod: BuildScript.BuildAddressables
-          customParameters: "-executeMethod BuildScript.BuildAddressables"
-
-      - name: Verify Addressables Build
-        run: |
-          if [ ! -d "ServerData" ]; then
-            echo "❌ Error: Addressables build failed!"
-            exit 1
-          fi
-
-      - name: Build Game APK
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/
+          executeMethodPreBuild: AddressableBuildScript.BuildAddressables
 
       - name: Check if APK exists
         run: |
@@ -65,13 +48,6 @@ jobs:
             echo "❌ Error: APK file not found!"
             exit 1
           fi
-
-      - name: Upload Addressables (Optional)
-        if: success()
-        run: |
-          echo "Uploading Addressables to remote server..."
-          # Example: Upload to Itch.io or S3
-          # butler push ServerData ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:addressables --verbose
 
       - name: Create GitHub Release
         id: create_release
