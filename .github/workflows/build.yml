@@ -55,7 +55,6 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/
-          executeMethodPreBuild: AddressableBuildScript.BuildAddressables
 
       - name: List Build Directory
         run: ls -R build/
