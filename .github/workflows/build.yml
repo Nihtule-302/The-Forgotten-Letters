@@ -46,6 +46,13 @@ jobs:
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
 
+      - name: Build Addressables
+        run: |
+          xvfb-run --auto-servernum \
+          unity-editor -quit -batchmode -nographics -silent-crashes \
+          -projectPath . -executeMethod UnityEditor.AddressableAssets.Settings.AddressableAssetSettings.BuildPlayerContent
+
+
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
