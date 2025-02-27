@@ -57,6 +57,10 @@ jobs:
           buildsPath: build/
           executeMethodPreBuild: AddressableBuildScript.BuildAddressables
 
+      - name: List Build Directory
+        run: ls -R build/
+
+
       - name: Check if APK exists
         run: |
           if [ ! -f "build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}.apk" ]; then
