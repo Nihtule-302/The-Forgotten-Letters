@@ -17,4 +17,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8ae14506eea73884c89b1a9d64ece750, type: 3}
   nightMusicCollection:
   - {fileID: 8300000, guid: d4e601e9bfe2d2344b99fc75502b73e4, type: 3}
+  - {fileID: 8300000, guid: d133db9b6a919154a92d5f0a4a9f65e2, type: 3}
   battleMusicCollection: []
