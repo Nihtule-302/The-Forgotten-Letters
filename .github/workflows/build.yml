@@ -17,17 +17,23 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - Android # Build an Android .apk standalone app.
+          - Android
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
 
-      - name: Debug Itch.io Upload
+      - uses: jlumbroso/free-disk-space@v1.3.1
+
+      - name: Build Addressables
         run: |
-          echo "ITCH_USER: ${{ vars.ITCH_USER }}"
-          echo "ITCH_GAME: ${{ vars.ITCH_GAME }}"
+          echo "Building Addressables..."
+          $UNITY_EXECUTABLE -batchmode -quit -projectPath $GITHUB_WORKSPACE -executeMethod BuildAddressables.Build
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
 
       - name: Setup butler
         uses: remarkablegames/setup-butler@v1
@@ -37,7 +43,7 @@ jobs:
           echo "Checking Butler version..."
           butler -V || echo "❌ Butler execution failed"
 
-      - uses: jlumbroso/free-disk-space@v1.3.1
+      
 
       - name: Setup Unity Cache
         uses: actions/cache@v3
@@ -58,7 +64,6 @@ jobs:
 
       - name: List Build Directory
         run: ls -R build/
-
 
       - name: Check if APK exists
         run: |
