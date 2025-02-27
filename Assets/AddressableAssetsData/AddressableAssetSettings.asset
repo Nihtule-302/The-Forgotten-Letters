@@ -75,9 +75,9 @@ MonoBehaviour:
       - m_Id: 3999f1a7689239f4cb888c37fbc35ec9
         m_Value: https://dyslexiamate-8f477.web.app/
       - m_Id: 6251b94d967ab7f419876100f2cbdb41
-        m_Value: ServerData/LocalBuilds
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 94c5b0aa71294a74da42789887a35888
-        m_Value: '[UnityEngine.Application.streamingAssetsPath]/Addressables/LocalLoads'
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 9a2121894d5d76f49b7d68b3816e9429
         m_Value: 'ServerData/[BuildTarget]'
       - m_Id: a36e01fca1fad5542957ce57f3889dd8
