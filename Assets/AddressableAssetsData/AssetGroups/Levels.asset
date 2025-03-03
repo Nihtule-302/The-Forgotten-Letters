@@ -35,11 +35,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d5291aec99c824c48ae64e8cf15eedde
-    m_Address: Bahr El Safa
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee0d808598249c54684fdaa630cdf697
     m_Address: Main Menu
     m_ReadOnly: 0

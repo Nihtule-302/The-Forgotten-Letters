@@ -1,34 +1,61 @@
-using _Project.Scripts.Gameplay._2D.State_Machines.Player_2D.States;
+using TMPro;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay._2D.State_Machines.Player_2D
 {
     public class PlayerStateMachine : MonoBehaviour
     {
-        PlayerState _currentState;
-        
-        public readonly PlayerState GroundedState = new PlayerGroundedState();
-        public readonly PlayerState AirborneState = new PlayerAirborneState();
+        [SerializeField] private PlayerController player;
+        [SerializeField] private TextMeshProUGUI stateText;
 
-        public readonly PlayerState IdleState = new PlayerIdleState();
-        public readonly PlayerState MovingState = new PlayerMovingState();
-        public readonly PlayerState JumpingState = new PlayerJumpingState();
+        public PlayerController Player => player;
+
+        PlayerStateFactory states;
+
+        public PlayerState CurrentState { get; private set; }
         
+        void Awake()
+        {
+            player = GetComponent<PlayerController>();
+
+            states = new PlayerStateFactory(this);
+        }
+
         void Start()
         {
-            _currentState = IdleState;
-        }
-        
-        void Update()
-        {
-            _currentState.UpdateState(this);
+            InitializeState();
         }
 
-        public void SwitchState(PlayerState newState)
+        public void InitializeState()
         {
-            _currentState.ExitState(this);
-            _currentState = newState;
-            _currentState.EnterState(this);
+            if (player.grounded)
+            {
+                CurrentState = states.Idle();
+            }
+            else
+            {
+                CurrentState = states.Falling();
+            }
+            CurrentState.Enter();
+        }
+
+        public void ChangeState(PlayerState newState)
+        {
+            //Debug.Log($"State: {newState.GetType()}");
+            CurrentState.Exit();
+            CurrentState = newState;
+            CurrentState.Enter();
+        }
+
+        private void Update()
+        {
+            CurrentState.Dos();
+            stateText.SetText($"State: {CurrentState.ToString()}");
+        }
+
+        private void FixedUpdate()
+        {
+            CurrentState.FixedDos();
         }
     }
 }
