@@ -27,13 +27,6 @@ jobs:
 
       - uses: jlumbroso/free-disk-space@v1.3.1
 
-      - name: Build Addressables
-        run: |
-          echo "Building Addressables..."
-          $UNITY_EXECUTABLE -batchmode -quit -projectPath $GITHUB_WORKSPACE -executeMethod BuildAddressables.Build
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
 
       - name: Setup butler
         uses: remarkablegames/setup-butler@v1
@@ -44,7 +37,6 @@ jobs:
           butler -V || echo "❌ Butler execution failed"
 
       
-
       - name: Setup Unity Cache
         uses: actions/cache@v3
         with:
@@ -61,6 +53,13 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
           buildsPath: build/
+
+      - name: Build Addressables
+        run: |
+          echo "Building Addressables..."
+          $UNITY_EXECUTABLE -batchmode -quit -projectPath $GITHUB_WORKSPACE -executeMethod BuildAddressables.Build
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
       - name: List Build Directory
         run: ls -R build/
