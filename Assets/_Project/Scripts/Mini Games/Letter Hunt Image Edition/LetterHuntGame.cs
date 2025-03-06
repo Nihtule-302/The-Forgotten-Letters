@@ -59,12 +59,10 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             int numIncorrect = totalButtons - numCorrect;
 
 
-            // Select 2 correct words
             List<WordData> correctWords = new List<WordData>(targetLetterSO.words);
             correctWords.Shuffle();
             correctWords = correctWords.Take(numCorrect).ToList(); // ✅ Fix: Ensure selection is stored
 
-            // Select 2 incorrect words
             HashSet<WordData> wrongWords = new HashSet<WordData>();
             foreach (var letter in distractorLetters)
             {

@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letter: "\u0623"
   words:
+  - {fileID: 11400000, guid: be34418d3a3b72647a25e9eac16879f7, type: 2}
+  - {fileID: 11400000, guid: 1c18c1069d401884ebd3ec514c792845, type: 2}
+  - {fileID: 11400000, guid: e4ea755354011174a9345c6262ac3081, type: 2}
+  - {fileID: 11400000, guid: edbaa25d6319e064e9ff0283649b5603, type: 2}
+  - {fileID: 11400000, guid: bca7d23caf8ac3e41aecba19db3dcdf7, type: 2}
+  - {fileID: 11400000, guid: 8a835bdc4cae7724f9ce93518449e071, type: 2}
+  - {fileID: 11400000, guid: 4b1b3e3f622ab0f4d88c2dd8b9a62fe0, type: 2}
+  - {fileID: 11400000, guid: 788973f7882debc41a11ab39b7611eaa, type: 2}
+  - {fileID: 11400000, guid: c397ee794794fd94b86f0325ba20b697, type: 2}
   - {fileID: 11400000, guid: cc82d582b01e8454a8569526eb064a7e, type: 2}
-  - {fileID: 11400000, guid: 6975b2c0009dd9b4b85cd327109f634c, type: 2}

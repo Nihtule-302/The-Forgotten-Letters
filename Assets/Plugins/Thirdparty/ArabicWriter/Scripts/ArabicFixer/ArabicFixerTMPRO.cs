@@ -124,18 +124,23 @@ public class ArabicFixerTMPRO : MonoBehaviour
     }
 }
 
-// Function to check if text is already correct Arabic
 private bool IsTextCorrectArabic(string text)
 {
     // Arabic Unicode range: 0x0600 - 0x06FF (includes Arabic letters)
+    bool hasConnectedArabic = false;
+    
     foreach (char c in text)
     {
-        if (c >= 0x0621 && c <= 0x064A) // Arabic letters only
+        // Check if character is an Arabic letter that should be connected
+        if ((c >= 0x0621 && c <= 0x064A) ||  // Arabic letters
+            (c >= 0xFE70 && c <= 0xFEFC))    // Arabic presentation forms (connected shapes)
         {
-            return true; // If we find connected Arabic letters, it's already correct
+            hasConnectedArabic = true;
         }
     }
-    return false;
+
+    return hasConnectedArabic;
 }
+
 
 }

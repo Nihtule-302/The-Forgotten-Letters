@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: "\u062A"
   m_EditorClassIdentifier: 
   letter: "\u062A"
-  words: []
+  words:
+  - {fileID: 11400000, guid: 065fe58e20b7c054e8089e7a7244de8a, type: 2}
+  - {fileID: 11400000, guid: 051a808b12fab004eaafa206473512f2, type: 2}
+  - {fileID: 11400000, guid: 8d2b9a8d763027b42a9cc11d510fb367, type: 2}
