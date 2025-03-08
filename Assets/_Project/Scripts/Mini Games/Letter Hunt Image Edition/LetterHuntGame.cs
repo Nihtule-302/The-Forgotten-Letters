@@ -103,8 +103,16 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             {
                 var newButton = Instantiate(choiceButtonPrefab, grid.transform);
                 ButtonInfoAccess buttonInfo = newButton.GetComponent<ButtonInfoAccess>();
+
+
                 buttonInfo.Text.text = word.arabicWord;
                 buttonInfo.Text.GetComponent<ArabicFixerTMPRO>().fixedText = word.arabicWord;
+
+                if (buttonInfo.Image.sprite != null)
+                {
+                    buttonInfo.Image.sprite = word.wordImage;
+                }
+
                 newButton.GetComponent<Button>().onClick.AddListener(() => CheckAnswer(word));
                 choiceButtons.Add(newButton);
             }

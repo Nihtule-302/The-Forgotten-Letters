@@ -1,15 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonInfoAccess : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Image image;
     public TextMeshProUGUI Text => text;
-    void Start()
-    {
-        if (text != null) return;       
-        
-        text = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
+    public Image Image => image;
 }

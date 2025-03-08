@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letterText: {fileID: 331795531}
   grid: {fileID: 1459321817}
-  choiceButtonPrefab: {fileID: 3962989421513329913, guid: 3327891b033c31648adc570f4912def2, type: 3}
+  choiceButtonPrefab: {fileID: 7408197166286461490, guid: 5d1ac6a2a3455904fbf0265ee2a03ce2, type: 3}
   allLetters:
   - {fileID: 11400000, guid: 9a66f33c02a924247bc7e23cddf467fe, type: 2}
   - {fileID: 11400000, guid: 5a9f2e5f4f29ca844bc4725ed3222ea9, type: 2}

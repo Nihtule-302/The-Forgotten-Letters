@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -6012391354173513793, guid: 68cb9826d35c68b4e9a0b039b7f89305, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Letter Hunt Option - both
       objectReference: {fileID: 0}
+    - target: {fileID: 5657673604928130066, guid: 3327891b033c31648adc570f4912def2, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 543086281781387124}
     - target: {fileID: 8761920530453820337, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: _depthType
       value: 3

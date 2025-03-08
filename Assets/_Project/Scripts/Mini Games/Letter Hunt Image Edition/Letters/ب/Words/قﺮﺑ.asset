@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6042493fb3dcf574fa5b830a04044d28, type: 3}
   m_Name: "\u0642\uFEAE\uFE91"
   m_EditorClassIdentifier: 
-  arabicWord: NewWord
-  wordImage: {fileID: 0}
+  arabicWord: "\u0642\uFEAE\uFE91"
+  wordImage: {fileID: 1043075509766499716, guid: 13b10d577e87b7d4d853360ce0e335ed, type: 3}
