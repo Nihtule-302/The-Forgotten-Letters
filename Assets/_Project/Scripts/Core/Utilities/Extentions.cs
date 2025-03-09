@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public static class Extentions
 {
-    public static void Shuffle<T>(this IList<T> list) {
+    public static IList<T> Shuffle<T>(this IList<T> list) {
         System.Random rng = new System.Random();
         int n = list.Count;
         while (n > 1) {
@@ -13,5 +13,6 @@ public static class Extentions
             list[k] = list[n];
             list[n] = value;
         }
+        return list;
     }
 }

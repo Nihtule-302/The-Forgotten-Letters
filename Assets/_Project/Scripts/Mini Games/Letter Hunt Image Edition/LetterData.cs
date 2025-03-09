@@ -7,6 +7,8 @@ public class LetterData : ScriptableObject
     public string letter;
     public List<WordData> words;
 
+    public AudioClip letterAudio;
+
     void OnEnable()
     {
         SetLetterBasedOnSOName();

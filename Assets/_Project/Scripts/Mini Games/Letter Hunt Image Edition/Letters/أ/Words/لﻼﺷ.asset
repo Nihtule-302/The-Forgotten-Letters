@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: "\u0644\uFEFC\uFEB7"
   m_EditorClassIdentifier: 
   arabicWord: "\u0644\uFEFC\uFEB7"
-  wordImage: {fileID: 2599410477661199735, guid: 1a1c10531e44e31408fa5bed1cdecd1d, type: 3}
+  wordImage:
+  - {fileID: 2333020893515587696, guid: 804a2d420100d9c4c883dd1d8d0ba61a, type: 3}
+  - {fileID: 2599410477661199735, guid: 1a1c10531e44e31408fa5bed1cdecd1d, type: 3}
+  - {fileID: -1020668870333782124, guid: a1f72a1f09bbb0c498eb729399cbf9bc, type: 3}
+  wordAudio: {fileID: 8300000, guid: 1654f721271ff2646b9504eefd37390c, type: 3}

@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letter: "\u062A"
   words:
+  - {fileID: 11400000, guid: 392d7d87ed19a80409577ed74d305fd9, type: 2}
   - {fileID: 11400000, guid: 065fe58e20b7c054e8089e7a7244de8a, type: 2}
+  - {fileID: 11400000, guid: a2a4908bb26294144a05db75feb84639, type: 2}
+  - {fileID: 11400000, guid: 27587747885f4584ba59ff55212a6a4e, type: 2}
+  - {fileID: 11400000, guid: 8bb16f913ebb32b48b04df1d60e0477e, type: 2}
+  letterAudio: {fileID: 0}

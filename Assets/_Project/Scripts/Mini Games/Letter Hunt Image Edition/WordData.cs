@@ -1,11 +1,13 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWord", menuName = "LetterGame/Word")]
 public class WordData : ScriptableObject
 {
     public string arabicWord;
-    public Sprite wordImage;
+    public List<Sprite> wordImage = new();
+    public AudioClip wordAudio;
 
     void OnEnable()
     {

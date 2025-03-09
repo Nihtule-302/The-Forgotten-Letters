@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6042493fb3dcf574fa5b830a04044d28, type: 3}
+  m_Name: "\u062C\uFE8E\uFE97"
+  m_EditorClassIdentifier: 
+  arabicWord: "\u062C\uFE8E\uFE97"
+  wordImage:
+  - {fileID: 21300000, guid: 3567cb2c7b22cf84f940af8b819c0b90, type: 3}
+  - {fileID: 21300000, guid: 018510684cae5cf45b09d237bbe8c325, type: 3}
+  - {fileID: 21300000, guid: 9393646c5bdc01f4f86b0f909c83971a, type: 3}
+  - {fileID: 21300000, guid: 4e71d8d186f0d08418aa4e0165fa7024, type: 3}
+  - {fileID: 21300000, guid: 9d4c62bef22a9c74694f8ab08e6f1519, type: 3}
+  wordAudio: {fileID: 8300000, guid: b1e692bf58fdd23469a22eb346cffd05, type: 3}

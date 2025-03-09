@@ -15,5 +15,8 @@ MonoBehaviour:
   letter: "\u062B"
   words:
   - {fileID: 11400000, guid: d87892d3bdc83c844a5e209ddf2cf4ef, type: 2}
+  - {fileID: 11400000, guid: 78e8593911b0ea3448853fa199d02029, type: 2}
   - {fileID: 11400000, guid: 774b968220aad434196c1659890ec652, type: 2}
+  - {fileID: 11400000, guid: 1222d8c585f7c9c45bde3d46293a4aa5, type: 2}
   - {fileID: 11400000, guid: 0c15fb5c1279ac44aa477923d59aabf7, type: 2}
+  letterAudio: {fileID: 0}
