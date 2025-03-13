@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      telescope (1)_0: 8714928500957544792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

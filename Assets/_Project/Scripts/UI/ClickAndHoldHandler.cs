@@ -8,21 +8,17 @@ public class ClickAndHoldHandler : MonoBehaviour, IPointerDownHandler, IPointerU
 {
     public Action onTap;  // Action for a tap
     public Action onHold; // Action for a hold
+    public Action<float> onHoldProgress; // Tracks dissolve effect (0 to 1) 
+    public Action onHoldRelease;
 
     private bool isHolding;
     private bool isPointerDown;
     private float holdTime = 0.5f; // Time required to trigger hold
+    private float timeElapsed = 0f;
 
-    public void SetHoldTime(float requstedHoldTime)
+    public void SetHoldTime(float requestedHoldTime)
     {
-        if (requstedHoldTime < 0)
-        {
-            this.holdTime = 0;
-        }
-        else
-        {
-            holdTime = requstedHoldTime;
-        }
+        holdTime = Mathf.Max(0, requestedHoldTime); // Ensure holdTime is not negative
     }
 
     private CancellationTokenSource holdCancelToken;
@@ -38,11 +34,15 @@ public class ClickAndHoldHandler : MonoBehaviour, IPointerDownHandler, IPointerU
     public void OnPointerUp(PointerEventData eventData)
     {
         isPointerDown = false;
-        holdCancelToken?.Cancel(); // Stop the hold detection if released early
+        holdCancelToken?.Cancel(); // Stop the hold detection
 
-        if (!isHolding) 
+        if (isHolding)
         {
-            onTap?.Invoke();
+            onHoldRelease?.Invoke(); // Notify that hold was released
+        }
+        else
+        {
+            onTap?.Invoke(); // Register as a tap if hold wasn’t reached
         }
     }
 
@@ -51,6 +51,7 @@ public class ClickAndHoldHandler : MonoBehaviour, IPointerDownHandler, IPointerU
         try
         {
             await UniTask.Delay(TimeSpan.FromSeconds(holdTime), cancellationToken: token);
+
             if (isPointerDown) 
             {
                 isHolding = true;
@@ -63,5 +64,4 @@ public class ClickAndHoldHandler : MonoBehaviour, IPointerDownHandler, IPointerU
             // Ignore if canceled
         }
     }
-
 }

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      whale (1)_0: -3486280060332716660
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

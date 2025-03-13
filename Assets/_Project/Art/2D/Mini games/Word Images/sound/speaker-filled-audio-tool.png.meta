@@ -210,7 +210,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      speaker-filled-audio-tool_0: -1289813204156106022
+      speaker-filled-audio-tool_1: 3023873303853774440
+      speaker-filled-audio-tool_2: -4064080304501677986
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

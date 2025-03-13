@@ -2,96 +2,88 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.UI;
 using Flexalon;
 using Cysharp.Threading.Tasks;
-using UnityEngine.EventSystems;
-using System.Collections;
-using UnityEngine.Events;
 
 namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 {
     public class LetterHuntGame : MonoBehaviour
     {
         [Header("UI Components")]
-        [SerializeField] private TextMeshProUGUI letterText;
-        [SerializeField] private FlexalonGridLayout grid;
-        [SerializeField] private GameObject choiceButtonPrefab;
+        [SerializeField] private TextMeshProUGUI targetLetterText;
+        [SerializeField] private FlexalonGridLayout gridLayout;
+        [SerializeField] private List<GameObject> buttonVariants = new List<GameObject>();
+        [SerializeField] private GetValueFromDropdown buttonVariantDropdown;
 
         [Header("Game Settings")]
-        [SerializeField] private List<LetterData> allLetters;
-        [SerializeField] private int totalButtons = 6;
-        [SerializeField] private float correctRatio = 0.5f;
-        [SerializeField] private float correctAnswerDelaySec = 0.5f;
-        [SerializeField] private float buttonHoldTime = 1f;
+        [SerializeField] private List<LetterData> availableLetters;
+        [SerializeField] private int totalChoices = 6;
+        [SerializeField] private float correctChoiceRatio = 0.5f;
+        [SerializeField] private float correctChoiceDelay = 0.5f;
+        [SerializeField] private float holdDuration = 1f;
 
-        [Header("Debugging")]
-        [SerializeField] private LetterData targetLetterSO;
-        [SerializeField] private string targetLetter;
-        [SerializeField] private List<LetterData> distractorLetters;
-        [SerializeField] private List<WordData> allChoices = new();
-        [SerializeField] private List<GameObject> choiceButtons = new();
-
+        private LetterData targetLetterData;
+        private string targetLetter;
+        private List<LetterData> distractorLetters;
+        private List<WordData> wordChoices = new();
+        private List<GameObject> choiceButtons = new();
+        private GameObject selectedButtonVariant;
 
         private void Start() => StartGame();
 
         public void StartGame()
         {
             InitializeGame();
-            SelectWords();
-            DisplayWords();
+            GenerateWordChoices();
+            DisplayChoices();
         }
 
         private void InitializeGame()
         {
+            SelectButtonVariant();
             SelectTargetLetter();
-            SetupGrid();
+            ConfigureGridLayout();
         }
 
         private void SelectTargetLetter()
         {
-            targetLetterSO = allLetters[Random.Range(0, allLetters.Count)];
-            targetLetter = targetLetterSO.letter;
-            letterText.GetComponent<ArabicFixerTMPRO>().fixedText = targetLetter;
-            distractorLetters = allLetters.Where(letter => letter != targetLetterSO).OrderBy(_ => Random.value).Take(3).ToList();
+            targetLetterData = availableLetters[Random.Range(0, availableLetters.Count)];
+            targetLetter = targetLetterData.letter;
+            targetLetterText.GetComponent<ArabicFixerTMPRO>().fixedText = targetLetter;
+            distractorLetters = availableLetters.Where(letter => letter != targetLetterData).OrderBy(_ => Random.value).Take(3).ToList();
         }
 
-        private void SetupGrid()
+        private void ConfigureGridLayout()
         {
-            grid.Columns = (uint)Mathf.CeilToInt(Mathf.Sqrt(totalButtons));
-            grid.Rows = (uint)Mathf.CeilToInt((float)totalButtons / grid.Columns);
+            gridLayout.Columns = (uint)Mathf.CeilToInt(Mathf.Sqrt(totalChoices));
+            gridLayout.Rows = (uint)Mathf.CeilToInt((float)totalChoices / gridLayout.Columns);
         }
 
-
-        private void SelectWords()
+        private void GenerateWordChoices()
         {
-            int numCorrect = Mathf.CeilToInt(totalButtons * correctRatio);
-            int numIncorrect = totalButtons - numCorrect;
+            int correctCount = Mathf.CeilToInt(totalChoices * correctChoiceRatio);
+            int incorrectCount = totalChoices - correctCount;
             
-            allChoices.Clear();
-            AddWordsToChoices(GetCorrectWords(numCorrect));
-            AddWordsToChoices(GetIncorrectWords(numIncorrect));
-            allChoices.Shuffle();
+            wordChoices.Clear();
+            AddWordsToChoices(GetCorrectWords(correctCount));
+            AddWordsToChoices(GetIncorrectWords(incorrectCount));
+            wordChoices.Shuffle();
         }
 
-        private void AddWordsToChoices(IEnumerable<WordData> words)
-        {
-            allChoices.AddRange(words);
-        }
-
+        private void AddWordsToChoices(IEnumerable<WordData> words) => wordChoices.AddRange(words);
 
         private List<WordData> GetCorrectWords(int count)
         {
-            return targetLetterSO.words.OrderBy(_ => Random.value).Take(count).ToList();
+            return targetLetterData.words.OrderBy(_ => Random.value).Take(count).ToList();
         }
 
-        private HashSet<WordData> GetIncorrectWords(int requiredCount)
+        private HashSet<WordData> GetIncorrectWords(int count)
         {
             HashSet<WordData> incorrectWords = new();
             
             foreach (var letter in distractorLetters)
             {
-                if (letter.words.Count > 0 && incorrectWords.Count < requiredCount)
+                if (letter.words.Count > 0 && incorrectWords.Count < count)
                 {
                     var word = letter.words[Random.Range(0, letter.words.Count)];
                     if (IsValidIncorrectWord(word))
@@ -99,7 +91,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
                 }
             }
             
-            while (incorrectWords.Count < requiredCount)
+            while (incorrectWords.Count < count)
             {
                 var randomDistractor = distractorLetters[Random.Range(0, distractorLetters.Count)];
                 if (randomDistractor.words.Count > 0)
@@ -118,11 +110,10 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             return !ArabicNormalizer.DoesWordContainsTargetLetter(word.arabicWord, targetLetter);
         }
 
-
-        private void DisplayWords()
+        private void DisplayChoices()
         {
             ClearExistingButtons();
-            allChoices.ForEach(CreateChoiceButton);
+            wordChoices.ForEach(CreateChoiceButton);
         }
 
         private void ClearExistingButtons()
@@ -133,47 +124,26 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 
         private void CreateChoiceButton(WordData word)
         {
-            var newButton = Instantiate(choiceButtonPrefab, grid.transform);
-            SetupChoiceButton(newButton, word);
-            choiceButtons.Add(newButton);
+            var button = Instantiate(selectedButtonVariant, gridLayout.transform);
+            SetupChoiceButton(button, word);
+            choiceButtons.Add(button);
         }
 
         private void SetupChoiceButton(GameObject buttonObject, WordData word)
         {
-            var buttonInfo = buttonObject.GetComponent<ButtonInfoAccess>();
+            var buttonControler = buttonObject.GetComponent<ChoiceButtonController>();
 
-            buttonInfo.Text.text = word.arabicWord;
-            buttonInfo.Text.GetComponent<ArabicFixerTMPRO>().fixedText = word.arabicWord;
-
-            if (word.wordImage != null && word.wordImage.Count > 0)
-            {
-                buttonInfo.Image.sprite = word.wordImage[Random.Range(0, word.wordImage.Count)];
-            }
-
-            ClickAndHoldHandler clickHandler = buttonObject.GetComponent<ClickAndHoldHandler>() 
-                                      ?? buttonObject.AddComponent<ClickAndHoldHandler>();
+            buttonControler.SetUpChoiceButton(word,holdDuration);
             
-            clickHandler.SetHoldTime(buttonHoldTime);
-
-            clickHandler.onTap = () => PlayAudio(word);  // Play audio on tap
-            clickHandler.onHold = () => CheckAnswer(word); // Check answer on hold
-        }
-
-        private void PlayAudio(WordData word)
-        {
-            Debug.Log($"{word.arabicWord}");
-            if (word.wordAudio != null)
-            {
-                AudioSource.PlayClipAtPoint(word.wordAudio, Camera.main.transform.position);
-            }
+            buttonControler.onHoldActionComplete = () => CheckAnswer(word); // Check answer on hold
         }
 
         public void CheckAnswer(WordData word)
         {
-            if (targetLetterSO.words.Contains(word))
+            if (targetLetterData.words.Contains(word))
             {
                 Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
-                HandleCorrectAnswerAsync().Forget();
+                HandleCorrectChoiceAsync().Forget();
             }
             else
             {
@@ -181,16 +151,28 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             }
         }
 
-        private async UniTaskVoid HandleCorrectAnswerAsync()
+        private async UniTaskVoid HandleCorrectChoiceAsync()
         {
-            await UniTask.Delay(System.TimeSpan.FromSeconds(correctAnswerDelaySec));
+            await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));
             RestartGame();
+        }
+
+        public void UpdateButtonVariant()
+        {
+            SelectButtonVariant();
+            RedisplayChoices();
+        }
+
+        private void SelectButtonVariant()
+        {
+            var selectedIndex = buttonVariantDropdown.GetDropdownValue();
+            selectedButtonVariant = buttonVariants[selectedIndex];
         }
 
         [ContextMenu("Restart Game")]
         public void RestartGame() => StartGame();
 
         [ContextMenu("Redisplay Game")]
-        public void RedisplayWords() => DisplayWords();
+        public void RedisplayChoices() => DisplayChoices();
     }
 }

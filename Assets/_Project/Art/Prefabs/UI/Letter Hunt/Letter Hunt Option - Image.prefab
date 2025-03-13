@@ -113,11 +113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 293127261804632680, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 2960
       objectReference: {fileID: 0}
     - target: {fileID: 293127261804632680, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 1440
       objectReference: {fileID: 0}
     - target: {fileID: 293127261804632680, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,11 +173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: FillSize.x
-      value: 1920
+      value: 2960
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: FillSize.y
-      value: 1080
+      value: 1440
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: FillSize.z
@@ -185,11 +185,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: TargetRectSize.x
-      value: 1920
+      value: 2960
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: TargetRectSize.y
-      value: 1080
+      value: 1440
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: TransformPosition.x
@@ -201,35 +201,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: TransformRectSize.x
-      value: 1920
+      value: 2960
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: TransformRectSize.y
-      value: 1080
+      value: 1440
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: LayoutBounds.m_Extent.x
-      value: 960
+      value: 1480
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: LayoutBounds.m_Extent.y
-      value: 540
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: AdapterBounds.m_Extent.x
-      value: 960
+      value: 1480
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: AdapterBounds.m_Extent.y
-      value: 540
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: RotatedAndScaledBounds.m_Extent.x
-      value: 960
+      value: 1480
       objectReference: {fileID: 0}
     - target: {fileID: 5588486352874475457, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: RotatedAndScaledBounds.m_Extent.y
-      value: 540
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 5657673604928130066, guid: 3327891b033c31648adc570f4912def2, type: 3}
       propertyPath: image
