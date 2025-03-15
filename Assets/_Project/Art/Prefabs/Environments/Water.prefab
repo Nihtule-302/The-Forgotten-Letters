@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4495965570652870982
 Transform:
@@ -139,7 +139,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3647487396234148643}
   - component: {fileID: 7009888253943141338}
-  - component: {fileID: 6519619104403220039}
   - component: {fileID: 6063060146725167177}
   - component: {fileID: 8154746218628466118}
   m_Layer: 0
@@ -200,7 +199,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 5
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -215,14 +214,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6519619104403220039
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8234708950027287522}
-  m_Enabled: 1
 --- !u!114 &6063060146725167177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,8 +265,8 @@ Skybox:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8234708950027287522}
-  m_Enabled: 0
-  m_CustomSkybox: {fileID: 0}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: d5dbe638ad5ae1547878d7a98ac6047e, type: 2}
 --- !u!1 &8574531398507452655
 GameObject:
   m_ObjectHideFlags: 0
