@@ -7,17 +7,28 @@ public class DissolveControl : MonoBehaviour
     [SerializeField] private Image DissolveImage;
 
     private Material dissolveMaterialInstance;
+
+    public Color baseDissolveColor;
+    public Color edgeColor;
+    public float edgeWidth;
     
-    [SerializeField] private float dissolveStart = 1f;
-    [SerializeField] private float dissolveEnd = 0f;
-    [SerializeField] private float dissolveDuration = 0.5f;
+    public float dissolveStart = 1f;
+    public float dissolveEnd = 0f;
+    public float dissolveDuration = 3f;
 
     private float currentDissolveValue;
-    public Action OnDissolveComplete; // Action to call when dissolve completes
+    
+    // Separate events for each action
+    public Action OnDissolveComplete;       // Called when StartDissolveEffect finishes
+    public Action OnResetDissolveComplete;  // Called when ResetDissolveEffect finishes
 
     private void Start()
     {
         InitializeMaterial();
+
+        // Subscribe to the events
+        OnDissolveComplete += () => Debug.Log("Dissolve effect completed successfully!");
+        OnResetDissolveComplete += () => Debug.Log("Reset dissolve effect completed successfully!");
     }
 
     private void InitializeMaterial()
@@ -32,41 +43,57 @@ public class DissolveControl : MonoBehaviour
         {
             currentDissolveValue = dissolveStart;
             SetDissolveAmount(currentDissolveValue);
+            SetDissolveSettings();
         }
+    }
+
+    private void SetDissolveSettings()
+    {
+        dissolveMaterialInstance.SetFloat("_Edge_Width", edgeWidth);
+        dissolveMaterialInstance.SetColor("_Edge_Color", edgeColor);
+        dissolveMaterialInstance.SetColor("_Base_Color", baseDissolveColor);
     }
 
     public void StartDissolveEffect(Action callback = null)
     {
-        RunDissolveTween(dissolveEnd, callback, true);
+        RunDissolveTween(dissolveEnd, callback, OnDissolveComplete);
     }
 
     public void ResetDissolveEffect(Action callback = null)
     {
-        RunDissolveTween(dissolveStart, callback, false);
+        RunDissolveTween(dissolveStart, callback, OnResetDissolveComplete);
     }
 
-    private void RunDissolveTween(float targetValue, Action callback, bool invokeCompleteEvent)
+    private void RunDissolveTween(float targetValue, Action callback, Action completeEvent)
     {
         LeanTween.cancel(gameObject);
         
         LeanTween.value(gameObject, currentDissolveValue, targetValue, dissolveDuration)
             .setOnUpdate(SetDissolveAmount)
-            .setOnComplete(() => HandleDissolveComplete(callback, invokeCompleteEvent));
+            .setOnComplete(() => InvokeCompletionEvent(callback, completeEvent));
     }
 
     private void SetDissolveAmount(float value)
     {
         currentDissolveValue = value;
-        dissolveMaterialInstance.SetFloat("_DissolveAmount", currentDissolveValue);
+        dissolveMaterialInstance.SetFloat("_Dissolve", currentDissolveValue);
     }
 
-    private void HandleDissolveComplete(Action callback, bool invokeCompleteEvent)
+    private void InvokeCompletionEvent(Action callback, Action completeEvent)
     {
-        Debug.Log("Dissolve effect completed!");
         callback?.Invoke();
-        if (invokeCompleteEvent)
-        {
-            OnDissolveComplete?.Invoke();
-        }
+        completeEvent?.Invoke(); // Calls the appropriate event
     }
+}
+
+public class DissolveData
+{
+    public float dissolveStart = 1f;
+    public float dissolveEnd = 0f;
+    public float dissolveDuration = 3f;
+
+    public Color baseDissolveColor;
+    public Color edgeColor;
+    public float edgeWidth;
+
 }

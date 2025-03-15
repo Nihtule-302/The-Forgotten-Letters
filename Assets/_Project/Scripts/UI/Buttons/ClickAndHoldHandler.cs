@@ -14,7 +14,6 @@ public class ClickAndHoldHandler : MonoBehaviour, IPointerDownHandler, IPointerU
     private bool isHolding;
     private bool isPointerDown;
     private float holdTime = 0.5f; // Time required to trigger hold
-    private float timeElapsed = 0f;
 
     public void SetHoldTime(float requestedHoldTime)
     {

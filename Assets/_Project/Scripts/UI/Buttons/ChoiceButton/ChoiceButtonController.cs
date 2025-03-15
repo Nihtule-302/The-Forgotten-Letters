@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ChoiceButtonController : MonoBehaviour
 {
-    [SerializeField] private ButtonInfoAccess buttonInfo;
+    [SerializeField] private ChoiceButtonInfoAccess buttonInfo;
     [SerializeField] private ClickAndHoldHandler clickHandler;
     [SerializeField] private WordData word;
     [SerializeField] private DissolveControl dissolveControl;
@@ -18,10 +18,29 @@ public class ChoiceButtonController : MonoBehaviour
         ConfigureClickHandler(holdDuration);
     }
 
+    public void SetUpChoiceButton(WordData wordData, float holdDuration, DissolveData dissolveData)
+    {
+        InitializeComponents();
+        AssignWordData(wordData);
+        SetButtonImage();
+        ConfigureClickHandler(holdDuration);
+        ApplyDissolveSettings(dissolveData);
+    }
+
+    private void ApplyDissolveSettings(DissolveData dissolveData)
+    {
+        dissolveControl.dissolveStart = dissolveData.dissolveStart;
+        dissolveControl.dissolveEnd = dissolveData.dissolveEnd;
+        dissolveControl.dissolveDuration = dissolveData.dissolveDuration;
+        dissolveControl.baseDissolveColor = dissolveData.baseDissolveColor;
+        dissolveControl.edgeColor = dissolveData.edgeColor;
+        dissolveControl.edgeWidth = dissolveData.edgeWidth;
+    }
+
     private void InitializeComponents()
     {
         if(buttonInfo == null)
-            buttonInfo = GetComponent<ButtonInfoAccess>();
+            buttonInfo = GetComponent<ChoiceButtonInfoAccess>();
             
         if(clickHandler == null)
         clickHandler = GetComponent<ClickAndHoldHandler>() ?? gameObject.AddComponent<ClickAndHoldHandler>();
@@ -46,7 +65,8 @@ public class ChoiceButtonController : MonoBehaviour
     {
         clickHandler.SetHoldTime(holdDuration);
         clickHandler.onTap = () => PlayAudio();
-        clickHandler.onHold = () => onHoldActionComplete?.Invoke();
+        clickHandler.onHold = () => dissolveControl.StartDissolveEffect(HandleHoldActionComplete);
+        clickHandler.onHoldRelease = () => dissolveControl.ResetDissolveEffect();
     }
 
     private void PlayAudio()
@@ -56,5 +76,9 @@ public class ChoiceButtonController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(word.wordAudio, Camera.main.transform.position);
         }
+    }
+    private void HandleHoldActionComplete()
+    {
+        onHoldActionComplete?.Invoke();
     }
 }
