@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdd615799a3e0f4dbcd076dca152e25, type: 3}
+  m_Name: LetterHuntData
+  m_EditorClassIdentifier: 
+  correctScore: 1
+  incorrectScore: 2
+  rounds:
+  - targetLetter: "\u062A"
+    chosenWord: "\u0644\uFEFC\uFEB7"
+    isCorrect: 0
+    timestamp: 2025-03-15T15:51:21.7424487Z
+  - targetLetter: "\u062A"
+    chosenWord: "\uFE9E\uFEE0\uFE9B"
+    isCorrect: 0
+    timestamp: 2025-03-15T15:51:28.3158052Z
+  - targetLetter: "\u062A"
+    chosenWord: "\uFE94\uFEA3\uFE8E\uFED4\uFE97"
+    isCorrect: 1
+    timestamp: 2025-03-15T15:51:34.6435483Z

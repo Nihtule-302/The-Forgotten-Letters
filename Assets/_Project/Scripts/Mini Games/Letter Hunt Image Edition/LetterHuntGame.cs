@@ -162,19 +162,41 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
         {
             if (targetLetterData.words.Contains(word))
             {
-                Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
-                HandleCorrectChoiceAsync().Forget();
+                HandleCorrectChoiceAsync(word).Forget();
             }
             else
             {
-                Debug.Log("❌ " + ArabicSupport.Fix("خطأ! حاول مرة أخرى.", true, true));
+                HandleIncorrectChoiceAsync(word).Forget();
             }
         }
 
-        private async UniTaskVoid HandleCorrectChoiceAsync()
+        private async UniTaskVoid HandleCorrectChoiceAsync(WordData word)
         {
+            var letterHuntDataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
+
+            letterHuntDataBuilder
+            .IncrementCorrectScore()
+            .AddRound(targetLetter, word.arabicWord, isCorrect: true);
+
+            PersistentSOManager.GetSO<LetterHuntData>().UpdateData(letterHuntDataBuilder);
+
+            Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
             await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));
             RestartGame();
+        }
+
+        private async UniTaskVoid HandleIncorrectChoiceAsync(WordData word)
+        {
+            var letterHuntDataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
+
+            letterHuntDataBuilder
+            .IncrementIncorrectScore()
+            .AddRound(targetLetter, word.arabicWord, isCorrect: false);
+
+            PersistentSOManager.GetSO<LetterHuntData>().UpdateData(letterHuntDataBuilder);
+
+            Debug.Log("❌ " + ArabicSupport.Fix("خطأ! حاول مرة أخرى.", true, true));
+            await UniTask.Delay(0);
         }
 
         public void UpdateButtonVariant()

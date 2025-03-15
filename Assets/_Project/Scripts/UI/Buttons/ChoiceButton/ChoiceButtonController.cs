@@ -4,7 +4,7 @@ using UnityEngine;
 public class ChoiceButtonController : MonoBehaviour
 {
     [SerializeField] private ChoiceButtonInfoAccess buttonInfo;
-    [SerializeField] private ClickAndHoldHandler clickHandler;
+    [SerializeField] private ButtonTouchHandler clickHandler;
     [SerializeField] private WordData word;
     [SerializeField] private DissolveControl dissolveControl;
 
@@ -43,7 +43,7 @@ public class ChoiceButtonController : MonoBehaviour
             buttonInfo = GetComponent<ChoiceButtonInfoAccess>();
             
         if(clickHandler == null)
-        clickHandler = GetComponent<ClickAndHoldHandler>() ?? gameObject.AddComponent<ClickAndHoldHandler>();
+        clickHandler = GetComponent<ButtonTouchHandler>() ?? gameObject.AddComponent<ButtonTouchHandler>();
     }
 
     private void AssignWordData(WordData wordData)
