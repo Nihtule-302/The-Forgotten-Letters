@@ -17,6 +17,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3639949912398692528, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
+      propertyPath: sceneToTravelTo.m_AssetGUID
+      value: ec71b6dd7df668644838a18660460103
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639949912398692528, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: riseCurve.m_Curve.Array.size
       value: 2
       objectReference: {fileID: 0}

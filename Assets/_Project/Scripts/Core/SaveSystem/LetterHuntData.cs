@@ -50,5 +50,5 @@ public class LetterHuntRound
     public string targetLetter;
     public string chosenWord;
     public bool isCorrect;
-    public string timestamp; // Store as string
+    public string timestampCairoTime; // Store as string
 }

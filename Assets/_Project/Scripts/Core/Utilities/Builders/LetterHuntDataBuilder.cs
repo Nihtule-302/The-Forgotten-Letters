@@ -47,12 +47,14 @@ public class LetterHuntDataBuilder
 
     public LetterHuntDataBuilder AddRound(string targetLetter, string chosenWord, bool isCorrect)
     {
+        TimeZoneInfo cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Egypt Standard Time");
+        DateTime cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
         Rounds.Add(new LetterHuntRound
         {
             targetLetter = targetLetter,
             chosenWord = chosenWord,
             isCorrect = isCorrect,
-            timestamp = DateTime.UtcNow.ToString("o") // ISO 8601 format
+            timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt") 
         });
         return this;
     }

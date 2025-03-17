@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec71b6dd7df668644838a18660460103
+    m_Address: Alph Realm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee0d808598249c54684fdaa630cdf697
     m_Address: Main Menu
     m_ReadOnly: 0

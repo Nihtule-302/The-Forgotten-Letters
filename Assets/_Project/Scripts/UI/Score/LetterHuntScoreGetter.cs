@@ -1,0 +1,40 @@
+using System;
+using TMPro;
+using UnityEngine;
+
+public class LetterHuntScoreGetter : MonoBehaviour
+{
+    [SerializeField] private TextMeshProUGUI correctTmp;
+    [SerializeField] private TextMeshProUGUI incorrectTmp;
+    private LetterHuntData letterHuntData;
+    void Start()
+    {
+        letterHuntData = PersistentSOManager.GetSO<LetterHuntData>();
+        SetScore();
+    }
+
+    void Update()
+    {
+        SetScore();
+    }
+
+    private void SetScore()
+    {
+        if(letterHuntData == null) return;
+
+        SetCorrectScore();
+        SetIncorrectScore();
+    }
+
+    private void SetCorrectScore()
+    {
+        if (correctTmp == null) return;
+        correctTmp.SetText(letterHuntData.correctScore.ToString());
+    }
+
+    private void SetIncorrectScore()
+    {
+        if (incorrectTmp == null) return;
+        incorrectTmp.SetText(letterHuntData.incorrectScore.ToString());
+    }
+}
