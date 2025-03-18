@@ -15,8 +15,28 @@ MonoBehaviour:
   m_GroupName: Levels
   m_GUID: d89a8c5d87a61bc4aa16768d16c763e6
   m_SerializeEntries:
+  - m_GUID: 3a97bd5293aaac04c991c432fd289147
+    m_Address: Phonics Exercis
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ca9b84b896c18d4b881ef8ca1d42d66
+    m_Address: Object Detection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4234fc7dd674e4f4a91198586656b955
     m_Address: Meditation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b1cb1bc824527e44a975d96f46c54aa
+    m_Address: Letter Hunt Image Edition
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 831fe6a53c3b7c6449231d5a81631582
+    m_Address: Drawing Letters
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

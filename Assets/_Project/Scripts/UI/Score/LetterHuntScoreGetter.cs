@@ -10,6 +10,7 @@ public class LetterHuntScoreGetter : MonoBehaviour
     void Start()
     {
         letterHuntData = PersistentSOManager.GetSO<LetterHuntData>();
+        FirebaseManager.Instance.OnLetterHuntDataUpdated += SetScore;
         SetScore();
     }
 

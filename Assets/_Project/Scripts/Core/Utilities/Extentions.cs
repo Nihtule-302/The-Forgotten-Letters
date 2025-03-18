@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public static class Extentions
@@ -14,5 +15,12 @@ public static class Extentions
             list[n] = value;
         }
         return list;
+    }
+
+    public static string ReverseText(this string str)
+    {
+        char[] charArray = str.ToCharArray();
+        Array.Reverse(charArray);
+        return new string(charArray);
     }
 }

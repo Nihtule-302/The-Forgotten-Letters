@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">374389052793</string>
+  <string name="google_storage_bucket" translatable="false">dyslexiamate-8f477.firebasestorage.app</string>
+  <string name="project_id" translatable="false">dyslexiamate-8f477</string>
+  <string name="google_api_key" translatable="false">AIzaSyBFLvV_JA7qQAROMKsdzKH2HUZmL_sxq2A</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBFLvV_JA7qQAROMKsdzKH2HUZmL_sxq2A</string>
+  <string name="google_app_id" translatable="false">1:374389052793:android:a0a60317e99ea1af720ba8</string>
+  <string name="default_android_client_id" translatable="false">374389052793-ngskj0p8fkvl97r8g2hb109ai47e0pat.apps.googleusercontent.com</string>
+  <string name="default_web_client_id" translatable="false">374389052793-01ket37do0p6nfrehtsvu3nhgbtr9qgv.apps.googleusercontent.com</string>
+</resources>

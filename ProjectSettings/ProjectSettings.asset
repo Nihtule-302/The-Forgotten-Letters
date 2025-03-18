@@ -143,9 +143,6 @@ PlayerSettings:
   bundleVersion: .2
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  - {fileID: -3258199670317708378, guid: 881d0f98e4ac0dd41ab949bff29d81c9, type: 2}
-  - {fileID: 11400000, guid: c2ca02e92398d274b9f703efd5eaefb9, type: 2}
-  - {fileID: 11400000, guid: fd3545efc80774243b521de227ecc1d3, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -167,7 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.nihtule.theforgottenletters
+    Android: com.example.dyslexia_mate
     Standalone: com.DefaultCompany.2D-URP
   buildNumber:
     Standalone: 0
@@ -177,7 +174,7 @@ PlayerSettings:
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 23
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -793,7 +790,7 @@ PlayerSettings:
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
   managedStrippingLevel:
-    Android: 3
+    Android: 1
     EmbeddedLinux: 1
     GameCoreScarlett: 1
     GameCoreXboxOne: 1

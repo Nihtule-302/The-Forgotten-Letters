@@ -194,7 +194,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             }
         }
 
-        private async UniTaskVoid HandleCorrectChoiceAsync(WordData word)
+        private async UniTask HandleCorrectChoiceAsync(WordData word)
         {
             await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));
             RestartGame();
@@ -207,6 +207,8 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             .AddRound(targetLetter, word.arabicWord, isCorrect: true);
 
             PersistentSOManager.GetSO<LetterHuntData>().UpdateData(letterHuntDataBuilder);
+
+            await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
 
             Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
             
@@ -221,6 +223,8 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             .AddRound(targetLetter, word.arabicWord, isCorrect: false);
 
             PersistentSOManager.GetSO<LetterHuntData>().UpdateData(letterHuntDataBuilder);
+
+            await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
 
             Debug.Log("❌ " + ArabicSupport.Fix("خطأ! حاول مرة أخرى.", true, true));
             await UniTask.Delay(0);

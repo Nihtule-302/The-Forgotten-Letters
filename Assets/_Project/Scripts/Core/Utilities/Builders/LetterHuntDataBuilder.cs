@@ -45,9 +45,21 @@ public class LetterHuntDataBuilder
         return this;
     }
 
+    
+
     public LetterHuntDataBuilder AddRound(string targetLetter, string chosenWord, bool isCorrect)
     {
-        TimeZoneInfo cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Egypt Standard Time");
+        TimeZoneInfo cairoTimeZone;
+    
+        try
+        {
+            cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Africa/Cairo");
+        }
+        catch
+        {
+            cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
+        }
+        
         DateTime cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
         Rounds.Add(new LetterHuntRound
         {

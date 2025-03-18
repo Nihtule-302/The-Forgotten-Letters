@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "374389052793",
+    "project_id": "dyslexiamate-8f477",
+    "storage_bucket": "dyslexiamate-8f477.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374389052793:android:a0a60317e99ea1af720ba8",
+        "android_client_info": {
+          "package_name": "com.example.dyslexia_mate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374389052793-ngskj0p8fkvl97r8g2hb109ai47e0pat.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dyslexia_mate",
+            "certificate_hash": "dee03c323476ca1496f00c18fbdeb01b9b86a063"
+          }
+        },
+        {
+          "client_id": "374389052793-01ket37do0p6nfrehtsvu3nhgbtr9qgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFLvV_JA7qQAROMKsdzKH2HUZmL_sxq2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374389052793-01ket37do0p6nfrehtsvu3nhgbtr9qgv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "374389052793-og6f063ct21jifnp4qhlf72pbon69ogn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dyslexiaMate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
