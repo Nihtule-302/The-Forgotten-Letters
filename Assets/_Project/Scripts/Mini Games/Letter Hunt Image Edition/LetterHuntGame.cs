@@ -196,6 +196,10 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 
         private async UniTaskVoid HandleCorrectChoiceAsync(WordData word)
         {
+            await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));
+            RestartGame();
+
+
             var letterHuntDataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
 
             letterHuntDataBuilder
@@ -205,8 +209,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             PersistentSOManager.GetSO<LetterHuntData>().UpdateData(letterHuntDataBuilder);
 
             Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
-            await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));
-            RestartGame();
+            
         }
 
         private async UniTaskVoid HandleIncorrectChoiceAsync(WordData word)
