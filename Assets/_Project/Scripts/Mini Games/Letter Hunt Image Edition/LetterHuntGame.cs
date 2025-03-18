@@ -56,13 +56,37 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             ConfigureGridLayout();
         }
 
-        private void SelectTargetLetter()
+        public void StartGame(LetterData letterData)
         {
-            targetLetterData = availableLetters[Random.Range(0, availableLetters.Count)];
-            targetLetter = targetLetterData.letter;
+            InitializeGame(letterData);
+            GenerateWordChoices();
+            DisplayChoices();
+        }
+
+        private void InitializeGame(LetterData letterData)
+        {
+            SelectButtonVariant();
+            SelectTargetLetter(letterData);
+            ConfigureGridLayout();
+        }
+
+        private void SelectTargetLetter(LetterData letterData = null)
+        {
+            if (letterData == null)
+            {
+                targetLetterData = availableLetters[Random.Range(0, availableLetters.Count)];
+                targetLetter = targetLetterData.letter;
+            }
+            else
+            {
+                targetLetter = letterData.letter;
+            }
+            
             targetLetterText.GetComponent<ArabicFixerTMPRO>().fixedText = targetLetter;
             distractorLetters = availableLetters.Where(letter => letter != targetLetterData).OrderBy(_ => Random.value).Take(3).ToList();
         }
+
+        
 
         private void ConfigureGridLayout()
         {

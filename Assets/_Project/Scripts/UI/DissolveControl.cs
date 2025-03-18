@@ -9,6 +9,8 @@ public class DissolveControl : MonoBehaviour
     private Material dissolveMaterialInstance;
 
     public Color baseDissolveColor;
+
+    [ColorUsage(true,true)]
     public Color edgeColor;
     public float edgeWidth;
     
