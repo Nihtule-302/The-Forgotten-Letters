@@ -61,6 +61,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _ReflectionColor: {r: 0.6324315, g: 0.649775, b: 0.7169812, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
