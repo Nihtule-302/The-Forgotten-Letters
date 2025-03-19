@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System; // Required for Action
+using System;
 
 public class DissolveControl : MonoBehaviour
 {
@@ -9,8 +9,6 @@ public class DissolveControl : MonoBehaviour
     private Material dissolveMaterialInstance;
 
     public Color baseDissolveColor;
-
-    [ColorUsage(true,true)]
     public Color edgeColor;
     public float edgeWidth;
     
@@ -20,17 +18,23 @@ public class DissolveControl : MonoBehaviour
 
     private float currentDissolveValue;
     
-    // Separate events for each action
-    public Action OnDissolveComplete;       // Called when StartDissolveEffect finishes
-    public Action OnResetDissolveComplete;  // Called when ResetDissolveEffect finishes
+    // Cache original colors
+    private Color originalBaseColor;
+    private Color originalEdgeColor;
+
+    public Action OnDissolveComplete;
+    public Action OnResetDissolveComplete;
 
     private void Start()
     {
         InitializeMaterial();
 
-        // Subscribe to the events
         OnDissolveComplete += () => Debug.Log("Dissolve effect completed successfully!");
         OnResetDissolveComplete += () => Debug.Log("Reset dissolve effect completed successfully!");
+
+        // Cache the original colors
+        originalBaseColor = baseDissolveColor;
+        originalEdgeColor = edgeColor;
     }
 
     private void InitializeMaterial()
@@ -49,7 +53,7 @@ public class DissolveControl : MonoBehaviour
         }
     }
 
-    private void SetDissolveSettings()
+    public void SetDissolveSettings()
     {
         dissolveMaterialInstance.SetFloat("_Edge_Width", edgeWidth);
         dissolveMaterialInstance.SetColor("_Edge_Color", edgeColor);
@@ -63,7 +67,11 @@ public class DissolveControl : MonoBehaviour
 
     public void ResetDissolveEffect(Action callback = null)
     {
-        RunDissolveTween(dissolveStart, callback, OnResetDissolveComplete);
+        RunDissolveTween(dissolveStart, () =>
+        {
+            RestoreOriginalColorsIfChanged();
+            callback?.Invoke();
+        }, OnResetDissolveComplete);
     }
 
     private void RunDissolveTween(float targetValue, Action callback, Action completeEvent)
@@ -84,7 +92,25 @@ public class DissolveControl : MonoBehaviour
     private void InvokeCompletionEvent(Action callback, Action completeEvent)
     {
         callback?.Invoke();
-        completeEvent?.Invoke(); // Calls the appropriate event
+        completeEvent?.Invoke();
+    }
+
+    private void RestoreOriginalColorsIfChanged()
+    {
+        bool isBaseColorChanged = dissolveMaterialInstance.GetColor("_Base_Color") != originalBaseColor;
+        bool isEdgeColorChanged = dissolveMaterialInstance.GetColor("_Edge_Color") != originalEdgeColor;
+
+        if (isBaseColorChanged)
+        {
+            dissolveMaterialInstance.SetColor("_Base_Color", originalBaseColor);
+            Debug.Log("Base color restored to original.");
+        }
+
+        if (isEdgeColorChanged)
+        {
+            dissolveMaterialInstance.SetColor("_Edge_Color", originalEdgeColor);
+            Debug.Log("Edge color restored to original.");
+        }
     }
 }
 

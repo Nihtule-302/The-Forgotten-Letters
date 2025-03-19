@@ -37,6 +37,13 @@ public class ChoiceButtonController : MonoBehaviour
         dissolveControl.edgeWidth = dissolveData.edgeWidth;
     }
 
+    public void updateDissolveColors(Color baseColor, Color edgeColor)
+    {
+        dissolveControl.baseDissolveColor = baseColor;
+        dissolveControl.edgeColor = edgeColor;
+        dissolveControl.SetDissolveSettings();
+    }
+
     private void InitializeComponents()
     {
         if(buttonInfo == null)

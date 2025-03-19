@@ -179,17 +179,20 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 
             buttonControler.SetUpChoiceButton(word,holdDuration, dissolveData);
             
-            buttonControler.onHoldActionComplete = () => CheckAnswer(word); // Check answer on hold
+            buttonControler.onHoldActionComplete = () => CheckAnswer(word, buttonControler); // Check answer on hold
         }
 
-        public void CheckAnswer(WordData word)
+        public void CheckAnswer(WordData word, ChoiceButtonController buttonObject)
         {
+
             if (targetLetterData.words.Contains(word))
             {
+                buttonObject.updateDissolveColors(Color.green, Color.green);
                 HandleCorrectChoiceAsync(word).Forget();
             }
             else
             {
+                buttonObject.updateDissolveColors(Color.red, Color.red);
                 HandleIncorrectChoiceAsync(word).Forget();
             }
         }
