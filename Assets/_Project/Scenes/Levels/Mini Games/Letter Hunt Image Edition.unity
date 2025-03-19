@@ -4059,7 +4059,7 @@ MonoBehaviour:
   buttonVariantDropdown: {fileID: 340251517}
   dissolveStart: 1
   dissolveEnd: 0
-  dissolveDuration: 1.2
+  dissolveDuration: 1.5
   edgeWidth: 0.102
   dissolveBaseColor: {r: 0.14609292, g: 0.47008142, b: 0.6320754, a: 0}
   dissolveEdgeColor: {r: 0.124006584, g: 0.6424066, b: 1.2518761, a: 0}
