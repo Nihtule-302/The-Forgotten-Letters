@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition;
 using UnityEngine;
 
@@ -8,11 +7,8 @@ public class LetterSelectorController : MonoBehaviour
     [SerializeField] private LetterData targetLetter;
     [SerializeField] private DissolveControl dissolveControl;
 
-    [SerializeField] private LetterHuntGame letterHuntGame;
-
+    [SerializeField] private LetterDataEvent onLetterSelected; 
     [SerializeField] private float holdTime = 0.2f;
-
-    [SerializeField] private Canvas canvas;
 
     void Start() => SetUpSelectorButton();
 
@@ -47,7 +43,6 @@ public class LetterSelectorController : MonoBehaviour
 
     private void HandleHoldActionComplete()
     {
-        letterHuntGame.StartGame(targetLetter);
-        canvas.enabled = false;      
+        onLetterSelected.Raise(targetLetter);     
     }
 }

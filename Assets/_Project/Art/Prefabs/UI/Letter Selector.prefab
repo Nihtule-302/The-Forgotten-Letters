@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 1527349443125249082}
   - component: {fileID: 2334890899457751306}
   - component: {fileID: 3973010433761277292}
+  - component: {fileID: 587759904926935095}
   m_Layer: 5
   m_Name: Letter Selector
   m_TagString: Untagged
@@ -261,6 +262,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4bc92ed67c26b94cad5fa9a5600a117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &587759904926935095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444192833465351946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ad578bbf4b3484a9ff1359fb914f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickHandler: {fileID: 0}
+  targetLetter: {fileID: 0}
+  dissolveControl: {fileID: 8148417716687783329}
+  onLetterSelected: {fileID: 11400000, guid: 77d50d63d1d9b81479b0398bcc9ee6a7, type: 2}
+  holdTime: 0.1
 --- !u!1 &8299530549234736265
 GameObject:
   m_ObjectHideFlags: 0

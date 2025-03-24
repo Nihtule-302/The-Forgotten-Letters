@@ -119,50 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &75850406
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 75850408}
-  - component: {fileID: 75850407}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &75850407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75850406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0443e5e906a4467d9a573b4d4dd521c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &75850408
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75850406}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &109036496
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialScene:
-    m_AssetGUID: ee0d808598249c54684fdaa630cdf697
+    m_AssetGUID: f242ffa8a234e844ba2f7053a9b31b23
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
@@ -393,6 +349,18 @@ MonoBehaviour:
       m_SubObjectGUID: 
       m_SubObjectType: 
       m_EditorAssetChanged: 1
+  - reference:
+      m_AssetGUID: 0c5e1e3deabc86e44b17a8aa3c125447
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+  - reference:
+      m_AssetGUID: 619d54e1540774145b27dd3b5fe24c21
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
 --- !u!114 &1887739195122650732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +412,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 7771380453714479562}
   - {fileID: 254514775}
-  - {fileID: 75850408}
   - {fileID: 1643282617}
   - {fileID: 109036499}
   - {fileID: 445929805}

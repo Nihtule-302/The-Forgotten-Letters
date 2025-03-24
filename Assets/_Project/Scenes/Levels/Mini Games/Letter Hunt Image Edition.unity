@@ -620,6 +620,10 @@ PrefabInstance:
       propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2868094621432017899, guid: a768f881a2a732e458ae7208372492f1, type: 3}
+      propertyPath: targetLetter
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4765290479557794023, guid: a768f881a2a732e458ae7208372492f1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -739,16 +743,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7235042497958192342, guid: a768f881a2a732e458ae7208372492f1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 828855987}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a768f881a2a732e458ae7208372492f1, type: 3}
---- !u!1 &197952885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7235042497958192342, guid: a768f881a2a732e458ae7208372492f1, type: 3}
-  m_PrefabInstance: {fileID: 197952884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &222713584
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +959,7 @@ GameObject:
   - component: {fileID: 317600085}
   - component: {fileID: 317600084}
   - component: {fileID: 317600083}
+  - component: {fileID: 317600086}
   m_Layer: 5
   m_Name: Select Letter Canvas
   m_TagString: Untagged
@@ -1054,6 +1051,37 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0
+--- !u!114 &317600086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317600080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28680645b0a73e4ba9411ec90701f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 77d50d63d1d9b81479b0398bcc9ee6a7, type: 2}
+  responce:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 317600085}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  letterDataResponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &331795529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,24 +2335,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4765290479557794023, guid: a768f881a2a732e458ae7208372492f1, type: 3}
   m_PrefabInstance: {fileID: 197952884}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &828855987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197952885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ad578bbf4b3484a9ff1359fb914f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clickHandler: {fileID: 0}
-  targetLetter: {fileID: 0}
-  dissolveControl: {fileID: 1422432059}
-  letterHuntGame: {fileID: 1947656936}
-  holdTime: 0.1
-  canvas: {fileID: 317600085}
 --- !u!1 &1065725095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,17 +3056,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4765290479557794023, guid: eefe22ef65fd1f7448d8f903de1b11f6, type: 3}
   m_PrefabInstance: {fileID: 1124534805}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1422432059 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6841353648780746365, guid: a768f881a2a732e458ae7208372492f1, type: 3}
-  m_PrefabInstance: {fileID: 197952884}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f0c0399a364aa42800dcfd70297b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1434287499 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4765290479557794023, guid: eefe22ef65fd1f7448d8f903de1b11f6, type: 3}
@@ -3260,7 +3259,7 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 1920, y: 934.0541, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: 450.37152, y: 0, z: 0}
+  TargetPosition: {x: 970.3715, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 1019.2556, y: 934.0541, z: 0}
@@ -4031,6 +4030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1947656937}
   - component: {fileID: 1947656936}
+  - component: {fileID: 1947656938}
   m_Layer: 0
   m_Name: LetterHuntGameManager
   m_TagString: Untagged
@@ -4087,6 +4087,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1947656938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947656935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28680645b0a73e4ba9411ec90701f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 77d50d63d1d9b81479b0398bcc9ee6a7, type: 2}
+  responce:
+    m_PersistentCalls:
+      m_Calls: []
+  letterDataResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1947656936}
+        m_TargetAssemblyTypeName: _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition.LetterHuntGame,
+          Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: LetterData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2039652769
 GameObject:
   m_ObjectHideFlags: 0
