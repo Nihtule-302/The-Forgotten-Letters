@@ -1,25 +1,29 @@
+using _Project.Scripts.Core.StateMachine;
 using UnityEngine;
 
-public class IdleState : State
+namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates
 {
-    public AnimationClip anim;
-    public override void Enter()
+    public class IdleState : State
     {
-        animator.Play(anim.name);
-    }
-    public override void Do()
-    {
-        if (!input.grounded)
+        public AnimationClip anim;
+        public override void Enter()
         {
-            isComplete = true;
+            animator.Play(anim.name);
         }
-    }
-    public override void FixedDo()
-    {
-        base.FixedDo();
-    }
-    public override void Exit()
-    {
-        base.Exit();
+        public override void Do()
+        {
+            if (grounded)
+            {
+                isComplete = true;
+            }
+        }
+        public override void FixedDo()
+        {
+            base.FixedDo();
+        }
+        public override void Exit()
+        {
+            base.Exit();
+        }
     }
 }

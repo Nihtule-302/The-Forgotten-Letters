@@ -1,150 +1,114 @@
-using System;
 using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.Airborne;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace _Project.Scripts.Gameplay._2D
 {
-    public AirState airState;
-    public IdleState idleState;
-    public RunState runState;
+    public class PlayerMovement : Core.StateMachine.Core
+    {
+        public AirState airState;
+        public IdleState idleState;
+        public RunState runState;
 
-    State state;
-
-    // Serialized fields
-    public PlayerStats stats;
-    public Rigidbody2D body;
-    public BoxCollider2D groundCheck;
-    public LayerMask groundMask;
-    public bool grounded;
-    public Animator animator;
+        // Serialized fields
+        public PlayerStats stats;
     
+        // Input variables
+        [SerializeField] InputManagerSO inputManager;
+        public float xInput{get; private set;}
+        public bool wantsToJump{get; private set;}
 
-    // Input variables
-    public InputManagerSO input {get; private set;}
-    public float xInput{get; private set;}
-    public bool wantsToJump{get; private set;}
-
-    // Unity lifecycle methods
-    void Start()
-    {
-        stats = PersistentSOManager.GetSO<PlayerStats>();
-        input = PersistentSOManager.GetSO<InputManagerSO>();
-        input.EnablePlayerActions();
-
-        SetupStates();
-    }
-
-    private void SetupStates()
-    {
-        idleState.Setup(body, animator, this);
-        airState.Setup(body, animator, this);
-        runState.Setup(body, animator, this);
-
-        state = idleState;
-    }
-
-    void Update()
-    {
-        CheckInput();
-        HandleJumpInput();
-
-        SelectState();
-        
-        state.Do();
-    }
-
-    void FixedUpdate()
-    {
-        CheckGround();
-        HandleXMovement();
-        ApplyGravity();
-        ApplyFriction();
-    }
-
-    // State management
-    private void SelectState()
-    {
-        State oldState = state;
-
-        if (grounded)
+        // Unity lifecycle methods
+        void Start()
         {
-            if (xInput == 0)
+            inputManager.Move += HandleXMovement;
+            inputManager.Jump += HandleJumpInput;
+            inputManager.EnablePlayerActions();
+
+            SetupInstances();
+            machine.Set(idleState);
+        }
+
+        void Update()
+        {
+            SelectState();   
+            machine.state.DoBranch();
+        }
+
+        void FixedUpdate()
+        {
+            ApplyGravity();
+            ApplyFriction();
+        }
+
+        // State management
+        private void SelectState()
+        {
+            if (groundSensor.grounded)
             {
-                state = idleState;
+                if (xInput == 0)
+                {
+                    machine.Set(idleState);
+                }
+                else
+                {
+                    machine.Set(runState);
+                }
             }
             else
             {
-                state = runState;
+                machine.Set(airState);
             }
         }
-        else
+
+        private void HandleXMovement(Vector2 direction)
         {
-            state = airState;
+            xInput = direction.x;
+            var maxXSpeed = stats.maxXSpeed;
+            if (Mathf.Abs(xInput) > 0)
+            {
+                body.linearVelocityX = xInput * maxXSpeed;
+                FaceInput();
+            }
         }
 
-        if(oldState != state || oldState.isComplete)
+        private void FaceInput()
         {
-            oldState.Exit();
-            state.Initialise();
-            state.Enter();
+            var directionToFace = Mathf.Sign(xInput);
+            transform.localScale = new Vector3(directionToFace, 1, 1);
         }
-    }
 
-    // Movement methods
-    private void CheckInput()
-    {
-        xInput = input.Direction.x;
-        wantsToJump = input.IsJumpKeyPressed;
-    }
-
-    private void HandleXMovement()
-    {
-        var maxXSpeed = stats.maxXSpeed;
-        if (Mathf.Abs(xInput) > 0)
+        private void HandleJumpInput(bool jumpInput)
         {
-            body.linearVelocityX = xInput * maxXSpeed;
-            FaceInput();
+            wantsToJump = jumpInput;
+            var jumpSpeed = stats.jumpSpeed;
+            if (wantsToJump && groundSensor.grounded)
+            {
+                body.linearVelocityY = jumpSpeed;
+            }
         }
-    }
 
-    private void FaceInput()
-    {
-        var directionToFace = Mathf.Sign(xInput);
-        transform.localScale = new Vector3(directionToFace, 1, 1);
-    }
+        // Physics methods
 
-    private void HandleJumpInput()
-    {
-        var jumpSpeed = stats.jumpSpeed;
-        if (wantsToJump && grounded)
+        private void ApplyGravity()
         {
-            body.linearVelocityY = jumpSpeed;
+            var gravity = stats.gravityForce;
+
+            if (groundSensor.grounded)
+                body.gravityScale = 1;
+            else
+                body.gravityScale = gravity;
         }
-    }
 
-    // Physics methods
-    private void CheckGround()
-    {
-        grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
-    }
-
-    private void ApplyGravity()
-    {
-        var gravity = stats.gravityForce;
-
-        if (grounded)
-            body.gravityScale = 1;
-        else
-            body.gravityScale = gravity;
-    }
-
-    private void ApplyFriction()
-    {
-        var groundDecay = stats.groundDecay;
-
-        if (grounded && xInput == 0 && body.linearVelocityY <= 0.01)
+        private void ApplyFriction()
         {
-            body.linearVelocityX *= groundDecay;
+            var groundDecay = stats.groundDecay;
+
+            if (groundSensor.grounded && xInput == 0 && body.linearVelocityY <= 0.01)
+            {
+                body.linearVelocityX *= groundDecay;
+            }
         }
     }
 }

@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: -1868118456065059449, guid: ee11345eada0cee499c322353dd74100, type: 3}
+  jumpSpeed: 15
 --- !u!1 &4169723862933275112
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5522812681064789136, guid: ee11345eada0cee499c322353dd74100, type: 3}
+  maxXSpeed: 0
 --- !u!1 &5442025106151626363
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +339,7 @@ GameObject:
   - component: {fileID: 7299012958817620033}
   - component: {fileID: 9100757304393957464}
   - component: {fileID: 6082426919045485530}
+  - component: {fileID: 2445800858207291019}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -402,17 +405,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cce7f9b43d230f4bb3e70f8561bbb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 7299012958817620033}
+  animator: {fileID: 1690681659542321174}
+  groundSensor: {fileID: 2445800858207291019}
   airState: {fileID: 3921806888704178766}
   idleState: {fileID: 3664037688916673808}
   runState: {fileID: 5767640119192378664}
-  stats: {fileID: 0}
-  body: {fileID: 7299012958817620033}
-  groundCheck: {fileID: 783107505450085458}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 128
-  grounded: 0
-  animator: {fileID: 1690681659542321174}
+  stats: {fileID: 11400000, guid: 619d54e1540774145b27dd3b5fe24c21, type: 2}
+  inputManager: {fileID: 11400000, guid: 0c5e1e3deabc86e44b17a8aa3c125447, type: 2}
 --- !u!114 &6082426919045485530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +443,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2445800858207291019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442025106151626363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf5aee78564e7e42865bd0871f80f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheck: {fileID: 783107505450085458}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &535061786481980894
 PrefabInstance:
   m_ObjectHideFlags: 0

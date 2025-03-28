@@ -1,12 +1,15 @@
 using TMPro;
 using UnityEngine;
 
-public class GetValueFromDropdown : MonoBehaviour
+namespace _Project.Scripts.Core.Utilities.UI
 {
-    [SerializeField] private TMP_Dropdown dropdown;
-    public int GetDropdownValue()
+    public class GetValueFromDropdown : MonoBehaviour
     {
-        var dropDownIndex = dropdown.value;
-        return dropDownIndex;
+        [SerializeField] private TMP_Dropdown dropdown;
+        public int GetDropdownValue()
+        {
+            var dropDownIndex = dropdown.value;
+            return dropDownIndex;
+        }
     }
 }

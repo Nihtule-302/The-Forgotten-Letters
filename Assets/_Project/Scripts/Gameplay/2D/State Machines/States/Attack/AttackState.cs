@@ -1,8 +1,11 @@
-using UnityEngine;
+using _Project.Scripts.Core.StateMachine;
 
-public class AttackState : State
+namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Attack
 {
-    public override void Enter(){}
-    public override void Do(){}
-    public override void Exit(){}
+    public class AttackState : State
+    {
+        public override void Enter(){}
+        public override void Do(){}
+        public override void Exit(){}
+    }
 }

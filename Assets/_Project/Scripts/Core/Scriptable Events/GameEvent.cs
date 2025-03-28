@@ -1,30 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class GameEvent<T> : ScriptableObject
+namespace _Project.Scripts.Core.Scriptable_Events
 {
-    readonly List<IGameEventListener<T>> listeners = new();
-
-    public void Raise(T data)
+    public class GameEvent<T> : ScriptableObject
     {
-        for (var i = listeners.Count - 1; i >= 0; i--)
+        readonly List<IGameEventListener<T>> listeners = new();
+
+        public void Raise(T data)
         {
-            listeners[i].OnEvenRaised(data);
+            for (var i = listeners.Count - 1; i >= 0; i--)
+            {
+                listeners[i].OnEvenRaised(data);
+            }
         }
+
+        public void RegisterListener(IGameEventListener<T> listener) => listeners.Add(listener);
+        public void DeregisterListener(IGameEventListener<T> listener) => listeners.Remove(listener);
     }
 
-    public void RegisterListener(IGameEventListener<T> listener) => listeners.Add(listener);
-    public void DeregisterListener(IGameEventListener<T> listener) => listeners.Remove(listener);
-}
+    [CreateAssetMenu(fileName = "GameEvent", menuName = "Events/GameEvent")]
+    public class GameEvent : GameEvent<Unit>
+    {
+        public void Raise() => Raise(Unit.Defualt);
+    }
 
-[CreateAssetMenu(fileName = "GameEvent", menuName = "Events/GameEvent")]
-public class GameEvent : GameEvent<Unit>
-{
-    public void Raise() => Raise(Unit.Defualt);
-}
-
-public struct Unit
-{
-    public static Unit Defualt => default;
+    public struct Unit
+    {
+        public static Unit Defualt => default;
+    }
 }
