@@ -1,11 +1,8 @@
-using System;
 using _Project.Scripts.Core.Managers;
-using _Project.Scripts.Core.Utilities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-
-namespace _Project.Scripts.Gameplay.Portals
+namespace _Project.Scripts.Gameplay._3D.Portals
 {
     public class Portal : MonoBehaviour
     {

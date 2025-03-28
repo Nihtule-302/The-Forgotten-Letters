@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay._3D.Portals
+namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Line
 {
     public class InfinitePortalLine : MonoBehaviour
     {

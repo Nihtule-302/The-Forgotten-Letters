@@ -1,22 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewLetter", menuName = "LetterGame/Letter")]
-public class LetterData : ScriptableObject
+namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 {
-    public string letter;
-    public List<WordData> words;
-
-    public AudioClip letterAudio;
-
-    void OnEnable()
+    [CreateAssetMenu(fileName = "NewLetter", menuName = "LetterGame/Letter")]
+    public class LetterData : ScriptableObject
     {
-        SetLetterBasedOnSOName();
-    }
+        public string letter;
+        public List<WordData> words;
 
-    [ContextMenu("Set word based on SO name")]
-    private void SetLetterBasedOnSOName()
-    {
-        letter = this.name;
+        public AudioClip letterAudio;
+
+        void OnEnable()
+        {
+            SetLetterBasedOnSOName();
+        }
+
+        [ContextMenu("Set word based on SO name")]
+        private void SetLetterBasedOnSOName()
+        {
+            letter = this.name;
+        }
     }
 }

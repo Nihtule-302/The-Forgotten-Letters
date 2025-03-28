@@ -2,12 +2,15 @@ using _Project.Scripts.Core.Managers;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class SceneTransitioner : MonoBehaviour
+namespace _Project.Scripts.Core.Utilities.Scene_Management
 {
-    [SerializeField] AssetReference SceneToTransitionTo;
-    
-    public void TranstionToScene()
+    public class SceneTransitioner : MonoBehaviour
     {
-        SceneTransitionManager.Instance.TransitionScene(SceneToTransitionTo);
+        [SerializeField] AssetReference SceneToTransitionTo;
+    
+        public void TranstionToScene()
+        {
+            SceneTransitionManager.Instance.TransitionScene(SceneToTransitionTo);
+        }
     }
 }

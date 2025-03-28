@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
-namespace _Project.Scripts.Gameplay._3D.Portals
+namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Line
 {
     [CreateAssetMenu(menuName = "The Forgotten Letters/PortalLineSettings")]
     public class PortalLineSettings : ScriptableObject

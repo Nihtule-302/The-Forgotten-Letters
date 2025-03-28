@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class TriggerPlaneMover : MonoBehaviour
+namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Trigger
 {
-    public Transform startPoint;
-    public Transform targetPoint;
-    public float duration = 10f;
-
-    public LeanTweenType easeType;
-
-    void Awake()
+    public class TriggerPlaneMover : MonoBehaviour
     {
-        startPoint = transform;
-    }
+        public Transform startPoint;
+        public Transform targetPoint;
+        public float duration = 10f;
 
-    void Start()
-    {
-        // Move the trigger plane from startPosition to targetPosition over 'duration' seconds.
-        transform.position = startPoint.position;
-        LeanTween.move(gameObject, targetPoint, duration)
-                 .setEase(easeType);
+        public LeanTweenType easeType;
+
+        void Awake()
+        {
+            startPoint = transform;
+        }
+
+        void Start()
+        {
+            // Move the trigger plane from startPosition to targetPosition over 'duration' seconds.
+            transform.position = startPoint.position;
+            LeanTween.move(gameObject, targetPoint, duration)
+                .setEase(easeType);
+        }
     }
 }

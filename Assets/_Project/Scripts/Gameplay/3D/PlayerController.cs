@@ -15,17 +15,16 @@ namespace _Project.Scripts.Gameplay._3D
         private CharacterController _controller;
         private Vector3 _playerVelocity;
         private bool _groundedPlayer;
-        private InputManagerSO input;
         private Transform _camTransform;
+
+        [SerializeField] private InputManagerSO input;
         
         
         private void Start()
         {
             if (Camera.main != null) _camTransform = Camera.main.transform;
             _controller = GetComponent<CharacterController>();
-
-            input = PersistentSOManager.GetSO<InputManagerSO>();
-            input.EnablePlayerActions();
+            input?.EnablePlayerActions();
         }
 
         void Update()

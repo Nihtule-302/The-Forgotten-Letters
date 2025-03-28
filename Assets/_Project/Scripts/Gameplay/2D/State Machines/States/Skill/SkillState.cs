@@ -1,8 +1,11 @@
-using UnityEngine;
+using _Project.Scripts.Core.StateMachine;
 
-public class SkillState : State
+namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Skill
 {
-    public override void Enter(){}
-    public override void Do(){}
-    public override void Exit(){}
+    public class SkillState : State
+    {
+        public override void Enter(){}
+        public override void Do(){}
+        public override void Exit(){}
+    }
 }

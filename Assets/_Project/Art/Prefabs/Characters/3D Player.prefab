@@ -217,6 +217,7 @@ MonoBehaviour:
   playerSpeed: 3.5
   jumpHeight: 1
   gravityValue: 0
+  input: {fileID: 11400000, guid: 0c5e1e3deabc86e44b17a8aa3c125447, type: 2}
 --- !u!1 &8864694609754744343
 GameObject:
   m_ObjectHideFlags: 0

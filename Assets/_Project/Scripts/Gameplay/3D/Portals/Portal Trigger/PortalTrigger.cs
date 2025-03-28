@@ -1,14 +1,16 @@
-using _Project.Scripts.Gameplay.Portals;
 using UnityEngine;
 
-public class PortalTrigger : MonoBehaviour
+namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Trigger
 {
-    private void OnTriggerEnter(Collider other)
+    public class PortalTrigger : MonoBehaviour
     {
-        PortalActivator portal = other.GetComponent<PortalActivator>();
-        if (portal != null)
+        private void OnTriggerEnter(Collider other)
         {
-            portal.RiseUp();
+            PortalActivator portal = other.GetComponent<PortalActivator>();
+            if (portal != null)
+            {
+                portal.RiseUp();
+            }
         }
     }
 }

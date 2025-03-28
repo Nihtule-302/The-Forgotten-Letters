@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Scripts.UI
+namespace _Project.Scripts.Core.Utilities
 {
     public class DeepLinkOpener : MonoBehaviour
     {

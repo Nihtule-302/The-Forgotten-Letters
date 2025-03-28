@@ -1,7 +1,9 @@
-using UnityEngine;
 using UnityEngine.Events;
 
-public class LetterDataEventListener : GameEventListener<LetterData>{}
+namespace _Project.Scripts.Core.Scriptable_Events.EventTypes.LetterData
+{
+    public class LetterDataEventListener : GameEventListener<Mini_Games.Letter_Hunt_Image_Edition.LetterData>{}
 
-[System.Serializable]
-public class LetterDataUnityEvent : UnityEvent<LetterData> { }
+    [System.Serializable]
+    public class LetterDataUnityEvent : UnityEvent<Mini_Games.Letter_Hunt_Image_Edition.LetterData> { }
+}

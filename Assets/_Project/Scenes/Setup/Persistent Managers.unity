@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialScene:
-    m_AssetGUID: ee0d808598249c54684fdaa630cdf697
+    m_AssetGUID: d5291aec99c824c48ae64e8cf15eedde
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
@@ -345,18 +345,6 @@ MonoBehaviour:
   persistentSOList:
   - reference:
       m_AssetGUID: feb759d472eb5bf45bcc00d80d0fbbb5
-      m_SubObjectName: 
-      m_SubObjectGUID: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 1
-  - reference:
-      m_AssetGUID: 0c5e1e3deabc86e44b17a8aa3c125447
-      m_SubObjectName: 
-      m_SubObjectGUID: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 1
-  - reference:
-      m_AssetGUID: 619d54e1540774145b27dd3b5fe24c21
       m_SubObjectName: 
       m_SubObjectGUID: 
       m_SubObjectType: 

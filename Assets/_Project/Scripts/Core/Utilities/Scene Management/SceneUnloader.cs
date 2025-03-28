@@ -4,7 +4,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 
-namespace _Project.Scripts.Core.Utilities
+namespace _Project.Scripts.Core.Utilities.Scene_Management
 {
     public class SceneUnloader
     {
