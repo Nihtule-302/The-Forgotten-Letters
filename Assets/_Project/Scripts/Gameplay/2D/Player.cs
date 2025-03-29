@@ -50,7 +50,7 @@ namespace _Project.Scripts.Gameplay._2D
             if (groundSensor.grounded)
             {
                 // machine.Set(xInput == 0 ? idleState : runState);
-                machine.Set(gr)
+                machine.Set(groundState);
             }
             else
             {
