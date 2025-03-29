@@ -22,7 +22,6 @@ namespace _Project.Scripts.Gameplay._2D
         // Unity lifecycle methods
         void Start()
         {
-            inputManager.Move += HandleXMovement;
             inputManager.Jump += HandleJumpInput;
             inputManager.EnablePlayerActions();
 
@@ -59,17 +58,6 @@ namespace _Project.Scripts.Gameplay._2D
             else
             {
                 machine.Set(airState);
-            }
-        }
-
-        private void HandleXMovement(Vector2 direction)
-        {
-            xInput = direction.x;
-            var maxXSpeed = stats.maxXSpeed;
-            if (Mathf.Abs(xInput) > 0)
-            {
-                body.linearVelocityX = xInput * maxXSpeed;
-                FaceInput();
             }
         }
 
