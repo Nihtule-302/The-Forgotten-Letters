@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
+namespace _Project.Scripts.Core.DataTypes
 {
     [CreateAssetMenu(fileName = "NewWord", menuName = "LetterGame/Word")]
     public class WordData : ScriptableObject
@@ -18,7 +18,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
         [ContextMenu("Set word based on SO name")]
         private void SetWordBasedOnSOName()
         {
-            arabicWord = this.name;
+            arabicWord = name;
         }
     }
 }

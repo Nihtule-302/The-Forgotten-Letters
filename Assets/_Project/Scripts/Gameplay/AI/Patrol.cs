@@ -2,7 +2,7 @@ using _Project.Scripts.Core.StateMachine;
 using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates;
 using UnityEngine;
 
-namespace _Project.Scripts.AI
+namespace _Project.Scripts.Gameplay.AI
 {
     public class Patrol : State
     {

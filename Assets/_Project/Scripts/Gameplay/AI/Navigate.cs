@@ -1,7 +1,7 @@
 using _Project.Scripts.Core.StateMachine;
 using UnityEngine;
 
-namespace _Project.Scripts.AI
+namespace _Project.Scripts.Gameplay.AI
 {
     public class Navigate : State
     {

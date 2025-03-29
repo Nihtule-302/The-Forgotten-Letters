@@ -10,6 +10,7 @@ using _Project.Scripts.UI;
 using _Project.Scripts.UI.Buttons.ChoiceButton;
 using Flexalon;
 using Cysharp.Threading.Tasks;
+using _Project.Scripts.Core.DataTypes;
 
 namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 {

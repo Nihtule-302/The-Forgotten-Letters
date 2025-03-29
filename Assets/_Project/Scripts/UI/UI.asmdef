@@ -1,6 +1,6 @@
 {
     "name": "UI",
-    "rootNamespace": "_Project.Scripts.UI",
+    "rootNamespace": "TheForgottenLetters",
     "references": [
         "GUID:3aa1a5aea683cc547a42a56c87bce650",
         "GUID:57a94bf0565893f45a2e72f99c4bd6d8",

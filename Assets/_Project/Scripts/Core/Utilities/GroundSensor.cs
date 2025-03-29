@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Scripts.Core.StateMachine
+namespace _Project.Scripts.Core.Utilities
 {
     public class GroundSensor : MonoBehaviour
     {

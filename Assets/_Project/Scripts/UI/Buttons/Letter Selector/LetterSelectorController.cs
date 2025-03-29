@@ -1,5 +1,5 @@
+using _Project.Scripts.Core.DataTypes;
 using _Project.Scripts.Core.Scriptable_Events.EventTypes.LetterData;
-using _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition;
 using UnityEngine;
 
 namespace _Project.Scripts.UI.Buttons.Letter_Selector

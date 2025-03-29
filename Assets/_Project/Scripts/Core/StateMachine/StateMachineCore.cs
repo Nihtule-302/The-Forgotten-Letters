@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using _Project.Scripts.Core.Utilities;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.StateMachine
 {
-    public abstract class Core : MonoBehaviour
+    public abstract class StateMachineCore : MonoBehaviour
     {
         public Rigidbody2D body;
         public Animator animator;

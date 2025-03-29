@@ -26,10 +26,11 @@ namespace _Project.Scripts.Core.Managers
         public PlayerControls inputActions;
 
         public Vector2 Direction => inputActions.Player.Move.ReadValue<Vector2>();
-        public bool IsJumpKeyPressed => inputActions.Player.Jump.IsPressed();
-
-        public bool IsAttackKeyPressed => inputActions.Player.Attack.IsPressed();
-        public bool IsInteractKeyPressed => inputActions.Player.Interact.IsPressed();
+        public bool IsMoving => Direction != Vector2.zero;
+        
+        public bool IsJumpKeyPressed => inputActions.Player.Jump.phase == InputActionPhase.Started;
+        public bool IsAttackKeyPressed => inputActions.Player.Attack.phase == InputActionPhase.Started;
+        public bool IsInteractKeyPressed => inputActions.Player.Interact.phase == InputActionPhase.Started;
 
 
         public void EnablePlayerActions()

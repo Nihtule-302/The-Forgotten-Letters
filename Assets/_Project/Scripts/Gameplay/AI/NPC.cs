@@ -1,8 +1,9 @@
+using _Project.Scripts.Core.StateMachine;
 using UnityEngine;
 
-namespace _Project.Scripts.AI
+namespace _Project.Scripts.Gameplay.AI
 {
-    public class NPC : Core.StateMachine.Core
+    public class NPC : StateMachineCore
     {
         public Patrol patrol;
         public Collect collect;

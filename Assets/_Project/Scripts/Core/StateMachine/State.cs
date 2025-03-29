@@ -10,7 +10,7 @@ namespace _Project.Scripts.Core.StateMachine
 
         public float time => Time.time - startTime;
 
-        protected Core core;
+        protected StateMachineCore core;
 
         protected Rigidbody2D body => core.body;
         protected Animator animator => core.animator;
@@ -26,7 +26,7 @@ namespace _Project.Scripts.Core.StateMachine
             machine.Set(newState, forceReset);
         }
 
-        public void SetCore(Core _core)
+        public void SetCore(StateMachineCore _core)
         {
             machine = new StateMachine();
             core = _core;

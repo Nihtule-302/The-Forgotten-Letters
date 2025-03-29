@@ -1,5 +1,5 @@
 using System;
-using _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition;
+using _Project.Scripts.Core.DataTypes;
 using UnityEngine;
 
 namespace _Project.Scripts.UI.Buttons.ChoiceButton

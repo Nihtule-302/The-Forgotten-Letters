@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
+namespace _Project.Scripts.Core.DataTypes
 {
     [CreateAssetMenu(fileName = "NewLetter", menuName = "LetterGame/Letter")]
     public class LetterData : ScriptableObject
@@ -19,7 +19,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
         [ContextMenu("Set word based on SO name")]
         private void SetLetterBasedOnSOName()
         {
-            letter = this.name;
+            letter = name;
         }
     }
 }
