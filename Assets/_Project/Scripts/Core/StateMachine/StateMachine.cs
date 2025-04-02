@@ -12,7 +12,7 @@ namespace _Project.Scripts.Core.StateMachine
             {
                 state?.Exit();
                 state = newState;
-                state.Initialise(this);
+                state.Initialize(this);
                 state.Enter();
             }
         }

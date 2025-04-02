@@ -16,8 +16,6 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates
         
         public override void Enter()
         {
-            inputManager.Move += HandleXMovement;
-            inputManager.EnablePlayerActions();
             animator.Play(anim.name);
         }
         public override void Do()
@@ -30,18 +28,6 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates
             if (grounded)
             {
                 isComplete = true;
-            }
-        }
-
-
-        private void HandleXMovement(Vector2 direction)
-        {
-            xInput = direction.x;
-            var maxXSpeed = stats.maxXSpeed;
-            if (Mathf.Abs(xInput) > 0)
-            {
-                body.linearVelocityX = xInput * maxXSpeed;
-                FaceInput();
             }
         }
     }

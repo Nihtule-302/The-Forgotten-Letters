@@ -9,14 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fee04cd6a4472e4baf5885e7a651741, type: 3}
-  m_Name: Player Stats
+  m_Script: {fileID: 11500000, guid: 789e8425271609c47be126f3f8198ba9, type: 3}
+  m_Name: CurrentPlayerStateEvent
   m_EditorClassIdentifier: 
-  acceleration: 1
-  maxXSpeed: 5
-  jumpSpeed: 5
-  groundDecay: 0.2
-  coyoteTimeDurationSec: 0.1
-  groundGravity: 1
-  jumpGravity: 1
-  fallGravity: 1.5

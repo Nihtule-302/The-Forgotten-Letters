@@ -4,26 +4,25 @@ namespace _Project.Scripts.Core.StateMachine
 {
     public abstract class State : MonoBehaviour
     {
-        public bool isComplete {get; protected set;}
+        [Header("State Management")]
+        public bool isComplete { get; protected set; }
 
         protected float startTime;
-
         public float time => Time.time - startTime;
 
         protected StateMachineCore core;
+        public StateMachine machine { get; private set; }
+        protected StateMachine parent;
 
         protected Rigidbody2D body => core.body;
         protected Animator animator => core.animator;
         protected bool grounded => core.groundSensor.grounded;
 
-
-        public StateMachine machine;
-        protected StateMachine parent;
-        public State childState => machine.state;
+        public State childState => machine?.state;
 
         protected void SetChild(State newState, bool forceReset = false)
         {
-            machine.Set(newState, forceReset);
+            machine?.Set(newState, forceReset);
         }
 
         public void SetCore(StateMachineCore _core)
@@ -32,11 +31,10 @@ namespace _Project.Scripts.Core.StateMachine
             core = _core;
         }
 
-
-        public virtual void Enter(){}
-        public virtual void Do(){}
-        public virtual void FixedDo(){}
-        public virtual void Exit(){}
+        public virtual void Enter() { }
+        public virtual void Do() { }
+        public virtual void FixedDo() { }
+        public virtual void Exit() { }
 
         public void DoBranch()
         {
@@ -50,12 +48,13 @@ namespace _Project.Scripts.Core.StateMachine
             childState?.FixedDoBranch();
         }
 
-        public void Initialise(StateMachine _parent)
+        public void Initialize(StateMachine _parent)
         {
             parent = _parent;
             isComplete = false;
             startTime = Time.time;
         }
+
+        public override string ToString() => GetType().Name; // Returns only the class name
     }
 }
-    

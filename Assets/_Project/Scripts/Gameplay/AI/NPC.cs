@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.AI
 
         void Start()
         {
-            SetupInstances();
+            InitializeStateMachine();
             SetState(patrol);
         }
 
@@ -28,7 +28,6 @@ namespace _Project.Scripts.Gameplay.AI
             if (state == patrol)
             {
                 collect.CheckForTarget();
-                Debug.Log(collect.target);
                 if (collect.target != null)
                 {
                     SetState(collect);

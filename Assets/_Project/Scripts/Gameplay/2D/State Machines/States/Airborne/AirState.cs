@@ -8,10 +8,12 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Airborne
     {
         public AnimationClip anim;
         public float jumpSpeed;
+        public float airGravity;
 
         public override void Enter()
         {
             animator.Play(anim.name);
+            body.gravityScale = airGravity;
         }
         public override void Do()
         {

@@ -1,96 +1,143 @@
+using System.Collections.Generic;
+using UnityEngine;
 using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Core.Scriptable_Events.EventTypes.String;
 using _Project.Scripts.Core.StateMachine;
 using _Project.Scripts.Gameplay._2D.State_Machines.States.Airborne;
-using UnityEngine;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded;
+using System;
 
 namespace _Project.Scripts.Gameplay._2D
 {
     public class Player : StateMachineCore
     {
-        // States
+        [Header("States")]
+        public PlayerGroundControl playerGroundControl;
         public AirState airState;
-        // public IdleState idleState;
-        // public RunState runState;
-        public GroundState groundState;
+        public JumpState jumpState;
+        public FallState fallState;
 
-        // Serialized Fields
+        [Header("Core Components")]
         public PlayerStats stats;
-        [SerializeField] private InputManagerSO inputManager;
+        public InputManagerSO inputManager;
 
-        // Input Variables
+        [Header("Input Variables")]
         public float xInput { get; private set; }
         public bool wantsToJump { get; private set; }
 
-        // Unity Lifecycle Methods
+        [Header("Events")]
+        [SerializeField] private StringEvent stringEvent;
+        public bool canJump;
+
         private void Start()
         {
             inputManager.Move += HandleXMovement;
             inputManager.Jump += HandleJumpInput;
             inputManager.EnablePlayerActions();
 
-            SetupInstances();
-            machine.Set(groundState);
+            InitializeStateMachine();
+            SetFallState();
         }
 
         private void Update()
         {
             SelectState();
             machine.state.DoBranch();
+            RaiseStateEvent();
         }
 
         private void FixedUpdate()
         {
-            ApplyGravity();
+            machine.state.FixedDoBranch();
             ApplyFriction();
         }
 
-        // State Management
         private void SelectState()
         {
-            if (groundSensor.grounded)
+            if (machine.state == playerGroundControl)
             {
-                // machine.Set(xInput == 0 ? idleState : runState);
-                machine.Set(groundState);
+                if (groundSensor.grounded && wantsToJump && canJump)
+                {
+                    Jump();
+                }
+
+                if (!groundSensor.grounded && playerGroundControl.isCoyoteTimerRunning && canJump && wantsToJump)
+                {
+                    Jump();
+                }
+
+                if (!groundSensor.grounded && playerGroundControl.coyoteTimeExpired)
+                {
+                    SetFallState();
+                }
             }
-            else
+
+            if (machine.state == fallState)
             {
-                machine.Set(airState);
+                if (groundSensor.grounded)
+                {
+                    SetState(playerGroundControl);
+                    canJump = true;
+                }
+            }
+
+            if (machine.state == jumpState)
+            {
+                if (body.linearVelocityY < 0)
+                {
+                    SetFallState();
+                }
             }
         }
 
-        private void FaceInput()
+        private void Jump()
         {
-            var directionToFace = Mathf.Sign(xInput);
-            transform.localScale = new Vector3(directionToFace, 1, 1);
+            PerformJump();
+            SetJumpState();
+            canJump = false;
         }
 
-        // Input Handling
-        private void HandleXMovement(Vector2 direction)
+        // Helper methods to reduce redundancy
+        private void SetJumpState()
         {
-            xInput = direction.x;
-            var maxXSpeed = stats.maxXSpeed;
-
-            if (Mathf.Abs(xInput) > 0)
-            {
-                body.linearVelocityX = xInput * maxXSpeed;
-                FaceInput();
-            }
+            jumpState.airGravity = stats.jumpGravity;
+            jumpState.jumpSpeed = stats.jumpSpeed;
+            machine.Set(jumpState, true);
         }
 
         private void HandleJumpInput(bool jumpInput)
         {
             wantsToJump = jumpInput;
-
-            if (wantsToJump && groundSensor.grounded)
-            {
-                body.linearVelocityY = stats.jumpSpeed;
-            }
         }
 
-        // Physics Methods
-        private void ApplyGravity()
+        private void SetFallState()
         {
-            body.gravityScale = groundSensor.grounded ? 1 : stats.gravityForce;
+            fallState.airGravity = stats.fallGravity;
+            fallState.jumpSpeed = stats.jumpSpeed;
+            machine.Set(fallState);
+        }
+
+
+        private void PerformJump()
+        {
+            body.linearVelocityY = stats.jumpSpeed;
+        }
+
+        private void RaiseStateEvent()
+        {
+            List<State> states = machine.GetActiveStateBranch();
+            string statePath = string.Join(" > ", states);
+            stringEvent.Raise(statePath);
+        }
+
+        private void HandleXMovement(Vector2 direction)
+        {
+            xInput = direction.x;
+            if (Mathf.Abs(xInput) > 0)
+            {
+                body.linearVelocityX = xInput * stats.maxXSpeed;
+                FaceInput();
+            }
         }
 
         private void ApplyFriction()
@@ -99,6 +146,11 @@ namespace _Project.Scripts.Gameplay._2D
             {
                 body.linearVelocityX *= stats.groundDecay;
             }
+        }
+
+        private void FaceInput()
+        {
+            transform.localScale = new Vector3(Mathf.Sign(xInput), 1, 1);
         }
     }
 }

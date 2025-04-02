@@ -6,7 +6,7 @@ namespace _Project.Scripts.Core.Utilities
     {
         public BoxCollider2D groundCheck;
         public LayerMask groundMask;
-        public bool grounded{get; private set;}
+        public bool grounded;
 
         void FixedUpdate()
         {

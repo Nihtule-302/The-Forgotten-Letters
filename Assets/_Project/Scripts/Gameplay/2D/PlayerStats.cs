@@ -5,10 +5,18 @@ namespace _Project.Scripts.Gameplay._2D
     [CreateAssetMenu(menuName = "The Forgotten Letters/PlayerStats")]
     public class PlayerStats : ScriptableObject
     {
-        public float jumpSpeed = 5;
-        public float gravityForce = 1;
-        public float acceleration;
-        public float maxXSpeed = 5;
-        [Range(0f,1f)] public float groundDecay = .9f;
+        [Header("Movement")]
+        public float acceleration = 10f;
+        public float maxXSpeed = 5f;
+
+        [Header("Jumping")]
+        public float jumpSpeed = 5f;
+        [Range(0f, 1f)] public float groundDecay = 0.9f;
+        public float coyoteTimeDurationSec = 0.1f;
+
+        [Header("Gravity")]
+        public float groundGravity = 1f;
+        public float jumpGravity = 1f;
+        public float fallGravity = 1f;
     }
 }

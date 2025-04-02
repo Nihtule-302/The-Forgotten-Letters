@@ -6,39 +6,42 @@ namespace _Project.Scripts.Core.StateMachine
 {
     public abstract class StateMachineCore : MonoBehaviour
     {
+        [Header("State Machine Components")]
         public Rigidbody2D body;
         public Animator animator;
         public GroundSensor groundSensor;
         public StateMachine machine;
 
-        public State state => machine.state;
+        public State state => machine?.state;
 
         protected void SetState(State newState, bool forceReset = false)
         {
             machine.Set(newState, forceReset);
         }
 
-        public void SetupInstances()
+        public void InitializeStateMachine()
         {
-            machine = new();
+            machine = new StateMachine();
 
             State[] allChildStates = GetComponentsInChildren<State>();
-            foreach (State state in allChildStates)
+            foreach (State childState in allChildStates)
             {
-                state.SetCore(this);
+                childState.SetCore(this);
             }
         }
 
         private void OnDrawGizmos()
         {
 #if UNITY_EDITOR
-            if(Application.isPlaying && state != null)
+            if (Application.isPlaying && state != null)
             {
-                List<State> states = machine.GetActiveStateBranch();
-                UnityEditor.Handles.Label(transform.position, "Active States: " + string.Join(" > ", states));
+                List<State> states = machine?.GetActiveStateBranch();
+                if (states != null && states.Count > 0)
+                {
+                    UnityEditor.Handles.Label(transform.position, "Active States: " + string.Join(" > ", states));
+                }
             }
 #endif
         }
-
     }
 }
