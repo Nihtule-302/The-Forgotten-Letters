@@ -26,18 +26,26 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      # --- Step 2: Download Large Firebase Assets ---
+            # --- Step 2: Download Large Firebase Assets (Using GitHub CLI for Private Repo compatibility) ---
       - name: Download Large Firebase Assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # The GitHub CLI automatically uses this token
         run: |
-          echo "Downloading large Firebase assets..."
+          echo "Downloading large Firebase assets using GitHub CLI..."
           TARGET_DIR="${{ github.workspace }}/Assets/Firebase/Plugins/x86_64"
           mkdir -p "$TARGET_DIR"
 
-          echo "Downloading FirebaseCppApp-12_5_0.bundle..."
-          wget -O "$TARGET_DIR/FirebaseCppApp-12_5_0.bundle" "https://github.com/Nihtule-302/The-Forgotten-Letters/releases/download/Firebase-Large-Files/FirebaseCppApp-12_5_0.bundle"
+          # Use gh release download - it handles authentication and finds the asset
+          # Ensure the tag 'Firebase-Large-Files' and the asset names are correct
+          gh release download Firebase-Large-Files \
+            --repo ${{ github.repository }} \
+            --pattern 'FirebaseCppApp-12_5_0.bundle' \
+            --output "$TARGET_DIR/FirebaseCppApp-12_5_0.bundle"
 
-          echo "Downloading FirebaseCppApp-12_5_0.so..."
-          wget -O "$TARGET_DIR/FirebaseCppApp-12_5_0.so" "https://github.com/Nihtule-302/The-Forgotten-Letters/releases/download/Firebase-Large-Files/FirebaseCppApp-12_5_0.so"
+          gh release download Firebase-Large-Files \
+            --repo ${{ github.repository }} \
+            --pattern 'FirebaseCppApp-12_5_0.so' \
+            --output "$TARGET_DIR/FirebaseCppApp-12_5_0.so"
 
           echo "Large Firebase assets downloaded successfully."
 
