@@ -70,3 +70,9 @@ crashlytics-build.properties
 # Odin Inspector (if not used, otherwise customize as needed)
 /[Aa]ssets/Plugins/Sirenix*
 /[Aa]ssets/_Project/Plugins/Sirenix*
+
+
+# Firebase Large Files
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_5_0.bundle
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_5_0.so
+
