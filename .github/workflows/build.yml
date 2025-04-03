@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - Android # Note: Even though matrix is used, paths below are hardcoded to 'Android' as requested
+          - Android
 
     steps:
       # --- Step 1: Checkout Code ---
@@ -26,17 +26,19 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-            # --- Step 2: Download Large Firebase Assets (Using GitHub CLI for Private Repo compatibility) ---
+      # --- Step 2: Install GitHub CLI ---
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh
+
+      # --- Step 3: Download Large Firebase Assets ---
       - name: Download Large Firebase Assets
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # The GitHub CLI automatically uses this token
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Downloading large Firebase assets using GitHub CLI..."
+          echo "Downloading large Firebase assets..."
           TARGET_DIR="${{ github.workspace }}/Assets/Firebase/Plugins/x86_64"
           mkdir -p "$TARGET_DIR"
 
-          # Use gh release download - it handles authentication and finds the asset
-          # Ensure the tag 'Firebase-Large-Files' and the asset names are correct
           gh release download Firebase-Large-Files \
             --repo ${{ github.repository }} \
             --pattern 'FirebaseCppApp-12_5_0.bundle' \
@@ -47,34 +49,37 @@ jobs:
             --pattern 'FirebaseCppApp-12_5_0.so' \
             --output "$TARGET_DIR/FirebaseCppApp-12_5_0.so"
 
-          echo "Large Firebase assets downloaded successfully."
+          echo "Firebase assets downloaded successfully."
 
-      # --- Step 3: Free up disk space ---
+      # --- Step 4: Verify Firebase Assets ---
+      - name: Verify Firebase Assets
+        run: ls -lh ${{ github.workspace }}/Assets/Firebase/Plugins/x86_64
+
+      # --- Step 5: Free up disk space ---
       - uses: jlumbroso/free-disk-space@v1.3.1
 
-      # --- Step 4: Setup Butler ---
-      - name: Setup butler
+      # --- Step 6: Setup Butler ---
+      - name: Setup Butler
         uses: remarkablegames/setup-butler@v1
 
-      # --- Step 5: Verify Butler ---
+      # --- Step 7: Verify Butler Installation ---
       - name: Verify Butler Installation
         run: |
           echo "Checking Butler version..."
           butler -V || echo "❌ Butler execution failed"
 
-      # --- Step 6: Setup Unity Cache ---
+      # --- Step 8: Setup Unity Cache ---
       - name: Setup Unity Cache
         uses: actions/cache@v3
         with:
           path: |
             Library
             !Library/com.unity.addressables
-          # Keeping improved cache key for better isolation between runs/platforms
-          key: Library-${{ matrix.targetPlatform }}-${{ github.sha }}
+          key: Library-${{ matrix.targetPlatform }}-${{ github.run_id }}
           restore-keys: |
             Library-${{ matrix.targetPlatform }}-
 
-      # --- Step 7: Build Unity Project ---
+      # --- Step 9: Build Unity Project ---
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -83,22 +88,24 @@ jobs:
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
-          buildsPath: build/ # Build output base directory
+          buildsPath: build/
 
-      # --- Step 8: List Build Directory ---
+      # --- Step 10: List Build Directory ---
       - name: List Build Directory
         run: ls -R build/
 
-      # --- Step 9: Check if APK exists (Using original working path) ---
+      # --- Step 11: Check if APK exists ---
       - name: Check if APK exists
         run: |
-          # Using the path structure that was confirmed to be working
-          if [ ! -f "build/Android/${{ env.PROJECT_NAME }}.apk" ]; then
-            echo "❌ Error: APK file not found at build/Android/${{ env.PROJECT_NAME }}.apk!"
+          APK_PATH="build/Android/${{ env.PROJECT_NAME }}.apk"
+          if [ ! -f "$APK_PATH" ]; then
+            echo "❌ Error: APK file not found!"
+            echo "Available files in build/Android:"
+            ls -lh build/Android/
             exit 1
           fi
 
-      # --- Step 10: Create GitHub Release ---
+      # --- Step 12: Create GitHub Release ---
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -111,23 +118,27 @@ jobs:
           draft: false
           prerelease: false
 
-      # --- Step 11: Upload APK to GitHub Release (Using original working path) ---
+      # --- Step 13: Upload APK to GitHub Release ---
       - name: Upload APK to GitHub Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          # Using the path structure that was confirmed to be working
           asset_path: build/Android/${{ env.PROJECT_NAME }}.apk
           asset_name: ${{ env.PROJECT_NAME }}.apk
           asset_content_type: application/vnd.android.package-archive
 
-      # --- Step 12: Upload to Itch.io (Using original working path) ---
+      # --- Step 14: Upload to Itch.io ---
       - name: Upload to Itch.io
         run: |
-          echo "Pushing build to Itch.io..."
-          # Using the path structure that was confirmed to be working
-          butler push build/Android/${{ env.PROJECT_NAME }}.apk ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:android --verbose
+          APK_PATH="build/Android/${{ env.PROJECT_NAME }}.apk"
+          if [ -f "$APK_PATH" ]; then
+            echo "Pushing build to Itch.io..."
+            butler push "$APK_PATH" ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:android --verbose
+          else
+            echo "❌ APK not found. Skipping Itch.io upload."
+            exit 1
+          fi
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
