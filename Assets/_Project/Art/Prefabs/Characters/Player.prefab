@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7644974f47dd3ef4789b863f4b8b7387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 7400000, guid: 85ef0ad5f44002845a56d0e79889b406, type: 2}
+  anim: {fileID: 7400000, guid: 62b449bdf0f2a8c43874e9aecd6af374, type: 2}
   jumpSpeed: 0
   airGravity: 0
 --- !u!1 &4031872388320113494
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc761200f90ae3499af9bf80987c492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: -1868118456065059449, guid: ee11345eada0cee499c322353dd74100, type: 3}
+  anim: {fileID: 7400000, guid: 62b449bdf0f2a8c43874e9aecd6af374, type: 2}
   jumpSpeed: 10
   airGravity: 1
 --- !u!1 &4684690327060456808
@@ -387,6 +387,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 619d54e1540774145b27dd3b5fe24c21, type: 2}
   inputManager: {fileID: 11400000, guid: 0c5e1e3deabc86e44b17a8aa3c125447, type: 2}
   stringEvent: {fileID: 11400000, guid: 5cf6e771e9da28d43993660e3c38ca49, type: 2}
+  canJump: 0
 --- !u!114 &6082426919045485530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +483,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleState: {fileID: 3664037688916673808}
   runState: {fileID: 5767640119192378664}
+  coyoteTimeExpired: 0
+  isCoyoteTimerRunning: 0
 --- !u!1 &8004191976890422925
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +661,7 @@ Animator:
   m_GameObject: {fileID: 8526232124986241039}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 1167557127268815991, guid: ee11345eada0cee499c322353dd74100, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0683c00b147221f49840616faeb5add6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -714,6 +717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39193021c3a96454c81a2c72c07b5237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 7400000, guid: 85ef0ad5f44002845a56d0e79889b406, type: 2}
+  anim: {fileID: 7400000, guid: 61ef224c6416dcb48a4b6efa24c2b6ec, type: 2}
   jumpSpeed: 0
   airGravity: 0

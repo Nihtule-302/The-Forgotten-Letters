@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &86762501124387616
 Transform:
   m_ObjectHideFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
+  grounded: 0
 --- !u!1 &1702818513922145668
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5522812681064789136, guid: ee11345eada0cee499c322353dd74100, type: 3}
   maxXSpeed: 0
+  inputManager: {fileID: 0}
 --- !u!1 &2602319766701276154
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5522812681064789136, guid: ee11345eada0cee499c322353dd74100, type: 3}
   maxXSpeed: 0
+  inputManager: {fileID: 0}
 --- !u!1 &6419609803732233837
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,5 +793,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc761200f90ae3499af9bf80987c492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: -1868118456065059449, guid: ee11345eada0cee499c322353dd74100, type: 3}
+  anim: {fileID: 7400000, guid: 62b449bdf0f2a8c43874e9aecd6af374, type: 2}
   jumpSpeed: 0
+  airGravity: 0
