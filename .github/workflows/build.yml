@@ -68,6 +68,11 @@ jobs:
           echo "Checking Butler version..."
           butler -V || echo "❌ Butler execution failed"
 
+      - name: Validate Unity Activation
+        run: |
+          echo "🔍 Checking Unity License..."
+          echo "${{ secrets.UNITY_LICENSE }}" | head -c 100
+
       # --- Step 8: Setup Unity Cache ---
       - name: Setup Unity Cache
         uses: actions/cache@v3
