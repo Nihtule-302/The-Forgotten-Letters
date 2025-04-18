@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Player
   - Ground
-  - 
+  - Scratch
   - 
   - 
   - 
@@ -40,6 +40,45 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 0
+    uniqueID: 3907193791
+    locked: 0
+  - name: 1
+    uniqueID: 1401627253
+    locked: 0
+  - name: 2
+    uniqueID: 1302380175
+    locked: 0
+  - name: 3
+    uniqueID: 4056206115
+    locked: 0
+  - name: 4
+    uniqueID: 178793437
+    locked: 0
+  - name: 5
+    uniqueID: 1626078507
+    locked: 0
+  - name: 6
+    uniqueID: 2953237445
+    locked: 0
+  - name: 7
+    uniqueID: 971167059
+    locked: 0
+  - name: 8
+    uniqueID: 105656087
+    locked: 0
+  - name: 9
+    uniqueID: 1705878773
+    locked: 0
+  - name: Player
+    uniqueID: 2775065795
+    locked: 0
+  - name: 10
+    uniqueID: 2951839871
+    locked: 0
+  - name: On Top
+    uniqueID: 3137890231
     locked: 0
   m_RenderingLayers:
   - Default

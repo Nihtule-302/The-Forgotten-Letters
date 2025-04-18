@@ -10,9 +10,6 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates
     {
         public AnimationClip anim;
         public float maxXSpeed;
-
-        [SerializeField] InputManagerSO inputManager;
-        public float xInput{get; private set;}
         
         public override void Enter()
         {
@@ -22,7 +19,7 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates
         {
             var velX = body.linearVelocityX;
 
-            var time = Helpers.Map(MathF.Abs(velX), 0, maxXSpeed, 0,1.6f,true);
+            var time = Helpers.Map(MathF.Abs(velX), 0, maxXSpeed, 0,1,true);
             animator.speed = time;
 
             if (grounded)

@@ -36,7 +36,7 @@ namespace _Project.Scripts.Gameplay._3D
         private void Update()
         {
             CheckGroundStatus();
-            //HandleMovement();
+            HandleMovement();
             ApplyGravity();
         }
 

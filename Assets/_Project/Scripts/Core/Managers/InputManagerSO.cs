@@ -14,12 +14,13 @@ namespace _Project.Scripts.Core.Managers
     }
 
     [CreateAssetMenu(fileName = "InputManagerSO", menuName = "InputManagerSO", order = 0)]
-    public class InputManagerSO : ScriptableObject, IPlayerActions, IInputReader
+    public class InputManagerSO : ScriptableObject, IPlayerActions, IInputReader, IDrawingActions
     {
         public event UnityAction<Vector2> Move = delegate{};
         public event UnityAction<bool> Jump = delegate{};
 
         public event UnityAction<bool> Attack = delegate{};
+        public event UnityAction<bool> Skill = delegate{};
         public event UnityAction<bool> Interact = delegate{};
 
 
@@ -30,6 +31,7 @@ namespace _Project.Scripts.Core.Managers
         
         public bool IsJumpKeyPressed => inputActions.Player.Jump.IsPressed();
         public bool IsAttackKeyPressed => inputActions.Player.Attack.IsPressed();
+        public bool IsSkillKeyPressed => inputActions.Player.Skill.IsPressed();
         public bool IsInteractKeyPressed => inputActions.Player.Interact.IsPressed();
 
 
@@ -39,6 +41,7 @@ namespace _Project.Scripts.Core.Managers
             {
                 inputActions = new PlayerControls();
                 inputActions.Player.SetCallbacks(this);
+                inputActions.Drawing.SetCallbacks(this);
             }
             inputActions.Enable();
         }
@@ -79,6 +82,19 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
+        public void OnSkill(InputAction.CallbackContext context)
+        {
+            switch(context.phase)
+            {
+                case InputActionPhase.Started:
+                    Skill.Invoke(true);
+                    break;
+                case InputActionPhase.Canceled:
+                    Skill.Invoke(false);
+                    break;
+            }
+        }
+
         public void OnInteract(InputAction.CallbackContext context)
         {
             switch(context.phase)
@@ -94,11 +110,29 @@ namespace _Project.Scripts.Core.Managers
 
 
 
-
         public void OnCrouch(InputAction.CallbackContext context){}  
         public void OnLook(InputAction.CallbackContext context){}
         public void OnNext(InputAction.CallbackContext context){}
         public void OnPrevious(InputAction.CallbackContext context){}
         public void OnSprint(InputAction.CallbackContext context){}
+
+
+        public event UnityAction<bool> Click = delegate{};
+        public bool IsClicking => inputActions.Drawing.Click.phase == InputActionPhase.Performed;
+
+        public Vector2 DrawPointerPosition => inputActions.Drawing.PointerPosition.ReadValue<Vector2>();
+        public void OnPointerPosition(InputAction.CallbackContext context){}
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            switch(context.phase)
+            {
+                case InputActionPhase.Started:
+                    Click.Invoke(true);
+                    break;
+                case InputActionPhase.Canceled:
+                    Click.Invoke(false);
+                    break;
+            }
+        }
     }
 }
