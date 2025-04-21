@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.Sentis;
+using UnityEngine.UI;
+using _Project.Scripts.Core.Scriptable_Events.EventTypes.String;
 public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
 {
     [SerializeField] private Texture2D inputTexture;
@@ -8,6 +10,11 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
     [SerializeField] private char predictedLetter;
     [SerializeField] private float probability;
     [SerializeField] private FingerDrawing fingerDrawing;
+
+    [SerializeField] private RawImage inputTexturePreSendModelScreen;
+
+    [SerializeField] private StringEvent confidenceEvent;
+    [SerializeField] private StringEvent predictedLetterEvent;
 
     Worker engine;
     [SerializeField] BackendType backendType = BackendType.GPUCompute;
@@ -38,16 +45,14 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         // Make sure letterProbability is initialized
         letterProbability = new letterProbability[28]; // Reset array size in case of re-initialization
 
-        // ExecuteModel();
     }
 
     [ContextMenu("ExecuteModel")]
-    public override void ExecuteModel(Texture2D tex)
+    public void ExecuteModel()
     {
-        //inputTensor = PreprocessImage(inputTexture,imageWidth);
-        // Prepare input tensor for the model
+        inputTensor?.Dispose();
         var transform = new TextureTransform().SetTensorLayout(TensorLayout.NHWC).SetDimensions(imageWidth,imageWidth,1);
-        TextureConverter.ToTensor(tex, inputTensor, transform);
+        TextureConverter.ToTensor(inputTexture, inputTensor, transform);
 
         // Schedule the input tensor for execution
         engine.Schedule(inputTensor);
@@ -71,6 +76,47 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         Debug.Log($"predictedLetter {predictedLetter}");
         Debug.Log($"probability {probability}");
 
+        predictedLetterEvent.Raise($"{predictedLetter}");
+        confidenceEvent.Raise($"{probability * 100:F2}%");
+        
+        fingerDrawing.ClearTexture();
+    }
+
+    public override void ExecuteModel(Texture2D tex)
+    {
+        inputTensor?.Dispose();
+
+        var downsampeldTex = TextureDownsampling.DownsampleTexture(tex,imageWidth, imageWidth);
+        TextureDownsampling.DisplayDownsampledTexture(downsampeldTex, inputTexturePreSendModelScreen);
+
+        var transform = new TextureTransform().SetTensorLayout(TensorLayout.NHWC).SetDimensions(imageWidth,imageWidth,1);
+        TextureConverter.ToTensor(downsampeldTex, inputTensor, transform);
+
+
+        engine.Schedule(inputTensor);
+
+        // Read back the result from the GPU
+        using var probabilities = (engine.PeekOutput(0) as Tensor<float>).ReadbackAndClone();
+        using var indexOfMaxProba = (engine.PeekOutput(1) as Tensor<int>).ReadbackAndClone();
+
+        // Get the predicted letter and probability
+        predictedLetter = arabic_chars[indexOfMaxProba[0]];
+        probability = probabilities[indexOfMaxProba[0]];
+
+        // Populate the letterProbability array with letters and their corresponding probabilities
+        for (int i = 0; i < probabilities.count; i++)
+        {
+            letterProbability[i] = new letterProbability();
+            letterProbability[i].letter = arabic_chars[i];
+            letterProbability[i].probability = probabilities[i];
+        }
+
+        Debug.Log($"predictedLetter {predictedLetter}");
+        Debug.Log($"probability {probability}");
+
+        predictedLetterEvent.Raise($"{predictedLetter}");
+        confidenceEvent.Raise($"{probability * 100:F2}%");
+
         fingerDrawing.ClearTexture();
     }
 
@@ -80,51 +126,6 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         engine.Dispose();
         inputTensor?.Dispose();
     }
-
-    Tensor<float> PreprocessImage(Texture2D sourceTexture, int imageWidth)
-    {
-
-        // Rotate 90 degrees counter-clockwise
-        // Texture2D transpoedTexture = transpose(sourceTexture);
-
-        // Process the pixels of the rotated and flipped image
-        Color32[] pixels = sourceTexture.GetPixels32();
-        float[] grayscalePixels = new float[imageWidth * imageWidth];
-
-        for (int i = 0; i < pixels.Length; i++)
-        {
-            Color32 pixel = pixels[i];
-
-            // Convert to grayscale using luminance formula
-            float gray = 0.299f * pixel.r + 0.587f * pixel.g + 0.114f * pixel.b;
-
-            // Normalize to [0, 1]
-            grayscalePixels[i] = gray / 255f;
-        }
-
-        // Shape: [batch, height, width, channels] → [1, imageWidth, imageWidth, 1]
-        TensorShape shape = new TensorShape(1, imageWidth, imageWidth, 1);
-        return new Tensor<float>(shape, grayscalePixels);
-    }
-
-    // Helper function to rotate the image 90 degrees counter-clockwise
-    Texture2D transpose(Texture2D texture)
-    {
-        Texture2D transpoedTexture = new Texture2D(texture.height, texture.width);
-
-        for (int y = 0; y < texture.height; y++)
-        {
-            for (int x = 0; x < texture.width; x++)
-            {
-                transpoedTexture.SetPixel(y, x, texture.GetPixel(x, y));
-            }
-        }
-
-        transpoedTexture.Apply();
-        return transpoedTexture;
-    }
-
-
 }
 
 
@@ -134,4 +135,50 @@ public class letterProbability
 {
     public char letter;
     public float probability;
+}
+
+public static class TextureDownsampling
+{
+    // Static method to downsample a given texture
+    public static Texture2D DownsampleTexture(Texture2D original, int targetWidth, int targetHeight)
+    {
+        // Create a RenderTexture with the target width and height
+        RenderTexture renderTexture = new RenderTexture(targetWidth, targetHeight, 0);
+        renderTexture.filterMode = FilterMode.Bilinear;
+        renderTexture.Create();
+
+        // Copy original texture to RenderTexture, resizing it in the process
+        Graphics.Blit(original, renderTexture);
+
+        // Create a new Texture2D to hold the downsampled image
+        Texture2D downsampledTexture = new Texture2D(targetWidth, targetHeight, TextureFormat.RGBA32, false);
+        
+        // Set active RenderTexture and read pixels back into the new Texture2D
+        RenderTexture.active = renderTexture;
+        downsampledTexture.ReadPixels(new Rect(0, 0, targetWidth, targetHeight), 0, 0);
+        downsampledTexture.Apply();
+
+        // Clean up
+        RenderTexture.active = null;
+        renderTexture.Release();
+
+        return downsampledTexture;
+    }
+
+    // Static method to display the downsampled texture on a material
+    public static void DisplayDownsampledTexture(Texture2D downsampledTexture, Material displayMaterial)
+    {
+        if (displayMaterial != null)
+        {
+            displayMaterial.mainTexture = downsampledTexture;
+        }
+    }
+
+    public static void DisplayDownsampledTexture(Texture2D downsampledTexture, RawImage image)
+    {
+        if (image != null)
+        {
+            image.texture = downsampledTexture;
+        }
+    }
 }

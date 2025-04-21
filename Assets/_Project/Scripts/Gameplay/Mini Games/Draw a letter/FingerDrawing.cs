@@ -20,11 +20,14 @@ public class FingerDrawing : MonoBehaviour
     Texture2D drawingTexture;
     Coroutine checkForSendCoroutine;
     [SerializeField] private int brushSize;
+    [SerializeField] private FilterMode filterMode = FilterMode.Point;
+    private int displayImageWidth => (int) displayImage.rectTransform.rect.width;
+    private int displayImageHeight => (int) displayImage.rectTransform.rect.height;
 
     void Start()
     {
-        drawingTexture = new Texture2D(imageSize,imageSize,TextureFormat.RGBA32, false);
-        // drawingTexture.filterMode = FilterMode.Point;
+        drawingTexture = new Texture2D(displayImageWidth,displayImageHeight,TextureFormat.RGB24, false);
+        drawingTexture.filterMode = filterMode;
         displayImage.texture = drawingTexture;
         mainCamera = Camera.main;
         input.EnablePlayerActions();
@@ -34,6 +37,8 @@ public class FingerDrawing : MonoBehaviour
     void Update()
     {
         bool isDrawing =  input.IsClicking;
+
+        drawingTexture.filterMode = filterMode;
 
         if (isDrawing)
         {   
@@ -90,7 +95,7 @@ public class FingerDrawing : MonoBehaviour
 
                     if (px >= 0 && px < drawingTexture.width && py >= 0 && py < drawingTexture.height)
                     {
-                        drawingTexture.SetPixel(px, py, Color.white);
+                        drawingTexture.SetPixel(px, py, Color.white );
                     }
                 }
             }
@@ -102,14 +107,21 @@ public class FingerDrawing : MonoBehaviour
 
 
 
+    // public void ClearTexture()
+    // {
+    //     Color[] clearImageColors = new Color[drawingTexture.width * drawingTexture.height];
+    //     for (int i = 0; i < clearImageColors.Length; i++)
+    //     {
+    //         clearImageColors[i] = Color.black;
+    //     }
+    //     drawingTexture.SetPixels(clearImageColors);
+    //     drawingTexture.Apply();
+    // }
+
     public void ClearTexture()
     {
-        Color[] clearColors = new Color[drawingTexture.width * drawingTexture.height];
-        for (int i = 0; i < clearColors.Length; i++)
-        {
-            clearColors[i] = Color.black;
-        }
-        drawingTexture.SetPixels(clearColors);
+        byte[] zeroes = new byte[displayImageWidth * displayImageHeight*3];
+        drawingTexture.LoadRawTextureData(zeroes);
         drawingTexture.Apply();
     }
 }
