@@ -6,6 +6,8 @@ using UnityEngine.Video;
 using System.IO;
 using FF = Unity.Sentis.Functional;
 using System.Collections;
+using System;
+using TMPro;
 
 /*
  *  YOLO Inference Script
@@ -38,7 +40,8 @@ public class RunYOLO : MonoBehaviour
     int modelLayerCount = 0;
     public int framesToExectute = 2;
 
-    const BackendType backend = BackendType.GPUCompute;
+    [SerializeField] BackendType backend = BackendType.CPU;
+    [SerializeField] TMP_Dropdown backendTypeDropdown;
 
     private Transform displayLocation;
     private Worker worker;
@@ -73,6 +76,7 @@ public class RunYOLO : MonoBehaviour
 
 
     Tensor<float> inputTensor;
+    Model model;
 
     [SerializeField] private int timeSlicingFrameFactor = 1;
 
@@ -124,11 +128,11 @@ public class RunYOLO : MonoBehaviour
         var coords = FF.IndexSelect(boxCoords, 0, indices);                     //shape=(N,4)
         var labelIDs = FF.IndexSelect(classIDs, 0, indices);                    //shape=(N)
 
-        Model model = graph.Compile(coords, labelIDs);
+        model = graph.Compile(coords, labelIDs);
         modelLayerCount = model.layers.Count;
 
         //Create worker to run model
-        worker = new Worker(model, backend);
+        SetupEngine(model, backend);
 
         inputTensor = new Tensor<float>(new TensorShape(1, 3, imageHeight, imageWidth));
     }
@@ -137,7 +141,19 @@ public class RunYOLO : MonoBehaviour
     {
         video = gameObject.GetComponent<VideoPlayer>();
         video.renderMode = VideoRenderMode.APIOnly;
+        video.source = VideoSource.Url;
+        video.url = Path.Combine(Application.streamingAssetsPath, videoFilename);
         video.isLooping = true;
+        video.Prepare();
+        StartCoroutine(WaitForVideoPreparation());
+    }
+
+    IEnumerator WaitForVideoPreparation()
+    {
+        while (!video.isPrepared)
+        {
+            yield return null;
+        }
         video.Play();
     }
 
@@ -281,5 +297,22 @@ public class RunYOLO : MonoBehaviour
     {
         centersToCorners?.Dispose();
         worker?.Dispose();
+    }
+
+    public void OnDropdownValueChanged(int index)
+    {
+        string selectedOption = backendTypeDropdown.options[index].text;
+        backend = (BackendType)Enum.Parse(typeof(BackendType), selectedOption);
+        SetupEngine(model, backend);
+    }
+
+    private void SetupEngine(Model model, BackendType backendType)
+    {
+        if (worker != null)
+        {
+            worker.Dispose();
+        }
+
+        worker = new Worker(model, backendType);
     }
 }

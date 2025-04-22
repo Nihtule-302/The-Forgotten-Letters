@@ -2,6 +2,9 @@ using UnityEngine;
 using Unity.Sentis;
 using UnityEngine.UI;
 using _Project.Scripts.Core.Scriptable_Events.EventTypes.String;
+using _Project.Scripts.Core.Utilities.UI;
+using TMPro;
+using System;
 public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
 {
     [SerializeField] private Texture2D inputTexture;
@@ -17,7 +20,9 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
     [SerializeField] private StringEvent predictedLetterEvent;
 
     Worker engine;
+    Model model;
     [SerializeField] BackendType backendType = BackendType.GPUCompute;
+    [SerializeField] TMP_Dropdown backendTypeDropdown;
     const int imageWidth = 32;
     Tensor<float> inputTensor = null;
 
@@ -29,7 +34,7 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
 
     void Start()
     {
-        Model model = ModelLoader.Load(modelAsset);
+        model = ModelLoader.Load(modelAsset);
 
         var graph = new FunctionalGraph();
         inputTensor = new Tensor<float>(new TensorShape(1, imageWidth, imageWidth, 1));
@@ -40,7 +45,7 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         var indexOfMaxProba = Functional.ArgMax(result, -1, false);
         model = graph.Compile(result, indexOfMaxProba);
 
-        engine = new Worker(model, backendType);
+        SetupEngine(model, backendType);
 
         // Make sure letterProbability is initialized
         letterProbability = new letterProbability[28]; // Reset array size in case of re-initialization
@@ -125,6 +130,23 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         // Clean up Sentis resources.
         engine.Dispose();
         inputTensor?.Dispose();
+    }
+
+    public void OnDropdownValueChanged(int index)
+    {
+        string selectedOption = backendTypeDropdown.options[index].text;
+        backendType = (BackendType)Enum.Parse(typeof(BackendType), selectedOption);
+        SetupEngine(model, backendType);
+    }
+
+    private void SetupEngine(Model model, BackendType backendType)
+    {
+        if (engine != null)
+        {
+            engine.Dispose();
+        }
+
+        engine = new Worker(model, backendType);
     }
 }
 
