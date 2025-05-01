@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialScene:
-    m_AssetGUID: ee0d808598249c54684fdaa630cdf697
+    m_AssetGUID: 695cbb7a18f334649ad7d62065878420
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 

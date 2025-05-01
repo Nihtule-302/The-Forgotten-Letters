@@ -259,7 +259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5522812681064789136, guid: ee11345eada0cee499c322353dd74100, type: 3}
   maxXSpeed: 0
-  inputManager: {fileID: 0}
 --- !u!1 &2602319766701276154
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: -3100369314251171874, guid: ee11345eada0cee499c322353dd74100, type: 3}
+  animationSpeed: 1
 --- !u!1 &3153061691138788372
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5522812681064789136, guid: ee11345eada0cee499c322353dd74100, type: 3}
   maxXSpeed: 0
-  inputManager: {fileID: 0}
 --- !u!1 &6419609803732233837
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,8 +20,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d1e16714133d24c4a84a38cacded4127
-    m_Address: Planet Alph
+  - m_GUID: 695cbb7a18f334649ad7d62065878420
+    m_Address: Main Menu acual
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

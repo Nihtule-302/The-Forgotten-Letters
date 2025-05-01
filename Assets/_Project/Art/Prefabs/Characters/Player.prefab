@@ -47,6 +47,7 @@ GameObject:
   m_Component:
   - component: {fileID: 462089216622313175}
   - component: {fileID: 4369362878173432299}
+  - component: {fileID: 4043709795980577243}
   m_Layer: 6
   m_Name: Energy Blast
   m_TagString: Untagged
@@ -84,8 +85,22 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1122178935239954433, guid: 00553f3430822684898fae9ca575ef3a, type: 3}
   target: {fileID: 7980803658394513581}
   projectileMoveSpeed: 1
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 122579585249869239}
   shootRate: 1
+--- !u!114 &4043709795980577243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893117855663427730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09309422f0357c45ab7d85ac9cf80a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1122178935239954433, guid: 00553f3430822684898fae9ca575ef3a, type: 3}
+  firePoint: {fileID: 122579585249869239}
 --- !u!1 &1184296198387700097
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7980803658394513581
 Transform:
   m_ObjectHideFlags: 0
@@ -385,7 +400,7 @@ Transform:
   m_GameObject: {fileID: 4936287578165724291}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.154, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -632,6 +647,7 @@ Transform:
   - {fileID: 168019460143465851}
   - {fileID: 7980803658394513581}
   - {fileID: 122579585249869239}
+  - {fileID: 6834056875894507917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7299012958817620033
@@ -680,6 +696,7 @@ MonoBehaviour:
   attackState: {fileID: 7140036404465522487}
   jumpState: {fileID: 4780317338925889945}
   fallState: {fileID: 2260487989234682521}
+  energyBlastState: {fileID: 4043709795980577243}
   stats: {fileID: 11400000, guid: 619d54e1540774145b27dd3b5fe24c21, type: 2}
   inputManager: {fileID: 11400000, guid: 0c5e1e3deabc86e44b17a8aa3c125447, type: 2}
   stringEvent: {fileID: 11400000, guid: 5cf6e771e9da28d43993660e3c38ca49, type: 2}
@@ -731,6 +748,80 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   grounded: 0
+--- !u!1 &5917982843225175792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6834056875894507917}
+  - component: {fileID: 8883256674050653711}
+  - component: {fileID: 1985608974621821659}
+  m_Layer: 6
+  m_Name: HealthManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6834056875894507917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917982843225175792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5652481880617026904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8883256674050653711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917982843225175792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c479792f1bdf6ea49b7ea9bb969c633a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 11400000, guid: 63915225d9dcff144897c9719ee54de7, type: 2}
+--- !u!114 &1985608974621821659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917982843225175792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9be10a819c5764ab41f38f0486159b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 96d6cfb07a7768e48bd1dba3ba37584d, type: 2}
+  responce:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8883256674050653711}
+        m_TargetAssemblyTypeName: PlayerHealthManager, Player
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5950399921188702630
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +847,7 @@ Transform:
   m_GameObject: {fileID: 5950399921188702630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.047, y: -0.115, z: 0}
+  m_LocalPosition: {x: 0.22, y: -0.046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

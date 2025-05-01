@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _Dissolve: 0.905
+    - _Dissolve: 0
     - _Edge_Width: 0.102
     - _Stencil: 0
     - _StencilComp: 8
