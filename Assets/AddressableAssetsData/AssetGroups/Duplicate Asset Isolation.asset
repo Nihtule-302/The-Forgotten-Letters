@@ -31,11 +31,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 40c1b26add24bc247b9d27784f6abcc3
-    m_Address: Assets/_Project/Art/Prefabs/UI/Canvases/Pause Menu UI.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca9f5fa95ffab41fb9a615ab714db018
     m_Address: Packages/com.unity.inputsystem/InputSystem/Plugins/PlayerInput/DefaultInputActions.inputactions
     m_ReadOnly: 0

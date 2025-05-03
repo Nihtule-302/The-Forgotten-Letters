@@ -45,6 +45,14 @@ namespace _Project.Scripts.Gameplay._2D
             SetFallState();
         }
 
+        private void OnDestroy()
+        {
+            inputManager.Move -= HandleXMovement;
+            inputManager.Jump -= HandleJumpInput;
+            inputManager.Attack -= HandleAttackInput;
+            inputManager.Skill -= (useSkill) => wantsToUseSkill = useSkill;
+        }
+
         private void Update()
         {
             SelectState();

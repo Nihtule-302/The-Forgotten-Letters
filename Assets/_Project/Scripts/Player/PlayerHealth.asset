@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PlayerHealth
   m_EditorClassIdentifier: 
   maxHealth: 3
+  currentHealth: 2
   playerDeath: {fileID: 11400000, guid: 96d6cfb07a7768e48bd1dba3ba37584d, type: 2}
-  playerTakeDamage: {fileID: 11400000, guid: e9b68c02609ee004a81ed58b0c85b6f3, type: 2}
+  updateHealthUI: {fileID: 11400000, guid: 096752a3bc86ef6489093cd3e614357c, type: 2}

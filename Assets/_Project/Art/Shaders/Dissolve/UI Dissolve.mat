@@ -52,7 +52,7 @@ Material:
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     m_Colors:
-    - _Base_Color: {r: 0.08254716, g: 0.35973087, b: 0.5, a: 0}
+    - _Base_Color: {r: 0, g: 0, b: 0, a: 0}
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Edge_Color: {r: 0.04045032, g: 0.770354, b: 0.9528302, a: 0}
   m_BuildTextureStacks: []

@@ -23,6 +23,8 @@ public class BackgroundController : MonoBehaviour
         
         startPos = transform.position;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
+
+        camStartPos = cam.transform.position;
     }
 
     // Update is called once per frame

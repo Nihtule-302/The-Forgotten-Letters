@@ -10,7 +10,7 @@ namespace TheForgottenLetters
         public Sprite fullHeartSprite;
         public Sprite emptyHeartSprite;
 
-        private List<Image> hearts = new List<Image>();
+        [SerializeField] private List<Image> hearts = new List<Image>();
 
         [SerializeField] private PlayerHealth playerHealth;
         
@@ -30,9 +30,10 @@ namespace TheForgottenLetters
             for (int i = 0; i < maxHearts; i++)
             {
                 Image newHeart = Instantiate(heartPrefab, transform);
-                newHeart.sprite = fullHeartSprite;
                 hearts.Add(newHeart);
             }
+
+            UpdateHearts();
         }
 
         public void UpdateHearts()

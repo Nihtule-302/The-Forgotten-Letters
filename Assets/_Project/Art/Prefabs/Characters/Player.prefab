@@ -384,9 +384,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7536855050144878361}
   - component: {fileID: 4470310915424386697}
+  - component: {fileID: 8483753058208475758}
   m_Layer: 6
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,6 +453,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.39160994, y: 0.6657949}
   m_EdgeRadius: 0
+--- !u!114 &8483753058208475758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936287578165724291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdad649709a955f4e8e6fd38d587b55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTakeDamage: {fileID: 11400000, guid: e9b68c02609ee004a81ed58b0c85b6f3, type: 2}
 --- !u!1 &5349755431896427256
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +637,7 @@ GameObject:
   - component: {fileID: 2445800858207291019}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -759,6 +773,7 @@ GameObject:
   - component: {fileID: 6834056875894507917}
   - component: {fileID: 8883256674050653711}
   - component: {fileID: 1985608974621821659}
+  - component: {fileID: 4407548245409498041}
   m_Layer: 6
   m_Name: HealthManager
   m_TagString: Untagged
@@ -794,6 +809,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 11400000, guid: 63915225d9dcff144897c9719ee54de7, type: 2}
+  characterSpriteRenderer: {fileID: 6528421801257157272}
+  flashDuration: 0.2
 --- !u!114 &1985608974621821659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,6 +830,46 @@ MonoBehaviour:
       - m_Target: {fileID: 8883256674050653711}
         m_TargetAssemblyTypeName: PlayerHealthManager, Player
         m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4407548245409498041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917982843225175792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9be10a819c5764ab41f38f0486159b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e9b68c02609ee004a81ed58b0c85b6f3, type: 2}
+  responce:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8883256674050653711}
+        m_TargetAssemblyTypeName: PlayerHealthManager, Player
+        m_MethodName: FlashRed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8883256674050653711}
+        m_TargetAssemblyTypeName: PlayerHealthManager, Player
+        m_MethodName: TakeDamage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

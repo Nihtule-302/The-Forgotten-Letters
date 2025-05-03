@@ -144,6 +144,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2964694031851033109, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5444192833465351946, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
       propertyPath: m_Name
       value: Letter Selector with Text
@@ -174,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7909471213928121147, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 353.1709
+      value: 398.98
       objectReference: {fileID: 0}
     - target: {fileID: 7909471213928121147, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
       propertyPath: m_SizeDelta.y
@@ -228,6 +232,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: edgeWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: edgeColor.g
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: edgeColor.r
+      value: 1.3686433
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: DissolveImage
+      value: 
+      objectReference: {fileID: 486694267540556233}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: dissolveDuration
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: baseDissolveColor.b
+      value: 0.07329121
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: baseDissolveColor.g
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148417716687783329, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+      propertyPath: baseDissolveColor.r
+      value: 0.46833983
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -236,6 +272,17 @@ PrefabInstance:
       addedObject: {fileID: 6790421482365975312}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+--- !u!114 &486694267540556233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2964694031851033109, guid: 78ed4651f79fdf343b250423309332c0, type: 3}
+  m_PrefabInstance: {fileID: 3451340990320401372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4765290479557794023 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7909471213928121147, guid: 78ed4651f79fdf343b250423309332c0, type: 3}

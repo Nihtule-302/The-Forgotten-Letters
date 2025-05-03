@@ -1,0 +1,16 @@
+{
+    "name": "GameManager2D",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0d35cec8d029b2d42b84bf0a1b8101f5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

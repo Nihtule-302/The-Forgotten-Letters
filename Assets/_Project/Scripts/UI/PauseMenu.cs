@@ -1,4 +1,5 @@
 using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Core.Scriptable_Events;
 using _Project.Scripts.Core.Utilities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -12,24 +13,33 @@ namespace _Project.Scripts.UI
         [SerializeField] private GameObject pauseIcon;
         [SerializeField] private GameObject pauseBackground;
 
+        [Header("Game Events")]
+        [SerializeField] private GameEvent onPauseGameEvent;
+        [SerializeField] private GameEvent onResumeGameEvent;
+
         [Header("Scene To Load")]
         [SerializeField] private AssetReference MainMenu;
-        
-        private void Awake()
+    
+
+
+        public void StartMenu()
         {
             ResumeGame();
         }
+
 
         #region Buttons
 
         public void Pause()
         {
             PauseGame();
+            onPauseGameEvent.Raise();
         }
         
         public void Resume()
         {
             ResumeGame();
+            onResumeGameEvent.Raise();
         }
 
         public void Save() {}

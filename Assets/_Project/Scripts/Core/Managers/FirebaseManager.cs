@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using _Project.Scripts.Core.SaveSystem;
 using Firebase;
+using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using UnityEngine;
@@ -12,7 +13,11 @@ namespace _Project.Scripts.Core.Managers
     {
         public static FirebaseManager Instance { get; private set; }
 
+        private FirebaseAuth auth;
+        public FirebaseAuth Auth => auth;
+        public FirebaseFirestore Firestore => _firestore;
         private FirebaseFirestore _firestore;
+        
         private ListenerRegistration listener;
 
         public event Action OnLetterHuntDataUpdated;
@@ -40,16 +45,23 @@ namespace _Project.Scripts.Core.Managers
                 // Initialize Firestore
                 _firestore = FirebaseFirestore.DefaultInstance;
                 Debug.Log("Firestore initialized successfully.");
-                StartListeningForChanges();
+
+                auth = FirebaseAuth.DefaultInstance;
+                Debug.Log("Firebase Auth initialized successfully.");
             });
         }
 
         public async Task SaveLetterHuntData(LetterHuntData data)
         {
+            if (auth.CurrentUser == null)
+            {
+                Debug.Log("Error: Must be logged in to save a note.");
+                return;
+            }
             try
             {
                 LetterHuntDataSerializable serializableData = new LetterHuntDataSerializable(data);
-                DocumentReference docRef = _firestore.Collection("game_data").Document("letter_hunt");
+                DocumentReference docRef = _firestore.Collection("users").Document(auth.CurrentUser.UserId).Collection("game_data").Document("letter_hunt");
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Letter Hunt data saved successfully!");
             }
@@ -59,9 +71,15 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
-        private void StartListeningForChanges()
+        public void StartListeningForChanges()
         {
-            DocumentReference docRef = _firestore.Collection("game_data").Document("letter_hunt");
+            if (auth.CurrentUser == null)
+            {
+                Debug.Log("Error: Must be logged in to save a note."); // Also log to console
+                return;
+            }
+
+            DocumentReference docRef = _firestore.Collection("users").Document(auth.CurrentUser.UserId).Collection("game_data").Document("letter_hunt");
 
             listener = docRef.Listen(snapshot =>
             {

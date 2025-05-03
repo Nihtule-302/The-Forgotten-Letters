@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerHealth : ScriptableObject
 {
     public int maxHealth = 3;
-    private int currentHealth;
+    [SerializeField] private int currentHealth;
     public int CurrentHealth => currentHealth;
 
     public GameEvent playerDeath;
-    public GameEvent playerTakeDamage;
+    public GameEvent updateHealthUI;
 
     private void OnEnable()
     {
@@ -19,11 +19,16 @@ public class PlayerHealth : ScriptableObject
     public void TakeDamage(int damage)
     {
       currentHealth -= damage;
-
-      playerTakeDamage.Raise();
+      updateHealthUI.Raise();
       if (currentHealth <= 0)
       {
         playerDeath.Raise();
       }
+    }
+
+    public void ResetHealth()
+    {
+      currentHealth = maxHealth;
+      updateHealthUI.Raise();
     }
 }
