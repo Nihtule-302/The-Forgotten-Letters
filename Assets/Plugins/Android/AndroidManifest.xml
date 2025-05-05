@@ -18,6 +18,9 @@
                 <data android:scheme="theforgottenletters" android:host="start" />
                 <data android:scheme="theforgottenletters" android:host="bahrelsafa" />
                 <data android:scheme="theforgottenletters" android:host="moon" />
+                <data android:scheme="theforgottenletters" android:host="letterhunt" />
+                <data android:scheme="theforgottenletters" android:host="letterdrawing" />
+                <data android:scheme="theforgottenletters" android:host="objectdetection" />
             </intent-filter>
 
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
@@ -37,6 +40,9 @@
                 <data android:scheme="theforgottenletters" android:host="start" />
                 <data android:scheme="theforgottenletters" android:host="bahrelsafa" />
                 <data android:scheme="theforgottenletters" android:host="moon" />
+                <data android:scheme="theforgottenletters" android:host="letterhunt" />
+                <data android:scheme="theforgottenletters" android:host="letterdrawing" />
+                <data android:scheme="theforgottenletters" android:host="objectdetection" />
             </intent-filter>
 
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />

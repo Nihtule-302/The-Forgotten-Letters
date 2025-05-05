@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12abf9335222d645992016450dfc99f, type: 3}
+  m_Name: EnergyWave
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 9687b8cba872c4f50aeb3b2b3ff1a0b7, type: 3}
+  skillDescription: Energy Wave
+  levelNeeded: 1
+  energyPointsNeeded: 5
+  skillDamage: 2
+  skillPrefab: {fileID: 1122178935239954433, guid: fbcb9bf38d840474a9d110233a712d63, type: 3}

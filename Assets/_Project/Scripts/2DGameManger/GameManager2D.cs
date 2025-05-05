@@ -48,15 +48,16 @@ namespace TheForgottenLetters
             onScreenControls.SetActive(true);
             gameOverMenu.SetActive(false);
             meditationMenu.SetActive(false);
+            
 
             Time.timeScale = 1f; // Resume the game
         }
         public void PauseGame()
         {
-            HUD.SetActive(false);
+            // HUD.SetActive(false);
             onScreenControls.SetActive(false);
-            gameOverMenu.SetActive(false);
-            meditationMenu.SetActive(false);
+            // gameOverMenu.SetActive(false);
+            // meditationMenu.SetActive(false);
 
             Time.timeScale = 0f; // Pause the game
         }

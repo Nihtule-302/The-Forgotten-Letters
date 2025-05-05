@@ -1,7 +1,7 @@
 using _Project.Scripts.Core.Scriptable_Events;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerHealth", menuName = "Scriptable Objects/PlayerHealth")]
+[CreateAssetMenu(fileName = "PlayerHealth", menuName = "Player/Health")]
 public class PlayerHealth : ScriptableObject
 {
     public int maxHealth = 3;

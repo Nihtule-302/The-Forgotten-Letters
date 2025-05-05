@@ -21,7 +21,10 @@ namespace _Project.Scripts.Core.Managers
                     HandleDeepLink(Application.absoluteURL);
                 }
                 // Initialize DeepLink Manager global variable.
-                else deeplinkURL = "[none]";
+                else
+                {
+                    deeplinkURL = "[none]";
+                }
             }
             else
             {
@@ -58,6 +61,18 @@ namespace _Project.Scripts.Core.Managers
                     
                     case "moon":
                         SceneManager.LoadScene("Moon");
+                        break;
+                        
+                    case "letterhunt":
+                        SceneManager.LoadScene("Letter Hunt Image Edition");
+                        break;
+                    
+                    case "letterdrawing":
+                        SceneManager.LoadScene("Drawing Letters");
+                        break;
+                    
+                    case "objectdetection":
+                        SceneManager.LoadScene("Object Detection");
                         break;
 
                 }
