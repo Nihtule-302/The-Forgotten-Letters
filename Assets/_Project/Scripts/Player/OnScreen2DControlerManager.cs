@@ -1,10 +1,11 @@
+using _Project.Scripts.Core.Managers;
 using TheForgottenLetters;
 using UnityEngine;
 
 public class OnScreen2DControlerManager : MonoBehaviour
 {
     [SerializeField] private GameObject skillButton;
-    [SerializeField] private PlayerAbilityStats playerAbilityStats;
+    private PlayerAbilityStats playerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

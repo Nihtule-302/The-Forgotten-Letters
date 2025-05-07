@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09309422f0357c45ab7d85ac9cf80a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1122178935239954433, guid: 00553f3430822684898fae9ca575ef3a, type: 3}
+  level1Skill: {fileID: 11400000, guid: 87107b8029a9ef6409d35e1651ebb86c, type: 2}
+  level2Skill: {fileID: 11400000, guid: 8ee1aa958e5d0cc4cbbd9ba01f50649c, type: 2}
+  currentSkill: {fileID: 0}
   firePoint: {fileID: 122579585249869239}
 --- !u!1 &1184296198387700097
 GameObject:
@@ -774,6 +776,7 @@ GameObject:
   - component: {fileID: 8883256674050653711}
   - component: {fileID: 1985608974621821659}
   - component: {fileID: 4407548245409498041}
+  - component: {fileID: 1544897031187538212}
   m_Layer: 6
   m_Name: HealthManager
   m_TagString: Untagged
@@ -870,6 +873,34 @@ MonoBehaviour:
       - m_Target: {fileID: 8883256674050653711}
         m_TargetAssemblyTypeName: PlayerHealthManager, Player
         m_MethodName: TakeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1544897031187538212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917982843225175792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9be10a819c5764ab41f38f0486159b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e4f384cd273215048bbe6d704ce4df0e, type: 2}
+  responce:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8883256674050653711}
+        m_TargetAssemblyTypeName: PlayerHealthManager, Player
+        m_MethodName: Heal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -7,8 +7,7 @@ namespace _Project.Scripts.Gameplay.AI
 {
     public class Collect : State
     {
-        public List<Transform> souls;
-
+        public Transform player;
         public Transform target;
         public Navigate navigate;
 
@@ -30,7 +29,7 @@ namespace _Project.Scripts.Gameplay.AI
                 if (CloseEnough(target.position))
                 {
                     SetChild(idle, true);
-                    target.gameObject.SetActive(false);
+                    // target.gameObject.SetActive(false);
                     body.linearVelocity = new Vector2(0, body.linearVelocityY);
                 }
                 else if (!InVision(target.position))
@@ -76,14 +75,11 @@ namespace _Project.Scripts.Gameplay.AI
 
         public void CheckForTarget()
         {
-            foreach (Transform soul in souls)
-            {
-                if (InVision(soul.position) && soul.gameObject.activeSelf)
+            if (InVision(player.position) && player.gameObject.activeSelf)
                 {
-                    target = soul;
+                    target = player;
                     return;
                 }
-            }
             target = null;
         }
     }

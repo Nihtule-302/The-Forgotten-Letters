@@ -11,6 +11,7 @@ using _Project.Scripts.Core.Utilities.UI;
 using _Project.Scripts.UI;
 using _Project.Scripts.UI.Buttons.ChoiceButton;
 using Flexalon;
+using TheForgottenLetters;
 
 namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 {
@@ -242,6 +243,8 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 
             PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
             await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
+
+            PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
 
             Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
             await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));

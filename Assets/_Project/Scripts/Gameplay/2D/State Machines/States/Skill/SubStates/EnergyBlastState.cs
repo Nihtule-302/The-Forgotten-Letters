@@ -1,10 +1,11 @@
+using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.StateMachine;
 using TheForgottenLetters;
 using UnityEngine;
 
 public class EnergyBlastState : State
 {
-    [SerializeField] private PlayerAbilityStats playerAbilityStats;
+    private PlayerAbilityStats playerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
     [SerializeField] private Skill level1Skill;
     [SerializeField] private Skill level2Skill;
     [SerializeField] private Skill currentSkill;

@@ -10,7 +10,12 @@ namespace _Project.Scripts.Core.Utilities.Scene_Management
     
         public void TranstionToScene()
         {
-            SceneTransitionManager.Instance.TransitionScene(SceneToTransitionTo);
+            SceneTransitionManager.Instance.TransitionScene(this.SceneToTransitionTo);
+        }
+
+        public void TranstionToScene(AssetReference chossenScene)
+        {
+            SceneTransitionManager.Instance.TransitionScene(chossenScene);
         }
     }
 }

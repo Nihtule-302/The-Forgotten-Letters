@@ -1,5 +1,7 @@
 using System;
+using _Project.Scripts.Core.Utilities.Scene_Management;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Core.Managers
@@ -8,6 +10,17 @@ namespace _Project.Scripts.Core.Managers
     {
         public static DeepLinkManager Instance { get; private set; }
         public string deeplinkURL;
+        [SerializeField] private SceneTransitioner sceneTransitioner;
+
+        [Header("Main Scenes")]
+        [SerializeField] private AssetReference mainMenu;
+        [SerializeField] private AssetReference Moon;
+        [SerializeField] private AssetReference BahrelSafa;
+
+        [Header("Minigame Scenes")]
+        [SerializeField] private AssetReference drawLetters;
+        [SerializeField] private AssetReference objectDetection;
+        [SerializeField] private AssetReference letterHunt;
         
         private void Awake()
         {
@@ -36,8 +49,12 @@ namespace _Project.Scripts.Core.Managers
         {
             HandleDeepLink(url);
         }
-
-        private void HandleDeepLink(string url)
+        [ContextMenu("Test Deep Link")]
+        private void TestDeepLink()
+        {
+            HandleDeepLink(deeplinkURL);
+        }
+        public void HandleDeepLink(string url)
         {
             try
             {
@@ -52,27 +69,27 @@ namespace _Project.Scripts.Core.Managers
                 switch (host)
                 {
                     case "start":
-                        SceneManager.LoadScene("Main Menu");
+                        sceneTransitioner.TranstionToScene(mainMenu);
                         break;
                     
                     case "bahrelsafa":
-                        SceneManager.LoadScene("Bahr El Safa");
+                        sceneTransitioner.TranstionToScene(BahrelSafa);
                         break;
                     
                     case "moon":
-                        SceneManager.LoadScene("Moon");
+                        sceneTransitioner.TranstionToScene(Moon);
                         break;
                         
                     case "letterhunt":
-                        SceneManager.LoadScene("Letter Hunt Image Edition");
+                        sceneTransitioner.TranstionToScene(letterHunt);
                         break;
                     
                     case "letterdrawing":
-                        SceneManager.LoadScene("Drawing Letters");
+                        sceneTransitioner.TranstionToScene(drawLetters);
                         break;
                     
                     case "objectdetection":
-                        SceneManager.LoadScene("Object Detection");
+                        sceneTransitioner.TranstionToScene(objectDetection);
                         break;
 
                 }

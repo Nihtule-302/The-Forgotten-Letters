@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: LogicalSOs
   m_GUID: 2667bfa38f43f2e42837cc865c66964b
   m_SerializeEntries:
+  - m_GUID: 6c14fb82c54fa9a4c92775ee63502c82
+    m_Address: PlayerAbilityStats
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: feb759d472eb5bf45bcc00d80d0fbbb5
     m_Address: LetterHuntData
     m_ReadOnly: 0

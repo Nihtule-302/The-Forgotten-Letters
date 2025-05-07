@@ -30,8 +30,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 831fe6a53c3b7c6449231d5a81631582
+  - m_GUID: 68660132e85918e46a38b52cba4120eb
     m_Address: Drawing Letters
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 831fe6a53c3b7c6449231d5a81631582
+    m_Address: Drawing Letters Test
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

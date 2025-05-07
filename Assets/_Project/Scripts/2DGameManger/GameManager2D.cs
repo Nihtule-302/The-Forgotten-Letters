@@ -10,6 +10,7 @@ namespace TheForgottenLetters
         [SerializeField] private PauseMenu pauseMenu;
         [SerializeField] private GameObject gameOverMenu;
         [SerializeField] private GameObject meditationMenu;
+        [SerializeField] private GameObject skillTreeMenu;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -22,25 +23,36 @@ namespace TheForgottenLetters
             HUD.SetActive(true);
             onScreenControls.SetActive(true);
             gameOverMenu.SetActive(false);
-            meditationMenu.SetActive(false);
+            meditationMenu.SetActive(false); 
+            skillTreeMenu.SetActive(false);
         }
 
 
         public void GameOver()
         {
-            HUD.SetActive(false);
+            // HUD.SetActive(false);
             onScreenControls.SetActive(false);
             gameOverMenu.SetActive(true);
             meditationMenu.SetActive(false);
+            skillTreeMenu.SetActive(false);
 
-            Time.timeScale = 0f; // Pause the game
+            // Time.timeScale = 0f; // Pause the game
         }
         public void MeditationMenu()
+        {
+            // HUD.SetActive(false);
+            onScreenControls.SetActive(false);
+            gameOverMenu.SetActive(false);
+            meditationMenu.SetActive(true);
+            skillTreeMenu.SetActive(false);
+        }
+        public void SkillTreeMenu()
         {
             HUD.SetActive(false);
             onScreenControls.SetActive(false);
             gameOverMenu.SetActive(false);
-            meditationMenu.SetActive(true);
+            meditationMenu.SetActive(false);
+            skillTreeMenu.SetActive(true);
         }
         public void ResumeGame()
         {
@@ -48,9 +60,10 @@ namespace TheForgottenLetters
             onScreenControls.SetActive(true);
             gameOverMenu.SetActive(false);
             meditationMenu.SetActive(false);
+            skillTreeMenu.SetActive(false);
             
 
-            Time.timeScale = 1f; // Resume the game
+            // Time.timeScale = 1f; // Resume the game
         }
         public void PauseGame()
         {
@@ -59,7 +72,7 @@ namespace TheForgottenLetters
             // gameOverMenu.SetActive(false);
             // meditationMenu.SetActive(false);
 
-            Time.timeScale = 0f; // Pause the game
+            // Time.timeScale = 0f; // Pause the game
         }
 
     }

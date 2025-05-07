@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
 using Firebase.Auth;
@@ -5,26 +6,48 @@ using Firebase.Extensions;
 using Firebase.Firestore;
 using TMPro;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace TheForgottenLetters
 {
     public class Auth : MonoBehaviour
     {
+        [SerializeField] private GameObject authPanel;
+        [SerializeField] private TMP_InputField emailInputField;
+        [SerializeField] private TMP_InputField passwordInputField;
+        [SerializeField] private TMP_Text statusText;
 
-        public TMP_InputField emailInputField;
-        public TMP_InputField passwordInputField;
-        public TMP_InputField noteInputField; // Add input field for the note
-        public TMP_Text statusText;
+        [SerializeField] private double delayBeforeContinue = 2f; // Delay in seconds
+        private TimeSpan DelayBeforeContinue => TimeSpan.FromSeconds(delayBeforeContinue);
 
         private FirebaseAuth auth;
-        private FirebaseFirestore db; // Add Firestore instance variable
+        private FirebaseFirestore db;
+
 
         void Start()
         {
+            FirebaseManager.Instance.OnFirebaseInitialized += BeginAuth;
+        }
+        void OnDestroy()
+        {
+            FirebaseManager.Instance.OnFirebaseInitialized -= BeginAuth;
+        }
+
+        private void BeginAuth()
+        {
+            authPanel.SetActive(true);
+
+            UpdateStatus("Initializing Firebase...");
+            if (FirebaseManager.Instance == null)
+            {
+                Debug.LogError("FirebaseManager is not initialized.");
+                UpdateStatus("Firebase is not ready.");
+            }
+
             if (FirebaseManager.Instance != null && FirebaseManager.Instance.Auth != null)
             {
                 auth = FirebaseManager.Instance.Auth;
-                db = FirebaseManager.Instance.Firestore; // Initialize Firestore
+                db = FirebaseManager.Instance.Firestore;
             }
             else
             {
@@ -34,9 +57,10 @@ namespace TheForgottenLetters
 
             if (auth.CurrentUser != null)
             {
-                // User is already signed in, you can update the UI accordingly
                 UpdateStatus("User is already signed in: " + auth.CurrentUser.Email);
                 FirebaseManager.Instance.StartListeningForChanges();
+                SaveAuthInfo();
+                Continue();
             }
             else
             {
@@ -44,44 +68,67 @@ namespace TheForgottenLetters
             }
         }
 
-        // Helper to update status text on the main thread
         void UpdateStatus(string message)
         {
             statusText.text = message;
-            Debug.Log(message); // Also log to console
+            Debug.Log(message);
+        }
+        
+        [ContextMenu("SignUpButton")]
+        public void SignUpButton()
+        {
+            SignUp().Forget();
+        }
+        public void LoginButton()
+        {
+            Login().Forget();
         }
 
-        public async void SignUp()
+        public async UniTaskVoid SignUp()
         {
             string email = emailInputField.text;
             string password = passwordInputField.text;
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                UpdateStatus("Email and password must not be empty.");
+                return;
+            }
 
             try
             {
                 await auth.CreateUserWithEmailAndPasswordAsync(email, password);
                 UpdateStatus("Sign Up Successful!");
                 FirebaseManager.Instance.StartListeningForChanges();
-                SaveAuthInfo(); // Save user info after sign up
+                SaveAuthInfo();
+                await ContinueAfterDelay();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 UpdateStatus("Sign Up Failed: " + ex.Message);
             }
         }
 
-        public async void Login()
+        public async UniTaskVoid Login()
         {
             string email = emailInputField.text;
             string password = passwordInputField.text;
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                UpdateStatus("Email and password must not be empty.");
+                return;
+            }
 
             try
             {
                 await auth.SignInWithEmailAndPasswordAsync(email, password);
                 UpdateStatus("Login Successful!");
                 FirebaseManager.Instance.StartListeningForChanges();
-                SaveAuthInfo(); // Save user info after login
+                SaveAuthInfo();
+                await ContinueAfterDelay();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 UpdateStatus("Login Failed: " + ex.Message);
             }
@@ -104,44 +151,48 @@ namespace TheForgottenLetters
         {
             if (auth.CurrentUser == null)
             {
-                UpdateStatus("Error: Must be logged in to save a note.");
+                UpdateStatus("Error: Must be logged in to save data.");
                 return;
             }
-            if (db == null) {
+
+            if (db == null)
+            {
                 UpdateStatus("Error: Firestore not initialized.");
                 return;
             }
 
             string userId = auth.CurrentUser.UserId;
 
-            // Create a document reference using the user's ID
-            // This stores the note under a collection 'userNotes' in a document named after the user's ID
-            DocumentReference docRef = db.Collection("users").Document(userId);
-
-            // Create data to save. Using a Dictionary.
-            // We add the note, the userId, and a server timestamp.
-            Dictionary<string, object> noteData = new Dictionary<string, object>
+            Dictionary<string, object> userData = new Dictionary<string, object>
             {
-                { "userId", userId }, 
-                { "email", auth.CurrentUser.Email } 
+                { "userId", userId },
+                { "email", auth.CurrentUser.Email }
             };
 
-            // Use SetAsync with MergeAll to create or update the document
-            // This won't overwrite other fields if the document already exists
             UpdateStatus("Saving Data...");
-            docRef.SetAsync(noteData, SetOptions.MergeAll).ContinueWithOnMainThread(task => { // Ensure this line uses the extension method
-                if (task.IsCompletedSuccessfully)
+            db.Collection("users").Document(userId)
+                .SetAsync(userData, SetOptions.MergeAll)
+                .ContinueWithOnMainThread(task =>
                 {
-                    UpdateStatus("Data saved successfully!");
-                }
-                else if (task.IsFaulted)
-                {
-                    UpdateStatus($"Error saving Data: {task.Exception}");
-                }
-                else if (task.IsCanceled) {
-                    UpdateStatus("Saving Data was cancelled.");
-                }
-            });
+                    if (task.IsCompletedSuccessfully)
+                        UpdateStatus("Data saved successfully!");
+                    else if (task.IsFaulted)
+                        UpdateStatus("Error saving Data: " + task.Exception);
+                    else if (task.IsCanceled)
+                        UpdateStatus("Saving Data was cancelled.");
+                });
+        }
+
+        private async UniTask ContinueAfterDelay()
+        {
+            await UniTask.Delay(DelayBeforeContinue);
+            Continue();
+        }
+
+        private void Continue()
+        {
+            UpdateStatus("Ready to proceed...");
+            authPanel.SetActive(false);
         }
     }
 }

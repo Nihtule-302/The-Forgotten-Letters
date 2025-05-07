@@ -29,4 +29,11 @@ public class PlayerHealthManager : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
         characterSpriteRenderer.color = Color.white;
     }
+
+    [ContextMenu("Reset Health")]
+
+    public void Heal()
+    {
+        playerHealth.ResetHealth();
+    }
 }

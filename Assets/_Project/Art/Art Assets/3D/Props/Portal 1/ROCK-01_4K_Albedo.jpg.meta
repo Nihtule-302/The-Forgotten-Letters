@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ROCK-01_4K_Albedo_0: -5206336134080066028
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -119,12 +119,156 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &44137630
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -119.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &44137631 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 44137630}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &46187977
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -207.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (20)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &46187978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 46187977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &59714975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 481283104007026027, guid: 004215a77c70af14598de0d115fd2253, type: 3}
   m_PrefabInstance: {fileID: 1201899062}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &169491072
+--- !u!84 &175657410
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,8 +280,8 @@ RenderTexture:
     Hash: 00000000000000000000000000000000
   m_IsAlphaChannelOptional: 0
   serializedVersion: 6
-  m_Width: 2960
-  m_Height: 1440
+  m_Width: 669
+  m_Height: 622
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthStencilFormat: 90
@@ -161,6 +305,228 @@ RenderTexture:
   m_Dimension: 2
   m_VolumeDepth: 1
   m_ShadowSamplingMode: 2
+--- !u!1001 &178857438
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -217.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (21)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &178857439 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 178857438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &196916719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1529921840}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 119.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (20)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &196916720 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 196916719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &209455846
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1529921840}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u0628"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (15)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &209455847 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 209455846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &226838071
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +576,84 @@ MonoBehaviour:
   totalElapsedTime: 0
   initialRaiseInterval: 0
   input: {fileID: 11400000, guid: 0c5e1e3deabc86e44b17a8aa3c125447, type: 2}
+--- !u!1001 &228462917
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &228462918 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 228462917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &291128060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,6 +794,372 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2127345530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &321841125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u0630"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -237.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (23)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &321841126 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 321841125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &325381358
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1434962417}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -69.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (17)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &325381359 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 325381358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &375589700
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1529921840}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 59.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (17)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &375589701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 375589700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &392205891
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &392205892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 392205891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &437763876
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -277.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (27)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &437763877 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 437763876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &446141331
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +1281,52 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &495795287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 495795288}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &495795288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495795287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2106202241}
+  - {fileID: 858563998}
+  - {fileID: 935776290}
+  - {fileID: 1946328235}
+  - {fileID: 1723145148}
+  - {fileID: 46187978}
+  - {fileID: 178857439}
+  - {fileID: 622257770}
+  - {fileID: 321841126}
+  - {fileID: 887591107}
+  - {fileID: 2108311363}
+  - {fileID: 1063333349}
+  - {fileID: 437763877}
+  - {fileID: 1436783850}
+  - {fileID: 640455855}
+  m_Father: {fileID: 1371995655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &501342822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 481283104007026027, guid: 004215a77c70af14598de0d115fd2253, type: 3}
@@ -525,6 +1381,88 @@ MonoBehaviour:
   totalElapsedTime: 0
   initialRaiseInterval: 0
   input: {fileID: 11400000, guid: 0c5e1e3deabc86e44b17a8aa3c125447, type: 2}
+--- !u!1001 &565688473
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u0628"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &565688474 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 565688473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &587886664
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,10 +1499,662 @@ Transform:
   - {fileID: 800548894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &617213326
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1434962417}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -49.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (16)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &617213327 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 617213326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &622257769
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -227.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (22)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &622257770 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 622257769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &638722309
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1434962417}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -129.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (20)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &638722310 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 638722309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &640455854
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -297.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (29)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &640455855 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 640455854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &712069629
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1434962417}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -149.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (21)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &712069630 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 712069629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &741788231
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -69.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &741788232 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 741788231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &749717231
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6086431755094729003, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 749717234}
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &749717232 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 749717231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &749717233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6086431755094729003, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 749717231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &749717234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749717233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5761a7561273648aaab5f5319cb812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToTravelTo:
+    m_AssetGUID: f242ffa8a234e844ba2f7053a9b31b23
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
 --- !u!4 &800548894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 816280963323577622, guid: 6e95cd558c1729846acd643c481ea2a9, type: 3}
   m_PrefabInstance: {fileID: 2207631100612769557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &858563997
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u0628"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -167.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (16)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &858563998 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 858563997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &867876317
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1434962417}
+    m_Modifications:
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u0630"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -89.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (18)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &867876318 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 867876317}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &878330962
 GameObject:
@@ -834,6 +2424,212 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &887591106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -247.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (24)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &887591107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 887591106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &918183314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -79.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &918183315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 918183314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &935776289
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -177.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (17)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &935776290 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 935776289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &989032564
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,8 +2659,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1937728742}
   - {fileID: 1914065722}
+  - {fileID: 5478654963064432442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1050366085
@@ -882,7 +2678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1050366086
 Transform:
   m_ObjectHideFlags: 0
@@ -902,6 +2698,196 @@ Transform:
   - {fileID: 1540943827}
   m_Father: {fileID: 587886665}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1057701244
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1529921840}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 139.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (21)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1057701245 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1057701244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1063333348
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -267.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (26)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1063333349 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1063333348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1073124222
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u0630"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -89.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1073124223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1073124222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1201899062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -963,6 +2949,216 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004215a77c70af14598de0d115fd2253, type: 3}
+--- !u!1 &1371995654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1371995655}
+  m_Layer: 0
+  m_Name: Doors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1371995655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371995654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 749717232}
+  - {fileID: 565688474}
+  - {fileID: 392205892}
+  - {fileID: 228462918}
+  - {fileID: 1764525888}
+  - {fileID: 1657443708}
+  - {fileID: 741788232}
+  - {fileID: 495795288}
+  - {fileID: 918183315}
+  - {fileID: 1073124223}
+  - {fileID: 1529921840}
+  - {fileID: 1777662163}
+  - {fileID: 1810771718}
+  - {fileID: 1434962417}
+  - {fileID: 44137631}
+  - {fileID: 1606496929}
+  - {fileID: 1577812585}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &1389755143
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1434962417}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -109.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (19)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1389755144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1389755143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1434962416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1434962417}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1434962417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434962416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -20, y: 0, z: -18.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1496917972}
+  - {fileID: 617213327}
+  - {fileID: 325381359}
+  - {fileID: 867876318}
+  - {fileID: 1389755144}
+  - {fileID: 638722310}
+  - {fileID: 712069630}
+  m_Father: {fileID: 1371995655}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &1436783849
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -287.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (28)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1436783850 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1436783849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1441649200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1024,6 +3220,122 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004215a77c70af14598de0d115fd2253, type: 3}
+--- !u!1001 &1496917971
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1434962417}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (15)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1496917972 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1496917971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1529921839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1529921840}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1529921840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529921839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20, y: 0, z: -18.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 209455847}
+  - {fileID: 2023671723}
+  - {fileID: 375589701}
+  - {fileID: 1885681898}
+  - {fileID: 1618119820}
+  - {fileID: 196916720}
+  - {fileID: 1057701245}
+  m_Father: {fileID: 1371995655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540943826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +3382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1567378550
 Transform:
   m_ObjectHideFlags: 0
@@ -1088,6 +3400,360 @@ Transform:
   - {fileID: 520603256}
   m_Father: {fileID: 587886665}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1577812584
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -139.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (13)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1577812585 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1577812584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1606496928
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -129.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1606496929 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1606496928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1618119819
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1529921840}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 99.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (19)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1618119820 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1618119819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1657443707
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -59.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1657443708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1657443707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1723145147
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -197.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (19)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1723145148 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1723145147}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1724102802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1323055066723911098, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
@@ -1124,15 +3790,566 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1050366086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1764525887
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -49.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1764525888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1764525887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1777662162
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -99.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1777662163 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1777662162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1810771717
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1371995655}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -109.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1810771718 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1810771717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1885681897
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1529921840}
+    m_Modifications:
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 79.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (18)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1885681898 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1885681897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1914065722 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2478689302266781794, guid: 843198727c5c3f14ca2e5f8666653cd0, type: 3}
   m_PrefabInstance: {fileID: 4444376758118415491}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1937728742 stripped
+--- !u!1001 &1946328234
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -187.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (18)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &1946328235 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 504464700720042766, guid: 40c1b26add24bc247b9d27784f6abcc3, type: 3}
-  m_PrefabInstance: {fileID: 5478654963064432441}
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 1946328234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2023671722
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1529921840}
+    m_Modifications:
+    - target: {fileID: 642685696853565121, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_text
+      value: "\u062B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSize
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344774088487601194, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 39.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (16)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &2023671723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 2023671722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2106202240
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -157.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (15)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &2106202241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 2106202240}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2108311362
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 495795288}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -257.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door (25)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!4 &2108311363 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 2108311362}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2127345529
 GameObject:
@@ -1216,32 +4433,48 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.037807
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.606
+      value: -22.194437
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 31.070885
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.19510804
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.83397514
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.117565736
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0.50259
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_Depth
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_ClearFlags
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_RenderingPath
@@ -1250,30 +4483,34 @@ PrefabInstance:
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 169491072}
+      objectReference: {fileID: 175657410}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: near clip plane
-      value: 0.3
+      value: 0.2236283
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
+      propertyPath: orthographic size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_OcclusionCulling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
-      propertyPath: m_BackGroundColor.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.4745098
+      value: 0.278431
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.3019608
+      value: 0.278431
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.19215687
+      value: 0.278431
       objectReference: {fileID: 0}
     - target: {fileID: 8154746218628466118, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_Enabled
@@ -1572,6 +4809,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40c1b26add24bc247b9d27784f6abcc3, type: 3}
+--- !u!224 &5478654963064432442 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3009991710193704668, guid: 40c1b26add24bc247b9d27784f6abcc3, type: 3}
+  m_PrefabInstance: {fileID: 5478654963064432441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1581,3 +4823,4 @@ SceneRoots:
   - {fileID: 989032565}
   - {fileID: 4113841543804092662}
   - {fileID: 291128060}
+  - {fileID: 1371995655}

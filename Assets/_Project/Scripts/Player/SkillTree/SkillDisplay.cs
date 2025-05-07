@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Core.Managers;
 using TheForgottenLetters;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class SkillDisplay : MonoBehaviour
 {
     public Skill skill;
-    public PlayerAbilityStats playerAbilityStats;
+    private PlayerAbilityStats playerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
     public Image backgroundImage;
 
     public Animator skillAnimator;
