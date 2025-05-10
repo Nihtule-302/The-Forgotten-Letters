@@ -10,7 +10,10 @@ namespace _Project.Scripts.Core.Managers
     {
         public static DeepLinkManager Instance { get; private set; }
         public string deeplinkURL;
+
+        [Header("Deep Link Settings")]
         [SerializeField] private SceneTransitioner sceneTransitioner;
+        [SerializeField] private AssetReference initialScene;
 
         [Header("Main Scenes")]
         [SerializeField] private AssetReference mainMenu;
@@ -37,6 +40,7 @@ namespace _Project.Scripts.Core.Managers
                 else
                 {
                     deeplinkURL = "[none]";
+                    sceneTransitioner.TranstionToScene(initialScene);
                 }
             }
             else

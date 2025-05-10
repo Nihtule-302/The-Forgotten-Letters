@@ -19,7 +19,7 @@ public class OnScreen2DControlerManager : MonoBehaviour
 
     public void RefreshOnScreen2DControler()
     {
-        if(playerAbilityStats.unlockedSkills.Count > 0)
+        if(playerAbilityStats.playerSkills.UnlockedSkills.Count > 0)
         {
             skillButton.SetActive(true);
         }

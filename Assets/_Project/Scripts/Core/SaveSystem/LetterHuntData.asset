@@ -12,18 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdd615799a3e0f4dbcd076dca152e25, type: 3}
   m_Name: LetterHuntData
   m_EditorClassIdentifier: 
-  correctScore: 1
-  incorrectScore: 2
-  rounds:
-  - TargetLetter: "\u062A"
-    chosenWord: "\uFE90\uFEE0\uFEDB"
-    IsCorrect: 0
-    TimestampCairoTime: 2025-03-18 05:58:29 PM
-  - TargetLetter: "\u0628"
-    chosenWord: "\u0631\uFEEE\uFE9B"
-    IsCorrect: 0
-    TimestampCairoTime: 2025-03-18 07:03:15 PM
-  - TargetLetter: "\u0628"
-    chosenWord: "\uFEAE\uFEA4\uFE91"
-    IsCorrect: 1
-    TimestampCairoTime: 2025-03-18 07:03:25 PM
+  correctScore: 0
+  incorrectScore: 0
+  rounds: []

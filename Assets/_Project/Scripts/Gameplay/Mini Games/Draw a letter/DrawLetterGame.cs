@@ -1,72 +1,209 @@
+using System.Collections.Generic;
 using _Project.Scripts.Core.DataTypes;
 using _Project.Scripts.Core.Managers;
-using _Project.Scripts.Core.SaveSystem;
+using _Project.Scripts.Core.Utilities;
 using Cysharp.Threading.Tasks;
+using TheForgottenLetters;
+using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// 🕹️ Gameplay Flow:
+/// 1) Player selects a target letter.
+/// 2) Game runs progressive drawing rounds with different fonts.
+///    - Rounds 1–3: Show a guide (target letter in a font).
+///    - Round 4: Guide is hidden (memory challenge).
+///    - return to select letter menu.
+/// ✅ Scoring:
+///    - +1 Correct if match
+///    - +1 Incorrect if mismatch
+/// </summary>
 public class DrawLetterGame : MonoBehaviour
 {
-    // // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // void Start()
-    // {
+    [SerializeField] private LetterDrawingUIManager uiManager;
+    // ------------------ UI References ------------------
+    [Header("UI Components")]
+    [SerializeField] private TextMeshProUGUI targetLetterGuideText;
+
+    // ------------------ Font Management ------------------
+    [Header("Fonts")]
+    [SerializeField] private List<TMP_FontAsset> fontVariants = new();
+    [SerializeField] private List<TMP_FontAsset> shuffledFontVariants = new();
+
+    // ------------------ Game Settings ------------------
+    [Header("Game Settings")]
+    [SerializeField] private int guideRoundsCount = 3;
+
+    // ------------------ Letter Data ------------------
+    [Header("Letter & Word Data")]
+    [SerializeField] private List<LetterData> availableLetters;
+    private LetterData currentTargetLetterData;
+    [SerializeField] private string currentTargetLetter;
+
+    // ------------------ Game State ------------------
+    [SerializeField] private int currentRound = 0;
+    private ILetterSelectionStrategy letterSelectionStrategy;
+
+    // ------------------ Unity Lifecycle ------------------
+    private void Start() => StartGame();
+
+    // ------------------ Game Flow ------------------
+    public void StartGame(LetterData letterData = null)
+    {
+        InitializeGame(letterData);
+    }
+
+    public void RestartGame()
+    {
+        StartGame();
+    }
+
+    private void InitializeGame(LetterData letterData = null)
+    {
+        SetLetterSelectionStrategy(letterData != null
+            ? new FixedLetterSelectionStrategy(letterData)
+            : new RandomLetterSelectionStrategy());
+
+        ShuffleFontVariants();
+        ResetGameState();
+        SelectTargetLetter();
+    }
+
+    private void ResetGameState()
+    {
+        currentRound = 0;
+    }
+
+    private void SelectTargetLetter()
+    {
+        currentTargetLetterData = letterSelectionStrategy?.SelectLetter(availableLetters)
+                                    ?? GetRandomLetter();
+
+        currentTargetLetter = currentTargetLetterData.letter;
+        UpdateGuideVisibility();
+
+        // Fix target letter so it doesn't change each round
+        SetLetterSelectionStrategy(new FixedLetterSelectionStrategy(currentTargetLetterData));
+    }
+
+    private LetterData GetRandomLetter()
+    {
+        return availableLetters[Random.Range(0, availableLetters.Count)];
+    }
+
+    // ------------------ Font Handling ------------------
+    private void ShuffleFontVariants()
+    {
+        shuffledFontVariants.Clear();
+        shuffledFontVariants.AddRange(fontVariants);
+        shuffledFontVariants.Shuffle();
+    }
+
+    // ------------------ Guide Display ------------------
+    private void UpdateGuideVisibility()
+    {
+        bool showGuide = ShouldShowGuide();
+        targetLetterGuideText.gameObject.SetActive(showGuide);
+
+        if (showGuide)
+        {
+            UpdateGuideText();
+        }
+    }
+
+    private bool ShouldShowGuide()
+    {
+        return currentRound < guideRoundsCount - 1;
+    }
+
+    private void UpdateGuideText()
+    {
+        targetLetterGuideText.GetComponent<ArabicFixerTMPRO>().fixedText = currentTargetLetter;
+        targetLetterGuideText.font = shuffledFontVariants[currentRound];
+    }
+
+    // ------------------ Answer Checking ------------------
+    public void CheckAnswer(string drawnLetter)
+    {
+        if (IsAnswerCorrect(drawnLetter))
+        {
+            HandleCorrectChoiceAsync().Forget();
+        }
+        else
+        {
+            HandleIncorrectChoiceAsync().Forget();
+        }
+    }
+
+    private bool IsAnswerCorrect(string drawnLetter)
+    {
+        return ArabicNormalizer.NormalizeArabicLetter(currentTargetLetter) == drawnLetter;
+    }
+
+    private async UniTask HandleCorrectChoiceAsync()
+    {
+        Debug.Log("Correct answer");
+
+        if (IsLastRound())
+        {
+            EndGame();
+        }
+        else
+        {
+            var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
+            dataBuilder
+                .IncrementCorrectScore()
+                .AddRound(currentTargetLetter, isCorrect: true);
+
+            PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
+            await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+
+            PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
+            
+            ProceedToNextRound();
+        }
+    }
+
+    private async UniTaskVoid HandleIncorrectChoiceAsync()
+    {
+        Debug.Log("Wrong answer");
+        var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
+        dataBuilder
+            .IncrementIncorrectScore()
+            .AddRound(currentTargetLetter, isCorrect: false);
+
+        PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
         
-    // }
+        await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+    }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
+    private bool IsLastRound()
+    {
+        return currentRound >= guideRoundsCount - 1;
+    }
 
-    // public void StartGame(LetterData letterData)
-    // {
-        
-    // }
+    private void ProceedToNextRound()
+    {
+        currentRound++;
+        UpdateGuideVisibility();
+    }
 
-    //  public void CheckAnswer(WordData word, ChoiceButtonController button)
-    //     {
-    //         if (targetLetterData.words.Contains(word))
-    //         {
-    //             button.updateDissolveColors(Color.green, Color.green);
-    //             HandleCorrectChoiceAsync(word).Forget();
-    //         }
-    //         else
-    //         {
-    //             button.updateDissolveColors(Color.red, Color.red);
-    //             HandleIncorrectChoiceAsync(word).Forget();
-    //         }
-    //     }
+    private void EndGame()
+    {
+        Debug.Log("Game Over");
+        uiManager.ActivateLetterSelectionScreen();
+    }
 
-    //     private async UniTask HandleCorrectChoiceAsync(WordData word)
-    //     {
-    //         var dataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
+    // ------------------ Strategy Pattern ------------------
+    public void SetLetterSelectionStrategy(ILetterSelectionStrategy strategy)
+    {
+        letterSelectionStrategy = strategy;
+    }
 
-    //         dataBuilder
-    //             .IncrementCorrectScore()
-    //             .AddRound(targetLetter, word.arabicWord, isCorrect: true);
-
-    //         PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
-    //         await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
-
-    //         PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
-
-    //         Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
-    //         await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));
-    //         NextLevel();
-    //     }
-
-    //     private async UniTaskVoid HandleIncorrectChoiceAsync(WordData word)
-    //     {
-    //         var dataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
-
-    //         dataBuilder
-    //             .IncrementIncorrectScore()
-    //             .AddRound(targetLetter, word.arabicWord, isCorrect: false);
-
-    //         PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
-    //         await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
-
-    //         Debug.Log("❌ " + ArabicSupport.Fix("خطأ! حاول مرة أخرى.", true, true));
-    //         await UniTask.Delay(0);
-    //     }
+    // ------------------ Debugging ------------------
+    [ContextMenu("Restart Game")]
+    private void DebugRestartGame()
+    {
+        RestartGame();
+    }
 }

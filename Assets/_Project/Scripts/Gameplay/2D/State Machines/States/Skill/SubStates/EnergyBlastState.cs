@@ -13,11 +13,11 @@ public class EnergyBlastState : State
 
     public override void Enter()
     {
-        if(playerAbilityStats.unlockedSkills.Contains(level2Skill))
+        if(playerAbilityStats.playerSkills.UnlockedSkills.Contains(level2Skill))
         {
             currentSkill = level2Skill;
         }
-        else if(playerAbilityStats.unlockedSkills.Contains(level1Skill))
+        else if(playerAbilityStats.playerSkills.UnlockedSkills.Contains(level1Skill))
         {
             currentSkill = level1Skill;
         }

@@ -542,8 +542,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 6c14fb82c54fa9a4c92775ee63502c82, type: 2}
-        m_TargetAssemblyTypeName: TheForgottenLetters.PlayerAbilityStats, Player
-        m_MethodName: Reset
+        m_TargetAssemblyTypeName: TheForgottenLetters.PlayerAbilityStats, Core
+        m_MethodName: ResetData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -808,7 +808,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyPointText: {fileID: 4357814960865096844}
-  playerAbilityStats: {fileID: 11400000, guid: 6c14fb82c54fa9a4c92775ee63502c82, type: 2}
 --- !u!114 &2151428971048053391
 MonoBehaviour:
   m_ObjectHideFlags: 0

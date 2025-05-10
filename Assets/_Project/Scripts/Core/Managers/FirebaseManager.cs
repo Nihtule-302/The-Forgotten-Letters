@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using _Project.Scripts.Core.SaveSystem;
 using Firebase;
@@ -13,19 +12,29 @@ namespace _Project.Scripts.Core.Managers
 {
     public class FirebaseManager : MonoBehaviour
     {
-        
         public static FirebaseManager Instance { get; private set; }
 
         private FirebaseAuth auth;
         public FirebaseAuth Auth => auth;
-        public FirebaseFirestore Firestore => _firestore;
-        private FirebaseFirestore _firestore;
-        
-        private ListenerRegistration listener;
+
+        private FirebaseFirestore firestore;
+        public FirebaseFirestore Firestore => firestore;
+
+        private ListenerRegistration letterHuntListener;
+        private ListenerRegistration drawLetterListener;
+        private ListenerRegistration playerDataListener;
 
         public event Action OnLetterHuntDataUpdated;
+        public event Action OnDrawLetterDataUpdated;
         public event Action OnPlayerDataUpdated;
         public event Action OnFirebaseInitialized;
+
+        // Firestore Paths
+        private const string UsersCollection = "users";
+        private const string GameDataCollection = "game_data";
+        private const string LetterHuntDoc = "letter_hunt";
+        private const string DrawLetterDoc = "draw_letter";
+        private const string PlayerDataDoc = "player_data";
 
         void Awake()
         {
@@ -43,33 +52,27 @@ namespace _Project.Scripts.Core.Managers
 
         private void InitializeFirebase()
         {
-            // Check and fix Firebase dependencies
-            FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
-                var app = FirebaseApp.DefaultInstance;
-
-                // Initialize Firestore
-                _firestore = FirebaseFirestore.DefaultInstance;
-                Debug.Log("Firestore initialized successfully.");
-
+            FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+            {
+                FirebaseApp app = FirebaseApp.DefaultInstance;
+                firestore = FirebaseFirestore.DefaultInstance;
                 auth = FirebaseAuth.DefaultInstance;
-                Debug.Log("Firebase Auth initialized successfully.");
 
-                OnFirebaseInitialized?.Invoke();
                 Debug.Log("Firebase initialized successfully.");
+                OnFirebaseInitialized?.Invoke();
             });
         }
 
+        #region Save Methods
+
         public async Task SaveLetterHuntData(LetterHuntData data)
         {
-            if (auth.CurrentUser == null)
-            {
-                Debug.Log("Error: Must be logged in to save a note.");
-                return;
-            }
+            if (!IsUserLoggedIn()) return;
+
             try
             {
-                LetterHuntDataSerializable serializableData = new LetterHuntDataSerializable(data);
-                DocumentReference docRef = _firestore.Collection("users").Document(auth.CurrentUser.UserId).Collection("game_data").Document("letter_hunt");
+                var serializableData = new LetterHuntDataSerializable(data);
+                DocumentReference docRef = GetUserGameDocRef(LetterHuntDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Letter Hunt data saved successfully!");
             }
@@ -78,18 +81,31 @@ namespace _Project.Scripts.Core.Managers
                 Debug.LogError($"Error saving Letter Hunt data: {e.Message}");
             }
         }
+        public async Task SaveDrawLetterData(DrawLetterData data)
+        {
+            if (!IsUserLoggedIn()) return;
+
+            try
+            {
+                var serializableData = new DrawLetterDataSerializable(data);
+                DocumentReference docRef = GetUserGameDocRef(DrawLetterDoc);
+                await docRef.SetAsync(serializableData);
+                Debug.Log("Draw Letter data saved successfully!");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Error saving Draw Letter data: {e.Message}");
+            }
+        }
 
         public async Task SavePlayerData(PlayerAbilityStats data)
         {
-            if (auth.CurrentUser == null)
-            {
-                Debug.Log("Error: Must be logged in to save a note.");
-                return;
-            }
+            if (!IsUserLoggedIn()) return;
+
             try
             {
-                PlayerAbilityStatsSerializable serializableData = new PlayerAbilityStatsSerializable(data);
-                DocumentReference docRef = _firestore.Collection("users").Document(auth.CurrentUser.UserId).Collection("game_data").Document("player_data");
+                var serializableData = new PlayerAbilityStatsDataSerializable(data);
+                DocumentReference docRef = GetUserGameDocRef(PlayerDataDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Player Ability Stats data saved successfully!");
             }
@@ -99,74 +115,147 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
+        #endregion
+
+        #region Real-Time Listeners
+
         public void StartListeningForChanges()
+        {
+            if (!IsUserLoggedIn()) return;
+
+            ListenToLetterHuntData();
+            ListenToDrawLetterData();
+            ListenToPlayerData();
+        }
+
+        private void ListenToLetterHuntData()
+        {
+            DocumentReference docRef = GetUserGameDocRef(LetterHuntDoc);
+
+            letterHuntListener = docRef.Listen(snapshot =>
+            {
+                try
+                {
+                    if (snapshot.Exists)
+                    {
+                        var data = snapshot.ConvertTo<LetterHuntDataSerializable>();
+                        Debug.Log($"[REAL-TIME] Letter Hunt Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
+
+                        OnLetterHuntDataUpdated?.Invoke();
+                        PersistentSOManager.GetSO<LetterHuntData>()?.UpdateData(data);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No Letter Hunt data found. Creating default...");
+                        var defaultData = new LetterHuntDataSerializable(PersistentSOManager.GetSO<LetterHuntData>());
+                        docRef.SetAsync(defaultData);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Firestore Listen Error (Letter Hunt): {e.Message}");
+                }
+            });
+        }
+
+        private void ListenToDrawLetterData()
+        {
+            DocumentReference docRef = GetUserGameDocRef(DrawLetterDoc);
+
+            drawLetterListener = docRef.Listen(snapshot =>
+            {
+                try
+                {
+                    if (snapshot.Exists)
+                    {
+                        var data = snapshot.ConvertTo<DrawLetterDataSerializable>();
+                        Debug.Log($"[REAL-TIME] Draw Letter Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
+
+                        OnDrawLetterDataUpdated?.Invoke();
+                        PersistentSOManager.GetSO<DrawLetterData>()?.UpdateData(data);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No Draw Letter data found. Creating default...");
+                        var defaultData = new DrawLetterDataSerializable(PersistentSOManager.GetSO<DrawLetterData>());
+                        docRef.SetAsync(defaultData);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Firestore Listen Error (Draw Letter): {e.Message}");
+                }
+            });
+        }
+
+        private void ListenToPlayerData()
+        {
+            DocumentReference docRef = GetUserGameDocRef(PlayerDataDoc);
+
+            playerDataListener = docRef.Listen(snapshot =>
+            {
+                try
+                {
+                    if (snapshot.Exists)
+                    {
+                        var data = snapshot.ConvertTo<PlayerAbilityStatsDataSerializable>();
+                        Debug.Log($"[REAL-TIME] Player Stats Updated - Energy Points: {data.energyPoints}");
+
+                        OnPlayerDataUpdated?.Invoke();
+                        var databuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
+                        databuilder
+                            .SetEnergyPoints(data.energyPoints)
+                            .SetSkills(data.unlockedSkillNames)
+                            .SetlastTimeEnergyIncreased(data.lastTimeEnergyIncreasedCairoTime);
+
+                        PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(databuilder);
+
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No Player data found. Creating default...");
+                        var defaultData = new PlayerAbilityStatsDataSerializable(PersistentSOManager.GetSO<PlayerAbilityStats>());
+                        docRef.SetAsync(defaultData);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Firestore Listen Error (Player Data): {e.Message}");
+                }
+            });
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private bool IsUserLoggedIn()
         {
             if (auth.CurrentUser == null)
             {
-                Debug.Log("Error: Must be logged in to save a note."); // Also log to console
-                return;
+                Debug.LogWarning("Operation failed: User is not logged in.");
+                return false;
             }
-
-            DocumentReference letterHuntDocRef = _firestore.Collection("users").Document(auth.CurrentUser.UserId).Collection("game_data").Document("letter_hunt");
-           
-            listener = letterHuntDocRef.Listen(snapshot =>
-            {
-                try
-                {
-                    if (snapshot.Exists)
-                    {
-                        LetterHuntDataSerializable data = snapshot.ConvertTo<LetterHuntDataSerializable>();
-                        Debug.Log($"[REAL-TIME] Letter Hunt Data Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
-
-                        OnLetterHuntDataUpdated?.Invoke();
-                        PersistentSOManager.GetSO<LetterHuntData>().UpdateData(data);
-                    }
-                    else
-                    {
-                        Debug.LogWarning("No Letter Hunt data found. Creating default data...");
-                        LetterHuntDataSerializable defaultData = new(PersistentSOManager.GetSO<LetterHuntData>());
-
-                        letterHuntDocRef.SetAsync(defaultData);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Firestore Listen Error: {e.Message}");
-                }
-            });
-
-            DocumentReference playerDocRef = _firestore.Collection("users").Document(auth.CurrentUser.UserId).Collection("game_data").Document("player_data");
-            listener = playerDocRef.Listen(snapshot =>
-            {
-                try
-                {
-                    if (snapshot.Exists)
-                    {
-                        PlayerAbilityStatsSerializable data = snapshot.ConvertTo<PlayerAbilityStatsSerializable>();
-                        Debug.Log($"[REAL-TIME] Player Data Data Updated - Energy Points: {data.energyPoints}");
-
-                        OnPlayerDataUpdated?.Invoke();
-                        PersistentSOManager.GetSO<PlayerAbilityStats>().SetEnergyPoints(data.energyPoints);
-                    }
-                    else
-                    {
-                        Debug.LogWarning("No Player data found. Creating default data...");
-                        PlayerAbilityStatsSerializable defaultData = new(PersistentSOManager.GetSO<PlayerAbilityStats>());
-
-                        playerDocRef.SetAsync(defaultData);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Firestore Listen Error: {e.Message}");
-                }
-            });
-
+            return true;
         }
 
-        private void OnDestroy()
+        private DocumentReference GetUserGameDocRef(string documentId)
         {
-            listener?.Stop();
+            return firestore.Collection(UsersCollection)
+                            .Document(auth.CurrentUser.UserId)
+                            .Collection(GameDataCollection)
+                            .Document(documentId);
+        }
+
+        #endregion
+
+        void OnDestroy()
+        {
+            letterHuntListener?.Stop();
+            playerDataListener?.Stop();
+            drawLetterListener?.Stop();
         }
     }
 }
+
+

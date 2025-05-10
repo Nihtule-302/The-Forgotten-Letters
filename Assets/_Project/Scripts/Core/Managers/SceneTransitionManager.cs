@@ -14,8 +14,6 @@ namespace _Project.Scripts.Core.Managers
 
 
         public static SceneTransitionManager Instance { get; private set; }
-   
-        [SerializeField] private AssetReference initialScene;
         [SerializeField] private AssetReference loaderSceen;    
 
         private SceneLoader loader;
@@ -65,14 +63,6 @@ namespace _Project.Scripts.Core.Managers
             InitUtilities();
             SubscribeEvents();
 
-        }
-
-        void Start()
-        {
-            if (initialScene != null)
-            {
-                loader.LoadScene(initialScene, OnInitialLoadComplete);
-            }
         }
 
         #endregion
@@ -226,5 +216,29 @@ namespace _Project.Scripts.Core.Managers
         }
 
         #endregion
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+                UnsubscribeEvents();
+            }
+        }
+
+        private void UnsubscribeEvents()
+        {
+            if (loader != null)
+            {
+                loader.OnSceneLoaded -= SceneLoadedHandler;
+                loader.OnSceneLoadFailed -= SceneLoadFailedHandler;
+            }
+
+            if (unloader != null)
+            {
+                unloader.OnSceneUnloaded -= SceneUnloadedHandler;
+                unloader.OnSceneUnloadFailed -= SceneUnloadFailedHandler;
+            }
+        }
     }
 }

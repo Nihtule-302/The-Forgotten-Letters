@@ -20,6 +20,6 @@ public class EnergyPointDisplayer : MonoBehaviour
 
     public void UpdateEnergyPointText()
     {
-        energyPointText.text = playerAbilityStats.EnergyPoints.ToString();
+        energyPointText.text = PersistentSOManager.GetSO<PlayerAbilityStats>().energyPoints.ToString();
     }
 }
