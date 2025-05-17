@@ -17,7 +17,7 @@ public class Skill : ScriptableObject
     [Header("Skill Prefab")]
     public GameObject skillPrefab;
 
-    public bool CanUnlockSkill(PlayerAbilityStats playerAbilityStats)
+    public bool CanUnlockSkill()
     {
         if (PersistentSOManager.GetSO<PlayerAbilityStats>().energyPoints < energyPointsNeeded)
         {
@@ -26,16 +26,16 @@ public class Skill : ScriptableObject
         return true;
     }
 
-    public bool IsSkillUnlocked(PlayerAbilityStats playerAbilityStats)
+    public bool IsSkillUnlocked()
     {
-       return PersistentSOManager.GetSO<PlayerAbilityStats>().playerSkills.UnlockedSkills.Contains(this);
+       return PersistentSOManager.GetSO<PlayerAbilityStats>().playerSkills.UnlockedSkills_names.Contains(this.name);
     }
 
     
 
-    public bool UnlockSkill(PlayerAbilityStats playerAbilityStats)
+    public bool UnlockSkill()
     {
-        if (CanUnlockSkill(playerAbilityStats) && !IsSkillUnlocked(playerAbilityStats))
+        if (CanUnlockSkill() && !IsSkillUnlocked())
         {
             var databuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
 

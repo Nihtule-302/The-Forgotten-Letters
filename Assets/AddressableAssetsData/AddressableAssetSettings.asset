@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 86f0cc9fc8c62474bbf1f99d2631f25c
   m_currentHash:
     serializedVersion: 2
-    Hash: 0b0b12f7fe13775b9e91c21ca9635630
+    Hash: f8bd115023f487054332c6ac95f2e22f
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -60,6 +60,7 @@ MonoBehaviour:
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: e04f7416f0ca25543a14523dc42fbcb2, type: 2}
+  - {fileID: 11400000, guid: 832e23b2c9c5ce64389c1c8f6efe1296, type: 2}
   - {fileID: 11400000, guid: 1e3155f43c989b843b7d398afd60baf5, type: 2}
   - {fileID: 11400000, guid: 9a1e029824364eb4887bd813bdc91d74, type: 2}
   - {fileID: 11400000, guid: 4b3a5ba1d2a144a4d977f245b7764217, type: 2}
@@ -102,7 +103,12 @@ MonoBehaviour:
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
-    - default
+    - SaveData
+    - Game Event
+    - String Event
+    - Letter Data Event
+    - LetterPredictionDataEvent
+    - Float Event
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 9f249716d5ea9424891693be51b227b7, type: 2}

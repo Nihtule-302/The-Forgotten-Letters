@@ -7,11 +7,14 @@ using Firebase.Firestore;
 using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using _Project.Scripts.Core.Scriptable_Events;
+using UnityEngine.AddressableAssets;
 
 namespace TheForgottenLetters
 {
     public class Auth : MonoBehaviour
     {
+
         [SerializeField] private GameObject authPanel;
         [SerializeField] private TMP_InputField emailInputField;
         [SerializeField] private TMP_InputField passwordInputField;
@@ -23,6 +26,28 @@ namespace TheForgottenLetters
         private FirebaseAuth auth;
         private FirebaseFirestore db;
 
+        public static Auth Instance { get; private set; }
+        public bool IsLoggedIn => auth != null && auth.CurrentUser != null;
+        public string UserId => auth != null && auth.CurrentUser != null ? auth.CurrentUser.UserId : null;
+        public string UserEmail => auth != null && auth.CurrentUser != null ? auth.CurrentUser.Email : null;
+        
+
+        [Header("Events")]
+        [SerializeField] private AssetReference OnLoginOrSignUp ;
+        private GameEvent onLoginOrSignUp => EventLoader.Instance.GetEvent<GameEvent>(OnLoginOrSignUp);
+
+        void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         void Start()
         {
@@ -35,7 +60,7 @@ namespace TheForgottenLetters
 
         private void BeginAuth()
         {
-            authPanel.SetActive(true);
+            ActivateAuthScreen();
 
             UpdateStatus("Initializing Firebase...");
             if (FirebaseManager.Instance == null)
@@ -67,6 +92,14 @@ namespace TheForgottenLetters
                 UpdateStatus("No user is currently signed in.");
             }
         }
+        public void DeactivateAuthScreen()
+        {
+            authPanel.SetActive(false);
+        }
+        public void ActivateAuthScreen()
+        {
+            authPanel.SetActive(true);
+        }
 
         void UpdateStatus(string message)
         {
@@ -82,6 +115,10 @@ namespace TheForgottenLetters
         public void LoginButton()
         {
             Login().Forget();
+        }
+        public void SignOutButton()
+        {
+            SignOut().Forget();
         }
 
         public async UniTaskVoid SignUp()
@@ -102,6 +139,7 @@ namespace TheForgottenLetters
                 FirebaseManager.Instance.StartListeningForChanges();
                 SaveAuthInfo();
                 await ContinueAfterDelay();
+                onLoginOrSignUp.Raise();
             }
             catch (Exception ex)
             {
@@ -127,6 +165,7 @@ namespace TheForgottenLetters
                 FirebaseManager.Instance.StartListeningForChanges();
                 SaveAuthInfo();
                 await ContinueAfterDelay();
+                onLoginOrSignUp.Raise();
             }
             catch (Exception ex)
             {
@@ -134,16 +173,24 @@ namespace TheForgottenLetters
             }
         }
 
-        public void SignOut()
+        public async UniTaskVoid SignOut()
         {
-            if (auth.CurrentUser != null)
-            {
-                auth.SignOut();
-                UpdateStatus("Signed Out");
-            }
-            else
+            if (auth.CurrentUser == null)
             {
                 UpdateStatus("No user is currently signed in.");
+                return;
+            }
+
+            try
+            {
+                auth.SignOut();
+                UpdateStatus("Sign Out Successful!");
+                FirebaseManager.Instance.StopListeningForChanges();
+                await ContinueAfterDelay();
+            }
+            catch (Exception ex)
+            {
+                UpdateStatus("Sign Out Failed: " + ex.Message);
             }
         }
 
@@ -192,7 +239,7 @@ namespace TheForgottenLetters
         private void Continue()
         {
             UpdateStatus("Ready to proceed...");
-            authPanel.SetActive(false);
+            DeactivateAuthScreen();
         }
     }
 }

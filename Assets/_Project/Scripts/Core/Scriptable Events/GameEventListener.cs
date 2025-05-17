@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.AddressableAssets;
 
 namespace _Project.Scripts.Core.Scriptable_Events
 {
@@ -12,10 +13,14 @@ namespace _Project.Scripts.Core.Scriptable_Events
     public class GameEventListener<T> : MonoBehaviour, IGameEventListener<T>
     {
         [SerializeField] GameEvent<T> gameEvent;
+        [SerializeField] AssetReference assetReferenceEvent;
         [SerializeField] UnityEvent<T> responce;
 
-        void OnEnable() => gameEvent.RegisterListener(this);
-        void OnDisable() => gameEvent.DeregisterListener(this);
+        GameEvent<T> gameEventNew =>  EventLoader.Instance.GetEvent<GameEvent<T>>(assetReferenceEvent);
+
+        void OnEnable() => gameEventNew.RegisterListener(this);
+
+        void OnDisable() => gameEventNew.DeregisterListener(this);
 
         public void OnEvenRaised(T data) => responce.Invoke(data);
     }

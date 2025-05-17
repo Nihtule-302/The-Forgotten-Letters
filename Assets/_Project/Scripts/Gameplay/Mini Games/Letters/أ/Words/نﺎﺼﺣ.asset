@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6042493fb3dcf574fa5b830a04044d28, type: 3}
+  m_Name: "\u0646\uFE8E\uFEBC\uFEA3"
+  m_EditorClassIdentifier: 
+  arabicWord: "\u0646\uFE8E\uFEBC\uFEA3"
+  englishName: horse
+  wordImage:
+  - {fileID: -6012391354173513793, guid: 68cb9826d35c68b4e9a0b039b7f89305, type: 3}
+  - {fileID: -3630672062056690780, guid: ace9471e384b8b24688dfec11d49a15e, type: 3}
+  wordAudio: {fileID: 8300000, guid: edb0396d6d8c4be4f9c16c30d6b6baf8, type: 3}

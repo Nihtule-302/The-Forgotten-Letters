@@ -277,7 +277,12 @@ MonoBehaviour:
   clickHandler: {fileID: 0}
   targetLetter: {fileID: 0}
   dissolveControl: {fileID: 8148417716687783329}
-  onLetterSelected: {fileID: 11400000, guid: 77d50d63d1d9b81479b0398bcc9ee6a7, type: 2}
+  onLetterSelectedRef:
+    m_AssetGUID: 77d50d63d1d9b81479b0398bcc9ee6a7
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   holdTime: 0.1
 --- !u!1 &8299530549234736265
 GameObject:

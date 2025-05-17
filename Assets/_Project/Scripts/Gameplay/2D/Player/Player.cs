@@ -5,6 +5,7 @@ using _Project.Scripts.Core.Scriptable_Events.EventTypes.String;
 using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded;
 using _Project.Scripts.Gameplay._2D.State_Machines.States.Attack;
 using _Project.Scripts.Core.StateMachine;
+using UnityEngine.AddressableAssets;
 
 
 namespace _Project.Scripts.Gameplay._2D
@@ -29,7 +30,8 @@ namespace _Project.Scripts.Gameplay._2D
         public bool wantsToUseSkill { get; private set; }
 
         [Header("Events")]
-        [SerializeField] private StringEvent stringEvent;
+        [SerializeField] private AssetReference CurrentStateRef;
+        [SerializeField] private StringEvent stringEvent => EventLoader.Instance.GetEvent<StringEvent>(CurrentStateRef);
         public bool canJump;
 
         private void Start()

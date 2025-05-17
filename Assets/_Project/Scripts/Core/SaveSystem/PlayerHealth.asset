@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: PlayerHealth
   m_EditorClassIdentifier: 
   maxHealth: 3
-  currentHealth: 2
-  playerDeath: {fileID: 11400000, guid: 96d6cfb07a7768e48bd1dba3ba37584d, type: 2}
-  updateHealthUI: {fileID: 11400000, guid: 096752a3bc86ef6489093cd3e614357c, type: 2}
+  currentHealth: 3
+  playerDeathRef:
+    m_AssetGUID: 96d6cfb07a7768e48bd1dba3ba37584d
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  updateHealthUIRef:
+    m_AssetGUID: 096752a3bc86ef6489093cd3e614357c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1

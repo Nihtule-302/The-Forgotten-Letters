@@ -8,6 +8,7 @@ namespace _Project.Scripts.Core.DataTypes
     {
         public string letter;
         public List<WordData> words;
+        public List<WordData> objectDetectionWords;
 
         public AudioClip letterAudio;
 

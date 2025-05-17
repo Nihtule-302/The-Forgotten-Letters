@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Setup Scenes
   m_GUID: 86f0cc9fc8c62474bbf1f99d2631f25c
   m_SerializeEntries:
+  - m_GUID: 63f958193b16c0d49a1db0792c157620
+    m_Address: Adressables Setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 77bf1bce51d0928458af1b478bc34082
     m_Address: Persistent Managers
     m_ReadOnly: 0

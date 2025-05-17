@@ -4,6 +4,7 @@ using _Project.Scripts.Core.Scriptable_Events;
 using Cysharp.Threading.Tasks;
 using Firebase.Firestore;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace TheForgottenLetters
 {
@@ -16,7 +17,8 @@ namespace TheForgottenLetters
 
         public string lastTimeEnergyIncreasedCairoTime;
 
-        public GameEvent playerAbilityStatsChangedEvent;
+        public AssetReference playerAbilityStatsChangedEventRef;
+        public GameEvent playerAbilityStatsChangedEvent => EventLoader.Instance.GetEvent<GameEvent>(playerAbilityStatsChangedEventRef);
 
         [ContextMenu("Reset Data")]
         public void ResetData()
@@ -57,11 +59,13 @@ namespace TheForgottenLetters
 
         private void FinalizeUpdate()
         {
+            // if (SavePlayerDataAsync().Status == UniTaskStatus.Pending)
+            //     return;
             SavePlayerDataAsync().Forget();
             playerAbilityStatsChangedEvent.Raise();
         }
 
-        private async UniTaskVoid SavePlayerDataAsync()
+        private async UniTask SavePlayerDataAsync()
         {
             await FirebaseManager.Instance.SavePlayerData(PersistentSOManager.GetSO<PlayerAbilityStats>());
         }

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5046073405599621440
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73040074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68301886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 86.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065157594472446213, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586220984187659199, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      propertyPath: m_Name
+      value: Bahr el Safa Door Activcated
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6086431755094729003, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 766297309442876615}
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+--- !u!1 &1328588733273571435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6086431755094729003, guid: 5fdd4100e2f7f694c91508aae91d4d2c, type: 3}
+  m_PrefabInstance: {fileID: 5046073405599621440}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &766297309442876615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328588733273571435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5761a7561273648aaab5f5319cb812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToTravelTo:
+    m_AssetGUID: f242ffa8a234e844ba2f7053a9b31b23
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1

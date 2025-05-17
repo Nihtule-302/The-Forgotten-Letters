@@ -7,6 +7,8 @@ namespace _Project.Scripts.Core.DataTypes
     public class WordData : ScriptableObject
     {
         public string arabicWord;
+        public string englishName;
+
         public List<Sprite> wordImage = new();
         public AudioClip wordAudio;
 

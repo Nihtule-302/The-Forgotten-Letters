@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
-using Cysharp.Threading.Tasks;
 using Firebase.Firestore;
 using UnityEngine;
 
@@ -10,8 +9,8 @@ namespace TheForgottenLetters
     [CreateAssetMenu(fileName = "PlayerSkills", menuName = "Player/PlayerSkills")]
     public class PlayerSkills : ScriptableObject
     {
-        private List<string> unlockedSkills_names = new List<string>();
-        private List<Skill> unlockedSkills = new List<Skill>();
+        [SerializeField] private List<string> unlockedSkills_names = new List<string>();
+        [SerializeField] private List<Skill> unlockedSkills = new List<Skill>();
         public List<string> UnlockedSkills_names
         {
             get

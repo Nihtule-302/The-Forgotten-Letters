@@ -2,29 +2,40 @@ using UnityEngine;
 using Unity.Sentis;
 using UnityEngine.UI;
 using _Project.Scripts.Core.Scriptable_Events.EventTypes.String;
-using _Project.Scripts.Core.Utilities.UI;
 using TMPro;
 using System;
+using _Project.Scripts.Core.DataTypes;
+using _Project.Scripts.Core.Scriptable_Events.EventTypes.LetterData;
+using UnityEngine.AddressableAssets;
 public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
 {
-    [SerializeField] private Texture2D inputTexture;
-    [SerializeField] private ModelAsset modelAsset;
-    [SerializeField] private letterProbability[] letterProbability = new letterProbability[28]; // Initialized size here
-    [SerializeField] private char predictedLetter;
-    [SerializeField] private float probability;
+    [Header("Refearences")]
     [SerializeField] private FingerDrawing fingerDrawing;
 
-    [SerializeField] private RawImage inputTexturePreSendModelScreen;
+    [Header("Letter Prediction Data")]
+    [SerializeField] private LetterPredictionData[] letterProbability = new LetterPredictionData[28]; // Initialized size here
+    private char predictedLetter;
+    private float probability;
 
-    [SerializeField] private StringEvent confidenceEvent;
-    [SerializeField] private StringEvent predictedLetterEvent;
-
-    Worker engine;
-    Model model;
+    [Header("Model")]
+    [SerializeField] private ModelAsset modelAsset;
     [SerializeField] BackendType backendType = BackendType.GPUCompute;
-    [SerializeField] TMP_Dropdown backendTypeDropdown;
+    private Texture2D inputTexture;
+    private RawImage inputTexturePreSendModelScreen;
+
     const int imageWidth = 32;
     Tensor<float> inputTensor = null;
+    Worker engine;
+    Model model;
+
+    [Header("Events")]
+    [SerializeField] private AssetReference letterPredictionDataEventRef;
+    [SerializeField] private AssetReference confidenceEventRef;
+    [SerializeField] private AssetReference predictedLetterEventRef;
+
+    private LetterPredictionDataEvent letterPredictionDataEvent => EventLoader.Instance.GetEvent<LetterPredictionDataEvent>(letterPredictionDataEventRef);
+    private StringEvent confidenceEvent => EventLoader.Instance.GetEvent<StringEvent>(confidenceEventRef);
+    private StringEvent predictedLetterEvent => EventLoader.Instance.GetEvent<StringEvent>(predictedLetterEventRef);
 
     char[] arabic_chars = new char[]{
         'ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر',
@@ -32,7 +43,7 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي'
     };
 
-    void Start()
+    void Awake()
     {
         model = ModelLoader.Load(modelAsset);
 
@@ -48,8 +59,7 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         SetupEngine(model, backendType);
 
         // Make sure letterProbability is initialized
-        letterProbability = new letterProbability[28]; // Reset array size in case of re-initialization
-
+        letterProbability = new LetterPredictionData[28]; // Reset array size in case of re-initialization
     }
 
     [ContextMenu("ExecuteModel")]
@@ -67,22 +77,29 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         using var indexOfMaxProba = (engine.PeekOutput(1) as Tensor<int>).ReadbackAndClone();
 
         // Get the predicted letter and probability
-        predictedLetter = arabic_chars[indexOfMaxProba[0]];
-        probability = probabilities[indexOfMaxProba[0]];
+
+        LetterPredictionData letterPredictionData = new LetterPredictionData();
+        letterPredictionData.letter = arabic_chars[indexOfMaxProba[0]];
+        letterPredictionData.probability = probabilities[indexOfMaxProba[0]];
+
+        predictedLetter = letterPredictionData.letter;
+        probability = letterPredictionData.probability;
+
+
 
         // Populate the letterProbability array with letters and their corresponding probabilities
         for (int i = 0; i < probabilities.count; i++)
         {
-            letterProbability[i] = new letterProbability();
+            letterProbability[i] = new LetterPredictionData();
             letterProbability[i].letter = arabic_chars[i];
             letterProbability[i].probability = probabilities[i];
         }
 
-        Debug.Log($"predictedLetter {predictedLetter}");
-        Debug.Log($"probability {probability}");
+        Debug.Log(letterPredictionData.ToString());
 
         predictedLetterEvent.Raise($"{predictedLetter}");
         confidenceEvent.Raise($"{probability * 100:F2}%");
+        letterPredictionDataEvent.Raise(letterPredictionData);
         
         fingerDrawing.ClearTexture();
     }
@@ -105,38 +122,44 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
         using var indexOfMaxProba = (engine.PeekOutput(1) as Tensor<int>).ReadbackAndClone();
 
         // Get the predicted letter and probability
-        predictedLetter = arabic_chars[indexOfMaxProba[0]];
-        probability = probabilities[indexOfMaxProba[0]];
+        
+        LetterPredictionData letterPredictionData = new LetterPredictionData();
+        letterPredictionData.letter = arabic_chars[indexOfMaxProba[0]];
+        letterPredictionData.probability = probabilities[indexOfMaxProba[0]];
+
+        predictedLetter = letterPredictionData.letter;
+        probability = letterPredictionData.probability;
 
         // Populate the letterProbability array with letters and their corresponding probabilities
         for (int i = 0; i < probabilities.count; i++)
         {
-            letterProbability[i] = new letterProbability();
+            letterProbability[i] = new LetterPredictionData();
             letterProbability[i].letter = arabic_chars[i];
             letterProbability[i].probability = probabilities[i];
         }
 
-        Debug.Log($"predictedLetter {predictedLetter}");
-        Debug.Log($"probability {probability}");
+        Debug.Log(letterPredictionData.ToString());
 
         predictedLetterEvent.Raise($"{predictedLetter}");
-        confidenceEvent.Raise($"{probability * 100:F2}%");
+        confidenceEvent.Raise($"{probability:F2}%");
+        letterPredictionDataEvent.Raise(letterPredictionData);
 
         fingerDrawing.ClearTexture();
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         // Clean up Sentis resources.
         engine.Dispose();
         inputTensor?.Dispose();
     }
-
-    public void OnDropdownValueChanged(int index)
+    void OnEnable()
     {
-        string selectedOption = backendTypeDropdown.options[index].text;
-        backendType = (BackendType)Enum.Parse(typeof(BackendType), selectedOption);
-        SetupEngine(model, backendType);
+        // Reinitialize the engine when the object is enabled.
+        if (engine == null)
+        {
+            SetupEngine(model, backendType);
+        }
     }
 
     private void SetupEngine(Model model, BackendType backendType)
@@ -148,15 +171,6 @@ public class ClassifyHandwrittenArabicLetters : HandwrittenClassifier
 
         engine = new Worker(model, backendType);
     }
-}
-
-
-
-[System.Serializable]
-public class letterProbability
-{
-    public char letter;
-    public float probability;
 }
 
 public static class TextureDownsampling

@@ -1,6 +1,7 @@
 using _Project.Scripts.Core.DataTypes;
 using _Project.Scripts.Core.Scriptable_Events.EventTypes.LetterData;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace _Project.Scripts.UI.Buttons.Letter_Selector
 {
@@ -10,7 +11,10 @@ namespace _Project.Scripts.UI.Buttons.Letter_Selector
         [SerializeField] private LetterData targetLetter;
         [SerializeField] private DissolveControl dissolveControl;
 
-        [SerializeField] private LetterDataEvent onLetterSelected; 
+       
+        [SerializeField] private AssetReference onLetterSelectedRef; 
+        private LetterDataEvent onLetterSelected => EventLoader.Instance.GetEvent<LetterDataEvent>(onLetterSelectedRef); 
+
         [SerializeField] private float holdTime = 0.2f;
 
         void Start() => SetUpSelectorButton();

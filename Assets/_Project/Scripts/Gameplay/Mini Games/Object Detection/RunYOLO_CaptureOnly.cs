@@ -7,6 +7,8 @@ using FF = Unity.Sentis.Functional;
 using System;
 using TMPro;
 using System.Linq;
+using _Project.Scripts.Core.Scriptable_Events.EventTypes.String;
+using UnityEngine.AddressableAssets;
 
 public enum CameraTypes
 {
@@ -16,6 +18,7 @@ public enum CameraTypes
 
 public class RunYOLO_CaptureOnly : MonoBehaviour
 {
+    [Header("References")]
     [Tooltip("Drag a YOLO model .onnx file here")]
     public ModelAsset modelAsset;
 
@@ -37,12 +40,10 @@ public class RunYOLO_CaptureOnly : MonoBehaviour
     [Tooltip("UI Image to highlight the detection zone")]
     public Image detectionZoneOverlay;
 
-    [SerializeField] BackendType backend = BackendType.CPU;
-    [SerializeField] TMP_Dropdown backendTypeDropdown;
-    [SerializeField] CameraTypes cameraType = CameraTypes.BACK;
-    [SerializeField] AspectRatioFitter imageFitter;
+    [Header("Camera Settings")]
 
     // Camera display size limits
+    [SerializeField] CameraTypes cameraType = CameraTypes.BACK;
     [SerializeField] float maxDisplayWidth = 1280f;
     [SerializeField] float maxDisplayHeight = 720f;
     [SerializeField, Range(0.1f, 2f)] float screenSizeRatio = 1.3f; // How much of the screen to use (80% by default)
@@ -57,6 +58,10 @@ public class RunYOLO_CaptureOnly : MonoBehaviour
     private WebCamTexture backCameraTexture;
     private WebCamTexture activeCameraTexture;
     private WebCamTexture webcamTexture;
+
+    [Header("events")]
+    [SerializeField] private AssetReference predectionLabelRef;
+    private StringEvent predectionLabel => EventLoader.Instance.GetEvent<StringEvent>(predectionLabelRef);
     
     // Image rotation
     private Vector3 rotationVector = new Vector3(0f, 0f, 0f);
@@ -77,9 +82,12 @@ public class RunYOLO_CaptureOnly : MonoBehaviour
 
     List<GameObject> boxPool = new();
 
+    [Header("Model Settings")]
+
     [SerializeField, Range(0, 1)] float iouThreshold = 0.5f;
     [SerializeField, Range(0, 1)] float scoreThreshold = 0.5f;
     [SerializeField, Range(0.1f, 1f)] float detectionZoneRatio = 0.5f; // Percentage of image center to consider
+    [SerializeField] BackendType backend = BackendType.CPU;
 
     Tensor<float> centersToCorners;
     Tensor<float> inputTensor;
@@ -517,6 +525,7 @@ TextureConverter.ToTensor(targetRT, inputTensor, new TextureTransform());
                 // DrawBox will handle mirroring and scaling to the UI coordinates
                 DrawBox(closestBox.Value, 0, fontSize); // Using ID 0 as we only draw one box
                 Debug.Log($"✓ Showing closest object: {closestBox.Value.label}");
+                predectionLabel.Raise(closestBox.Value.label); // Raise the event with the detected label
             }
             else
             {

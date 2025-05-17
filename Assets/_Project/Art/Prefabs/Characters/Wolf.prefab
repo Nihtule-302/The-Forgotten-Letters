@@ -93,7 +93,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2660359271308608464}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 5886604164505856105}
-  animator: {fileID: 0}
+  animator: {fileID: 6811345436291003748}
   groundSensor: {fileID: 7938676424950780457}
   patrol: {fileID: 4447946142297622399}
   collect: {fileID: 7529688798253247038}
@@ -455,12 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101e1d0b08febcc47a69e5be789dc146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  souls:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  player: {fileID: 0}
   target: {fileID: 0}
   navigate: {fileID: 5223980159562593601}
   idle: {fileID: 5137516762320405818}
@@ -539,6 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4378687598177783872}
   - component: {fileID: 947752660370972294}
+  - component: {fileID: 6811345436291003748}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -616,6 +612,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6811345436291003748
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572349877923750509}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24923be883e51a349afc760a56048b44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7910481240762185902
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +646,7 @@ GameObject:
   - component: {fileID: 5605797035648621483}
   m_Layer: 6
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -678,7 +696,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

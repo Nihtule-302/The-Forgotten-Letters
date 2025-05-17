@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyPoints: 0
   playerHealth: {fileID: 11400000, guid: 63915225d9dcff144897c9719ee54de7, type: 2}
-  unlockedSkills: []
-  playerAbilityStatsChangedEvent: {fileID: 11400000, guid: f1c6e24628e1b5944aedbd4cecdbe3c2, type: 2}
+  lastTimeEnergyIncreasedCairoTime: 2025-05-14 12:43:58 AM
+  playerAbilityStatsChangedEventRef:
+    m_AssetGUID: f1c6e24628e1b5944aedbd4cecdbe3c2
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1

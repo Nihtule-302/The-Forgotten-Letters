@@ -14,8 +14,12 @@ namespace _Project.Scripts.UI
         [SerializeField] private GameObject pauseBackground;
 
         [Header("Game Events")]
-        [SerializeField] private GameEvent onPauseGameEvent;
-        [SerializeField] private GameEvent onResumeGameEvent;
+        [SerializeField] private AssetReference onPauseGameEventRef;
+        [SerializeField] private AssetReference onResumeGameEventRef;
+
+        private GameEvent onPauseGameEvent => EventLoader.Instance.GetEvent<GameEvent>(onPauseGameEventRef);
+        private GameEvent onResumeGameEvent => EventLoader.Instance.GetEvent<GameEvent>(onResumeGameEventRef);
+
 
         [Header("Scene To Load")]
         [SerializeField] private AssetReference MainMenu;

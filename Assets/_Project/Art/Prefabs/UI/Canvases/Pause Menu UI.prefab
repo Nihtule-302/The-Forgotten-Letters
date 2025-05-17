@@ -1763,8 +1763,18 @@ MonoBehaviour:
   pauseMenu: {fileID: 4191108500455512457}
   pauseIcon: {fileID: 490500782978553770}
   pauseBackground: {fileID: 6685982347289399495}
-  onPauseGameEvent: {fileID: 11400000, guid: 5707eaeff90d3d348b7fadbd0a43bf4e, type: 2}
-  onResumeGameEvent: {fileID: 11400000, guid: 9f8294b15cf426443a1dc4089017eef5, type: 2}
+  onPauseGameEventRef:
+    m_AssetGUID: 5707eaeff90d3d348b7fadbd0a43bf4e
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  onResumeGameEventRef:
+    m_AssetGUID: 9f8294b15cf426443a1dc4089017eef5
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   MainMenu:
     m_AssetGUID: ee0d808598249c54684fdaa630cdf697
     m_SubObjectName: 

@@ -380,8 +380,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc66d3e2f451174aae7b19bb580c2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonfireRestEvent: {fileID: 11400000, guid: e4f384cd273215048bbe6d704ce4df0e, type: 2}
-  bonfireStopRestEvent: {fileID: 11400000, guid: 9f8294b15cf426443a1dc4089017eef5, type: 2}
+  bonfireRestEventRef:
+    m_AssetGUID: e4f384cd273215048bbe6d704ce4df0e
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  bonfireStopRestEventRef:
+    m_AssetGUID: 0a42e240978422f43b0831d70cbadcc7
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
 --- !u!114 &496515100924119803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,7 +746,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 6973429018350070236}
+  animationMode: 0
   visualCueYPosition: 0.1
+  visualCueXPosition: 0.1
+  visualCueOffset: {x: 0.1, y: 0.1, z: 0}
   visualCueMoveDuration: 0.7
   interactable: {fileID: 2801740492213994429}
   interactionButton: {fileID: 7105682055449693431}

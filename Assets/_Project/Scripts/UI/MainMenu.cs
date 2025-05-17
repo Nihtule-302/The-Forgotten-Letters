@@ -1,6 +1,8 @@
 
 using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Core.Scriptable_Events;
 using _Project.Scripts.Core.Utilities;
+using TheForgottenLetters;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
@@ -11,9 +13,16 @@ namespace _Project.Scripts.UI
     {
 
         [Header("Menu Prefabs")]
+
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject scenesMenu;
         [SerializeField] private GameObject settingsMenu;
+
+        [Header("Buttons")]
+        [SerializeField] private GameObject StartGameButton;
+        [SerializeField] private GameObject LoginOrSignButton;
+        [SerializeField] private GameObject SignOutButton;
+        
 
         [Header("Scenes To Load")]
         [SerializeField] private AssetReference bahrElSafa;
@@ -88,6 +97,7 @@ namespace _Project.Scripts.UI
         private void ShowMainMenu()
         {
             ShowMenu(mainMenu);
+            ShowAuthButtons();
         }
 
         private void ShowMenu(GameObject menuToShow)
@@ -98,19 +108,21 @@ namespace _Project.Scripts.UI
             scenesMenu.SetActive(menuToShow == scenesMenu);
             settingsMenu.SetActive(menuToShow == settingsMenu);
         }
-
-        private void LoadScene(string sceneName)
+        private void ShowAuthButtons()
         {
-            try
+            if (Auth.Instance.IsLoggedIn)
             {
-                SceneManager.LoadScene(sceneName);
+                StartGameButton.SetActive(true);
+                LoginOrSignButton.SetActive(false);
+                SignOutButton.SetActive(true);
             }
-            catch (System.Exception e)
+            else
             {
-                Debug.LogError($"Failed to load scene: {sceneName}. Error: {e.Message}");
+                StartGameButton.SetActive(false);
+                LoginOrSignButton.SetActive(true);
+                SignOutButton.SetActive(false);
             }
         }
-
         #endregion
     }
 }

@@ -1,5 +1,6 @@
 using _Project.Scripts.Core.Scriptable_Events;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "PlayerHealth", menuName = "Player/Health")]
 public class PlayerHealth : ScriptableObject
@@ -8,8 +9,11 @@ public class PlayerHealth : ScriptableObject
     [SerializeField] private int currentHealth;
     public int CurrentHealth => currentHealth;
 
-    public GameEvent playerDeath;
-    public GameEvent updateHealthUI;
+    public AssetReference playerDeathRef;
+    public AssetReference updateHealthUIRef;
+
+    public GameEvent playerDeath => EventLoader.Instance.GetEvent<GameEvent>(playerDeathRef);
+    public GameEvent updateHealthUI => EventLoader.Instance.GetEvent<GameEvent>(updateHealthUIRef);
 
     private void OnEnable()
     {

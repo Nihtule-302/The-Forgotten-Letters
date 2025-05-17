@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Events
+  m_EditorClassIdentifier: 
+  m_GroupName: Events
+  m_GUID: 1cd0fe8b7ebd54d4cb7c8611f475af0b
+  m_SerializeEntries:
+  - m_GUID: 096752a3bc86ef6489093cd3e614357c
+    m_Address: UpdateHealthUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a42e240978422f43b0831d70cbadcc7
+    m_Address: StopResting
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35b7e206ca723794ebf020d6bc4b3680
+    m_Address: WantsToLoginOrSignUp
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5707eaeff90d3d348b7fadbd0a43bf4e
+    m_Address: PauseGame
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5cf6e771e9da28d43993660e3c38ca49
+    m_Address: CurrentPlayerStateEvent
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - String Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77d50d63d1d9b81479b0398bcc9ee6a7
+    m_Address: LetterDataEvent
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Letter Data Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f1b4e79a20021b4da4248a965cadfa0
+    m_Address: PredictedObjectLabel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - String Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96d6cfb07a7768e48bd1dba3ba37584d
+    m_Address: PlayerDeath
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9df7e9c9c8e37ea48b523139fcda622c
+    m_Address: FloatEvent
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Float Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f8294b15cf426443a1dc4089017eef5
+    m_Address: ResumeGame
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aab21048ab4917848800808c11d1a310
+    m_Address: LetterPredictionDataEvent
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LetterPredictionDataEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aca9c1c596414df4daae84b6f27576b1
+    m_Address: Confidence
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - String Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0089510823753d48a451f9c9ea798a4
+    m_Address: OnLoginOrSignUP
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db9ad0e9215b286489215b007edeeb27
+    m_Address: GameOver
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2a5275447f8f5a48b2bcdc318b01b56
+    m_Address: WantsToLogout
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4f384cd273215048bbe6d704ce4df0e
+    m_Address: Rest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9b68c02609ee004a81ed58b0c85b6f3
+    m_Address: PlayerTakeDamage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1c6e24628e1b5944aedbd4cecdbe3c2
+    m_Address: PlayerAbilityStatsChanged
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game Event
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: faf56d9a48c1d3c4499d804265bca3c0
+    m_Address: PredictedLetterResultEvent
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - String Event
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 58231e9ff24f6334d832a94de83e8dcf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0a4326d64a431be4a9982fc9ae9c790a, type: 2}
+    - {fileID: 11400000, guid: 6b8d7dd9151609841a3e6ea736fcf7fe, type: 2}

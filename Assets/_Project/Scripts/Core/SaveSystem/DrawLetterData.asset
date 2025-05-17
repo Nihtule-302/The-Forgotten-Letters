@@ -12,45 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfbf5c3c752c2c498d2b497c26a0e1a, type: 3}
   m_Name: DrawLetterData
   m_EditorClassIdentifier: 
-  correctScore: 9
-  incorrectScore: 4
+  correctScore: 5
+  incorrectScore: 0
   rounds:
   - TargetLetter: "\u0623"
-    IsCorrect: 0
-    TimestampCairoTime: 2025-05-10 01:09:33 AM
+    IsCorrect: 1
+    TimestampCairoTime: 2025-05-11 11:22:44 AM
   - TargetLetter: "\u0623"
     IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:09:44 AM
+    TimestampCairoTime: 2025-05-11 11:27:16 AM
   - TargetLetter: "\u0623"
     IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:09:53 AM
+    TimestampCairoTime: 2025-05-11 11:30:35 AM
   - TargetLetter: "\u0623"
     IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:10:01 AM
-  - TargetLetter: "\u062A"
-    IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:10:20 AM
-  - TargetLetter: "\u062A"
-    IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:10:40 AM
-  - TargetLetter: "\u062A"
-    IsCorrect: 0
-    TimestampCairoTime: 2025-05-10 01:10:48 AM
-  - TargetLetter: "\u062A"
-    IsCorrect: 0
-    TimestampCairoTime: 2025-05-10 01:10:58 AM
-  - TargetLetter: "\u062A"
-    IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:11:04 AM
+    TimestampCairoTime: 2025-05-11 11:30:45 AM
   - TargetLetter: "\u0623"
     IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:11:22 AM
-  - TargetLetter: "\u0623"
-    IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:11:32 AM
-  - TargetLetter: "\u0623"
-    IsCorrect: 1
-    TimestampCairoTime: 2025-05-10 01:11:40 AM
-  - TargetLetter: "\u062A"
-    IsCorrect: 0
-    TimestampCairoTime: 2025-05-10 01:12:01 AM
+    TimestampCairoTime: 2025-05-11 11:30:56 AM

@@ -29,23 +29,39 @@ namespace _Project.Scripts.Core.Managers
         {
             if (Instance == null)
             {
-                Instance = this;                
-                Application.deepLinkActivated += OnDeepLinkActivated;
-                if (!string.IsNullOrEmpty(Application.absoluteURL))
-                {
-                    // Cold start and Application.absoluteURL not null so process Deep Link.
-                    HandleDeepLink(Application.absoluteURL);
-                }
-                // Initialize DeepLink Manager global variable.
-                else
-                {
-                    deeplinkURL = "[none]";
-                    sceneTransitioner.TranstionToScene(initialScene);
-                }
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+                // StartDeepLink();
             }
             else
             {
                 Destroy(gameObject);
+            }
+        }
+
+        void OnEnable()
+        {
+            FirebaseManager.Instance.OnFirebaseInitialized += StartDeepLink;
+        }
+        void OnDisable()
+        {
+            FirebaseManager.Instance.OnFirebaseInitialized -= StartDeepLink;
+        }
+
+
+        private void StartDeepLink()
+        {
+            Application.deepLinkActivated += OnDeepLinkActivated;
+            if (!string.IsNullOrEmpty(Application.absoluteURL))
+            {
+                // Cold start and Application.absoluteURL not null so process Deep Link.
+                HandleDeepLink(Application.absoluteURL);
+            }
+            // Initialize DeepLink Manager global variable.
+            else
+            {
+                deeplinkURL = "[none]";
+                sceneTransitioner.TranstionToScene(initialScene);
             }
         }
 

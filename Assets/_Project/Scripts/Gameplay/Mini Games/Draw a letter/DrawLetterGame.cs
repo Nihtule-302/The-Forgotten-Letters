@@ -24,6 +24,8 @@ public class DrawLetterGame : MonoBehaviour
     // ------------------ UI References ------------------
     [Header("UI Components")]
     [SerializeField] private TextMeshProUGUI targetLetterGuideText;
+    [SerializeField] private DrawLetterRoundUI drawLetterRoundUI;
+
 
     // ------------------ Font Management ------------------
     [Header("Fonts")]
@@ -33,6 +35,7 @@ public class DrawLetterGame : MonoBehaviour
     // ------------------ Game Settings ------------------
     [Header("Game Settings")]
     [SerializeField] private int guideRoundsCount = 3;
+    public int maxRounds => guideRoundsCount + 1;
 
     // ------------------ Letter Data ------------------
     [Header("Letter & Word Data")]
@@ -42,6 +45,7 @@ public class DrawLetterGame : MonoBehaviour
 
     // ------------------ Game State ------------------
     [SerializeField] private int currentRound = 0;
+    public int CurrentRound => currentRound;
     private ILetterSelectionStrategy letterSelectionStrategy;
 
     // ------------------ Unity Lifecycle ------------------
@@ -113,7 +117,7 @@ public class DrawLetterGame : MonoBehaviour
 
     private bool ShouldShowGuide()
     {
-        return currentRound < guideRoundsCount - 1;
+        return currentRound < guideRoundsCount;
     }
 
     private void UpdateGuideText()
@@ -179,18 +183,21 @@ public class DrawLetterGame : MonoBehaviour
 
     private bool IsLastRound()
     {
-        return currentRound >= guideRoundsCount - 1;
+        return currentRound >= maxRounds - 1;
     }
 
     private void ProceedToNextRound()
     {
         currentRound++;
+        drawLetterRoundUI.UpdateStars();
         UpdateGuideVisibility();
     }
 
     private void EndGame()
     {
         Debug.Log("Game Over");
+        ResetGameState();
+        drawLetterRoundUI.UpdateStars();
         uiManager.ActivateLetterSelectionScreen();
     }
 

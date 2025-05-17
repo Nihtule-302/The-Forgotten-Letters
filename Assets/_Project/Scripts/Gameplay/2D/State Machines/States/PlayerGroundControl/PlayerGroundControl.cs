@@ -62,7 +62,7 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded
             if (coyoteTimeExpired)
             {
                 isComplete = true;
-                Debug.Log("Coyote Time Expired");
+                // Debug.Log("Coyote Time Expired");
             }
         }
 

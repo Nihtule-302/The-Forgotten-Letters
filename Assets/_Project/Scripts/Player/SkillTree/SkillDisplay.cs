@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class SkillDisplay : MonoBehaviour
 {
     public Skill skill;
-    private PlayerAbilityStats playerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
     public Image backgroundImage;
 
     public Animator skillAnimator;
@@ -29,11 +28,11 @@ public class SkillDisplay : MonoBehaviour
 
     public void EnableSkill()
     {
-        if (skill.IsSkillUnlocked(playerAbilityStats))
+        if (skill.IsSkillUnlocked())
         {
             SkillActivated();
         }
-        else if(!skill.CanUnlockSkill(playerAbilityStats))
+        else if(!skill.CanUnlockSkill())
         {
             SkillLocked();
         }
@@ -66,7 +65,7 @@ public class SkillDisplay : MonoBehaviour
 
     public void UnlockSkill()
     {
-        if (skill.UnlockSkill(playerAbilityStats))
+        if (skill.UnlockSkill())
         {
             SkillActivated();
             Debug.Log("Skill unlocked: " + skill.name);

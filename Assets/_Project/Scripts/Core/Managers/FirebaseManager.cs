@@ -22,10 +22,12 @@ namespace _Project.Scripts.Core.Managers
 
         private ListenerRegistration letterHuntListener;
         private ListenerRegistration drawLetterListener;
+        private ListenerRegistration objectDetectionListener;
         private ListenerRegistration playerDataListener;
 
         public event Action OnLetterHuntDataUpdated;
         public event Action OnDrawLetterDataUpdated;
+        public event Action OnObjectDetectionDataUpdated;
         public event Action OnPlayerDataUpdated;
         public event Action OnFirebaseInitialized;
 
@@ -34,6 +36,7 @@ namespace _Project.Scripts.Core.Managers
         private const string GameDataCollection = "game_data";
         private const string LetterHuntDoc = "letter_hunt";
         private const string DrawLetterDoc = "draw_letter";
+        private const string ObjectDetectionDoc = "object_detection";
         private const string PlayerDataDoc = "player_data";
 
         void Awake()
@@ -98,6 +101,23 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
+        public async Task SaveObjectDetectionData(ObjectDetectionData data)
+        {
+            if (!IsUserLoggedIn()) return;
+
+            try
+            {
+                var serializableData = new ObjectDetectionDataSerializable(data);
+                DocumentReference docRef = GetUserGameDocRef(ObjectDetectionDoc);
+                await docRef.SetAsync(serializableData);
+                Debug.Log("Object Detection data saved successfully!");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Error saving Object Detection data: {e.Message}");
+            }
+        }
+
         public async Task SavePlayerData(PlayerAbilityStats data)
         {
             if (!IsUserLoggedIn()) return;
@@ -125,7 +145,16 @@ namespace _Project.Scripts.Core.Managers
 
             ListenToLetterHuntData();
             ListenToDrawLetterData();
+            ListenToObjectDetectionData();
             ListenToPlayerData();
+        }
+        
+        public void StopListeningForChanges()
+        {
+            letterHuntListener?.Stop();
+            drawLetterListener?.Stop();
+            objectDetectionListener?.Stop();
+            playerDataListener?.Stop();
         }
 
         private void ListenToLetterHuntData()
@@ -184,6 +213,36 @@ namespace _Project.Scripts.Core.Managers
                 catch (Exception e)
                 {
                     Debug.LogError($"Firestore Listen Error (Draw Letter): {e.Message}");
+                }
+            });
+        }
+
+        private void ListenToObjectDetectionData()
+        {
+            DocumentReference docRef = GetUserGameDocRef(ObjectDetectionDoc);
+
+            objectDetectionListener = docRef.Listen(snapshot =>
+            {
+                try
+                {
+                    if (snapshot.Exists)
+                    {
+                        var data = snapshot.ConvertTo<ObjectDetectionDataSerializable>();
+                        Debug.Log($"[REAL-TIME] Object Detection Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
+
+                        OnObjectDetectionDataUpdated?.Invoke();
+                        PersistentSOManager.GetSO<ObjectDetectionData>()?.UpdateData(data);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No Object Detection data found. Creating default...");
+                        var defaultData = new ObjectDetectionDataSerializable(PersistentSOManager.GetSO<ObjectDetectionData>());
+                        docRef.SetAsync(defaultData);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Firestore Listen Error (Object Detection): {e.Message}");
                 }
             });
         }
@@ -253,8 +312,11 @@ namespace _Project.Scripts.Core.Managers
         {
             letterHuntListener?.Stop();
             playerDataListener?.Stop();
+            objectDetectionListener?.Stop();
             drawLetterListener?.Stop();
         }
+
+        
     }
 }
 

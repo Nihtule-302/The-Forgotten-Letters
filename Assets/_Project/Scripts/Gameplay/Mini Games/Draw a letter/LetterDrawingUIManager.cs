@@ -11,7 +11,7 @@ namespace TheForgottenLetters
         [SerializeField] private GameObject LetterDrawingScreen;
         [SerializeField] private FingerDrawing FingerDrawing;
         [SerializeField] private GameObject BackgroundScreen;
-        [SerializeField] private GameObject ScoreScreen;
+        [SerializeField] private GameObject RoundStarsScreen;
 
 
         [Header("Answer Feedback")]
@@ -31,7 +31,7 @@ namespace TheForgottenLetters
             SelectLetterMenu.SetActive(true);
             LetterDrawingScreen.SetActive(false);
             BackgroundScreen.SetActive(false); 
-            // ScoreScreen.SetActive(false);
+            RoundStarsScreen.SetActive(false);
             FingerDrawing.enabled = false;
 
             correctScreen.SetActive(false);
@@ -44,7 +44,7 @@ namespace TheForgottenLetters
             SelectLetterMenu.SetActive(false);
             LetterDrawingScreen.SetActive(true);
             BackgroundScreen.SetActive(true);
-            // ScoreScreen.SetActive(true);
+            RoundStarsScreen.SetActive(true);
             EnableFingerDrawingWithDelayAsync().Forget();
         }
 

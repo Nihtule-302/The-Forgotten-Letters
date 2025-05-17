@@ -29,6 +29,9 @@ public class FingerDrawing : MonoBehaviour
         drawingTexture = new Texture2D(displayImageWidth,displayImageHeight,TextureFormat.RGB24, false);
         drawingTexture.filterMode = filterMode;
         displayImage.texture = drawingTexture;
+
+        displayImage.color = Color.white;
+        
         mainCamera = Camera.main;
         input.EnablePlayerActions();
         ClearTexture();

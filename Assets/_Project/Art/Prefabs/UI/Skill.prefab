@@ -440,8 +440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 11400000, guid: 87107b8029a9ef6409d35e1651ebb86c, type: 2}
-  playerAbilityStats: {fileID: 11400000, guid: 6c14fb82c54fa9a4c92775ee63502c82, type: 2}
   backgroundImage: {fileID: 1295397324179338681}
+  skillAnimator: {fileID: 0}
   lockedColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
   unlockableColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
 --- !u!114 &4937511563927517990
@@ -457,6 +457,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: f1c6e24628e1b5944aedbd4cecdbe3c2, type: 2}
+  assetReferenceEvent:
+    m_AssetGUID: f1c6e24628e1b5944aedbd4cecdbe3c2
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   responce:
     m_PersistentCalls:
       m_Calls:

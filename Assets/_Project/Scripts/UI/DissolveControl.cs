@@ -114,6 +114,27 @@ namespace _Project.Scripts.UI
                 Debug.Log("Edge color restored to original.");
             }
         }
+
+        void OnEnable()
+        {
+            // Subscribe to events
+            OnDissolveComplete += () => Debug.Log("Dissolve effect completed successfully!");
+            OnResetDissolveComplete += () => Debug.Log("Reset dissolve effect completed successfully!");
+
+            currentDissolveValue = dissolveStart;
+            SetDissolveAmount(currentDissolveValue);
+        }
+
+        void OnDisable()
+        {
+
+            // Unsubscribe from events
+            OnDissolveComplete -= () => Debug.Log("Dissolve effect completed successfully!");
+            OnResetDissolveComplete -= () => Debug.Log("Reset dissolve effect completed successfully!");
+
+            currentDissolveValue = dissolveStart;
+            SetDissolveAmount(currentDissolveValue);
+        }
     }
 
     public class DissolveData

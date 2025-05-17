@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969be77a069e03548b94a12152309374, type: 3}
   m_Name: Portal Line Settings
   m_EditorClassIdentifier: 
-  portalPrefab: {fileID: 7993496750980705685, guid: b19342c76ae47024bbc2ea0a45d3f4c6, type: 3}
+  portalPrefab: {fileID: 0}
   portalCount: 40
   spacingBetweenPortals: 20
   movementSpeed: 2
-  resetZPosition: -10
   spawnZPosition: -400
   spawnYPosition: -5.2
+  doorRaiseTimer: 0
+  doorRaiseSpeedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
