@@ -1,39 +1,41 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerHealthManager : MonoBehaviour
+namespace _Project.Scripts.Player
 {
-    [SerializeField] private PlayerHealth playerHealth;
-    [SerializeField] private SpriteRenderer characterSpriteRenderer;
-    [SerializeField] private float flashDuration = 0.2f;
-
-    [ContextMenu("Take Damage")]
-    public void TakeDamage()
+    public class PlayerHealthManager : MonoBehaviour
     {
-        playerHealth.TakeDamage(1);
-    }
+        [SerializeField] private PlayerHealth playerHealth;
+        [SerializeField] private SpriteRenderer characterSpriteRenderer;
+        [SerializeField] private float flashDuration = 0.2f;
 
-    public void Die()
-    {
-        Debug.Log("Player has died.");
-    }
+        [ContextMenu("Take Damage")]
+        public void TakeDamage()
+        {
+            playerHealth.TakeDamage(1);
+        }
 
-    public void FlashRed()
-    {
-        StartCoroutine(ChangeColor());
-    }
+        public void Die()
+        {
+            Debug.Log("Player has died.");
+        }
 
-    private IEnumerator ChangeColor()
-    {
-        characterSpriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(flashDuration);
-        characterSpriteRenderer.color = Color.white;
-    }
+        public void FlashRed()
+        {
+            StartCoroutine(ChangeColor());
+        }
 
-    [ContextMenu("Reset Health")]
+        private IEnumerator ChangeColor()
+        {
+            characterSpriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(flashDuration);
+            characterSpriteRenderer.color = Color.white;
+        }
 
-    public void Heal()
-    {
-        playerHealth.ResetHealth();
+        [ContextMenu("Reset Health")]
+        public void Heal()
+        {
+            playerHealth.ResetHealth();
+        }
     }
 }

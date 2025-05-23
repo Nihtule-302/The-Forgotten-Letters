@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using _Project.Scripts.Core.StateMachine;
-using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.PlayerGroundControl.SubStates;
+using _Project.Scripts.StateMachine;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.AI
@@ -24,17 +23,17 @@ namespace _Project.Scripts.Gameplay.AI
 
         public override void Do()
         {
-            if (machine.state == navigate)
+            if (Machine.State == navigate)
             {
                 if (CloseEnough(target.position))
                 {
                     SetChild(idle, true);
                     // target.gameObject.SetActive(false);
-                    body.linearVelocity = new Vector2(0, body.linearVelocityY);
+                    Body.linearVelocity = new Vector2(0, Body.linearVelocityY);
                 }
                 else if (!InVision(target.position))
                 {
-                    body.linearVelocity = new Vector2(0, body.linearVelocityY);
+                    Body.linearVelocity = new Vector2(0, Body.linearVelocityY);
                     SetChild(idle, true);
                 }
                 else
@@ -45,17 +44,10 @@ namespace _Project.Scripts.Gameplay.AI
             }
             else
             {
-                if (machine.state.time > 2)
-                {
-                    isComplete = true;
-                }
+                if (Machine.State.Time > 2) IsComplete = true;
             }
 
-            if (target == null)
-            {
-                isComplete = true;
-                return;
-            }
+            if (target == null) IsComplete = true;
         }
 
         public override void Exit()
@@ -65,21 +57,22 @@ namespace _Project.Scripts.Gameplay.AI
 
         public bool CloseEnough(Vector2 targetPos)
         {
-            return Vector2.Distance(core.transform.position, targetPos) < collectRadius;
+            return Vector2.Distance(Core.transform.position, targetPos) < collectRadius;
         }
 
         public bool InVision(Vector2 targetPos)
         {
-            return Vector2.Distance(core.transform.position, targetPos) < vision;
+            return Vector2.Distance(Core.transform.position, targetPos) < vision;
         }
 
         public void CheckForTarget()
         {
             if (InVision(player.position) && player.gameObject.activeSelf)
-                {
-                    target = player;
-                    return;
-                }
+            {
+                target = player;
+                return;
+            }
+
             target = null;
         }
     }

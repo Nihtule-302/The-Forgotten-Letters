@@ -10,12 +10,12 @@ namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Trigger
 
         public LeanTweenType easeType;
 
-        void Awake()
+        private void Awake()
         {
             startPoint = transform;
         }
 
-        void Start()
+        private void Start()
         {
             // Move the trigger plane from startPosition to targetPosition over 'duration' seconds.
             transform.position = startPoint.position;

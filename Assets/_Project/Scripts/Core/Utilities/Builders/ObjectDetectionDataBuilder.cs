@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 public class ObjectDetectionDataBuilder
 {
-    public int CorrectScore { get; private set; }
-    public int IncorrectScore { get; private set; }
-    public List<ObjectDetectionRound> Rounds { get; private set; }
-
     public ObjectDetectionDataBuilder()
     {
         CorrectScore = 0;
@@ -20,6 +16,10 @@ public class ObjectDetectionDataBuilder
         IncorrectScore = existingData.incorrectScore;
         Rounds = new List<ObjectDetectionRound>(existingData.rounds);
     }
+
+    public int CorrectScore { get; private set; }
+    public int IncorrectScore { get; private set; }
+    public List<ObjectDetectionRound> Rounds { get; }
 
     public ObjectDetectionDataBuilder SetCorrectScore(int score)
     {
@@ -46,7 +46,6 @@ public class ObjectDetectionDataBuilder
     }
 
 
-
     public ObjectDetectionDataBuilder AddRound(string targetLetter, bool isCorrect)
     {
         TimeZoneInfo cairoTimeZone;
@@ -59,13 +58,13 @@ public class ObjectDetectionDataBuilder
         {
             cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
         }
-    
-        DateTime cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
+
+        var cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
         Rounds.Add(new ObjectDetectionRound
         {
             targetLetter = targetLetter,
             isCorrect = isCorrect,
-            timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt") 
+            timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt")
         });
         return this;
     }

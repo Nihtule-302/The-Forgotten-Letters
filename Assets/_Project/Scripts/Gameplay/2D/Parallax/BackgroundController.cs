@@ -1,52 +1,52 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class BackgroundController : MonoBehaviour
+namespace _Project.Scripts.Gameplay._2D.Parallax
 {
-    private Vector2 startPos;
-    private float length;
-    public GameObject cam;
-    public float parallaxEffect;
-
-    [Tooltip("0 = move with camera, 1 = no movement")]
-    public float ParallaxAmountX;
-    public float ParallaxAmountY;
-    public bool loop = true;
-
-    private SpriteRenderer SpriteRenderer;
-    private Bounds spriteBound;
-    public Vector2 camStartPos;
-
-    void Start()
+    public class BackgroundController : MonoBehaviour
     {
-        SpriteRenderer = GetComponent<SpriteRenderer>();
-        spriteBound = SpriteRenderer.localBounds;
-        
-        startPos = transform.position;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        public GameObject cam;
+        public float parallaxEffect;
 
-        camStartPos = cam.transform.position;
-    }
+        [FormerlySerializedAs("ParallaxAmountX")] [Tooltip("0 = move with camera, 1 = no movement")]
+        public float parallaxAmountX;
 
-    // Update is called once per frame
-    void Update()
-    {
-        float distanceX = (cam.transform.position.x - camStartPos.x) * ParallaxAmountX;
-        float distanceY = (cam.transform.position.y - camStartPos.y) * ParallaxAmountY;
+        [FormerlySerializedAs("ParallaxAmountY")] public float parallaxAmountY;
+        public bool loop = true;
+        public Vector2 camStartPos;
+        private float _length;
+        private Bounds _spriteBound;
 
-        float movementX = (cam.transform.position.x - camStartPos.x) * (1- ParallaxAmountX);
+        private SpriteRenderer _spriteRenderer;
+        private Vector2 _startPos;
 
-        transform.position = new Vector2(startPos.x + distanceX, startPos.y + distanceY);
-
-        if (loop)
+        private void Start()
         {
-            if (movementX > startPos.x + length)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteBound = _spriteRenderer.localBounds;
+
+            _startPos = transform.position;
+            _length = GetComponent<SpriteRenderer>().bounds.size.x;
+
+            camStartPos = cam.transform.position;
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            var distanceX = (cam.transform.position.x - camStartPos.x) * parallaxAmountX;
+            var distanceY = (cam.transform.position.y - camStartPos.y) * parallaxAmountY;
+
+            var movementX = (cam.transform.position.x - camStartPos.x) * (1 - parallaxAmountX);
+
+            transform.position = new Vector2(_startPos.x + distanceX, _startPos.y + distanceY);
+
+            if (loop)
             {
-                startPos.x += length;
+                if (movementX > _startPos.x + _length)
+                    _startPos.x += _length;
+                else if (movementX < _startPos.x - _length) _startPos.x -= _length;
             }
-            else if (movementX < startPos.x - length)
-            {
-                startPos.x -= length;
-            } 
         }
     }
 }

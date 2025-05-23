@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
 using Firebase.Firestore;
@@ -9,8 +8,9 @@ namespace TheForgottenLetters
     [CreateAssetMenu(fileName = "PlayerSkills", menuName = "Player/PlayerSkills")]
     public class PlayerSkills : ScriptableObject
     {
-        [SerializeField] private List<string> unlockedSkills_names = new List<string>();
-        [SerializeField] private List<Skill> unlockedSkills = new List<Skill>();
+        [SerializeField] private List<string> unlockedSkills_names = new();
+        [SerializeField] private List<Skill> unlockedSkills = new();
+
         public List<string> UnlockedSkills_names
         {
             get
@@ -24,6 +24,7 @@ namespace TheForgottenLetters
                 LoadSkillsFromNames();
             }
         }
+
         public List<Skill> UnlockedSkills
         {
             get
@@ -48,10 +49,8 @@ namespace TheForgottenLetters
         public void SaveSkillsToNames()
         {
             unlockedSkills_names.Clear();
-            foreach (var skill in unlockedSkills)
-            {
-                unlockedSkills_names.Add(skill.name); // Assuming each Skill's name is unique
-            }
+            foreach (var skill in
+                     unlockedSkills) unlockedSkills_names.Add(skill.name); // Assuming each Skill's name is unique
         }
 
         [ContextMenu("Reset Data")]
@@ -66,7 +65,8 @@ namespace TheForgottenLetters
             unlockedSkills_names = playerSkillsSerializable.unlockedSkills_names;
             LoadSkillsFromNames();
         }
-        public void UpdateData(List<String> playerSkills_names)
+
+        public void UpdateData(List<string> playerSkills_names)
         {
             unlockedSkills_names = playerSkills_names;
             LoadSkillsFromNames();
@@ -76,9 +76,6 @@ namespace TheForgottenLetters
     [FirestoreData]
     public class PlayerSkillsSerializable
     {
-        [FirestoreProperty]
-        public List<string> unlockedSkills_names { get; set; }
-
         // ✅ Default constructor required for Firestore
         public PlayerSkillsSerializable()
         {
@@ -90,8 +87,7 @@ namespace TheForgottenLetters
         {
             unlockedSkills_names = new List<string>(data.UnlockedSkills_names);
         }
+
+        [FirestoreProperty] public List<string> unlockedSkills_names { get; set; }
     }
-
 }
-
-

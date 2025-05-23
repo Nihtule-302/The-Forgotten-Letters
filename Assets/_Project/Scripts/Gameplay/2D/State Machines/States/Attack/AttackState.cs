@@ -1,4 +1,4 @@
-using _Project.Scripts.Core.StateMachine;
+using _Project.Scripts.StateMachine;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Attack
@@ -7,21 +7,22 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Attack
     {
         public AnimationClip anim;
         public float animationSpeed = 1f;
-        AnimatorStateInfo stateInfo;
+        private AnimatorStateInfo _stateInfo;
+
         public override void Enter()
         {
-            animator.Play(anim.name);
-            animator.speed = animationSpeed;
-            
+            Animator.Play(anim.name);
+            Animator.speed = animationSpeed;
         }
+
         public override void Do()
         {
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 0 is the layer index
-            if (stateInfo.IsName(anim.name) && stateInfo.normalizedTime >= 1f)
-            {
-                isComplete = true;
-            }
+            _stateInfo = Animator.GetCurrentAnimatorStateInfo(0); // 0 is the layer index
+            if (_stateInfo.IsName(anim.name) && _stateInfo.normalizedTime >= 1f) IsComplete = true;
         }
-        public override void Exit(){}
+
+        public override void Exit()
+        {
+        }
     }
 }

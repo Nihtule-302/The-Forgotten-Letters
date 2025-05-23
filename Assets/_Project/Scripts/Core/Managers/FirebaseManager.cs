@@ -12,25 +12,6 @@ namespace _Project.Scripts.Core.Managers
 {
     public class FirebaseManager : MonoBehaviour
     {
-        public static FirebaseManager Instance { get; private set; }
-
-        private FirebaseAuth auth;
-        public FirebaseAuth Auth => auth;
-
-        private FirebaseFirestore firestore;
-        public FirebaseFirestore Firestore => firestore;
-
-        private ListenerRegistration letterHuntListener;
-        private ListenerRegistration drawLetterListener;
-        private ListenerRegistration objectDetectionListener;
-        private ListenerRegistration playerDataListener;
-
-        public event Action OnLetterHuntDataUpdated;
-        public event Action OnDrawLetterDataUpdated;
-        public event Action OnObjectDetectionDataUpdated;
-        public event Action OnPlayerDataUpdated;
-        public event Action OnFirebaseInitialized;
-
         // Firestore Paths
         private const string UsersCollection = "users";
         private const string GameDataCollection = "game_data";
@@ -39,7 +20,17 @@ namespace _Project.Scripts.Core.Managers
         private const string ObjectDetectionDoc = "object_detection";
         private const string PlayerDataDoc = "player_data";
 
-        void Awake()
+        private ListenerRegistration drawLetterListener;
+
+        private ListenerRegistration letterHuntListener;
+        private ListenerRegistration objectDetectionListener;
+        private ListenerRegistration playerDataListener;
+        public static FirebaseManager Instance { get; private set; }
+        public FirebaseAuth Auth { get; private set; }
+
+        public FirebaseFirestore Firestore { get; private set; }
+
+        private void Awake()
         {
             if (Instance == null)
             {
@@ -53,13 +44,27 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
+        private void OnDestroy()
+        {
+            letterHuntListener?.Stop();
+            playerDataListener?.Stop();
+            objectDetectionListener?.Stop();
+            drawLetterListener?.Stop();
+        }
+
+        public event Action OnLetterHuntDataUpdated;
+        public event Action OnDrawLetterDataUpdated;
+        public event Action OnObjectDetectionDataUpdated;
+        public event Action OnPlayerDataUpdated;
+        public event Action OnFirebaseInitialized;
+
         private void InitializeFirebase()
         {
             FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
             {
-                FirebaseApp app = FirebaseApp.DefaultInstance;
-                firestore = FirebaseFirestore.DefaultInstance;
-                auth = FirebaseAuth.DefaultInstance;
+                var app = FirebaseApp.DefaultInstance;
+                Firestore = FirebaseFirestore.DefaultInstance;
+                Auth = FirebaseAuth.DefaultInstance;
 
                 Debug.Log("Firebase initialized successfully.");
                 OnFirebaseInitialized?.Invoke();
@@ -75,7 +80,7 @@ namespace _Project.Scripts.Core.Managers
             try
             {
                 var serializableData = new LetterHuntDataSerializable(data);
-                DocumentReference docRef = GetUserGameDocRef(LetterHuntDoc);
+                var docRef = GetUserGameDocRef(LetterHuntDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Letter Hunt data saved successfully!");
             }
@@ -84,6 +89,7 @@ namespace _Project.Scripts.Core.Managers
                 Debug.LogError($"Error saving Letter Hunt data: {e.Message}");
             }
         }
+
         public async Task SaveDrawLetterData(DrawLetterData data)
         {
             if (!IsUserLoggedIn()) return;
@@ -91,7 +97,7 @@ namespace _Project.Scripts.Core.Managers
             try
             {
                 var serializableData = new DrawLetterDataSerializable(data);
-                DocumentReference docRef = GetUserGameDocRef(DrawLetterDoc);
+                var docRef = GetUserGameDocRef(DrawLetterDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Draw Letter data saved successfully!");
             }
@@ -108,7 +114,7 @@ namespace _Project.Scripts.Core.Managers
             try
             {
                 var serializableData = new ObjectDetectionDataSerializable(data);
-                DocumentReference docRef = GetUserGameDocRef(ObjectDetectionDoc);
+                var docRef = GetUserGameDocRef(ObjectDetectionDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Object Detection data saved successfully!");
             }
@@ -125,7 +131,7 @@ namespace _Project.Scripts.Core.Managers
             try
             {
                 var serializableData = new PlayerAbilityStatsDataSerializable(data);
-                DocumentReference docRef = GetUserGameDocRef(PlayerDataDoc);
+                var docRef = GetUserGameDocRef(PlayerDataDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Player Ability Stats data saved successfully!");
             }
@@ -148,7 +154,7 @@ namespace _Project.Scripts.Core.Managers
             ListenToObjectDetectionData();
             ListenToPlayerData();
         }
-        
+
         public void StopListeningForChanges()
         {
             letterHuntListener?.Stop();
@@ -159,7 +165,7 @@ namespace _Project.Scripts.Core.Managers
 
         private void ListenToLetterHuntData()
         {
-            DocumentReference docRef = GetUserGameDocRef(LetterHuntDoc);
+            var docRef = GetUserGameDocRef(LetterHuntDoc);
 
             letterHuntListener = docRef.Listen(snapshot =>
             {
@@ -168,7 +174,8 @@ namespace _Project.Scripts.Core.Managers
                     if (snapshot.Exists)
                     {
                         var data = snapshot.ConvertTo<LetterHuntDataSerializable>();
-                        Debug.Log($"[REAL-TIME] Letter Hunt Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
+                        Debug.Log(
+                            $"[REAL-TIME] Letter Hunt Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
 
                         OnLetterHuntDataUpdated?.Invoke();
                         PersistentSOManager.GetSO<LetterHuntData>()?.UpdateData(data);
@@ -189,7 +196,7 @@ namespace _Project.Scripts.Core.Managers
 
         private void ListenToDrawLetterData()
         {
-            DocumentReference docRef = GetUserGameDocRef(DrawLetterDoc);
+            var docRef = GetUserGameDocRef(DrawLetterDoc);
 
             drawLetterListener = docRef.Listen(snapshot =>
             {
@@ -198,7 +205,8 @@ namespace _Project.Scripts.Core.Managers
                     if (snapshot.Exists)
                     {
                         var data = snapshot.ConvertTo<DrawLetterDataSerializable>();
-                        Debug.Log($"[REAL-TIME] Draw Letter Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
+                        Debug.Log(
+                            $"[REAL-TIME] Draw Letter Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
 
                         OnDrawLetterDataUpdated?.Invoke();
                         PersistentSOManager.GetSO<DrawLetterData>()?.UpdateData(data);
@@ -219,7 +227,7 @@ namespace _Project.Scripts.Core.Managers
 
         private void ListenToObjectDetectionData()
         {
-            DocumentReference docRef = GetUserGameDocRef(ObjectDetectionDoc);
+            var docRef = GetUserGameDocRef(ObjectDetectionDoc);
 
             objectDetectionListener = docRef.Listen(snapshot =>
             {
@@ -228,7 +236,8 @@ namespace _Project.Scripts.Core.Managers
                     if (snapshot.Exists)
                     {
                         var data = snapshot.ConvertTo<ObjectDetectionDataSerializable>();
-                        Debug.Log($"[REAL-TIME] Object Detection Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
+                        Debug.Log(
+                            $"[REAL-TIME] Object Detection Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
 
                         OnObjectDetectionDataUpdated?.Invoke();
                         PersistentSOManager.GetSO<ObjectDetectionData>()?.UpdateData(data);
@@ -236,7 +245,8 @@ namespace _Project.Scripts.Core.Managers
                     else
                     {
                         Debug.LogWarning("No Object Detection data found. Creating default...");
-                        var defaultData = new ObjectDetectionDataSerializable(PersistentSOManager.GetSO<ObjectDetectionData>());
+                        var defaultData =
+                            new ObjectDetectionDataSerializable(PersistentSOManager.GetSO<ObjectDetectionData>());
                         docRef.SetAsync(defaultData);
                     }
                 }
@@ -249,7 +259,7 @@ namespace _Project.Scripts.Core.Managers
 
         private void ListenToPlayerData()
         {
-            DocumentReference docRef = GetUserGameDocRef(PlayerDataDoc);
+            var docRef = GetUserGameDocRef(PlayerDataDoc);
 
             playerDataListener = docRef.Listen(snapshot =>
             {
@@ -268,12 +278,12 @@ namespace _Project.Scripts.Core.Managers
                             .SetlastTimeEnergyIncreased(data.lastTimeEnergyIncreasedCairoTime);
 
                         PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(databuilder);
-
                     }
                     else
                     {
                         Debug.LogWarning("No Player data found. Creating default...");
-                        var defaultData = new PlayerAbilityStatsDataSerializable(PersistentSOManager.GetSO<PlayerAbilityStats>());
+                        var defaultData =
+                            new PlayerAbilityStatsDataSerializable(PersistentSOManager.GetSO<PlayerAbilityStats>());
                         docRef.SetAsync(defaultData);
                     }
                 }
@@ -290,34 +300,23 @@ namespace _Project.Scripts.Core.Managers
 
         private bool IsUserLoggedIn()
         {
-            if (auth.CurrentUser == null)
+            if (Auth.CurrentUser == null)
             {
                 Debug.LogWarning("Operation failed: User is not logged in.");
                 return false;
             }
+
             return true;
         }
 
         private DocumentReference GetUserGameDocRef(string documentId)
         {
-            return firestore.Collection(UsersCollection)
-                            .Document(auth.CurrentUser.UserId)
-                            .Collection(GameDataCollection)
-                            .Document(documentId);
+            return Firestore.Collection(UsersCollection)
+                .Document(Auth.CurrentUser.UserId)
+                .Collection(GameDataCollection)
+                .Document(documentId);
         }
 
         #endregion
-
-        void OnDestroy()
-        {
-            letterHuntListener?.Stop();
-            playerDataListener?.Stop();
-            objectDetectionListener?.Stop();
-            drawLetterListener?.Stop();
-        }
-
-        
     }
 }
-
-

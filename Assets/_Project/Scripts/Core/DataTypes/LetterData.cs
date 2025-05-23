@@ -12,7 +12,7 @@ namespace _Project.Scripts.Core.DataTypes
 
         public AudioClip letterAudio;
 
-        void OnEnable()
+        private void OnEnable()
         {
             SetLetterBasedOnSOName();
         }

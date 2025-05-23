@@ -1,16 +1,20 @@
 {
-    "name": "GameManager2D",
-    "rootNamespace": "",
-    "references": [
-        "GUID:0d35cec8d029b2d42b84bf0a1b8101f5"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "GameManager2D",
+  "rootNamespace": "",
+  "references": [
+    "GUID:0d35cec8d029b2d42b84bf0a1b8101f5",
+    "Core",
+    "GUID:57a94bf0565893f45a2e72f99c4bd6d8",
+    "GUID:3b4d8e09c665bfa47849130d8695171e",
+    "GUID:ad968d605628d06499b62cdc30f11cf8"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

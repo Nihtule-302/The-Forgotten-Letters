@@ -1,31 +1,28 @@
 using System;
-using _Project.Scripts.Core.Managers;
-using _Project.Scripts.Core.StateMachine;
 using _Project.Scripts.Core.Utilities;
+using _Project.Scripts.StateMachine;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates
+namespace _Project.Scripts.Gameplay._2D.State_Machines.States.PlayerGroundControl.SubStates
 {
     public class RunState : State
     {
         public AnimationClip anim;
         public float maxXSpeed;
-        
+
         public override void Enter()
         {
-            animator.Play(anim.name);
+            Animator.Play(anim.name);
         }
+
         public override void Do()
         {
-            var velX = body.linearVelocityX;
+            var velX = Body.linearVelocityX;
 
-            var time = Helpers.Map(MathF.Abs(velX), 0, maxXSpeed, 0,1,true);
-            animator.speed = time;
+            var time = Helpers.Map(MathF.Abs(velX), 0, maxXSpeed, 0, 1, true);
+            Animator.speed = time;
 
-            if (grounded)
-            {
-                isComplete = true;
-            }
+            if (Grounded) IsComplete = true;
         }
     }
 }

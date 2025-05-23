@@ -1,11 +1,14 @@
+using System;
+
 namespace _Project.Scripts.Core.DataTypes
 {
-    [System.Serializable]
+    [Serializable]
     public class LetterPredictionData
     {
         public char letter;
 
         private float _probability;
+
         public float probability
         {
             get => _probability;

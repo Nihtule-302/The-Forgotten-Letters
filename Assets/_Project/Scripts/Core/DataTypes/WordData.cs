@@ -12,7 +12,7 @@ namespace _Project.Scripts.Core.DataTypes
         public List<Sprite> wordImage = new();
         public AudioClip wordAudio;
 
-        void OnEnable()
+        private void OnEnable()
         {
             SetWordBasedOnSOName();
         }

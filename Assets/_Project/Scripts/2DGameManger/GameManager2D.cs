@@ -1,7 +1,7 @@
 using _Project.Scripts.UI;
 using UnityEngine;
 
-namespace TheForgottenLetters
+namespace _Project.Scripts._2DGameManger
 {
     public class GameManager2D : MonoBehaviour
     {
@@ -10,9 +10,11 @@ namespace TheForgottenLetters
         [SerializeField] private PauseMenu pauseMenu;
         [SerializeField] private GameObject gameOverMenu;
         [SerializeField] private GameObject meditationMenu;
+
         [SerializeField] private GameObject skillTreeMenu;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Start()
         {
             StartGame();
         }
@@ -23,7 +25,7 @@ namespace TheForgottenLetters
             HUD.SetActive(true);
             onScreenControls.SetActive(true);
             gameOverMenu.SetActive(false);
-            meditationMenu.SetActive(false); 
+            meditationMenu.SetActive(false);
             skillTreeMenu.SetActive(false);
         }
 
@@ -38,6 +40,7 @@ namespace TheForgottenLetters
 
             // Time.timeScale = 0f; // Pause the game
         }
+
         public void MeditationMenu()
         {
             // HUD.SetActive(false);
@@ -46,6 +49,7 @@ namespace TheForgottenLetters
             meditationMenu.SetActive(true);
             skillTreeMenu.SetActive(false);
         }
+
         public void SkillTreeMenu()
         {
             HUD.SetActive(false);
@@ -54,6 +58,7 @@ namespace TheForgottenLetters
             meditationMenu.SetActive(false);
             skillTreeMenu.SetActive(true);
         }
+
         public void ResumeGame()
         {
             HUD.SetActive(true);
@@ -61,10 +66,11 @@ namespace TheForgottenLetters
             gameOverMenu.SetActive(false);
             meditationMenu.SetActive(false);
             skillTreeMenu.SetActive(false);
-            
+
 
             // Time.timeScale = 1f; // Resume the game
         }
+
         public void PauseGame()
         {
             // HUD.SetActive(false);
@@ -74,6 +80,5 @@ namespace TheForgottenLetters
 
             // Time.timeScale = 0f; // Pause the game
         }
-
     }
 }

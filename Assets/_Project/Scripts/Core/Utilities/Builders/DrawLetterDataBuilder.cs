@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 public class DrawLetterDataBuilder
 {
-    public int CorrectScore { get; private set; }
-    public int IncorrectScore { get; private set; }
-    public List<DrawLetterRound> Rounds { get; private set; }
-
     public DrawLetterDataBuilder()
     {
         CorrectScore = 0;
@@ -20,6 +16,10 @@ public class DrawLetterDataBuilder
         IncorrectScore = existingData.incorrectScore;
         Rounds = new List<DrawLetterRound>(existingData.rounds);
     }
+
+    public int CorrectScore { get; private set; }
+    public int IncorrectScore { get; private set; }
+    public List<DrawLetterRound> Rounds { get; }
 
     public DrawLetterDataBuilder SetCorrectScore(int score)
     {
@@ -46,7 +46,6 @@ public class DrawLetterDataBuilder
     }
 
 
-
     public DrawLetterDataBuilder AddRound(string targetLetter, bool isCorrect)
     {
         TimeZoneInfo cairoTimeZone;
@@ -59,13 +58,13 @@ public class DrawLetterDataBuilder
         {
             cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
         }
-    
-        DateTime cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
+
+        var cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
         Rounds.Add(new DrawLetterRound
         {
             targetLetter = targetLetter,
             isCorrect = isCorrect,
-            timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt") 
+            timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt")
         });
         return this;
     }

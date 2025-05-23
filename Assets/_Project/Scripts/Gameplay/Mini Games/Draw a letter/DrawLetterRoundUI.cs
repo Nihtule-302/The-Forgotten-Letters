@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TheForgottenLetters
+namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
 {
     public class DrawLetterRoundUI : MonoBehaviour
     {
@@ -10,26 +10,24 @@ namespace TheForgottenLetters
         public Sprite fullSprite;
         public Sprite emptySprite;
 
-        [SerializeField] private List<Image> stars = new List<Image>();
+        [SerializeField] private List<Image> stars = new();
 
         [SerializeField] private DrawLetterGame drawLetterGame;
-        
+
         private void Start()
         {
-            SetMaxRounds(drawLetterGame.maxRounds);
+            SetMaxRounds(drawLetterGame.MaxRounds);
         }
+
         public void SetMaxRounds(int maxRounds)
         {
-            foreach (var star in stars)
-            {
-                Destroy(star.gameObject);
-            }
+            foreach (var star in stars) Destroy(star.gameObject);
 
             stars.Clear();
 
-            for (int i = 0; i < maxRounds; i++)
+            for (var i = 0; i < maxRounds; i++)
             {
-                Image newStar = Instantiate(roundStarPrefab, transform);
+                var newStar = Instantiate(roundStarPrefab, transform);
                 stars.Add(newStar);
             }
 
@@ -38,18 +36,11 @@ namespace TheForgottenLetters
 
         public void UpdateStars()
         {
-            for (int i = 0; i < stars.Count; i++)
-            {
+            for (var i = 0; i < stars.Count; i++)
                 if (i < drawLetterGame.CurrentRound)
-                {
                     stars[i].sprite = fullSprite;
-                }
                 else
-                {
                     stars[i].sprite = emptySprite;
-                }
-            }
         }
-
     }
 }

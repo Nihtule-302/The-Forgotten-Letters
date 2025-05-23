@@ -1,130 +1,128 @@
 using System.Collections;
 using _Project.Scripts.Core.Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class FingerDrawing : MonoBehaviour
+namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
 {
-    [SerializeField] private RawImage displayImage;
-    [SerializeField] private HandwrittenClassifier Classifier;
-    // [SerializeField] private Transform fingerTipMarkerTransform;
-    [SerializeField] private float delayToSend = 1f;
-
-    [SerializeField] private InputManagerSO input;
-
-    [SerializeField] private int imageSize; 
-
-    bool hasDrawn = false;
-    float lastDrawTime;
-    Camera mainCamera;
-    Texture2D drawingTexture;
-    Coroutine checkForSendCoroutine;
-    [SerializeField] private int brushSize;
-    [SerializeField] private FilterMode filterMode = FilterMode.Point;
-    private int displayImageWidth => (int) displayImage.rectTransform.rect.width;
-    private int displayImageHeight => (int) displayImage.rectTransform.rect.height;
-
-    void Start()
+    public class FingerDrawing : MonoBehaviour
     {
-        drawingTexture = new Texture2D(displayImageWidth,displayImageHeight,TextureFormat.RGB24, false);
-        drawingTexture.filterMode = filterMode;
-        displayImage.texture = drawingTexture;
+        [SerializeField] private RawImage displayImage;
 
-        displayImage.color = Color.white;
-        
-        mainCamera = Camera.main;
-        input.EnablePlayerActions();
-        ClearTexture();
-    }
+        [FormerlySerializedAs("Classifier")] [SerializeField] private HandwrittenClassifier classifier;
 
-    void Update()
-    {
-        bool isDrawing =  input.IsClicking;
+        // [SerializeField] private Transform fingerTipMarkerTransform;
+        [SerializeField] private float delayToSend = 1f;
 
-        drawingTexture.filterMode = filterMode;
+        [SerializeField] private InputManagerSO input;
 
-        if (isDrawing)
-        {   
-            if (checkForSendCoroutine != null)
+        [SerializeField] private int imageSize;
+        [SerializeField] private int brushSize;
+        [SerializeField] private FilterMode filterMode = FilterMode.Point;
+        private Coroutine _checkForSendCoroutine;
+        private Texture2D _drawingTexture;
+
+        private bool _hasDrawn;
+        private float _lastDrawTime;
+        private Camera _mainCamera;
+        private int DisplayImageWidth => (int)displayImage.rectTransform.rect.width;
+        private int DisplayImageHeight => (int)displayImage.rectTransform.rect.height;
+
+        private void Start()
+        {
+            _drawingTexture = new Texture2D(DisplayImageWidth, DisplayImageHeight, TextureFormat.RGB24, false);
+            _drawingTexture.filterMode = filterMode;
+            displayImage.texture = _drawingTexture;
+
+            displayImage.color = Color.white;
+
+            _mainCamera = Camera.main;
+            input.EnablePlayerActions();
+            ClearTexture();
+        }
+
+        private void Update()
+        {
+            var isDrawing = input.IsClicking;
+
+            _drawingTexture.filterMode = filterMode;
+
+            if (isDrawing)
             {
-                StopCoroutine(checkForSendCoroutine);
-                checkForSendCoroutine = null;
+                if (_checkForSendCoroutine != null)
+                {
+                    StopCoroutine(_checkForSendCoroutine);
+                    _checkForSendCoroutine = null;
+                }
+
+                Draw(input.DrawPointerPosition);
+                _hasDrawn = true;
+                _lastDrawTime = Time.time;
             }
-
-            Draw(input.DrawPointerPosition);
-            hasDrawn = true;
-            lastDrawTime = Time.time;
-        }
-        else if(hasDrawn && Time.time - lastDrawTime > delayToSend && checkForSendCoroutine == null)
-        {
-            checkForSendCoroutine = StartCoroutine(CheckForSend());
-        }
-    }
-
-    private IEnumerator CheckForSend()
-    {
-        yield return new WaitForSeconds(delayToSend);
-        Classifier.ExecuteModel(drawingTexture);
-        hasDrawn = false;
-        checkForSendCoroutine = null;
-
-    }
-
-    private void Draw(Vector3 position)
-    {
-        Vector2 screenPoint = mainCamera.WorldToScreenPoint(position);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(displayImage.rectTransform, screenPoint, mainCamera, out Vector2 localPoint);
-        Vector2 normalizedPoint = Rect.PointToNormalized(displayImage.rectTransform.rect, localPoint);
-        AddPixel(normalizedPoint);
-    }
-
-    private void AddPixel(Vector2 normalizedPoint)
-    {
-        int texX = (int)(normalizedPoint.x * drawingTexture.width);
-        int texY = (int)(normalizedPoint.y * drawingTexture.height);
-
-        int radius = brushSize / 2;
-        int sqrRadius = radius * radius;
-
-        for (int x = -radius; x <= radius; x++)
-        {
-            for (int y = -radius; y <= radius; y++)
+            else if (_hasDrawn && Time.time - _lastDrawTime > delayToSend && _checkForSendCoroutine == null)
             {
+                _checkForSendCoroutine = StartCoroutine(CheckForSend());
+            }
+        }
+
+        private IEnumerator CheckForSend()
+        {
+            yield return new WaitForSeconds(delayToSend);
+            classifier.ExecuteModel(_drawingTexture);
+            _hasDrawn = false;
+            _checkForSendCoroutine = null;
+        }
+
+        private void Draw(Vector3 position)
+        {
+            Vector2 screenPoint = _mainCamera.WorldToScreenPoint(position);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(displayImage.rectTransform, screenPoint, _mainCamera,
+                out var localPoint);
+            var normalizedPoint = Rect.PointToNormalized(displayImage.rectTransform.rect, localPoint);
+            AddPixel(normalizedPoint);
+        }
+
+        private void AddPixel(Vector2 normalizedPoint)
+        {
+            var texX = (int)(normalizedPoint.x * _drawingTexture.width);
+            var texY = (int)(normalizedPoint.y * _drawingTexture.height);
+
+            var radius = brushSize / 2;
+            var sqrRadius = radius * radius;
+
+            for (var x = -radius; x <= radius; x++)
+            for (var y = -radius; y <= radius; y++)
                 // Check if within circle
                 if (x * x + y * y <= sqrRadius)
                 {
-                    int px = texX + x;
-                    int py = texY + y;
+                    var px = texX + x;
+                    var py = texY + y;
 
-                    if (px >= 0 && px < drawingTexture.width && py >= 0 && py < drawingTexture.height)
-                    {
-                        drawingTexture.SetPixel(px, py, Color.white );
-                    }
+                    if (px >= 0 && px < _drawingTexture.width && py >= 0 && py < _drawingTexture.height)
+                        _drawingTexture.SetPixel(px, py, Color.white);
                 }
-            }
+
+            _drawingTexture.Apply();
         }
 
-        drawingTexture.Apply();
-    }
 
+        // public void ClearTexture()
+        // {
+        //     Color[] clearImageColors = new Color[drawingTexture.width * drawingTexture.height];
+        //     for (int i = 0; i < clearImageColors.Length; i++)
+        //     {
+        //         clearImageColors[i] = Color.black;
+        //     }
+        //     drawingTexture.SetPixels(clearImageColors);
+        //     drawingTexture.Apply();
+        // }
 
-
-
-    // public void ClearTexture()
-    // {
-    //     Color[] clearImageColors = new Color[drawingTexture.width * drawingTexture.height];
-    //     for (int i = 0; i < clearImageColors.Length; i++)
-    //     {
-    //         clearImageColors[i] = Color.black;
-    //     }
-    //     drawingTexture.SetPixels(clearImageColors);
-    //     drawingTexture.Apply();
-    // }
-
-    public void ClearTexture()
-    {
-        byte[] zeroes = new byte[displayImageWidth * displayImageHeight*3];
-        drawingTexture.LoadRawTextureData(zeroes);
-        drawingTexture.Apply();
+        public void ClearTexture()
+        {
+            var zeroes = new byte[DisplayImageWidth * DisplayImageHeight * 3];
+            _drawingTexture.LoadRawTextureData(zeroes);
+            _drawingTexture.Apply();
+        }
     }
 }

@@ -1,30 +1,34 @@
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+namespace _Project.Scripts.Gameplay
 {
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform target;
-    [SerializeField] private float projectileMoveSpeed = 1;
-
-    public Transform firePoint;
-
-    private float shootTimer;
-    [SerializeField] private float shootRate;
-
-    void Update()
+    public class Shooter : MonoBehaviour
     {
-        // shootTimer -= Time.deltaTime;
+        [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private Transform target;
+        [SerializeField] private float projectileMoveSpeed = 1;
 
-        // if(shootTimer <= 0)
+        public Transform firePoint;
+        [SerializeField] private float shootRate;
+
+        private float _shootTimer;
+
+        // private void Update()
         // {
-        //     shootTimer = shootRate;
-        //     Shoot();
+        //     // shootTimer -= Time.deltaTime;
+        //
+        //     // if(shootTimer <= 0)
+        //     // {
+        //     //     shootTimer = shootRate;
+        //     //     Shoot();
+        //     // }
         // }
-    }
-    
-    public void Shoot()
-    {
-        Projectile projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation).GetComponent<Projectile>();
-        //projectile.InitializeProjectile(target, projectileMoveSpeed);
+
+        public void Shoot()
+        {
+            var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation)
+                .GetComponent<Projectile>();
+            //projectile.InitializeProjectile(target, projectileMoveSpeed);
+        }
     }
 }

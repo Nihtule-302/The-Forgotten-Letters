@@ -6,12 +6,6 @@ namespace TheForgottenLetters
 {
     public class PlayerAbilityStatsDataBuilder
     {
-        public int energyPoints { get; private set; }
-        public List<string> unlockedSkills { get; private set; }
-        public string lastTimeEnergyIncreasedCairoTime { get; private set; }
-
-        private PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
-
         public PlayerAbilityStatsDataBuilder()
         {
             energyPoints = 0;
@@ -25,6 +19,12 @@ namespace TheForgottenLetters
             lastTimeEnergyIncreasedCairoTime = existingData.lastTimeEnergyIncreasedCairoTime;
             unlockedSkills = new List<string>(playerSkills.UnlockedSkills_names);
         }
+
+        public int energyPoints { get; private set; }
+        public List<string> unlockedSkills { get; private set; }
+        public string lastTimeEnergyIncreasedCairoTime { get; private set; }
+
+        private PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
 
         public PlayerAbilityStatsDataBuilder SetEnergyPoints(int points)
         {
@@ -47,7 +47,7 @@ namespace TheForgottenLetters
         public PlayerAbilityStatsDataBuilder SetlastTimeEnergyIncreased()
         {
             TimeZoneInfo cairoTimeZone;
-    
+
             try
             {
                 cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Africa/Cairo");
@@ -57,12 +57,13 @@ namespace TheForgottenLetters
                 cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
             }
 
-            DateTime cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
+            var cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
 
             lastTimeEnergyIncreasedCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt");
 
             return this;
         }
+
         public PlayerAbilityStatsDataBuilder SetlastTimeEnergyIncreased(string cairoTime)
         {
             lastTimeEnergyIncreasedCairoTime = cairoTime;
@@ -77,8 +78,10 @@ namespace TheForgottenLetters
                 playerSkills.LoadSkillsFromNames();
                 unlockedSkills = playerSkills.UnlockedSkills_names;
             }
+
             return this;
         }
+
         public PlayerAbilityStatsDataBuilder AddSkill(Skill skill)
         {
             if (!playerSkills.UnlockedSkills.Contains(skill))
@@ -87,8 +90,10 @@ namespace TheForgottenLetters
                 playerSkills.SaveSkillsToNames();
                 unlockedSkills = playerSkills.UnlockedSkills_names;
             }
+
             return this;
         }
+
         public PlayerAbilityStatsDataBuilder RemoveSkill(string skillName)
         {
             if (playerSkills.UnlockedSkills_names.Contains(skillName))
@@ -97,8 +102,10 @@ namespace TheForgottenLetters
                 playerSkills.LoadSkillsFromNames();
                 unlockedSkills = playerSkills.UnlockedSkills_names;
             }
+
             return this;
         }
+
         public PlayerAbilityStatsDataBuilder RemoveSkill(Skill skill)
         {
             if (playerSkills.UnlockedSkills.Contains(skill))
@@ -107,6 +114,7 @@ namespace TheForgottenLetters
                 playerSkills.SaveSkillsToNames();
                 unlockedSkills = playerSkills.UnlockedSkills_names;
             }
+
             return this;
         }
 
@@ -117,6 +125,5 @@ namespace TheForgottenLetters
             unlockedSkills = playerSkills.UnlockedSkills_names;
             return this;
         }
-        
     }
 }

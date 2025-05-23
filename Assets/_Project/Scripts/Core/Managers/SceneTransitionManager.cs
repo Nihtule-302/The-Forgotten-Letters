@@ -1,5 +1,4 @@
 using System;
-using _Project.Scripts.Core.Utilities;
 using _Project.Scripts.Core.Utilities.Scene_Management;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -10,11 +9,53 @@ namespace _Project.Scripts.Core.Managers
 {
     public class SceneTransitionManager : MonoBehaviour
     {
+        #region Unity Methods
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            InitUtilities();
+            SubscribeEvents();
+        }
+
+        #endregion
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+                UnsubscribeEvents();
+            }
+        }
+
+        private void UnsubscribeEvents()
+        {
+            if (loader != null)
+            {
+                loader.OnSceneLoaded -= SceneLoadedHandler;
+                loader.OnSceneLoadFailed -= SceneLoadFailedHandler;
+            }
+
+            if (unloader != null)
+            {
+                unloader.OnSceneUnloaded -= SceneUnloadedHandler;
+                unloader.OnSceneUnloadFailed -= SceneUnloadFailedHandler;
+            }
+        }
+
         #region Fields
 
-
         public static SceneTransitionManager Instance { get; private set; }
-        [SerializeField] private AssetReference loaderSceen;    
+        [SerializeField] private AssetReference loaderSceen;
 
         private SceneLoader loader;
         private SceneUnloader unloader;
@@ -37,6 +78,7 @@ namespace _Project.Scripts.Core.Managers
             LoadingTarget,
             UnloadingScreen
         }
+
         private TransitionState state = TransitionState.Idle;
 
         #endregion
@@ -45,25 +87,6 @@ namespace _Project.Scripts.Core.Managers
 
         public event Action<SceneInstance> OnSceneLoaded;
         public event Action OnSceneUnloaded;
-
-        #endregion
-
-        #region Unity Methods
-
-        private void Awake()
-        {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-
-            InitUtilities();
-            SubscribeEvents();
-
-        }
 
         #endregion
 
@@ -191,6 +214,7 @@ namespace _Project.Scripts.Core.Managers
         #endregion
 
         #region Helper Methods
+
         private void OnInitialLoadComplete(AsyncOperationHandle<SceneInstance> handle)
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -203,6 +227,7 @@ namespace _Project.Scripts.Core.Managers
                 Debug.LogError($"Failed to load initial scene: {handle.DebugName}");
             }
         }
+
         private void HandleLoadFailure(AsyncOperationHandle<SceneInstance> handle)
         {
             Debug.LogError($"Failed to load scene: {handle.DebugName} in state: {state}");
@@ -216,29 +241,5 @@ namespace _Project.Scripts.Core.Managers
         }
 
         #endregion
-
-        private void OnDestroy()
-        {
-            if (Instance == this)
-            {
-                Instance = null;
-                UnsubscribeEvents();
-            }
-        }
-
-        private void UnsubscribeEvents()
-        {
-            if (loader != null)
-            {
-                loader.OnSceneLoaded -= SceneLoadedHandler;
-                loader.OnSceneLoadFailed -= SceneLoadFailedHandler;
-            }
-
-            if (unloader != null)
-            {
-                unloader.OnSceneUnloaded -= SceneUnloadedHandler;
-                unloader.OnSceneUnloadFailed -= SceneUnloadFailedHandler;
-            }
-        }
     }
 }

@@ -26,13 +26,9 @@ namespace _Project.Scripts.Core.Utilities.Scene_Management
         private void ProcessUnloadCompletion(AsyncOperationHandle<SceneInstance> handle)
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
                 ProcessSuccessfulUnload(handle);
-            }
             else
-            {
                 ProcessFailedUnload(handle);
-            }
         }
 
         private void ProcessSuccessfulUnload(AsyncOperationHandle<SceneInstance> handle)

@@ -1,5 +1,5 @@
-using _Project.Scripts.Core.StateMachine;
-using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.PlayerGroundControl.SubStates;
+using _Project.Scripts.StateMachine;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.AI
@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.AI
         public Transform anchor1;
         public Transform anchor2;
 
-        void GoToNextDestination()
+        private void GoToNextDestination()
         {
             // Toggle between anchor1 and anchor2 as the next patrol destination
             if (navigate.destination == (Vector2)anchor1.position)
@@ -33,21 +33,18 @@ namespace _Project.Scripts.Gameplay.AI
 
         public override void Do()
         {
-            if (machine.state == navigate)
+            if (Machine.State == navigate)
             {
-                if (navigate.isComplete)
+                if (navigate.IsComplete)
                 {
                     SetChild(idle, true); // Switch to idle after reaching destination
-                    body.linearVelocity = new Vector2(0, body.linearVelocityY); // Stop horizontal motion
+                    Body.linearVelocity = new Vector2(0, Body.linearVelocityY); // Stop horizontal motion
                 }
             }
             else
             {
                 // Re-check destination if idle for more than 1 second
-                if (machine.state.time > 1)
-                {
-                    GoToNextDestination();
-                }
+                if (Machine.State.Time > 1) GoToNextDestination();
             }
         }
     }

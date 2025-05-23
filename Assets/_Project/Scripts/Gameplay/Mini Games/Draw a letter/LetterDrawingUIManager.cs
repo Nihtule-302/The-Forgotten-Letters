@@ -1,38 +1,41 @@
 using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace TheForgottenLetters
+namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
 {
     public class LetterDrawingUIManager : MonoBehaviour
     {
-        [Header("UI Elements")]
-        [SerializeField] private GameObject SelectLetterMenu;
-        [SerializeField] private GameObject LetterDrawingScreen;
-        [SerializeField] private FingerDrawing FingerDrawing;
-        [SerializeField] private GameObject BackgroundScreen;
-        [SerializeField] private GameObject RoundStarsScreen;
+        [FormerlySerializedAs("SelectLetterMenu")] [Header("UI Elements")] [SerializeField]
+        private GameObject selectLetterMenu;
+
+        [FormerlySerializedAs("LetterDrawingScreen")] [SerializeField] private GameObject letterDrawingScreen;
+        [FormerlySerializedAs("FingerDrawing")] [SerializeField] private FingerDrawing fingerDrawing;
+        [FormerlySerializedAs("BackgroundScreen")] [SerializeField] private GameObject backgroundScreen;
+        [FormerlySerializedAs("RoundStarsScreen")] [SerializeField] private GameObject roundStarsScreen;
 
 
-        [Header("Answer Feedback")]
-        [SerializeField] private GameObject correctScreen;
+        [Header("Answer Feedback")] [SerializeField]
+        private GameObject correctScreen;
+
         [SerializeField] private GameObject wrongScreen;
         [SerializeField] private float answerFeedbackScreenDelay = 0.2f;
         [SerializeField] private float answerFeedbackScreenDuration = 1f;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Start()
         {
             StartGame();
         }
 
         private void StartGame()
         {
-            SelectLetterMenu.SetActive(true);
-            LetterDrawingScreen.SetActive(false);
-            BackgroundScreen.SetActive(false); 
-            RoundStarsScreen.SetActive(false);
-            FingerDrawing.enabled = false;
+            selectLetterMenu.SetActive(true);
+            letterDrawingScreen.SetActive(false);
+            backgroundScreen.SetActive(false);
+            roundStarsScreen.SetActive(false);
+            fingerDrawing.enabled = false;
 
             correctScreen.SetActive(false);
             wrongScreen.SetActive(false);
@@ -41,10 +44,10 @@ namespace TheForgottenLetters
 
         public void StartLetterDrawing()
         {
-            SelectLetterMenu.SetActive(false);
-            LetterDrawingScreen.SetActive(true);
-            BackgroundScreen.SetActive(true);
-            RoundStarsScreen.SetActive(true);
+            selectLetterMenu.SetActive(false);
+            letterDrawingScreen.SetActive(true);
+            backgroundScreen.SetActive(true);
+            roundStarsScreen.SetActive(true);
             EnableFingerDrawingWithDelayAsync().Forget();
         }
 
@@ -56,18 +59,18 @@ namespace TheForgottenLetters
         private async UniTaskVoid EnableFingerDrawingWithDelayAsync()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(.5f));
-            FingerDrawing.enabled = true;
+            fingerDrawing.enabled = true;
         }
 
         public void CallCorrectScreen()
         {
             ShowWrongScreenWithDelayAsync().Forget();
         }
+
         public void CallWrongScreen()
         {
             ShowCorrectScreenWithDelayAsync().Forget();
         }
-
 
 
         private async UniTaskVoid ShowWrongScreenWithDelayAsync()
@@ -80,6 +83,7 @@ namespace TheForgottenLetters
             await UniTask.Delay(TimeSpan.FromSeconds(answerFeedbackScreenDuration));
             wrongScreen.SetActive(false);
         }
+
         private async UniTaskVoid ShowCorrectScreenWithDelayAsync()
         {
             wrongScreen.SetActive(false);

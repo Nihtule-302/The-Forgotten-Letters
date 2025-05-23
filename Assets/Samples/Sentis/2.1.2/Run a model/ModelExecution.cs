@@ -1,40 +1,43 @@
-using UnityEngine;
 using Unity.Sentis;
+using UnityEngine;
 
-public class ModelExecution : MonoBehaviour
+namespace TheForgottenLetters.Samples.Sentis._2._1._2.Run_a_model
 {
-    [SerializeField]
-    ModelAsset modelAsset;
-    Worker m_Worker;
-    Tensor m_Input;
-
-    void OnEnable()
+    public class ModelExecution : MonoBehaviour
     {
-        var model = ModelLoader.Load(modelAsset);
-        m_Worker = new Worker(model, BackendType.GPUCompute);
+        [SerializeField]
+        ModelAsset modelAsset;
+        Worker m_Worker;
+        Tensor m_Input;
 
-        // The SingleInputSingleOutput model takes one input and runs a Relu activation
-        m_Input = new Tensor<float>(new TensorShape(1024));
-    }
+        void OnEnable()
+        {
+            var model = ModelLoader.Load(modelAsset);
+            m_Worker = new Worker(model, BackendType.GPUCompute);
 
-    void Update()
-    {
-        // model has a single input, so no ambiguity due to its name
-        m_Worker.Schedule(m_Input);
+            // The SingleInputSingleOutput model takes one input and runs a Relu activation
+            m_Input = new Tensor<float>(new TensorShape(1024));
+        }
 
-        // model has a single output, so no ambiguity due to its name
-        var outputTensor = m_Worker.PeekOutput() as Tensor<float>;
+        void Update()
+        {
+            // model has a single input, so no ambiguity due to its name
+            m_Worker.Schedule(m_Input);
 
-        // If you wish to read from the tensor, download it to cpu.
-        var cpuTensor = outputTensor.ReadbackAndClone();
-        // See async examples for non-blocking readback.
-        cpuTensor.Dispose();
-    }
+            // model has a single output, so no ambiguity due to its name
+            var outputTensor = m_Worker.PeekOutput() as Tensor<float>;
 
-    void OnDisable()
-    {
-        // Clean up Sentis resources.
-        m_Worker.Dispose();
-        m_Input.Dispose();
+            // If you wish to read from the tensor, download it to cpu.
+            var cpuTensor = outputTensor.ReadbackAndClone();
+            // See async examples for non-blocking readback.
+            cpuTensor.Dispose();
+        }
+
+        void OnDisable()
+        {
+            // Clean up Sentis resources.
+            m_Worker.Dispose();
+            m_Input.Dispose();
+        }
     }
 }

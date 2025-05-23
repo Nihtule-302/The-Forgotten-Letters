@@ -1,45 +1,37 @@
-using _Project.Scripts.Core.StateMachine;
-using UnityEngine;
+using _Project.Scripts.StateMachine;
 
 namespace _Project.Scripts.Gameplay.AI
 {
-    public class NPC : StateMachineCore
+    public class Npc : StateMachineCore
     {
         public Patrol patrol;
         public Collect collect;
 
 
-        void Start()
+        private void Start()
         {
             InitializeStateMachine();
             SetState(patrol);
         }
 
-        void Update()
+        private void Update()
         {
-            if (state.isComplete)
-            {
-                if (state == collect)
-                {
+            if (State.IsComplete)
+                if (State == collect)
                     SetState(patrol);
-                }
-            }
 
-            if (state == patrol)
+            if (State == patrol)
             {
                 collect.CheckForTarget();
-                if (collect.target != null)
-                {
-                    SetState(collect);
-                }
+                if (collect.target != null) SetState(collect);
             }
 
-            state.DoBranch();
+            State.DoBranch();
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
-            state.FixedDoBranch();
+            State.FixedDoBranch();
         }
     }
 }

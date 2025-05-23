@@ -8,18 +8,25 @@ namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Line
     public class PathOfDoors : MonoBehaviour
     {
         [SerializeField] private PortalLineSettings portalLineSettings;
-        [SerializeField] Vector3 rotation;
+        [SerializeField] private Vector3 rotation;
 
-        [SerializeField] float totalElapsedTime;
-        [SerializeField] float initialRaiseInterval;
+        [SerializeField] private float totalElapsedTime;
+        [SerializeField] private float initialRaiseInterval;
         [SerializeField] private InputManagerSO input;
 
-        private List<GameObject> portals = new List<GameObject>();
+        private readonly List<GameObject> _portals = new();
 
-        void Start()
+        private void Start()
         {
             EnablePlayerInput();
             InitializePortalArray();
+        }
+
+        private void Update()
+        {
+            HandleInput();
+            HandlePortalLooping();
+            RaiseNextPortal();
         }
 
         private void EnablePlayerInput()
@@ -30,20 +37,16 @@ namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Line
         private void InitializePortalArray()
         {
             // Instantiate the portals and position them in a line.
-            for (int i = 0; i < portalLineSettings.portalCount; i++)
+            for (var i = 0; i < portalLineSettings.portalCount; i++)
             {
-                Vector3 spawnPosition = new Vector3(transform.position.x, portalLineSettings.spawnYPosition, transform.position.z + portalLineSettings.spawnZPosition + i * portalLineSettings.spacingBetweenPortals);
-                GameObject portal = Instantiate(portalLineSettings.portalPrefab, spawnPosition, Quaternion.Euler(rotation), transform);
-                
-                portals.Add(portal);
-            }
-        }
+                var spawnPosition = new Vector3(transform.position.x, portalLineSettings.spawnYPosition,
+                    transform.position.z + portalLineSettings.spawnZPosition +
+                    i * portalLineSettings.spacingBetweenPortals);
+                var portal = Instantiate(portalLineSettings.portalPrefab, spawnPosition, Quaternion.Euler(rotation),
+                    transform);
 
-        void Update()
-        {
-            HandleInput();
-            HandlePortalLooping();
-            RaiseNextPortal();
+                _portals.Add(portal);
+            }
         }
 
         private void HandleInput()
@@ -66,8 +69,8 @@ namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Line
 
         private void RaiseNextPortal()
         {
-            int nextPortalIndex = Mathf.FloorToInt(totalElapsedTime) % portals.Count;  // Loop through portals cyclically
-            portals[nextPortalIndex].GetComponent<PortalActivator>().RiseUp();
+            var nextPortalIndex = Mathf.FloorToInt(totalElapsedTime) % _portals.Count; // Loop through portals cyclically
+            _portals[nextPortalIndex].GetComponent<PortalActivator>().RiseUp();
         }
     }
 }
@@ -76,7 +79,7 @@ namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Line
 //   Initialize an array to store the doors.
 //   Set the number of doors, distance from the player, and spacing between doors.
 //   Instantiate the doors and add them to the array.
-  
+
 //   For each door:
 //     Calculate position:
 //       - If the index is odd, place the door to the right.
@@ -84,7 +87,7 @@ namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Line
 
 //   Set a loop threshold to control when the doors reset.
 //   Initialize a timer for the door-raising sequence.
-  
+
 // Main Loop (Update):
 //   Handle player input:
 //     - If input is left/right, move the parent object.

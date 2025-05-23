@@ -1,49 +1,64 @@
-using System.Collections.Generic;
-using UnityEngine;
 using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.Scriptable_Events.EventTypes.String;
-using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded;
 using _Project.Scripts.Gameplay._2D.State_Machines.States.Attack;
-using _Project.Scripts.Core.StateMachine;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.Fall;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.Jump;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.PlayerGroundControl;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.Skill.SubStates;
+using _Project.Scripts.StateMachine;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 
-
-namespace _Project.Scripts.Gameplay._2D
+namespace _Project.Scripts.Gameplay._2D.Player
 {
     public class Player : StateMachineCore
     {
-        [Header("States")]
-        public PlayerGroundControl playerGroundControl;
+        [Header("States")] public PlayerGroundControl playerGroundControl;
+
         public AttackState attackState;
         public JumpState jumpState;
         public FallState fallState;
         public EnergyBlastState energyBlastState;
 
-        [Header("Core Components")]
-        public PlayerStats stats;
+        [Header("Core Components")] public PlayerStats stats;
+
         public InputManagerSO inputManager;
 
-        [Header("Input Variables")]
-        public float xInput { get; private set; }
-        public bool wantsToJump { get; private set; }
-        public bool wantsToAttack { get; private set; }
-        public bool wantsToUseSkill { get; private set; }
+        [FormerlySerializedAs("CurrentStateRef")] [Header("Events")] [SerializeField] private AssetReference currentStateRef;
 
-        [Header("Events")]
-        [SerializeField] private AssetReference CurrentStateRef;
-        [SerializeField] private StringEvent stringEvent => EventLoader.Instance.GetEvent<StringEvent>(CurrentStateRef);
         public bool canJump;
+
+        [Header("Input Variables")] public float XInput { get; private set; }
+
+        public bool WantsToJump { get; private set; }
+        public bool WantsToAttack { get; private set; }
+        public bool WantsToUseSkill { get; private set; }
+        private StringEvent StringEvent => EventLoader.Instance.GetEvent<StringEvent>(currentStateRef);
 
         private void Start()
         {
             inputManager.Move += HandleXMovement;
             inputManager.Jump += HandleJumpInput;
             inputManager.Attack += HandleAttackInput;
-            inputManager.Skill += (useSkill) => wantsToUseSkill = useSkill;
+            inputManager.Skill += useSkill => WantsToUseSkill = useSkill;
             inputManager.EnablePlayerActions();
 
             InitializeStateMachine();
             SetFallState();
+        }
+
+        private void Update()
+        {
+            SelectState();
+            Machine.State.DoBranch();
+            RaiseStateEvent();
+        }
+
+        private void FixedUpdate()
+        {
+            Machine.State.FixedDoBranch();
+            ApplyFriction();
         }
 
         private void OnDestroy()
@@ -51,101 +66,61 @@ namespace _Project.Scripts.Gameplay._2D
             inputManager.Move -= HandleXMovement;
             inputManager.Jump -= HandleJumpInput;
             inputManager.Attack -= HandleAttackInput;
-            inputManager.Skill -= (useSkill) => wantsToUseSkill = useSkill;
-        }
-
-        private void Update()
-        {
-            SelectState();
-            machine.state.DoBranch();
-            RaiseStateEvent();
-        }
-
-        private void FixedUpdate()
-        {
-            machine.state.FixedDoBranch();
-            ApplyFriction();
+            inputManager.Skill -= useSkill => WantsToUseSkill = useSkill;
         }
 
         private void SelectState()
         {
-            if (wantsToAttack)
+            if (WantsToAttack)
             {
                 SetState(attackState);
-                wantsToAttack = false;
+                WantsToAttack = false;
             }
 
-            if (wantsToUseSkill)
+            if (WantsToUseSkill)
             {
                 SetState(energyBlastState);
-                wantsToUseSkill = false;
+                WantsToUseSkill = false;
             }
 
-            if (machine.state == playerGroundControl)
+            if (Machine.State == playerGroundControl)
             {
-                if (groundSensor.grounded && wantsToJump && canJump)
-                {
-                    Jump();
-                }
+                if (groundSensor.grounded && WantsToJump && canJump) Jump();
 
-                if (!groundSensor.grounded && playerGroundControl.isCoyoteTimerRunning && canJump && wantsToJump)
-                {
-                    Jump();
-                }
+                if (!groundSensor.grounded && playerGroundControl.isCoyoteTimerRunning && canJump &&
+                    WantsToJump) Jump();
 
-                if (!groundSensor.grounded && playerGroundControl.coyoteTimeExpired)
-                {
-                    SetFallState();
-                }
+                if (!groundSensor.grounded && playerGroundControl.coyoteTimeExpired) SetFallState();
             }
 
-            if (machine.state == fallState)
-            {
+            if (Machine.State == fallState)
                 if (groundSensor.grounded)
                 {
                     SetState(playerGroundControl);
                     canJump = true;
                 }
-            }
 
-            if (machine.state == jumpState)
-            {
+            if (Machine.State == jumpState)
                 if (body.linearVelocityY < 0)
-                {
                     SetFallState();
-                }
-            }
 
-            if (machine.state == attackState)
+            if (Machine.State == attackState)
             {
-                if (machine.state.isComplete)
-                {
-                    SetFallState();
-                }
-                if (groundSensor.grounded && wantsToJump && canJump)
-                {
-                    Jump(false);
-                }
+                if (Machine.State.IsComplete) SetFallState();
+                if (groundSensor.grounded && WantsToJump && canJump) Jump(false);
             }
 
-            if (machine.state == energyBlastState)
+            if (Machine.State == energyBlastState)
             {
-                if (machine.state.isComplete)
-                {
-                    SetFallState();
-                }
-                if (groundSensor.grounded && wantsToJump && canJump)
-                {
-                    Jump(false);
-                }
+                if (Machine.State.IsComplete) SetFallState();
+                if (groundSensor.grounded && WantsToJump && canJump) Jump(false);
             }
-
         }
 
         private void Jump(bool switchToJumpState = true)
         {
             PerformJump();
-            if(switchToJumpState) SetJumpState();
+            if (switchToJumpState) SetJumpState();
             canJump = false;
         }
 
@@ -154,19 +129,19 @@ namespace _Project.Scripts.Gameplay._2D
         {
             jumpState.airGravity = stats.jumpGravity;
             jumpState.jumpSpeed = stats.jumpSpeed;
-            machine.Set(jumpState, true);
+            Machine.Set(jumpState, true);
         }
 
         private void HandleJumpInput(bool jumpInput)
         {
-            wantsToJump = jumpInput;
+            WantsToJump = jumpInput;
         }
 
         private void SetFallState()
         {
             fallState.airGravity = stats.fallGravity;
             fallState.jumpSpeed = stats.jumpSpeed;
-            machine.Set(fallState);
+            Machine.Set(fallState);
         }
 
 
@@ -177,41 +152,34 @@ namespace _Project.Scripts.Gameplay._2D
 
         private void RaiseStateEvent()
         {
-            List<State> states = machine.GetActiveStateBranch();
-            string statePath = string.Join(" > ", states);
-            stringEvent.Raise(statePath);
+            var states = Machine.GetActiveStateBranch();
+            var statePath = string.Join(" > ", states);
+            StringEvent.Raise(statePath);
         }
 
         private void HandleXMovement(Vector2 direction)
         {
-            xInput = direction.x;
-            if (Mathf.Abs(xInput) > 0)
+            XInput = direction.x;
+            if (Mathf.Abs(XInput) > 0)
             {
-                body.linearVelocityX = xInput * stats.maxXSpeed;
+                body.linearVelocityX = XInput * stats.maxXSpeed;
                 FaceInput();
             }
         }
 
         private void ApplyFriction()
         {
-            if (groundSensor.grounded && xInput == 0 && body.linearVelocityY <= 0.01f)
-            {
+            if (groundSensor.grounded && XInput == 0 && body.linearVelocityY <= 0.01f)
                 body.linearVelocityX *= stats.groundDecay;
-            }
         }
 
         private void FaceInput()
         {
             var currentYRotation = transform.eulerAngles.y;
 
-            if (Mathf.Sign(xInput) == 1)
-            {
+            if (Mathf.Sign(XInput) == 1)
                 currentYRotation = 0;
-            }
-            else if(Mathf.Sign(xInput) == -1)
-            {
-                currentYRotation = 180;
-            }
+            else if (Mathf.Sign(XInput) == -1) currentYRotation = 180;
 
             // transform.localScale = new Vector3(Mathf.Sign(xInput), 1, 1);
             transform.eulerAngles = new Vector3(0, currentYRotation, 0);
@@ -219,7 +187,7 @@ namespace _Project.Scripts.Gameplay._2D
 
         private void HandleAttackInput(bool attackInput)
         {
-            wantsToAttack = attackInput;
+            WantsToAttack = attackInput;
         }
     }
 }

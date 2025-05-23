@@ -1,11 +1,19 @@
-using _Project.Scripts.Core.StateMachine;
+using _Project.Scripts.StateMachine;
 
 namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Skill
 {
     public class SkillState : State
     {
-        public override void Enter(){}
-        public override void Do(){}
-        public override void Exit(){}
+        public override void Enter()
+        {
+        }
+
+        public override void Do()
+        {
+        }
+
+        public override void Exit()
+        {
+        }
     }
 }

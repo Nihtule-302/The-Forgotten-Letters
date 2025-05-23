@@ -1,41 +1,44 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// A simple Timer to demonstrate Progress Bars
-/// </summary>
-public class Timer : MonoBehaviour
+namespace TheForgottenLetters.Samples.Shader_Graph._17._0._4.UGUI_Shaders.Scripts
 {
-    [SerializeField] float timerMin = 3f, timerMax = 10f;
-    float timer = 10f;
-    [SerializeField] bool randomStart;
-
-    public UnityEvent<float> timerEvent;
-
-    float _time = 0;
-
-    public float TheTime
+    /// <summary>
+    /// A simple Timer to demonstrate Progress Bars
+    /// </summary>
+    public class Timer : MonoBehaviour
     {
-        get => _time;
-        set
+        [SerializeField] float timerMin = 3f, timerMax = 10f;
+        float timer = 10f;
+        [SerializeField] bool randomStart;
+
+        public UnityEvent<float> timerEvent;
+
+        float _time = 0;
+
+        public float TheTime
         {
-            _time = value;
-            if (_time > 1f)
-                _time = 0;
-            timerEvent?.Invoke(_time);
+            get => _time;
+            set
+            {
+                _time = value;
+                if (_time > 1f)
+                    _time = 0;
+                timerEvent?.Invoke(_time);
+            }
         }
-    }
 
-    private void Start()
-    {
-        timer = Random.Range(timerMin, timerMax);
+        private void Start()
+        {
+            timer = Random.Range(timerMin, timerMax);
 
-        if (randomStart)
-            TheTime = Random.Range(0f, 1f);
-    }
+            if (randomStart)
+                TheTime = Random.Range(0f, 1f);
+        }
 
-    private void Update()
-    {
-        TheTime += Time.deltaTime / timer;
+        private void Update()
+        {
+            TheTime += Time.deltaTime / timer;
+        }
     }
 }

@@ -1,42 +1,40 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Core.Scriptable_Events;
+using Cysharp.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using TMPro;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
-using _Project.Scripts.Core.Scriptable_Events;
 using UnityEngine.AddressableAssets;
 
 namespace TheForgottenLetters
 {
     public class Auth : MonoBehaviour
     {
-
         [SerializeField] private GameObject authPanel;
         [SerializeField] private TMP_InputField emailInputField;
         [SerializeField] private TMP_InputField passwordInputField;
         [SerializeField] private TMP_Text statusText;
 
         [SerializeField] private double delayBeforeContinue = 2f; // Delay in seconds
-        private TimeSpan DelayBeforeContinue => TimeSpan.FromSeconds(delayBeforeContinue);
+
+
+        [Header("Events")] [SerializeField] private AssetReference OnLoginOrSignUp;
 
         private FirebaseAuth auth;
         private FirebaseFirestore db;
+        private TimeSpan DelayBeforeContinue => TimeSpan.FromSeconds(delayBeforeContinue);
 
         public static Auth Instance { get; private set; }
         public bool IsLoggedIn => auth != null && auth.CurrentUser != null;
         public string UserId => auth != null && auth.CurrentUser != null ? auth.CurrentUser.UserId : null;
         public string UserEmail => auth != null && auth.CurrentUser != null ? auth.CurrentUser.Email : null;
-        
-
-        [Header("Events")]
-        [SerializeField] private AssetReference OnLoginOrSignUp ;
         private GameEvent onLoginOrSignUp => EventLoader.Instance.GetEvent<GameEvent>(OnLoginOrSignUp);
 
-        void Awake()
+        private void Awake()
         {
             if (Instance == null)
             {
@@ -49,11 +47,12 @@ namespace TheForgottenLetters
             }
         }
 
-        void Start()
+        private void Start()
         {
             FirebaseManager.Instance.OnFirebaseInitialized += BeginAuth;
         }
-        void OnDestroy()
+
+        private void OnDestroy()
         {
             FirebaseManager.Instance.OnFirebaseInitialized -= BeginAuth;
         }
@@ -92,30 +91,34 @@ namespace TheForgottenLetters
                 UpdateStatus("No user is currently signed in.");
             }
         }
+
         public void DeactivateAuthScreen()
         {
             authPanel.SetActive(false);
         }
+
         public void ActivateAuthScreen()
         {
             authPanel.SetActive(true);
         }
 
-        void UpdateStatus(string message)
+        private void UpdateStatus(string message)
         {
             statusText.text = message;
             Debug.Log(message);
         }
-        
+
         [ContextMenu("SignUpButton")]
         public void SignUpButton()
         {
             SignUp().Forget();
         }
+
         public void LoginButton()
         {
             Login().Forget();
         }
+
         public void SignOutButton()
         {
             SignOut().Forget();
@@ -123,8 +126,8 @@ namespace TheForgottenLetters
 
         public async UniTaskVoid SignUp()
         {
-            string email = emailInputField.text;
-            string password = passwordInputField.text;
+            var email = emailInputField.text;
+            var password = passwordInputField.text;
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
@@ -149,8 +152,8 @@ namespace TheForgottenLetters
 
         public async UniTaskVoid Login()
         {
-            string email = emailInputField.text;
-            string password = passwordInputField.text;
+            var email = emailInputField.text;
+            var password = passwordInputField.text;
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
@@ -208,9 +211,9 @@ namespace TheForgottenLetters
                 return;
             }
 
-            string userId = auth.CurrentUser.UserId;
+            var userId = auth.CurrentUser.UserId;
 
-            Dictionary<string, object> userData = new Dictionary<string, object>
+            var userData = new Dictionary<string, object>
             {
                 { "userId", userId },
                 { "email", auth.CurrentUser.Email }

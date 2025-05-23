@@ -1,32 +1,37 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class InGameDrawLetterUIManager : MonoBehaviour
+namespace _Project.Scripts.Gameplay.Mini_Games.Puzzles
 {
-    
-    [SerializeField] private GameObject Trigger;
-    [SerializeField] private GameObject VisualCue;
-    
-    [SerializeField] private GameObject DrawLetterPuzzelScreen;
-    [SerializeField] private GameObject Game2DUI;
+    public class InGameDrawLetterUIManager : MonoBehaviour
+    {
+        [FormerlySerializedAs("Trigger")] [SerializeField] private GameObject trigger;
+        [FormerlySerializedAs("VisualCue")] [SerializeField] private GameObject visualCue;
 
-    void Awake()
-    {
-        DrawLetterPuzzelScreen.SetActive(false);
-    }
+        [FormerlySerializedAs("DrawLetterPuzzelScreen")] [SerializeField] private GameObject drawLetterPuzzelScreen;
+        [FormerlySerializedAs("Game2DUI")] [SerializeField] private GameObject game2Dui;
 
-    public void ShowDrawLetterPuzzle()
-    {
-        DrawLetterPuzzelScreen.SetActive(true);
-        Game2DUI.SetActive(false);
-    }
-    public void HideDrawLetterPuzzle()
-    {
-        DrawLetterPuzzelScreen.SetActive(false);
-        Game2DUI.SetActive(true);
-    }
-    public void DeactivateInteractivity()
-    {
-        Trigger.SetActive(false);
-        VisualCue.SetActive(false);
+        private void Awake()
+        {
+            drawLetterPuzzelScreen.SetActive(false);
+        }
+
+        public void ShowDrawLetterPuzzle()
+        {
+            drawLetterPuzzelScreen.SetActive(true);
+            game2Dui.SetActive(false);
+        }
+
+        public void HideDrawLetterPuzzle()
+        {
+            drawLetterPuzzelScreen.SetActive(false);
+            game2Dui.SetActive(true);
+        }
+
+        public void DeactivateInteractivity()
+        {
+            trigger.SetActive(false);
+            visualCue.SetActive(false);
+        }
     }
 }

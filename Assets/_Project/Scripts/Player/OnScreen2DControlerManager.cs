@@ -2,30 +2,30 @@ using _Project.Scripts.Core.Managers;
 using TheForgottenLetters;
 using UnityEngine;
 
-public class OnScreen2DControlerManager : MonoBehaviour
+namespace _Project.Scripts.Player
 {
-    [SerializeField] private GameObject skillButton;
-    private PlayerAbilityStats playerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class OnScreen2DControlerManager : MonoBehaviour
     {
-        RefreshOnScreen2DControler();
-    }
+        [SerializeField] private GameObject skillButton;
+        private PlayerAbilityStats PlayerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
 
-    private void OnEnable() {
-        RefreshOnScreen2DControler();
-    }
-
-    public void RefreshOnScreen2DControler()
-    {
-        if(playerAbilityStats.playerSkills.UnlockedSkills.Count > 0)
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        private void Start()
         {
-            skillButton.SetActive(true);
+            RefreshOnScreen2DControler();
         }
-        else
+
+        private void OnEnable()
         {
-            skillButton.SetActive(false);
+            RefreshOnScreen2DControler();
+        }
+
+        public void RefreshOnScreen2DControler()
+        {
+            if (PlayerAbilityStats.playerSkills.UnlockedSkills.Count > 0)
+                skillButton.SetActive(true);
+            else
+                skillButton.SetActive(false);
         }
     }
 }

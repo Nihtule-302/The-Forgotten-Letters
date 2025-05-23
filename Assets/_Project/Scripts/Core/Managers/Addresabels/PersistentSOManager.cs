@@ -11,18 +11,15 @@ namespace _Project.Scripts.Core.Managers
 {
     public class PersistentSOManager : MonoBehaviour
     {
-        public static PersistentSOManager Instance { get; private set; }
-        public event Action OnAllSOsLoaded; // Completion event
-
-    
-
         [Tooltip("Assign persistent ScriptableObjects here")]
-        public List<SOReference> persistentSOList = new List<SOReference>();
+        public List<SOReference> persistentSOList = new();
 
-        private ConcurrentDictionary<Type, ScriptableObject> loadedSOs = new ConcurrentDictionary<Type, ScriptableObject>();
-        private List<AsyncOperationHandle> activeHandles = new List<AsyncOperationHandle>();
-        private int totalLoads;
+        private readonly List<AsyncOperationHandle> activeHandles = new();
+
+        private readonly ConcurrentDictionary<Type, ScriptableObject> loadedSOs = new();
         private int completedLoads;
+        private int totalLoads;
+        public static PersistentSOManager Instance { get; private set; }
 
         private void Awake()
         {
@@ -37,6 +34,18 @@ namespace _Project.Scripts.Core.Managers
                 Destroy(gameObject);
             }
         }
+
+        private void OnDestroy()
+        {
+            foreach (var handle in activeHandles)
+                if (handle.IsValid())
+                    Addressables.Release(handle);
+
+            loadedSOs.Clear();
+            activeHandles.Clear();
+        }
+
+        public event Action OnAllSOsLoaded; // Completion event
 
         private void ValidateAndLoad()
         {
@@ -66,14 +75,10 @@ namespace _Project.Scripts.Core.Managers
                         var soType = loadedSO.GetType();
 
                         if (loadedSOs.TryAdd(soType, loadedSO)) // ✅ Thread-safe add
-                        {
                             Debug.Log($"Successfully loaded: {soType.Name}");
-                        }
                         else
-                        {
                             Debug.LogError($"Duplicate type detected: {soType.Name}. " +
                                            "Only one SO per type allowed.");
-                        }
                     }
                     else
                     {
@@ -81,10 +86,7 @@ namespace _Project.Scripts.Core.Managers
                     }
 
                     // ✅ Thread-safe counter update
-                    if (Interlocked.Increment(ref completedLoads) == totalLoads)
-                    {
-                        OnAllSOsLoaded?.Invoke();
-                    }
+                    if (Interlocked.Increment(ref completedLoads) == totalLoads) OnAllSOsLoaded?.Invoke();
                 };
             }
         }
@@ -97,10 +99,7 @@ namespace _Project.Scripts.Core.Managers
                 return null;
             }
 
-            if (Instance.loadedSOs.TryGetValue(typeof(T), out ScriptableObject so))
-            {
-                return so as T;
-            }
+            if (Instance.loadedSOs.TryGetValue(typeof(T), out var so)) return so as T;
 
             Debug.LogWarning($"SO of type '{typeof(T).Name}' not found. " +
                              "Did you forget to add it to PersistentSOManager?");
@@ -120,23 +119,9 @@ namespace _Project.Scripts.Core.Managers
                 .Select(g => g.First())
                 .ToList();
         }
-
-        private void OnDestroy()
-        {
-            foreach (var handle in activeHandles)
-            {
-                if (handle.IsValid())
-                {
-                    Addressables.Release(handle);
-                }
-            }
-
-            loadedSOs.Clear();
-            activeHandles.Clear();
-        }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class SOReference
     {
         public AssetReferenceT<ScriptableObject> reference;

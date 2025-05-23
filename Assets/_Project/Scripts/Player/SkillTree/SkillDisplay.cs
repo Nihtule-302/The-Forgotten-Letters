@@ -1,79 +1,71 @@
-using System;
-using _Project.Scripts.Core.Managers;
-using TheForgottenLetters;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillDisplay : MonoBehaviour
+namespace _Project.Scripts.Player.SkillTree
 {
-    public Skill skill;
-    public Image backgroundImage;
-
-    public Animator skillAnimator;
-
-    public Color lockedColor;
-    public Color unlockableColor;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class SkillDisplay : MonoBehaviour
     {
-        EnableSkill();
-    }
+        public Skill skill;
+        public Image backgroundImage;
 
-    void OnEnable()
-    {
-        EnableSkill();
-    }
+        public Animator skillAnimator;
 
-    public void EnableSkill()
-    {
-        if (skill.IsSkillUnlocked())
+        public Color lockedColor;
+        public Color unlockableColor;
+
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        private void Start()
         {
-            SkillActivated();
+            EnableSkill();
         }
-        else if(!skill.CanUnlockSkill())
+
+        private void OnEnable()
         {
-            SkillLocked();
+            EnableSkill();
         }
-        else
+
+        public void EnableSkill()
         {
-            SkillUnlockable();
+            if (skill.IsSkillUnlocked())
+                SkillActivated();
+            else if (!skill.CanUnlockSkill())
+                SkillLocked();
+            else
+                SkillUnlockable();
         }
-    }
 
-    private void SkillLocked()
-    {
-        backgroundImage.color = lockedColor;
-        this.gameObject.GetComponent<Button>().interactable = false;
-        skillAnimator.enabled = false;
-    }
-
-    private void SkillUnlockable()
-    {
-        backgroundImage.color = unlockableColor;
-        this.gameObject.GetComponent<Button>().interactable = true;
-        skillAnimator.enabled = false;
-    }
-
-    private void SkillActivated()
-    {
-        backgroundImage.color = unlockableColor;
-        this.gameObject.GetComponent<Button>().interactable = false;
-        skillAnimator.enabled = true;
-    }
-
-    public void UnlockSkill()
-    {
-        if (skill.UnlockSkill())
+        private void SkillLocked()
         {
-            SkillActivated();
-            Debug.Log("Skill unlocked: " + skill.name);
+            backgroundImage.color = lockedColor;
+            gameObject.GetComponent<Button>().interactable = false;
+            skillAnimator.enabled = false;
         }
-        else
+
+        private void SkillUnlockable()
         {
-            Debug.Log("Skill not unlocked: " + skill.name);
+            backgroundImage.color = unlockableColor;
+            gameObject.GetComponent<Button>().interactable = true;
+            skillAnimator.enabled = false;
+        }
+
+        private void SkillActivated()
+        {
+            backgroundImage.color = unlockableColor;
+            gameObject.GetComponent<Button>().interactable = false;
+            skillAnimator.enabled = true;
+        }
+
+        public void UnlockSkill()
+        {
+            if (skill.UnlockSkill())
+            {
+                SkillActivated();
+                Debug.Log("Skill unlocked: " + skill.name);
+            }
+            else
+            {
+                Debug.Log("Skill not unlocked: " + skill.name);
+            }
         }
     }
-    
 }

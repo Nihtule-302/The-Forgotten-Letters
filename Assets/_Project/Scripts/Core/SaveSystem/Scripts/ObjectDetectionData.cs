@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
 using Cysharp.Threading.Tasks;
@@ -9,7 +10,7 @@ public class ObjectDetectionData : ScriptableObject
 {
     public int correctScore;
     public int incorrectScore;
-    public List<ObjectDetectionRound> rounds = new List<ObjectDetectionRound>();
+    public List<ObjectDetectionRound> rounds = new();
 
     [ContextMenu("Reset Data")]
     public void ResetData()
@@ -48,15 +49,6 @@ public class ObjectDetectionData : ScriptableObject
 [FirestoreData]
 public class ObjectDetectionDataSerializable
 {
-    [FirestoreProperty]
-    public int correctScore { get; set; }
-
-    [FirestoreProperty]
-    public int incorrectScore { get; set; }
-
-    [FirestoreProperty]
-    public List<ObjectDetectionRound> rounds { get; set; }
-
     // ✅ Default constructor required for Firestore
     public ObjectDetectionDataSerializable()
     {
@@ -72,36 +64,37 @@ public class ObjectDetectionDataSerializable
         incorrectScore = data.incorrectScore;
         rounds = new List<ObjectDetectionRound>(data.rounds);
     }
+
+    [FirestoreProperty] public int correctScore { get; set; }
+
+    [FirestoreProperty] public int incorrectScore { get; set; }
+
+    [FirestoreProperty] public List<ObjectDetectionRound> rounds { get; set; }
 }
 
-[System.Serializable, FirestoreData]
+[Serializable]
+[FirestoreData]
 public class ObjectDetectionRound
 {
+    public string TargetLetter;
+
+    public bool IsCorrect;
+
+    // public string Duration;
+    public string TimestampCairoTime;
+
     [FirestoreProperty]
     public string targetLetter
     {
-        get
-        {
-            return TargetLetter;
-        }
-        set
-        {
-            TargetLetter = value;
-        }
-
+        get => TargetLetter;
+        set => TargetLetter = value;
     }
 
     [FirestoreProperty]
     public bool isCorrect
     {
-        get
-        {
-            return IsCorrect;
-        }
-        set
-        {
-            IsCorrect = value;
-        }
+        get => IsCorrect;
+        set => IsCorrect = value;
     }
 
     // [FirestoreProperty]
@@ -120,18 +113,7 @@ public class ObjectDetectionRound
     [FirestoreProperty]
     public string timestampCairoTime
     {
-        get
-        {
-            return TimestampCairoTime;
-        }
-        set
-        {
-            TimestampCairoTime = value;
-        }
+        get => TimestampCairoTime;
+        set => TimestampCairoTime = value;
     }
-
-    public string TargetLetter;
-    public bool IsCorrect;
-    // public string Duration;
-    public string TimestampCairoTime;
 }

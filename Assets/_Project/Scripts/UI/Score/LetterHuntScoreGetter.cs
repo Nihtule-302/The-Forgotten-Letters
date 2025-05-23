@@ -10,21 +10,22 @@ namespace _Project.Scripts.UI.Score
         [SerializeField] private TextMeshProUGUI correctTmp;
         [SerializeField] private TextMeshProUGUI incorrectTmp;
         private LetterHuntData letterHuntData;
-        void Start()
+
+        private void Start()
         {
             letterHuntData = PersistentSOManager.GetSO<LetterHuntData>();
             FirebaseManager.Instance.OnLetterHuntDataUpdated += SetScore;
             SetScore();
         }
 
-        void Update()
+        private void Update()
         {
             SetScore();
         }
 
         private void SetScore()
         {
-            if(letterHuntData == null) return;
+            if (letterHuntData == null) return;
 
             SetCorrectScore();
             SetIncorrectScore();

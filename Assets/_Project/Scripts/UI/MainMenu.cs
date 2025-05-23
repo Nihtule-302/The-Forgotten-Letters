@@ -1,31 +1,28 @@
-
 using _Project.Scripts.Core.Managers;
-using _Project.Scripts.Core.Scriptable_Events;
-using _Project.Scripts.Core.Utilities;
 using TheForgottenLetters;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.UI
 {
     public class MainMenu : MonoBehaviour
     {
+        [Header("Menu Prefabs")] [SerializeField]
+        private GameObject mainMenu;
 
-        [Header("Menu Prefabs")]
-
-        [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject scenesMenu;
         [SerializeField] private GameObject settingsMenu;
 
-        [Header("Buttons")]
-        [SerializeField] private GameObject StartGameButton;
+        [Header("Buttons")] [SerializeField] private GameObject StartGameButton;
+
         [SerializeField] private GameObject LoginOrSignButton;
         [SerializeField] private GameObject SignOutButton;
-        
 
-        [Header("Scenes To Load")]
-        [SerializeField] private AssetReference bahrElSafa;
+
+        [Header("Scenes To Load")] [SerializeField]
+        private AssetReference bahrElSafa;
+
         [SerializeField] private AssetReference moon;
 
 
@@ -49,7 +46,7 @@ namespace _Project.Scripts.UI
         public void ExitGame()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            EditorApplication.isPlaying = false;
 #else
             Application.Quit();
 #endif
@@ -70,7 +67,7 @@ namespace _Project.Scripts.UI
         }
 
         #endregion
-        
+
         #region SettingsMenu Methods
 
         public void GameSettings()
@@ -80,7 +77,7 @@ namespace _Project.Scripts.UI
         public void AudioSettings()
         {
         }
-        
+
         public void VideoSettings()
         {
         }
@@ -88,7 +85,7 @@ namespace _Project.Scripts.UI
         #endregion
 
         #region Helper Methods
-        
+
         public void ReturnToMainMenu()
         {
             ShowMainMenu();
@@ -103,11 +100,12 @@ namespace _Project.Scripts.UI
         private void ShowMenu(GameObject menuToShow)
         {
             //if (menuToShow == settingsMenu) return;
-            
+
             mainMenu.SetActive(menuToShow == mainMenu);
             scenesMenu.SetActive(menuToShow == scenesMenu);
             settingsMenu.SetActive(menuToShow == settingsMenu);
         }
+
         private void ShowAuthButtons()
         {
             if (Auth.Instance.IsLoggedIn)
@@ -123,6 +121,7 @@ namespace _Project.Scripts.UI
                 SignOutButton.SetActive(false);
             }
         }
+
         #endregion
     }
 }

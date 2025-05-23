@@ -11,13 +11,16 @@ namespace _Project.Scripts.UI.Buttons.Letter_Selector
         [SerializeField] private LetterData targetLetter;
         [SerializeField] private DissolveControl dissolveControl;
 
-       
-        [SerializeField] private AssetReference onLetterSelectedRef; 
-        private LetterDataEvent onLetterSelected => EventLoader.Instance.GetEvent<LetterDataEvent>(onLetterSelectedRef); 
+
+        [SerializeField] private AssetReference onLetterSelectedRef;
 
         [SerializeField] private float holdTime = 0.2f;
+        private LetterDataEvent onLetterSelected => EventLoader.Instance.GetEvent<LetterDataEvent>(onLetterSelectedRef);
 
-        void Start() => SetUpSelectorButton();
+        private void Start()
+        {
+            SetUpSelectorButton();
+        }
 
         public void SetUpSelectorButton()
         {
@@ -27,7 +30,7 @@ namespace _Project.Scripts.UI.Buttons.Letter_Selector
 
         private void InitializeComponents()
         {
-            if(clickHandler == null)
+            if (clickHandler == null)
                 clickHandler = GetComponent<ButtonTouchHandler>() ?? gameObject.AddComponent<ButtonTouchHandler>();
         }
 
@@ -50,7 +53,7 @@ namespace _Project.Scripts.UI.Buttons.Letter_Selector
 
         private void HandleHoldActionComplete()
         {
-            onLetterSelected.Raise(targetLetter);     
+            onLetterSelected.Raise(targetLetter);
         }
     }
 }

@@ -1,103 +1,110 @@
-using _Project.Scripts.UI.Buttons;
+using System;
 using UnityEngine;
 
-public class InteractionTrigger : MonoBehaviour
+namespace _Project.Scripts.Gameplay.Interaction
 {
-    public enum VisualCueMode { YAxisOnly, XAxisOnly, CustomDirection }
-
-    [Header("Visual Cue")]
-    [SerializeField] private GameObject visualCue;
-    [SerializeField] private VisualCueMode animationMode = VisualCueMode.YAxisOnly;
-
-    [SerializeField] private float visualCueYPosition = 0.1f;     // Used in Y-axis mode
-    [SerializeField] private float visualCueXPosition = 0.1f;     // Used in X-axis mode
-    [SerializeField] private Vector3 visualCueOffset = new Vector3(0.1f, 0.1f, 0f); // Used in custom mode
-    [SerializeField] private float visualCueMoveDuration = .7f;
-
-    [SerializeField] private IInteractable interactable;
-    [SerializeField] private GameObject interactionButton;
-
-    private Vector3 initialWorldPosition;
-    private bool isPlayerInRange = false;
-
-    void Awake()
+    public class InteractionTrigger : MonoBehaviour
     {
-        isPlayerInRange = false;
-        visualCue.SetActive(false);
-        interactionButton.SetActive(false);
+        [Header("Visual Cue")] [SerializeField]
+        private GameObject visualCue;
 
-        initialWorldPosition = visualCue.transform.position;
+        [SerializeField] private VisualCueMode animationMode = VisualCueMode.YAxisOnly;
 
-        StartVisualCueAnimation();
-    }
+        [SerializeField] private float visualCueYPosition = 0.1f; // Used in Y-axis mode
+        [SerializeField] private float visualCueXPosition = 0.1f; // Used in X-axis mode
+        [SerializeField] private Vector3 visualCueOffset = new(0.1f, 0.1f, 0f); // Used in custom mode
+        [SerializeField] private float visualCueMoveDuration = .7f;
 
-    private void StartVisualCueAnimation()
-    {
-        LeanTween.cancel(visualCue);
+        [SerializeField] private IInteractable interactable;
+        [SerializeField] private GameObject interactionButton;
 
-        switch (animationMode)
+        private Vector3 _initialWorldPosition;
+        private bool _isPlayerInRange;
+
+        private void Awake()
         {
-            case VisualCueMode.YAxisOnly:
-                AnimateYAxis();
-                break;
-            case VisualCueMode.XAxisOnly:
-                AnimateXAxis();
-                break;
-            case VisualCueMode.CustomDirection:
-                AnimateCustomDirection();
-                break;
+            _isPlayerInRange = false;
+            visualCue.SetActive(false);
+            interactionButton.SetActive(false);
+
+            _initialWorldPosition = visualCue.transform.position;
+
+            StartVisualCueAnimation();
         }
-    }
 
-    private void AnimateYAxis()
-    {
-        LeanTween.moveY(visualCue, visualCue.transform.position.y + visualCueYPosition, visualCueMoveDuration)
-                 .setLoopPingPong()
-                 .setEaseInOutSine();
-    }
-
-    private void AnimateXAxis()
-    {
-        LeanTween.moveX(visualCue, visualCue.transform.position.x + visualCueXPosition, visualCueMoveDuration)
-                 .setLoopPingPong()
-                 .setEaseInOutSine();
-    }
-
-    private void AnimateCustomDirection()
-    {
-        LeanTween.move(visualCue, visualCue.transform.position + visualCueOffset, visualCueMoveDuration)
-                 .setLoopPingPong()
-                 .setEaseInOutSine();
-    }
-
-    [ContextMenu("Reset Visual Cue Animation")]
-    public void ResetVisualCueAnimation()
-    {
-        LeanTween.cancel(visualCue);
-        visualCue.transform.position = initialWorldPosition;
-        StartVisualCueAnimation();
-    }
-
-    void Update()
-    {
-        visualCue.SetActive(isPlayerInRange);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        private void Update()
         {
-            isPlayerInRange = true;
+            visualCue.SetActive(_isPlayerInRange);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player")) return;
+            _isPlayerInRange = true;
             interactionButton.SetActive(true);
         }
-    }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerExit2D(Collider2D other)
         {
-            isPlayerInRange = false;
+            if (!other.CompareTag("Player")) return;
+            _isPlayerInRange = false;
             interactionButton.SetActive(false);
+        }
+
+        private void StartVisualCueAnimation()
+        {
+            LeanTween.cancel(visualCue);
+
+            switch (animationMode)
+            {
+                case VisualCueMode.YAxisOnly:
+                    AnimateYAxis();
+                    break;
+                case VisualCueMode.XAxisOnly:
+                    AnimateXAxis();
+                    break;
+                case VisualCueMode.CustomDirection:
+                    AnimateCustomDirection();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void AnimateYAxis()
+        {
+            LeanTween.moveY(visualCue, visualCue.transform.position.y + visualCueYPosition, visualCueMoveDuration)
+                .setLoopPingPong()
+                .setEaseInOutSine();
+        }
+
+        private void AnimateXAxis()
+        {
+            LeanTween.moveX(visualCue, visualCue.transform.position.x + visualCueXPosition, visualCueMoveDuration)
+                .setLoopPingPong()
+                .setEaseInOutSine();
+        }
+
+        private void AnimateCustomDirection()
+        {
+            LeanTween.move(visualCue, visualCue.transform.position + visualCueOffset, visualCueMoveDuration)
+                .setLoopPingPong()
+                .setEaseInOutSine();
+        }
+
+        [ContextMenu("Reset Visual Cue Animation")]
+        public void ResetVisualCueAnimation()
+        {
+            LeanTween.cancel(visualCue);
+            visualCue.transform.position = _initialWorldPosition;
+            StartVisualCueAnimation();
+        }
+
+        private enum VisualCueMode
+        {
+            YAxisOnly,
+            XAxisOnly,
+            CustomDirection
         }
     }
 }

@@ -863,7 +863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5444207957196161043, guid: cf8d911c1b3cd384dbcd6a1ff2f8f085, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6591710458143556169, guid: cf8d911c1b3cd384dbcd6a1ff2f8f085, type: 3}
       propertyPath: m_Maskable
@@ -1414,11 +1414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4226f722c7dc1a341abb5b83b6a44778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectLetterMenu: {fileID: 1260465497}
-  LetterDrawingScreen: {fileID: 693709408}
-  FingerDrawing: {fileID: 1568022900}
-  BackgroundScreen: {fileID: 1684783112}
-  RoundStarsScreen: {fileID: 697575550}
+  selectLetterMenu: {fileID: 1260465497}
+  letterDrawingScreen: {fileID: 693709408}
+  fingerDrawing: {fileID: 1568022900}
+  backgroundScreen: {fileID: 1684783112}
+  roundStarsScreen: {fileID: 697575550}
   correctScreen: {fileID: 1662151357}
   wrongScreen: {fileID: 1074330092}
   answerFeedbackScreenDelay: 0.2

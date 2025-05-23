@@ -2,32 +2,37 @@ using System.Collections.Generic;
 using _Project.Scripts.Core.DataTypes;
 using UnityEngine;
 
-public class LetterSelectionStrategies{}
-
-public class RandomLetterSelectionStrategy : ILetterSelectionStrategy
+namespace _Project.Scripts.Gameplay.Mini_Games
 {
-    public LetterData SelectLetter(List<LetterData> availableLetters)
+    public class LetterSelectionStrategies
     {
-        return availableLetters[Random.Range(0, availableLetters.Count)];
-    }
-}
-
-public class FixedLetterSelectionStrategy : ILetterSelectionStrategy
-{
-    private LetterData fixedLetter;
-
-    public FixedLetterSelectionStrategy(LetterData providedLetter)
-    {
-        fixedLetter = providedLetter;
     }
 
-    public LetterData SelectLetter(List<LetterData> availableLetters)
+    public class RandomLetterSelectionStrategy : ILetterSelectionStrategy
     {
-        return fixedLetter;
+        public LetterData SelectLetter(List<LetterData> availableLetters)
+        {
+            return availableLetters[Random.Range(0, availableLetters.Count)];
+        }
     }
 
-    public void SetLetter(LetterData newLetter)
+    public class FixedLetterSelectionStrategy : ILetterSelectionStrategy
     {
-        fixedLetter = newLetter;
+        private LetterData _fixedLetter;
+
+        public FixedLetterSelectionStrategy(LetterData providedLetter)
+        {
+            _fixedLetter = providedLetter;
+        }
+
+        public LetterData SelectLetter(List<LetterData> availableLetters)
+        {
+            return _fixedLetter;
+        }
+
+        public void SetLetter(LetterData newLetter)
+        {
+            _fixedLetter = newLetter;
+        }
     }
 }

@@ -11,14 +11,16 @@ namespace TheForgottenLetters
     [CreateAssetMenu(fileName = "PlayerAbilityStats", menuName = "Player/Player Ability Stats")]
     public class PlayerAbilityStats : ScriptableObject
     {
-        public int energyPoints = 0;
+        public int energyPoints;
         [SerializeField] private PlayerHealth playerHealth;
-        public PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
 
         public string lastTimeEnergyIncreasedCairoTime;
 
         public AssetReference playerAbilityStatsChangedEventRef;
-        public GameEvent playerAbilityStatsChangedEvent => EventLoader.Instance.GetEvent<GameEvent>(playerAbilityStatsChangedEventRef);
+        public PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
+
+        public GameEvent playerAbilityStatsChangedEvent =>
+            EventLoader.Instance.GetEvent<GameEvent>(playerAbilityStatsChangedEventRef);
 
         [ContextMenu("Reset Data")]
         public void ResetData()
@@ -74,15 +76,6 @@ namespace TheForgottenLetters
     [FirestoreData]
     public class PlayerAbilityStatsDataSerializable
     {
-        [FirestoreProperty]
-        public int energyPoints { get; set; }
-
-        [FirestoreProperty]
-        public string lastTimeEnergyIncreasedCairoTime { get; set; }
-
-        [FirestoreProperty]
-        public List<string> unlockedSkillNames { get; set; } = new List<string>();
-
         // ✅ Default constructor required for Firestore
         public PlayerAbilityStatsDataSerializable()
         {
@@ -98,9 +91,11 @@ namespace TheForgottenLetters
             unlockedSkillNames = data.playerSkills.UnlockedSkills_names;
             lastTimeEnergyIncreasedCairoTime = data.lastTimeEnergyIncreasedCairoTime;
         }
-        
+
+        [FirestoreProperty] public int energyPoints { get; set; }
+
+        [FirestoreProperty] public string lastTimeEnergyIncreasedCairoTime { get; set; }
+
+        [FirestoreProperty] public List<string> unlockedSkillNames { get; set; } = new();
     }
-
 }
-
-

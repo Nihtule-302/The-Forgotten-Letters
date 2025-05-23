@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace MoveBackground_asset_test {
+namespace TheForgottenLetters._Project.Art.Art_Assets._2D.Free_Pixel_Art_Forest.Demo {
 public class MoveBackground : MonoBehaviour {
 
 	public float speed;

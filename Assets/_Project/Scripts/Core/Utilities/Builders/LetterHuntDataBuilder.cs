@@ -6,10 +6,6 @@ namespace _Project.Scripts.Core.Utilities.Builders
 {
     public class LetterHuntDataBuilder
     {
-        public int CorrectScore { get; private set; }
-        public int IncorrectScore { get; private set; }
-        public List<LetterHuntRound> Rounds { get; private set; }
-
         public LetterHuntDataBuilder()
         {
             CorrectScore = 0;
@@ -23,6 +19,10 @@ namespace _Project.Scripts.Core.Utilities.Builders
             IncorrectScore = existingData.incorrectScore;
             Rounds = new List<LetterHuntRound>(existingData.rounds);
         }
+
+        public int CorrectScore { get; private set; }
+        public int IncorrectScore { get; private set; }
+        public List<LetterHuntRound> Rounds { get; }
 
         public LetterHuntDataBuilder SetCorrectScore(int score)
         {
@@ -48,12 +48,11 @@ namespace _Project.Scripts.Core.Utilities.Builders
             return this;
         }
 
-    
 
         public LetterHuntDataBuilder AddRound(string targetLetter, string chosenWord, bool isCorrect)
         {
             TimeZoneInfo cairoTimeZone;
-    
+
             try
             {
                 cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Africa/Cairo");
@@ -62,14 +61,14 @@ namespace _Project.Scripts.Core.Utilities.Builders
             {
                 cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
             }
-        
-            DateTime cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
+
+            var cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
             Rounds.Add(new LetterHuntRound
             {
                 targetLetter = targetLetter,
                 chosenWord = chosenWord,
                 isCorrect = isCorrect,
-                timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt") 
+                timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt")
             });
             return this;
         }

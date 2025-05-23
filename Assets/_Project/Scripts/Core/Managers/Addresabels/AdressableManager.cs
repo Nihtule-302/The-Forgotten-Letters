@@ -5,28 +5,24 @@ using _Project.Scripts.Core.Utilities.Scene_Management;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.SceneManagement;
 
 public class AdressableManager : MonoBehaviour
 {
-    public static AdressableManager Instance { get; private set; }
+    [Header("Loading Screen")] [SerializeField]
+    private GameObject loadingScreen;
 
-    public event Action OnAddressablesReady;
+    [Header("Scene to Load")] [SerializeField]
+    private AssetReference sceneToLoad;
 
-    [Header("Loading Screen")]
-    [SerializeField] private GameObject loadingScreen;
+    [Header("Are Assets Loaded")] public bool areEventsReady;
 
-    [Header("Scene to Load")]
-    [SerializeField] private AssetReference sceneToLoad;
-
-    [Header("Are Assets Loaded")]
-    public bool areEventsReady = false;
     // public bool areModelsReady = false;
-    public bool areLogicalSOsReady = false;
+    public bool areLogicalSOsReady;
+    private bool finished;
 
-    SceneLoader sceneLoader;
-    private bool finished = false;
+    private SceneLoader sceneLoader;
     private bool transitioning;
+    public static AdressableManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -35,7 +31,6 @@ public class AdressableManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             sceneLoader = new SceneLoader();
-
         }
         else
         {
@@ -43,7 +38,7 @@ public class AdressableManager : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         EventLoader.Instance.OnAllEventsLoaded += OnEventsReady;
         // SentisModelLoader.Instance.OnAllModelsLoaded += OnModelsReady;
@@ -51,16 +46,11 @@ public class AdressableManager : MonoBehaviour
         loadingScreen.SetActive(true);
         transitioning = false;
     }
-    void Update()
+
+    private void Update()
     {
-        if(finished)
-        {
-            return;
-        }
-        if (transitioning)
-        {
-            return;
-        }
+        if (finished) return;
+        if (transitioning) return;
         // Check if all addressables are loaded
         if (areEventsReady && areLogicalSOsReady)
         {
@@ -75,6 +65,8 @@ public class AdressableManager : MonoBehaviour
         // SentisModelLoader.Instance.OnAllModelsLoaded -= OnModelsReady;
         PersistentSOManager.Instance.OnAllSOsLoaded -= OnLogicalSOsReady;
     }
+
+    public event Action OnAddressablesReady;
 
     private void OnEventsReady()
     {
@@ -94,7 +86,7 @@ public class AdressableManager : MonoBehaviour
 
     private void CheckAllAddressablesReady()
     {
-        Debug.Log("All addressables are ready. Loading scene: " + sceneToLoad.RuntimeKey.ToString());
+        Debug.Log("All addressables are ready. Loading scene: " + sceneToLoad.RuntimeKey);
 
         StartCoroutine(LoadSceneAfterDelay());
         OnAddressablesReady?.Invoke();

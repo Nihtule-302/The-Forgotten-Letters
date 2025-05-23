@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Core.DataTypes;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.UI.Buttons.ChoiceButton
 {
@@ -49,10 +50,10 @@ namespace _Project.Scripts.UI.Buttons.ChoiceButton
 
         private void InitializeComponents()
         {
-            if(buttonInfo == null)
+            if (buttonInfo == null)
                 buttonInfo = GetComponent<ChoiceButtonInfoAccess>();
-            
-            if(clickHandler == null)
+
+            if (clickHandler == null)
                 clickHandler = GetComponent<ButtonTouchHandler>() ?? gameObject.AddComponent<ButtonTouchHandler>();
         }
 
@@ -66,9 +67,7 @@ namespace _Project.Scripts.UI.Buttons.ChoiceButton
         private void SetButtonImage()
         {
             if (word.wordImage != null && word.wordImage.Count > 0 && buttonInfo.Image != null)
-            {
-                buttonInfo.Image.sprite = word.wordImage[UnityEngine.Random.Range(0, word.wordImage.Count)];
-            }
+                buttonInfo.Image.sprite = word.wordImage[Random.Range(0, word.wordImage.Count)];
         }
 
         private void ConfigureClickHandler(float holdDuration)
@@ -82,11 +81,9 @@ namespace _Project.Scripts.UI.Buttons.ChoiceButton
         private void PlayAudio()
         {
             Debug.Log($"{word.arabicWord}");
-            if (word.wordAudio != null)
-            {
-                AudioSource.PlayClipAtPoint(word.wordAudio, Camera.main.transform.position);
-            }
+            if (word.wordAudio != null) AudioSource.PlayClipAtPoint(word.wordAudio, Camera.main.transform.position);
         }
+
         private void HandleHoldActionComplete()
         {
             onHoldActionComplete?.Invoke();

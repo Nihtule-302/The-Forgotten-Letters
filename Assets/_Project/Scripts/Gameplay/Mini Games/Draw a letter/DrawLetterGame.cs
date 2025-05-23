@@ -7,210 +7,212 @@ using TheForgottenLetters;
 using TMPro;
 using UnityEngine;
 
-/// <summary>
-/// 🕹️ Gameplay Flow:
-/// 1) Player selects a target letter.
-/// 2) Game runs progressive drawing rounds with different fonts.
-///    - Rounds 1–3: Show a guide (target letter in a font).
-///    - Round 4: Guide is hidden (memory challenge).
-///    - return to select letter menu.
-/// ✅ Scoring:
-///    - +1 Correct if match
-///    - +1 Incorrect if mismatch
-/// </summary>
-public class DrawLetterGame : MonoBehaviour
+namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
 {
-    [SerializeField] private LetterDrawingUIManager uiManager;
-    // ------------------ UI References ------------------
-    [Header("UI Components")]
-    [SerializeField] private TextMeshProUGUI targetLetterGuideText;
-    [SerializeField] private DrawLetterRoundUI drawLetterRoundUI;
-
-
-    // ------------------ Font Management ------------------
-    [Header("Fonts")]
-    [SerializeField] private List<TMP_FontAsset> fontVariants = new();
-    [SerializeField] private List<TMP_FontAsset> shuffledFontVariants = new();
-
-    // ------------------ Game Settings ------------------
-    [Header("Game Settings")]
-    [SerializeField] private int guideRoundsCount = 3;
-    public int maxRounds => guideRoundsCount + 1;
-
-    // ------------------ Letter Data ------------------
-    [Header("Letter & Word Data")]
-    [SerializeField] private List<LetterData> availableLetters;
-    private LetterData currentTargetLetterData;
-    [SerializeField] private string currentTargetLetter;
-
-    // ------------------ Game State ------------------
-    [SerializeField] private int currentRound = 0;
-    public int CurrentRound => currentRound;
-    private ILetterSelectionStrategy letterSelectionStrategy;
-
-    // ------------------ Unity Lifecycle ------------------
-    private void Start() => StartGame();
-
-    // ------------------ Game Flow ------------------
-    public void StartGame(LetterData letterData = null)
+    /// <summary>
+    ///     🕹️ Gameplay Flow:
+    ///     1) Player selects a target letter.
+    ///     2) Game runs progressive drawing rounds with different fonts.
+    ///     - Rounds 1–3: Show a guide (target letter in a font).
+    ///     - Round 4: Guide is hidden (memory challenge).
+    ///     - return to select letter menu.
+    ///     ✅ Scoring:
+    ///     - +1 Correct if match
+    ///     - +1 Incorrect if mismatch
+    /// </summary>
+    public class DrawLetterGame : MonoBehaviour
     {
-        InitializeGame(letterData);
-    }
+        [SerializeField] private LetterDrawingUIManager uiManager;
 
-    public void RestartGame()
-    {
-        StartGame();
-    }
+        // ------------------ UI References ------------------
+        [Header("UI Components")] [SerializeField]
+        private TextMeshProUGUI targetLetterGuideText;
 
-    private void InitializeGame(LetterData letterData = null)
-    {
-        SetLetterSelectionStrategy(letterData != null
-            ? new FixedLetterSelectionStrategy(letterData)
-            : new RandomLetterSelectionStrategy());
+        [SerializeField] private DrawLetterRoundUI drawLetterRoundUI;
 
-        ShuffleFontVariants();
-        ResetGameState();
-        SelectTargetLetter();
-    }
 
-    private void ResetGameState()
-    {
-        currentRound = 0;
-    }
+        // ------------------ Font Management ------------------
+        [Header("Fonts")] [SerializeField] private List<TMP_FontAsset> fontVariants = new();
 
-    private void SelectTargetLetter()
-    {
-        currentTargetLetterData = letterSelectionStrategy?.SelectLetter(availableLetters)
-                                    ?? GetRandomLetter();
+        [SerializeField] private List<TMP_FontAsset> shuffledFontVariants = new();
 
-        currentTargetLetter = currentTargetLetterData.letter;
-        UpdateGuideVisibility();
+        // ------------------ Game Settings ------------------
+        [Header("Game Settings")] [SerializeField]
+        private int guideRoundsCount = 3;
 
-        // Fix target letter so it doesn't change each round
-        SetLetterSelectionStrategy(new FixedLetterSelectionStrategy(currentTargetLetterData));
-    }
+        // ------------------ Letter Data ------------------
+        [Header("Letter & Word Data")] [SerializeField]
+        private List<LetterData> availableLetters;
 
-    private LetterData GetRandomLetter()
-    {
-        return availableLetters[Random.Range(0, availableLetters.Count)];
-    }
+        [SerializeField] private string currentTargetLetter;
 
-    // ------------------ Font Handling ------------------
-    private void ShuffleFontVariants()
-    {
-        shuffledFontVariants.Clear();
-        shuffledFontVariants.AddRange(fontVariants);
-        shuffledFontVariants.Shuffle();
-    }
+        // ------------------ Game State ------------------
+        [SerializeField] private int currentRound;
+        private LetterData _currentTargetLetterData;
+        private ILetterSelectionStrategy _letterSelectionStrategy;
+        public int MaxRounds => guideRoundsCount + 1;
+        public int CurrentRound => currentRound;
 
-    // ------------------ Guide Display ------------------
-    private void UpdateGuideVisibility()
-    {
-        bool showGuide = ShouldShowGuide();
-        targetLetterGuideText.gameObject.SetActive(showGuide);
-
-        if (showGuide)
+        // ------------------ Unity Lifecycle ------------------
+        private void Start()
         {
-            UpdateGuideText();
+            StartGame();
         }
-    }
 
-    private bool ShouldShowGuide()
-    {
-        return currentRound < guideRoundsCount;
-    }
-
-    private void UpdateGuideText()
-    {
-        targetLetterGuideText.GetComponent<ArabicFixerTMPRO>().fixedText = currentTargetLetter;
-        targetLetterGuideText.font = shuffledFontVariants[currentRound];
-    }
-
-    // ------------------ Answer Checking ------------------
-    public void CheckAnswer(string drawnLetter)
-    {
-        if (IsAnswerCorrect(drawnLetter))
+        // ------------------ Game Flow ------------------
+        public void StartGame(LetterData letterData = null)
         {
-            HandleCorrectChoiceAsync().Forget();
+            InitializeGame(letterData);
         }
-        else
+
+        public void RestartGame()
         {
-            HandleIncorrectChoiceAsync().Forget();
+            StartGame();
         }
-    }
 
-    private bool IsAnswerCorrect(string drawnLetter)
-    {
-        return ArabicNormalizer.NormalizeArabicLetter(currentTargetLetter) == drawnLetter;
-    }
-
-    private async UniTask HandleCorrectChoiceAsync()
-    {
-        Debug.Log("Correct answer");
-
-        if (IsLastRound())
+        private void InitializeGame(LetterData letterData = null)
         {
-            EndGame();
+            SetLetterSelectionStrategy(letterData != null
+                ? new FixedLetterSelectionStrategy(letterData)
+                : new RandomLetterSelectionStrategy());
+
+            ShuffleFontVariants();
+            ResetGameState();
+            SelectTargetLetter();
         }
-        else
+
+        private void ResetGameState()
         {
+            currentRound = 0;
+        }
+
+        private void SelectTargetLetter()
+        {
+            _currentTargetLetterData = _letterSelectionStrategy?.SelectLetter(availableLetters)
+                                      ?? GetRandomLetter();
+
+            currentTargetLetter = _currentTargetLetterData.letter;
+            UpdateGuideVisibility();
+
+            // Fix target letter so it doesn't change each round
+            SetLetterSelectionStrategy(new FixedLetterSelectionStrategy(_currentTargetLetterData));
+        }
+
+        private LetterData GetRandomLetter()
+        {
+            return availableLetters[Random.Range(0, availableLetters.Count)];
+        }
+
+        // ------------------ Font Handling ------------------
+        private void ShuffleFontVariants()
+        {
+            shuffledFontVariants.Clear();
+            shuffledFontVariants.AddRange(fontVariants);
+            shuffledFontVariants.Shuffle();
+        }
+
+        // ------------------ Guide Display ------------------
+        private void UpdateGuideVisibility()
+        {
+            var showGuide = ShouldShowGuide();
+            targetLetterGuideText.gameObject.SetActive(showGuide);
+
+            if (showGuide) UpdateGuideText();
+        }
+
+        private bool ShouldShowGuide()
+        {
+            return currentRound < guideRoundsCount;
+        }
+
+        private void UpdateGuideText()
+        {
+            targetLetterGuideText.GetComponent<ArabicFixerTMPRO>().fixedText = currentTargetLetter;
+            targetLetterGuideText.font = shuffledFontVariants[currentRound];
+        }
+
+        // ------------------ Answer Checking ------------------
+        public void CheckAnswer(string drawnLetter)
+        {
+            if (IsAnswerCorrect(drawnLetter))
+                HandleCorrectChoiceAsync().Forget();
+            else
+                HandleIncorrectChoiceAsync().Forget();
+        }
+
+        private bool IsAnswerCorrect(string drawnLetter)
+        {
+            return ArabicNormalizer.NormalizeArabicLetter(currentTargetLetter) == drawnLetter;
+        }
+
+        private async UniTask HandleCorrectChoiceAsync()
+        {
+            Debug.Log("Correct answer");
+
+            if (IsLastRound())
+            {
+                EndGame();
+            }
+            else
+            {
+                var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
+                dataBuilder
+                    .IncrementCorrectScore()
+                    .AddRound(currentTargetLetter, true);
+
+                PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
+                await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+
+                PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
+
+                ProceedToNextRound();
+            }
+        }
+
+        private async UniTaskVoid HandleIncorrectChoiceAsync()
+        {
+            Debug.Log("Wrong answer");
             var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
             dataBuilder
-                .IncrementCorrectScore()
-                .AddRound(currentTargetLetter, isCorrect: true);
+                .IncrementIncorrectScore()
+                .AddRound(currentTargetLetter, false);
 
             PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
+
             await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
-
-            PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
-            
-            ProceedToNextRound();
         }
-    }
 
-    private async UniTaskVoid HandleIncorrectChoiceAsync()
-    {
-        Debug.Log("Wrong answer");
-        var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
-        dataBuilder
-            .IncrementIncorrectScore()
-            .AddRound(currentTargetLetter, isCorrect: false);
+        private bool IsLastRound()
+        {
+            return currentRound >= MaxRounds - 1;
+        }
 
-        PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
-        
-        await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
-    }
+        private void ProceedToNextRound()
+        {
+            currentRound++;
+            drawLetterRoundUI.UpdateStars();
+            UpdateGuideVisibility();
+        }
 
-    private bool IsLastRound()
-    {
-        return currentRound >= maxRounds - 1;
-    }
+        private void EndGame()
+        {
+            Debug.Log("Game Over");
+            ResetGameState();
+            drawLetterRoundUI.UpdateStars();
+            uiManager.ActivateLetterSelectionScreen();
+        }
 
-    private void ProceedToNextRound()
-    {
-        currentRound++;
-        drawLetterRoundUI.UpdateStars();
-        UpdateGuideVisibility();
-    }
+        // ------------------ Strategy Pattern ------------------
+        public void SetLetterSelectionStrategy(ILetterSelectionStrategy strategy)
+        {
+            _letterSelectionStrategy = strategy;
+        }
 
-    private void EndGame()
-    {
-        Debug.Log("Game Over");
-        ResetGameState();
-        drawLetterRoundUI.UpdateStars();
-        uiManager.ActivateLetterSelectionScreen();
-    }
-
-    // ------------------ Strategy Pattern ------------------
-    public void SetLetterSelectionStrategy(ILetterSelectionStrategy strategy)
-    {
-        letterSelectionStrategy = strategy;
-    }
-
-    // ------------------ Debugging ------------------
-    [ContextMenu("Restart Game")]
-    private void DebugRestartGame()
-    {
-        RestartGame();
+        // ------------------ Debugging ------------------
+        [ContextMenu("Restart Game")]
+        private void DebugRestartGame()
+        {
+            RestartGame();
+        }
     }
 }

@@ -1,8 +1,10 @@
-using Unity.Sentis;
 using UnityEngine;
 
-public abstract class HandwrittenClassifier : MonoBehaviour
+namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
 {
-    [ContextMenu("ExecuteModel")]
-    public abstract void ExecuteModel(Texture2D tex);
+    public abstract class HandwrittenClassifier : MonoBehaviour
+    {
+        [ContextMenu("ExecuteModel")]
+        public abstract void ExecuteModel(Texture2D tex);
+    }
 }

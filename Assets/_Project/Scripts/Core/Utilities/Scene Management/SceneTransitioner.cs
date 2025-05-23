@@ -6,11 +6,11 @@ namespace _Project.Scripts.Core.Utilities.Scene_Management
 {
     public class SceneTransitioner : MonoBehaviour
     {
-        [SerializeField] AssetReference SceneToTransitionTo;
-    
+        [SerializeField] private AssetReference SceneToTransitionTo;
+
         public void TranstionToScene()
         {
-            SceneTransitionManager.Instance.TransitionScene(this.SceneToTransitionTo);
+            SceneTransitionManager.Instance.TransitionScene(SceneToTransitionTo);
         }
 
         public void TranstionToScene(AssetReference chossenScene)

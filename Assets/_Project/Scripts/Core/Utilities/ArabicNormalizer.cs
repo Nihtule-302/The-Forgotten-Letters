@@ -13,16 +13,16 @@ namespace _Project.Scripts.Core.Utilities
 
         public static string NormalizeArabicLetter(string letter)
         {
-
             var noTashkeelText = RemoveTashkeel(letter);
 
-            StringBuilder sb = new StringBuilder(noTashkeelText);
-        
-            for (int i = 0; i < sb.Length; i++)
-            {
+            var sb = new StringBuilder(noTashkeelText);
+
+            for (var i = 0; i < sb.Length; i++)
                 switch (sb[i])
                 {
-                    case 'أ': case 'إ': case 'آ':
+                    case 'أ':
+                    case 'إ':
+                    case 'آ':
                         sb[i] = 'ا'; // Convert all forms of Alif to a simple Alif
                         break;
                     case 'ة':
@@ -32,7 +32,6 @@ namespace _Project.Scripts.Core.Utilities
                         sb[i] = 'ي'; // Convert Alif Maqsura to Ya
                         break;
                 }
-            }
 
             return sb.ToString();
         }
@@ -44,8 +43,8 @@ namespace _Project.Scripts.Core.Utilities
 
         public static bool DoesWordContainsTargetLetter(string word, string targetLetter)
         {
-            string normalizedWord = NormalizeArabicWord(word);
-            string normalizedTarget = NormalizeArabicLetter(targetLetter);
+            var normalizedWord = NormalizeArabicWord(word);
+            var normalizedTarget = NormalizeArabicLetter(targetLetter);
 
             return normalizedWord.Contains(normalizedTarget);
         }

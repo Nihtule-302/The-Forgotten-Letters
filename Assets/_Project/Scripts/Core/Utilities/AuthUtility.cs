@@ -5,8 +5,8 @@ using UnityEngine.AddressableAssets;
 
 public class AuthUtility : MonoBehaviour
 {
-    [Header("Events")]
-    public AssetReference wantsToLoginOrSignUpRef;
+    [Header("Events")] public AssetReference wantsToLoginOrSignUpRef;
+
     public AssetReference wantsToLogoutRef;
 
     private GameEvent loadedWantsToLoginOrSignUp => EventLoader.Instance.GetEvent<GameEvent>(wantsToLoginOrSignUpRef);
@@ -21,6 +21,7 @@ public class AuthUtility : MonoBehaviour
     {
         loadedWantsToLoginOrSignUp.Raise();
     }
+
     public void Register()
     {
         loadedWantsToLoginOrSignUp.Raise();

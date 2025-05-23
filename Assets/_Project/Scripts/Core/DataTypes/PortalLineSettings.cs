@@ -5,16 +5,14 @@ namespace _Project.Scripts.Core.DataTypes
     [CreateAssetMenu(menuName = "The Forgotten Letters/PortalLineSettings")]
     public class PortalLineSettings : ScriptableObject
     {
-        public GameObject portalPrefab;      
-        public int portalCount = 10;         
-        public float spacingBetweenPortals = 2f;           
-        public float movementSpeed = 2f;       
-        public float spawnZPosition = 0f; 
-        public float spawnYPosition = 0f;
+        public GameObject portalPrefab;
+        public int portalCount = 10;
+        public float spacingBetweenPortals = 2f;
+        public float movementSpeed = 2f;
+        public float spawnZPosition;
+        public float spawnYPosition;
 
         public float doorRaiseTimer;
         public AnimationCurve doorRaiseSpeedCurve;
-
     }
 }
-

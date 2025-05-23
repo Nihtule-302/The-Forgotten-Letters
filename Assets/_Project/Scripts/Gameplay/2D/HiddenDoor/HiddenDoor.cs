@@ -1,7 +1,7 @@
-using System;
+using _Project.Scripts.Gameplay.Mini_Games.Puzzles;
 using UnityEngine;
 
-namespace TheForgottenLetters
+namespace _Project.Scripts.Gameplay._2D.HiddenDoor
 {
     public class HiddenDoor : IInteractable
     {
@@ -9,9 +9,9 @@ namespace TheForgottenLetters
         [SerializeField] private float unlockedPositionY;
         [SerializeField] private float moveSpeed = 2f;
         [SerializeField] private float delay = 0.5f;
-        public bool isUnlocked {get; private set; }
 
-        [SerializeField] InGameDrawLetterUIManager uiManager;
+        [SerializeField] private InGameDrawLetterUIManager uiManager;
+        public bool IsUnlocked { get; private set; }
 
         public override void Interact()
         {
@@ -22,28 +22,26 @@ namespace TheForgottenLetters
 
         public override bool IsInteractable()
         {
-            return !isUnlocked;
+            return !IsUnlocked;
         }
 
         public void UnlockDoor()
         {
-            isUnlocked = true;
-            uiManager.HideDrawLetterPuzzle(); 
+            IsUnlocked = true;
+            uiManager.HideDrawLetterPuzzle();
             uiManager.DeactivateInteractivity();
             MoveDoor();
         }
 
         private void MoveDoor()
         {
-            LeanTween.moveLocalY(gameObject,unlockedPositionY, moveSpeed)
+            LeanTween.moveLocalY(gameObject, unlockedPositionY, moveSpeed)
                 .setDelay(delay)
                 .setOnComplete(() =>
                 {
-                    isUnlocked = true; // Set the door to unlocked after moving
+                    IsUnlocked = true; // Set the door to unlocked after moving
                     Debug.Log("Door is now unlocked and moved to the unlocked position.");
                 });
         }
-
-        
     }
 }

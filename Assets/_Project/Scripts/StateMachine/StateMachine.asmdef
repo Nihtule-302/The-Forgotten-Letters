@@ -1,16 +1,18 @@
 {
-    "name": "StateMachine",
-    "rootNamespace": "",
-    "references": [
-        "GUID:3aa1a5aea683cc547a42a56c87bce650"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "StateMachine",
+  "rootNamespace": "",
+  "references": [
+    "GUID:3aa1a5aea683cc547a42a56c87bce650",
+    "GUID:3b4d8e09c665bfa47849130d8695171e",
+    "GUID:ad968d605628d06499b62cdc30f11cf8"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

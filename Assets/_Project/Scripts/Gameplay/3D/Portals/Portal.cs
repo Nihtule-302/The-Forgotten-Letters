@@ -8,13 +8,9 @@ namespace _Project.Scripts.Gameplay._3D.Portals
     {
         [SerializeField] private AssetReference sceneToTravelTo;
 
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                SceneTransitionManager.Instance.TransitionScene(sceneToTravelTo);
-            }
+            if (other.gameObject.CompareTag("Player")) SceneTransitionManager.Instance.TransitionScene(sceneToTravelTo);
         }
     }
 }
-

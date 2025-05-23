@@ -1,39 +1,28 @@
 using System.Collections.Generic;
 
-namespace _Project.Scripts.Core.StateMachine
+namespace _Project.Scripts.StateMachine
 {
     public class StateMachine
     {
-        public State state;
+        public State State;
 
         public void Set(State newState, bool forceReset = false)
         {
-            if(state != newState || forceReset)
-            {
-                state?.Exit();
-                state = newState;
-                state.Initialize(this);
-                state.Enter();
-            }
+            if (State == newState && !forceReset) return;
+            State?.Exit();
+            State = newState;
+            State.Initialize(this);
+            State.Enter();
         }
 
         public List<State> GetActiveStateBranch(List<State> list = null)
         {
-            if (list == null)
-            {
-                list = new List<State>();
-            }
+            list ??= new List<State>();
 
-            if (state == null)
-            {
-                return list;
-            }
-            else
-            {
-                list.Add(state);
-                return state.machine.GetActiveStateBranch(list);
-            }
+            if (State == null) return list;
 
+            list.Add(State);
+            return State.Machine.GetActiveStateBranch(list);
         }
     }
 }

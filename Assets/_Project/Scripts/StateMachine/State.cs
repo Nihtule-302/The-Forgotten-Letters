@@ -1,60 +1,75 @@
 using UnityEngine;
 
-namespace _Project.Scripts.Core.StateMachine
+namespace _Project.Scripts.StateMachine
 {
     public abstract class State : MonoBehaviour
     {
-        [Header("State Management")]
-        public bool isComplete { get; protected set; }
+        protected StateMachineCore Core;
+        protected StateMachine Parent;
 
-        protected float startTime;
-        public float time => Time.time - startTime;
+        protected float StartTime;
 
-        protected StateMachineCore core;
-        public StateMachine machine { get; private set; }
-        protected StateMachine parent;
+        [Header("State Management")] public bool IsComplete { get; protected set; }
 
-        protected Rigidbody2D body => core.body;
-        protected Animator animator => core.animator;
-        protected bool grounded => core.groundSensor.grounded;
+        public float Time => UnityEngine.Time.time - StartTime;
+        public StateMachine Machine { get; private set; }
 
-        public State childState => machine?.state;
+        protected Rigidbody2D Body => Core.body;
+        protected Animator Animator => Core.animator;
+        protected bool Grounded => Core.groundSensor.grounded;
+
+        public State ChildState => Machine?.State;
 
         protected void SetChild(State newState, bool forceReset = false)
         {
-            machine?.Set(newState, forceReset);
+            Machine?.Set(newState, forceReset);
         }
 
-        public void SetCore(StateMachineCore _core)
+        public void SetCore(StateMachineCore core)
         {
-            machine = new StateMachine();
-            core = _core;
+            Machine = new StateMachine();
+            Core = core;
         }
 
-        public virtual void Enter() { }
-        public virtual void Do() { }
-        public virtual void FixedDo() { }
-        public virtual void Exit() { }
+        public virtual void Enter()
+        {
+        }
+
+        public virtual void Do()
+        {
+        }
+
+        public virtual void FixedDo()
+        {
+        }
+
+        public virtual void Exit()
+        {
+        }
 
         public void DoBranch()
         {
             Do();
-            childState?.DoBranch();
+            ChildState?.DoBranch();
         }
 
         public void FixedDoBranch()
         {
             FixedDo();
-            childState?.FixedDoBranch();
+            ChildState?.FixedDoBranch();
         }
 
-        public void Initialize(StateMachine _parent)
+        public void Initialize(StateMachine parent)
         {
-            parent = _parent;
-            isComplete = false;
-            startTime = Time.time;
+            Parent = parent;
+            IsComplete = false;
+            StartTime = UnityEngine.Time.time;
         }
 
-        public override string ToString() => GetType().Name; // Returns only the class name
+        public override string ToString()
+        {
+            return GetType().Name;
+            // Returns only the class name
+        }
     }
 }

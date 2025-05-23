@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-namespace Unity.UI.Shaders.Sample
+namespace TheForgottenLetters.Samples.Shader_Graph._17._0._4.UGUI_Shaders.Scripts
 {
     /// <summary>
     /// Example script controlling a BlurredHexagon Material with <see cref="Slider"/>s.

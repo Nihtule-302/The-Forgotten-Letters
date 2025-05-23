@@ -2,29 +2,31 @@ using System;
 using _Project.Scripts.Core.Utilities.Scene_Management;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Core.Managers
 {
-    public class DeepLinkManager: MonoBehaviour
+    public class DeepLinkManager : MonoBehaviour
     {
-        public static DeepLinkManager Instance { get; private set; }
         public string deeplinkURL;
 
-        [Header("Deep Link Settings")]
-        [SerializeField] private SceneTransitioner sceneTransitioner;
+        [Header("Deep Link Settings")] [SerializeField]
+        private SceneTransitioner sceneTransitioner;
+
         [SerializeField] private AssetReference initialScene;
 
-        [Header("Main Scenes")]
-        [SerializeField] private AssetReference mainMenu;
+        [Header("Main Scenes")] [SerializeField]
+        private AssetReference mainMenu;
+
         [SerializeField] private AssetReference Moon;
         [SerializeField] private AssetReference BahrelSafa;
 
-        [Header("Minigame Scenes")]
-        [SerializeField] private AssetReference drawLetters;
+        [Header("Minigame Scenes")] [SerializeField]
+        private AssetReference drawLetters;
+
         [SerializeField] private AssetReference objectDetection;
         [SerializeField] private AssetReference letterHunt;
-        
+        public static DeepLinkManager Instance { get; private set; }
+
         private void Awake()
         {
             if (Instance == null)
@@ -39,11 +41,12 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             FirebaseManager.Instance.OnFirebaseInitialized += StartDeepLink;
         }
-        void OnDisable()
+
+        private void OnDisable()
         {
             FirebaseManager.Instance.OnFirebaseInitialized -= StartDeepLink;
         }
@@ -69,11 +72,13 @@ namespace _Project.Scripts.Core.Managers
         {
             HandleDeepLink(url);
         }
+
         [ContextMenu("Test Deep Link")]
         private void TestDeepLink()
         {
             HandleDeepLink(deeplinkURL);
         }
+
         public void HandleDeepLink(string url)
         {
             try
@@ -82,7 +87,7 @@ namespace _Project.Scripts.Core.Managers
 
                 var uri = new Uri(url);
                 if (uri.Scheme != "theforgottenletters") return;
-                
+
                 var host = uri.Host;
                 var path = uri.AbsolutePath;
 
@@ -91,27 +96,26 @@ namespace _Project.Scripts.Core.Managers
                     case "start":
                         sceneTransitioner.TranstionToScene(mainMenu);
                         break;
-                    
+
                     case "bahrelsafa":
                         sceneTransitioner.TranstionToScene(BahrelSafa);
                         break;
-                    
+
                     case "moon":
                         sceneTransitioner.TranstionToScene(Moon);
                         break;
-                        
+
                     case "letterhunt":
                         sceneTransitioner.TranstionToScene(letterHunt);
                         break;
-                    
+
                     case "letterdrawing":
                         sceneTransitioner.TranstionToScene(drawLetters);
                         break;
-                    
+
                     case "objectdetection":
                         sceneTransitioner.TranstionToScene(objectDetection);
                         break;
-
                 }
             }
             catch (Exception ex)

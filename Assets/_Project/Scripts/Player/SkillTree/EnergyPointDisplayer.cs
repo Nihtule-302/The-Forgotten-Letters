@@ -1,25 +1,30 @@
-using System;
 using _Project.Scripts.Core.Managers;
 using TheForgottenLetters;
 using TMPro;
 using UnityEngine;
 
-public class EnergyPointDisplayer : MonoBehaviour
+namespace _Project.Scripts.Player.SkillTree
 {
-    [SerializeField] private TextMeshProUGUI energyPointText;
-    private PlayerAbilityStats playerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class EnergyPointDisplayer : MonoBehaviour
     {
-        UpdateEnergyPointText();
-    }
+        [SerializeField] private TextMeshProUGUI energyPointText;
 
-    private void OnEnable() {
-        UpdateEnergyPointText();
-    }
+        private PlayerAbilityStats PlayerAbilityStats => PersistentSOManager.GetSO<PlayerAbilityStats>();
 
-    public void UpdateEnergyPointText()
-    {
-        energyPointText.text = PersistentSOManager.GetSO<PlayerAbilityStats>().energyPoints.ToString();
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        private void Start()
+        {
+            UpdateEnergyPointText();
+        }
+
+        private void OnEnable()
+        {
+            UpdateEnergyPointText();
+        }
+
+        public void UpdateEnergyPointText()
+        {
+            energyPointText.text = PersistentSOManager.GetSO<PlayerAbilityStats>().energyPoints.ToString();
+        }
     }
 }

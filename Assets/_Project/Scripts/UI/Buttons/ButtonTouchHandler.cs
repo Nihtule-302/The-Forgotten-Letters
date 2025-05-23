@@ -7,23 +7,19 @@ using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.UI.Buttons
 {
-    public class ButtonTouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+    public class ButtonTouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler,
+        IPointerExitHandler
     {
-        public Action onTap;
+        private CancellationTokenSource holdCancelToken;
+        private float holdTime = 0.5f;
+
+        private bool isHolding;
+        private bool isInsideButton;
+        private bool isPointerDown;
         public Action onHold;
         public Action<float> onHoldProgress;
         public Action onHoldRelease;
-
-        private bool isHolding = false;
-        private bool isPointerDown = false;
-        private bool isInsideButton = false;
-        private float holdTime = 0.5f;
-        private CancellationTokenSource holdCancelToken;
-
-        public void SetHoldTime(float requestedHoldTime)
-        {
-            holdTime = Mathf.Max(0, requestedHoldTime);
-        }
+        public Action onTap;
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -32,25 +28,6 @@ namespace _Project.Scripts.UI.Buttons
             isHolding = false;
             holdCancelToken = new CancellationTokenSource();
             DetectHold(holdCancelToken.Token).Forget();
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            if (!isPointerDown) return;
-
-            isPointerDown = false;
-            holdCancelToken?.Cancel();
-
-            if (isHolding)
-            {
-                onHoldRelease?.Invoke();
-            }
-            else if (isInsideButton)
-            {
-                onTap?.Invoke();
-            }
-
-            isInsideButton = false; // Reset when released
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -78,6 +55,25 @@ namespace _Project.Scripts.UI.Buttons
             }
         }
 
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (!isPointerDown) return;
+
+            isPointerDown = false;
+            holdCancelToken?.Cancel();
+
+            if (isHolding)
+                onHoldRelease?.Invoke();
+            else if (isInsideButton) onTap?.Invoke();
+
+            isInsideButton = false; // Reset when released
+        }
+
+        public void SetHoldTime(float requestedHoldTime)
+        {
+            holdTime = Mathf.Max(0, requestedHoldTime);
+        }
+
         private async UniTaskVoid DetectHold(CancellationToken token)
         {
             try
@@ -90,7 +86,9 @@ namespace _Project.Scripts.UI.Buttons
                     onHold?.Invoke();
                 }
             }
-            catch (OperationCanceledException) { }
+            catch (OperationCanceledException)
+            {
+            }
         }
     }
 }

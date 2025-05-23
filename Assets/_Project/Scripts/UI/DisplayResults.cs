@@ -7,11 +7,11 @@ public class DisplayResults : MonoBehaviour
 
     private string orginalText;
 
-    void Start()
+    private void Start()
     {
         orginalText = textMeshProUGUI.text;
     }
-    
+
     public void DisplayResultsToText(string results)
     {
         var text = $"{orginalText}: {results}";

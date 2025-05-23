@@ -8,24 +8,24 @@ namespace _Project.Scripts.UI
     {
         [SerializeField] private Image DissolveImage;
 
-        private Material dissolveMaterialInstance;
-
         public Color baseDissolveColor;
         public Color edgeColor;
         public float edgeWidth;
-    
+
         public float dissolveStart = 1f;
-        public float dissolveEnd = 0f;
+        public float dissolveEnd;
         public float dissolveDuration = 3f;
 
         private float currentDissolveValue;
-    
-        // Cache original colors
-        private Color originalBaseColor;
-        private Color originalEdgeColor;
+
+        private Material dissolveMaterialInstance;
 
         public Action OnDissolveComplete;
         public Action OnResetDissolveComplete;
+
+        // Cache original colors
+        private Color originalBaseColor;
+        private Color originalEdgeColor;
 
         private void Start()
         {
@@ -37,6 +37,26 @@ namespace _Project.Scripts.UI
             // Cache the original colors
             originalBaseColor = baseDissolveColor;
             originalEdgeColor = edgeColor;
+        }
+
+        private void OnEnable()
+        {
+            // Subscribe to events
+            OnDissolveComplete += () => Debug.Log("Dissolve effect completed successfully!");
+            OnResetDissolveComplete += () => Debug.Log("Reset dissolve effect completed successfully!");
+
+            currentDissolveValue = dissolveStart;
+            SetDissolveAmount(currentDissolveValue);
+        }
+
+        private void OnDisable()
+        {
+            // Unsubscribe from events
+            OnDissolveComplete -= () => Debug.Log("Dissolve effect completed successfully!");
+            OnResetDissolveComplete -= () => Debug.Log("Reset dissolve effect completed successfully!");
+
+            currentDissolveValue = dissolveStart;
+            SetDissolveAmount(currentDissolveValue);
         }
 
         private void InitializeMaterial()
@@ -79,7 +99,7 @@ namespace _Project.Scripts.UI
         private void RunDissolveTween(float targetValue, Action callback, Action completeEvent)
         {
             LeanTween.cancel(gameObject);
-        
+
             LeanTween.value(gameObject, currentDissolveValue, targetValue, dissolveDuration)
                 .setOnUpdate(SetDissolveAmount)
                 .setOnComplete(() => InvokeCompletionEvent(callback, completeEvent));
@@ -99,8 +119,8 @@ namespace _Project.Scripts.UI
 
         private void RestoreOriginalColorsIfChanged()
         {
-            bool isBaseColorChanged = dissolveMaterialInstance.GetColor("_Base_Color") != originalBaseColor;
-            bool isEdgeColorChanged = dissolveMaterialInstance.GetColor("_Edge_Color") != originalEdgeColor;
+            var isBaseColorChanged = dissolveMaterialInstance.GetColor("_Base_Color") != originalBaseColor;
+            var isEdgeColorChanged = dissolveMaterialInstance.GetColor("_Edge_Color") != originalEdgeColor;
 
             if (isBaseColorChanged)
             {
@@ -114,38 +134,15 @@ namespace _Project.Scripts.UI
                 Debug.Log("Edge color restored to original.");
             }
         }
-
-        void OnEnable()
-        {
-            // Subscribe to events
-            OnDissolveComplete += () => Debug.Log("Dissolve effect completed successfully!");
-            OnResetDissolveComplete += () => Debug.Log("Reset dissolve effect completed successfully!");
-
-            currentDissolveValue = dissolveStart;
-            SetDissolveAmount(currentDissolveValue);
-        }
-
-        void OnDisable()
-        {
-
-            // Unsubscribe from events
-            OnDissolveComplete -= () => Debug.Log("Dissolve effect completed successfully!");
-            OnResetDissolveComplete -= () => Debug.Log("Reset dissolve effect completed successfully!");
-
-            currentDissolveValue = dissolveStart;
-            SetDissolveAmount(currentDissolveValue);
-        }
     }
 
     public class DissolveData
     {
-        public float dissolveStart = 1f;
-        public float dissolveEnd = 0f;
-        public float dissolveDuration = 3f;
-
         public Color baseDissolveColor;
+        public float dissolveDuration = 3f;
+        public float dissolveEnd = 0f;
+        public float dissolveStart = 1f;
         public Color edgeColor;
         public float edgeWidth;
-
     }
 }

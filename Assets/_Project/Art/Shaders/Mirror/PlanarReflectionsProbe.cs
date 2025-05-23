@@ -15,7 +15,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace _Project.Art.Shaders.Mirror
+namespace TheForgottenLetters._Project.Art.Shaders.Mirror
 {
     [ExecuteAlways, AddComponentMenu("Rendering/Planar Reflections Probe")]
     public class PlanarReflectionsProbe : MonoBehaviour

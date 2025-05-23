@@ -9,13 +9,9 @@ namespace _Project.Scripts.Core.Utilities
         public void OpenDeepLink()
         {
             if (IsAppInstalled("com.nihtule.deeplinktest"))
-            {
                 Application.OpenURL("deeplinktest://app");
-            }
             else
-            {
                 Application.OpenURL(fallbackWebURL);
-            }
         }
 
         private bool IsAppInstalled(string packageName)

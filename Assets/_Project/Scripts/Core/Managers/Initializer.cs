@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Core.Managers
 {
@@ -8,10 +7,9 @@ namespace _Project.Scripts.Core.Managers
     {
         [SerializeField] private AssetReference sceneToLoad;
 
-        void Awake()
+        private void Awake()
         {
-            Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single, activateOnLoad:true);
+            Addressables.LoadSceneAsync(sceneToLoad);
         }
     }
 }
-

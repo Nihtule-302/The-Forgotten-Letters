@@ -1,6 +1,6 @@
 using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.Scriptable_Events;
-using _Project.Scripts.Core.Utilities;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -8,61 +8,29 @@ namespace _Project.Scripts.UI
 {
     public class PauseMenu : MonoBehaviour
     {
-        [Header("Menu Objects")]
-        [SerializeField] private GameObject pauseMenu;
+        [Header("Menu Objects")] [SerializeField]
+        private GameObject pauseMenu;
+
         [SerializeField] private GameObject pauseIcon;
         [SerializeField] private GameObject pauseBackground;
 
-        [Header("Game Events")]
-        [SerializeField] private AssetReference onPauseGameEventRef;
+        [Header("Game Events")] [SerializeField]
+        private AssetReference onPauseGameEventRef;
+
         [SerializeField] private AssetReference onResumeGameEventRef;
+
+
+        [Header("Scene To Load")] [SerializeField]
+        private AssetReference MainMenu;
 
         private GameEvent onPauseGameEvent => EventLoader.Instance.GetEvent<GameEvent>(onPauseGameEventRef);
         private GameEvent onResumeGameEvent => EventLoader.Instance.GetEvent<GameEvent>(onResumeGameEventRef);
-
-
-        [Header("Scene To Load")]
-        [SerializeField] private AssetReference MainMenu;
-    
 
 
         public void StartMenu()
         {
             ResumeGame();
         }
-
-
-        #region Buttons
-
-        public void Pause()
-        {
-            PauseGame();
-            onPauseGameEvent.Raise();
-        }
-        
-        public void Resume()
-        {
-            ResumeGame();
-            onResumeGameEvent.Raise();
-        }
-
-        public void Save() {}
-
-        public void ReturnToMainMenu()
-        {
-            SceneTransitionManager.Instance.TransitionScene(MainMenu);
-        }
-
-        public void ExitGame()
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
-
-        #endregion
 
         private void PauseGame()
         {
@@ -77,5 +45,40 @@ namespace _Project.Scripts.UI
             pauseMenu.SetActive(false);
             pauseBackground.SetActive(false);
         }
+
+
+        #region Buttons
+
+        public void Pause()
+        {
+            PauseGame();
+            onPauseGameEvent.Raise();
+        }
+
+        public void Resume()
+        {
+            ResumeGame();
+            onResumeGameEvent.Raise();
+        }
+
+        public void Save()
+        {
+        }
+
+        public void ReturnToMainMenu()
+        {
+            SceneTransitionManager.Instance.TransitionScene(MainMenu);
+        }
+
+        public void ExitGame()
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+
+        #endregion
     }
 }

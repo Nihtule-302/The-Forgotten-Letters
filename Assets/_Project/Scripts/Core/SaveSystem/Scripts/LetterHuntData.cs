@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.Utilities;
@@ -13,8 +14,8 @@ namespace _Project.Scripts.Core.SaveSystem
     {
         public int correctScore;
         public int incorrectScore;
-        public List<LetterHuntRound> rounds = new List<LetterHuntRound>();
-        
+        public List<LetterHuntRound> rounds = new();
+
         [ContextMenu("Reset Data")]
         public void ResetData()
         {
@@ -52,15 +53,6 @@ namespace _Project.Scripts.Core.SaveSystem
     [FirestoreData]
     public class LetterHuntDataSerializable
     {
-        [FirestoreProperty]
-        public int correctScore { get; set; }
-
-        [FirestoreProperty]
-        public int incorrectScore { get; set; }
-
-        [FirestoreProperty]
-        public List<LetterHuntRound> rounds { get; set; }
-
         // ✅ Default constructor required for Firestore
         public LetterHuntDataSerializable()
         {
@@ -76,70 +68,50 @@ namespace _Project.Scripts.Core.SaveSystem
             incorrectScore = data.incorrectScore;
             rounds = new List<LetterHuntRound>(data.rounds);
         }
+
+        [FirestoreProperty] public int correctScore { get; set; }
+
+        [FirestoreProperty] public int incorrectScore { get; set; }
+
+        [FirestoreProperty] public List<LetterHuntRound> rounds { get; set; }
     }
 
-    [System.Serializable, FirestoreData]
+    [Serializable]
+    [FirestoreData]
     public class LetterHuntRound
     {
-        [FirestoreProperty]
-        public string targetLetter
-        {
-            get
-            {
-                return TargetLetter;
-            }
-            set
-            {
-                TargetLetter = value;
-            }
-
-        }
-
-        [FirestoreProperty]
-        public string chosenWordCorrectFormate
-        {
-            get
-            {
-                return chosenWord.ReverseText();
-            }
-
-            set
-            {
-                chosenWord = value.ReverseText();
-            
-            }
-        }
-
-        [FirestoreProperty]
-        public bool isCorrect
-        {
-            get
-            {
-                return IsCorrect;
-            }
-            set
-            {
-                IsCorrect = value;
-            }
-        }
-
-        [FirestoreProperty]
-        public string timestampCairoTime
-        {
-            get
-            {
-                return TimestampCairoTime;
-            }
-            set
-            {
-                TimestampCairoTime = value;
-            }
-        }
-
         public string TargetLetter;
         public string chosenWord;
         public bool IsCorrect;
         public string TimestampCairoTime;
 
+        [FirestoreProperty]
+        public string targetLetter
+        {
+            get => TargetLetter;
+            set => TargetLetter = value;
+        }
+
+        [FirestoreProperty]
+        public string chosenWordCorrectFormate
+        {
+            get => chosenWord.ReverseText();
+
+            set => chosenWord = value.ReverseText();
+        }
+
+        [FirestoreProperty]
+        public bool isCorrect
+        {
+            get => IsCorrect;
+            set => IsCorrect = value;
+        }
+
+        [FirestoreProperty]
+        public string timestampCairoTime
+        {
+            get => TimestampCairoTime;
+            set => TimestampCairoTime = value;
+        }
     }
 }

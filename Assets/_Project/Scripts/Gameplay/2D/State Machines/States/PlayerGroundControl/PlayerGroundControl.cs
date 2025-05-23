@@ -1,33 +1,30 @@
-using System;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using _Project.Scripts.Core.StateMachine;
-using _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded.SubStates;
 using System.Collections;
+using _Project.Scripts.Gameplay._2D.State_Machines.States.PlayerGroundControl.SubStates;
+using _Project.Scripts.StateMachine;
+using UnityEngine;
 
-namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded
+namespace _Project.Scripts.Gameplay._2D.State_Machines.States.PlayerGroundControl
 {
     public class PlayerGroundControl : State
     {
-        [Header("State References")]
-        public IdleState idleState;
+        [Header("State References")] public IdleState idleState;
+
         public RunState runState;
 
-        [Header("Core References")]
-        private Player playerCore => (Player)core;
+        [Header("Coyote Time Flags")] public bool coyoteTimeExpired;
 
-        [Header("Properties")]
-        private float coyoteTimeDuration => playerCore.stats.coyoteTimeDurationSec;
-        private float groundGravity => playerCore.stats.groundGravity;
-
-        [Header("Coyote Time Flags")]
-        public bool coyoteTimeExpired;
         public bool isCoyoteTimerRunning;
+
+        [Header("Core References")] private Player.Player PlayerCore => (Player.Player)Core;
+
+        [Header("Properties")] private float CoyoteTimeDuration => PlayerCore.stats.coyoteTimeDurationSec;
+
+        private float GroundGravity => PlayerCore.stats.groundGravity;
 
         public override void Enter()
         {
             ResetCoyoteTime();
-            body.gravityScale = groundGravity;
+            Body.gravityScale = GroundGravity;
         }
 
         public override void Do()
@@ -43,33 +40,24 @@ namespace _Project.Scripts.Gameplay._2D.State_Machines.States.Grounded
 
         private void HandleMovement()
         {
-            State nextState = playerCore.inputManager.IsMoving ? runState : idleState;
+            State nextState = PlayerCore.inputManager.IsMoving ? runState : idleState;
             SetChild(nextState, true);
         }
 
         private void HandleCoyoteTime()
         {
-            if (playerCore.wantsToJump && playerCore.canJump)
-            {
-                return;
-            }
+            if (PlayerCore.WantsToJump && PlayerCore.canJump) return;
 
-            if (!grounded && !isCoyoteTimerRunning)
-            {
-                StartCoroutine(StartCoyoteTimeCountdown());
-            }
+            if (!Grounded && !isCoyoteTimerRunning) StartCoroutine(StartCoyoteTimeCountdown());
 
-            if (coyoteTimeExpired)
-            {
-                isComplete = true;
-                // Debug.Log("Coyote Time Expired");
-            }
+            if (coyoteTimeExpired) IsComplete = true;
+            // Debug.Log("Coyote Time Expired");
         }
 
         private IEnumerator StartCoyoteTimeCountdown()
         {
             isCoyoteTimerRunning = true;
-            yield return new WaitForSeconds(coyoteTimeDuration);
+            yield return new WaitForSeconds(CoyoteTimeDuration);
             coyoteTimeExpired = true;
             isCoyoteTimerRunning = false;
         }

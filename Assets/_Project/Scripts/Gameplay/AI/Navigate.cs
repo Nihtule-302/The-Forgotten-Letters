@@ -1,4 +1,4 @@
-using _Project.Scripts.Core.StateMachine;
+using _Project.Scripts.StateMachine;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.AI
@@ -17,22 +17,19 @@ namespace _Project.Scripts.Gameplay.AI
 
         public override void Do()
         {
-            if (Vector2.Distance(core.transform.position, destination) < thershold)
-            {
-                isComplete = true;
-            }
+            if (Vector2.Distance(Core.transform.position, destination) < thershold) IsComplete = true;
             FaceDestination();
         }
 
         public override void FixedDo()
         {
-            var direction = (destination - (Vector2)core.transform.position).normalized;
-            body.linearVelocity = new(direction.x * speed, body.linearVelocityY);
+            var direction = (destination - (Vector2)Core.transform.position).normalized;
+            Body.linearVelocity = new Vector2(direction.x * speed, Body.linearVelocityY);
         }
 
         private void FaceDestination()
         {
-            core.transform.localScale = new(Mathf.Sign(body.linearVelocityX), 1, 1);
+            Core.transform.localScale = new Vector3(Mathf.Sign(Body.linearVelocityX), 1, 1);
         }
     }
 }

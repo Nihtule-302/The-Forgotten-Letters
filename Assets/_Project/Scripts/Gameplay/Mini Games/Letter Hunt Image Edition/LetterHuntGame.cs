@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
-using TMPro;
-using UnityEngine;
 using _Project.Scripts.Core.DataTypes;
 using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.SaveSystem;
@@ -10,10 +7,13 @@ using _Project.Scripts.Core.Utilities;
 using _Project.Scripts.Core.Utilities.UI;
 using _Project.Scripts.UI;
 using _Project.Scripts.UI.Buttons.ChoiceButton;
+using Cysharp.Threading.Tasks;
 using Flexalon;
 using TheForgottenLetters;
+using TMPro;
+using UnityEngine;
 
-namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
+namespace _Project.Scripts.Gameplay.Mini_Games.Letter_Hunt_Image_Edition
 {
     public class LetterHuntGame : MonoBehaviour
     {
@@ -47,21 +47,21 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
         [Header("Letter & Word Data")]
         [SerializeField] private List<LetterData> availableLetters;
 
-        private LetterData targetLetterData;
-        private string targetLetter;
-        private List<LetterData> distractorLetters = new();
-        private List<WordData> wordChoices = new();
-        private List<GameObject> choiceButtons = new();
-        private GameObject selectedButtonVariant;
+        private LetterData _targetLetterData;
+        private string _targetLetter;
+        private List<LetterData> _distractorLetters = new();
+        private List<WordData> _wordChoices = new();
+        private List<GameObject> _choiceButtons = new();
+        private GameObject _selectedButtonVariant;
 
-        private ILetterSelectionStrategy letterSelectionStrategy;
+        private ILetterSelectionStrategy _letterSelectionStrategy;
         #endregion
 
         #region Game Entry
         private void Start() => StartGame();
 
         public void SetLetterSelectionStrategy(ILetterSelectionStrategy strategy)
-            => letterSelectionStrategy = strategy;
+            => _letterSelectionStrategy = strategy;
 
         [ContextMenu("Restart Game")]
         public void RestartGame() => StartGame();
@@ -104,17 +104,17 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
         private void SelectButtonVariant()
         {
             int selectedIndex = buttonVariantDropdown.GetDropdownValue();
-            selectedButtonVariant = buttonVariants[selectedIndex];
+            _selectedButtonVariant = buttonVariants[selectedIndex];
         }
 
         private void SelectTargetLetter()
         {
-            targetLetterData = letterSelectionStrategy?.SelectLetter(availableLetters) 
+            _targetLetterData = _letterSelectionStrategy?.SelectLetter(availableLetters) 
                             ?? availableLetters[Random.Range(0, availableLetters.Count)];
-            targetLetter = targetLetterData.letter;
+            _targetLetter = _targetLetterData.letter;
 
-            targetLetterText.GetComponent<ArabicFixerTMPRO>().fixedText = targetLetter;
-            distractorLetters = availableLetters.Where(letter => letter != targetLetterData).OrderBy(_ => Random.value).Take(3).ToList();
+            targetLetterText.GetComponent<ArabicFixerTMPRO>().fixedText = _targetLetter;
+            _distractorLetters = availableLetters.Where(letter => letter != _targetLetterData).OrderBy(_ => Random.value).Take(3).ToList();
         }
 
         private void ConfigureGridLayout()
@@ -139,22 +139,22 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             int correctCount = Mathf.CeilToInt(totalChoices * correctChoiceRatio);
             int incorrectCount = totalChoices - correctCount;
 
-            wordChoices.Clear();
+            _wordChoices.Clear();
             AddWordsToChoices(GetCorrectWords(correctCount));
             AddWordsToChoices(GetIncorrectWords(incorrectCount));
-            wordChoices.Shuffle();
+            _wordChoices.Shuffle();
         }
 
-        private void AddWordsToChoices(IEnumerable<WordData> words) => wordChoices.AddRange(words);
+        private void AddWordsToChoices(IEnumerable<WordData> words) => _wordChoices.AddRange(words);
 
         private List<WordData> GetCorrectWords(int count)
-            => targetLetterData.words.OrderBy(_ => Random.value).Take(count).ToList();
+            => _targetLetterData.words.OrderBy(_ => Random.value).Take(count).ToList();
 
         private HashSet<WordData> GetIncorrectWords(int count)
         {
             HashSet<WordData> incorrectWords = new();
 
-            foreach (var letter in distractorLetters)
+            foreach (var letter in _distractorLetters)
             {
                 if (letter.words.Count > 0 && incorrectWords.Count < count)
                 {
@@ -165,7 +165,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 
             while (incorrectWords.Count < count)
             {
-                var randomDistractor = distractorLetters[Random.Range(0, distractorLetters.Count)];
+                var randomDistractor = _distractorLetters[Random.Range(0, _distractorLetters.Count)];
                 if (randomDistractor.words.Count == 0) continue;
 
                 var word = randomDistractor.words[Random.Range(0, randomDistractor.words.Count)];
@@ -176,25 +176,25 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
         }
 
         private bool IsValidIncorrectWord(WordData word)
-            => !ArabicNormalizer.DoesWordContainsTargetLetter(word.arabicWord, targetLetter);
+            => !ArabicNormalizer.DoesWordContainsTargetLetter(word.arabicWord, _targetLetter);
         #endregion
 
         #region UI Display
         private void DisplayChoices()
         {
             ClearExistingButtons();
-            wordChoices.ForEach(CreateChoiceButton);
+            _wordChoices.ForEach(CreateChoiceButton);
         }
 
         private void ClearExistingButtons()
         {
-            choiceButtons.ForEach(Destroy);
-            choiceButtons.Clear();
+            _choiceButtons.ForEach(Destroy);
+            _choiceButtons.Clear();
         }
 
         private void CreateChoiceButton(WordData word)
         {
-            var button = Instantiate(selectedButtonVariant, gridLayout.transform);
+            var button = Instantiate(_selectedButtonVariant, gridLayout.transform);
             var dissolveData = new DissolveData
             {
                 dissolveStart = dissolveStart,
@@ -206,7 +206,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
             };
 
             SetupChoiceButton(button, word, dissolveData);
-            choiceButtons.Add(button);
+            _choiceButtons.Add(button);
         }
 
         private void SetupChoiceButton(GameObject buttonObject, WordData word, DissolveData dissolveData)
@@ -221,7 +221,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
         #region Answer Checking
         public void CheckAnswer(WordData word, ChoiceButtonController button)
         {
-            if (targetLetterData.words.Contains(word))
+            if (_targetLetterData.words.Contains(word))
             {
                 button.updateDissolveColors(Color.green, Color.green);
                 HandleCorrectChoiceAsync(word).Forget();
@@ -239,7 +239,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 
             dataBuilder
                 .IncrementCorrectScore()
-                .AddRound(targetLetter, word.arabicWord, isCorrect: true);
+                .AddRound(_targetLetter, word.arabicWord, isCorrect: true);
 
             PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
             await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
@@ -257,7 +257,7 @@ namespace _Project.Scripts.Mini_Games.Letter_Hunt_Image_Edition
 
             dataBuilder
                 .IncrementIncorrectScore()
-                .AddRound(targetLetter, word.arabicWord, isCorrect: false);
+                .AddRound(_targetLetter, word.arabicWord, isCorrect: false);
 
             PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
             await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());

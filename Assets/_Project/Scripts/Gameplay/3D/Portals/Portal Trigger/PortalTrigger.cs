@@ -6,11 +6,8 @@ namespace _Project.Scripts.Gameplay._3D.Portals.Portal_Trigger
     {
         private void OnTriggerEnter(Collider other)
         {
-            PortalActivator portal = other.GetComponent<PortalActivator>();
-            if (portal != null)
-            {
-                portal.RiseUp();
-            }
+            var portal = other.GetComponent<PortalActivator>();
+            if (portal != null) portal.RiseUp();
         }
     }
 }

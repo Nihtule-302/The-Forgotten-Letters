@@ -10,16 +10,23 @@ namespace _Project.Scripts.Gameplay._3D
         [SerializeField] private float jumpHeight = 1.0f;
         [SerializeField] private float gravityValue = -9.81f;
         [SerializeField] private InputManagerSO input;
+        private Transform _camTransform;
 
         private CharacterController _controller;
-        private Vector3 _playerVelocity;
         private bool _groundedPlayer;
-        private Transform _camTransform;
+        private Vector3 _playerVelocity;
 
         private void Start()
         {
             InitializeComponents();
             EnablePlayerInput();
+        }
+
+        private void Update()
+        {
+            CheckGroundStatus();
+            HandleMovement();
+            ApplyGravity();
         }
 
         private void InitializeComponents()
@@ -33,33 +40,23 @@ namespace _Project.Scripts.Gameplay._3D
             input?.EnablePlayerActions();
         }
 
-        private void Update()
-        {
-            CheckGroundStatus();
-            HandleMovement();
-            ApplyGravity();
-        }
-
 
         // Check if the player is grounded and reset vertical velocity if grounded
         private void CheckGroundStatus()
         {
             _groundedPlayer = _controller.isGrounded;
-            if (_groundedPlayer && _playerVelocity.y < 0)
-            {
-                _playerVelocity.y = 0f;
-            }
+            if (_groundedPlayer && _playerVelocity.y < 0) _playerVelocity.y = 0f;
         }
 
         // Handle player movement based on input and camera orientation
         private void HandleMovement()
         {
-            Vector2 movementInput = input.Direction;
-            Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+            var movementInput = input.Direction;
+            var move = new Vector3(movementInput.x, 0, movementInput.y);
 
             // Adjust movement to align with the camera's forward and right directions
             move = _camTransform.forward * move.z + _camTransform.right * move.x;
-            move.y = 0;  // Keep movement on the horizontal plane
+            move.y = 0; // Keep movement on the horizontal plane
 
             _controller.Move(move * (Time.deltaTime * playerSpeed));
         }

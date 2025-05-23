@@ -8,7 +8,7 @@ namespace _Project.Scripts.Core.Utilities
         public LayerMask groundMask;
         public bool grounded;
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             CheckGround();
         }
