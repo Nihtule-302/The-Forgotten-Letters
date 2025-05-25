@@ -148,6 +148,21 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
         private async UniTask HandleCorrectChoiceAsync()
         {
             Debug.Log("Correct answer");
+            
+            var drawLetterDataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
+            drawLetterDataBuilder
+                .IncrementCorrectScore()
+                .AddRound(currentTargetLetter, true);
+
+            PersistentSOManager.GetSO<DrawLetterData>().UpdateData(drawLetterDataBuilder);
+            await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+
+            var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
+            playerDataBuilder
+                .IncrementEnergyPoints()
+                .SetlastTimeEnergyIncreased();
+
+            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
 
             if (IsLastRound())
             {
@@ -155,16 +170,6 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
             }
             else
             {
-                var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
-                dataBuilder
-                    .IncrementCorrectScore()
-                    .AddRound(currentTargetLetter, true);
-
-                PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
-                await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
-
-                PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
-
                 ProceedToNextRound();
             }
         }

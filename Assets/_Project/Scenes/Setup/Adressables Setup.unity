@@ -785,6 +785,11 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 1
+  - m_AssetGUID: da93a502d3025ae428c6a14d72d0fbc5
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
 --- !u!1 &1643282616
 GameObject:
   m_ObjectHideFlags: 0

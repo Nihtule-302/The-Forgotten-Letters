@@ -12,7 +12,6 @@ namespace _Project.Scripts.Core.Scriptable_Events
 
     public class GameEventListener<T> : MonoBehaviour, IGameEventListener<T>
     {
-        [SerializeField] private GameEvent<T> gameEvent;
         [SerializeField] private AssetReference assetReferenceEvent;
         [SerializeField] private UnityEvent<T> responce;
 

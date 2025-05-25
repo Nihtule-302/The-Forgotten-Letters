@@ -93,6 +93,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - Game Event
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da93a502d3025ae428c6a14d72d0fbc5
+    m_Address: DecayFactor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: db9ad0e9215b286489215b007edeeb27
     m_Address: GameOver
     m_ReadOnly: 0

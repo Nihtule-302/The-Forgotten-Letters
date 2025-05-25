@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Utilities
@@ -8,6 +9,22 @@ namespace _Project.Scripts.Core.Utilities
         {
             var val = min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
             return clamp ? Mathf.Clamp(val, Mathf.Min(min2, max2), Mathf.Max(min2, max2)) : val;
+        }
+
+        
+
+    }
+
+    public static class TimeHelpers
+    {
+        public static DateTime GetCurrentUtcTime()
+        {
+            return DateTime.UtcNow;
+        }
+
+        public static string GetCurrentUtcIsoTimestamp()
+        {
+            return DateTime.UtcNow.ToString("o");
         }
     }
 }

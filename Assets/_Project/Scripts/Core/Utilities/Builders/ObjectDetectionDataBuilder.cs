@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Project.Scripts.Core.Utilities;
 
 public class ObjectDetectionDataBuilder
 {
@@ -48,23 +49,13 @@ public class ObjectDetectionDataBuilder
 
     public ObjectDetectionDataBuilder AddRound(string targetLetter, bool isCorrect)
     {
-        TimeZoneInfo cairoTimeZone;
 
-        try
-        {
-            cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Africa/Cairo");
-        }
-        catch
-        {
-            cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
-        }
-
-        var cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
+        var timeStamp = TimeHelpers.GetCurrentUtcIsoTimestamp();
         Rounds.Add(new ObjectDetectionRound
         {
             targetLetter = targetLetter,
             isCorrect = isCorrect,
-            timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt")
+            timestampCairoTime = timeStamp
         });
         return this;
     }

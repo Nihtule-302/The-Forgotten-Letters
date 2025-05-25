@@ -236,7 +236,6 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Letter_Hunt_Image_Edition
         private async UniTask HandleCorrectChoiceAsync(WordData word)
         {
             var dataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
-
             dataBuilder
                 .IncrementCorrectScore()
                 .AddRound(_targetLetter, word.arabicWord, isCorrect: true);
@@ -244,7 +243,13 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Letter_Hunt_Image_Edition
             PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
             await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
 
-            PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
+            var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
+            playerDataBuilder
+                .IncrementEnergyPoints()
+                .SetlastTimeEnergyIncreased();
+
+            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
+
 
             Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
             await UniTask.Delay(System.TimeSpan.FromSeconds(correctChoiceDelay));

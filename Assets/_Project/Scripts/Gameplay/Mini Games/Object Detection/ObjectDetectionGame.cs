@@ -94,7 +94,13 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             PersistentSOManager.GetSO<ObjectDetectionData>().UpdateData(dataBuilder);
             await FirebaseManager.Instance.SaveObjectDetectionData(PersistentSOManager.GetSO<ObjectDetectionData>());
 
-            PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
+            var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
+            playerDataBuilder
+                .IncrementEnergyPoints()
+                .SetlastTimeEnergyIncreased();
+
+            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
+
 
             Debug.Log("Correct answer");
             uiManager.CallCorrectScreen();

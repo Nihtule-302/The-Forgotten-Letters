@@ -51,24 +51,14 @@ namespace _Project.Scripts.Core.Utilities.Builders
 
         public LetterHuntDataBuilder AddRound(string targetLetter, string chosenWord, bool isCorrect)
         {
-            TimeZoneInfo cairoTimeZone;
 
-            try
-            {
-                cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Africa/Cairo");
-            }
-            catch
-            {
-                cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
-            }
-
-            var cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
+            var cairoTime = TimeHelpers.GetCurrentUtcIsoTimestamp();
             Rounds.Add(new LetterHuntRound
             {
                 targetLetter = targetLetter,
                 chosenWord = chosenWord,
                 isCorrect = isCorrect,
-                timestampCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt")
+                timestampCairoTime = cairoTime
             });
             return this;
         }

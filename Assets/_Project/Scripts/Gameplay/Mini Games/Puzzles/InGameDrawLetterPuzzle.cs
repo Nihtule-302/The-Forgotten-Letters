@@ -59,7 +59,13 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Puzzles
             PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
             await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
 
-            PersistentSOManager.GetSO<PlayerAbilityStats>().AddEnergyPoint();
+            var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
+            playerDataBuilder
+                .IncrementEnergyPoints()
+                .SetlastTimeEnergyIncreased();
+
+            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
+
 
             hiddenDoor.UnlockDoor();
         }

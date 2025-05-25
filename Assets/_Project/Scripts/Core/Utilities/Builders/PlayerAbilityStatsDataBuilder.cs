@@ -1,30 +1,32 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
+using _Project.Scripts.Core.Utilities;
 
 namespace TheForgottenLetters
 {
     public class PlayerAbilityStatsDataBuilder
     {
+        public int energyPoints { get; private set; }
+        public List<string> unlockedSkills { get; private set; }
+        public string lastTimeEnergyIncreasedUTC { get; private set; }
+
+        private PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
+
+
         public PlayerAbilityStatsDataBuilder()
         {
             energyPoints = 0;
-            lastTimeEnergyIncreasedCairoTime = string.Empty;
+            lastTimeEnergyIncreasedUTC = string.Empty;
             unlockedSkills = new List<string>();
         }
 
         public PlayerAbilityStatsDataBuilder(PlayerAbilityStats existingData)
         {
             energyPoints = existingData.energyPoints;
-            lastTimeEnergyIncreasedCairoTime = existingData.lastTimeEnergyIncreasedCairoTime;
+            lastTimeEnergyIncreasedUTC = existingData.lastTimeEnergyIncreasedUTC;
             unlockedSkills = new List<string>(playerSkills.UnlockedSkills_names);
         }
-
-        public int energyPoints { get; private set; }
-        public List<string> unlockedSkills { get; private set; }
-        public string lastTimeEnergyIncreasedCairoTime { get; private set; }
-
-        private PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
 
         public PlayerAbilityStatsDataBuilder SetEnergyPoints(int points)
         {
@@ -46,27 +48,16 @@ namespace TheForgottenLetters
 
         public PlayerAbilityStatsDataBuilder SetlastTimeEnergyIncreased()
         {
-            TimeZoneInfo cairoTimeZone;
+            var timeStamp = TimeHelpers.GetCurrentUtcIsoTimestamp();
 
-            try
-            {
-                cairoTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Africa/Cairo");
-            }
-            catch
-            {
-                cairoTimeZone = TimeZoneInfo.Local; // Fallback if not found
-            }
-
-            var cairoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, cairoTimeZone);
-
-            lastTimeEnergyIncreasedCairoTime = cairoTime.ToString("yyyy-MM-dd hh:mm:ss tt");
+            lastTimeEnergyIncreasedUTC = timeStamp;
 
             return this;
         }
 
         public PlayerAbilityStatsDataBuilder SetlastTimeEnergyIncreased(string cairoTime)
         {
-            lastTimeEnergyIncreasedCairoTime = cairoTime;
+            lastTimeEnergyIncreasedUTC = cairoTime;
             return this;
         }
 
@@ -99,6 +90,18 @@ namespace TheForgottenLetters
             if (playerSkills.UnlockedSkills_names.Contains(skillName))
             {
                 playerSkills.UnlockedSkills_names.Remove(skillName);
+                playerSkills.LoadSkillsFromNames();
+                unlockedSkills = playerSkills.UnlockedSkills_names;
+            }
+
+            return this;
+        }
+
+        public PlayerAbilityStatsDataBuilder RemoveLatestSkill()
+        {
+            if (playerSkills.UnlockedSkills_names.Count > 0)
+            {
+                playerSkills.UnlockedSkills_names.RemoveAt(playerSkills.UnlockedSkills_names.Count - 1);
                 playerSkills.LoadSkillsFromNames();
                 unlockedSkills = playerSkills.UnlockedSkills_names;
             }

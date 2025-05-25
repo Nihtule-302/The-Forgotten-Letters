@@ -14,7 +14,7 @@ namespace TheForgottenLetters
         public int energyPoints;
         [SerializeField] private PlayerHealth playerHealth;
 
-        public string lastTimeEnergyIncreasedCairoTime;
+        public string lastTimeEnergyIncreasedUTC;
 
         public AssetReference playerAbilityStatsChangedEventRef;
         public PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
@@ -26,7 +26,7 @@ namespace TheForgottenLetters
         public void ResetData()
         {
             energyPoints = 0;
-            lastTimeEnergyIncreasedCairoTime = string.Empty;
+            lastTimeEnergyIncreasedUTC = string.Empty;
             playerSkills.ResetData();
             FinalizeUpdate();
         }
@@ -34,7 +34,7 @@ namespace TheForgottenLetters
         public void UpdateData(PlayerAbilityStatsDataBuilder builder)
         {
             energyPoints = builder.energyPoints;
-            lastTimeEnergyIncreasedCairoTime = builder.lastTimeEnergyIncreasedCairoTime;
+            lastTimeEnergyIncreasedUTC = builder.lastTimeEnergyIncreasedUTC;
             playerSkills.UpdateData(builder.unlockedSkills);
             FinalizeUpdate();
         }
@@ -42,7 +42,7 @@ namespace TheForgottenLetters
         public void UpdateData(PlayerAbilityStatsDataSerializable playerAbilityStatsData)
         {
             energyPoints = playerAbilityStatsData.energyPoints;
-            lastTimeEnergyIncreasedCairoTime = playerAbilityStatsData.lastTimeEnergyIncreasedCairoTime;
+            lastTimeEnergyIncreasedUTC = playerAbilityStatsData.lastTimeEnergyIncreasedUTC;
             playerSkills.UpdateData(playerAbilityStatsData.unlockedSkillNames);
             FinalizeUpdate();
         }
@@ -76,12 +76,19 @@ namespace TheForgottenLetters
     [FirestoreData]
     public class PlayerAbilityStatsDataSerializable
     {
+
+        [FirestoreProperty] public int energyPoints { get; set; }
+
+        [FirestoreProperty] public string lastTimeEnergyIncreasedUTC { get; set; }
+
+        [FirestoreProperty] public List<string> unlockedSkillNames { get; set; } = new();
+        
         // ✅ Default constructor required for Firestore
         public PlayerAbilityStatsDataSerializable()
         {
             energyPoints = 0;
             unlockedSkillNames = new List<string>();
-            lastTimeEnergyIncreasedCairoTime = string.Empty;
+            lastTimeEnergyIncreasedUTC = string.Empty;
         }
 
         // ✅ Constructor for conversion from LetterHuntData
@@ -89,13 +96,8 @@ namespace TheForgottenLetters
         {
             energyPoints = data.energyPoints;
             unlockedSkillNames = data.playerSkills.UnlockedSkills_names;
-            lastTimeEnergyIncreasedCairoTime = data.lastTimeEnergyIncreasedCairoTime;
+            lastTimeEnergyIncreasedUTC = data.lastTimeEnergyIncreasedUTC;
         }
 
-        [FirestoreProperty] public int energyPoints { get; set; }
-
-        [FirestoreProperty] public string lastTimeEnergyIncreasedCairoTime { get; set; }
-
-        [FirestoreProperty] public List<string> unlockedSkillNames { get; set; } = new();
     }
 }

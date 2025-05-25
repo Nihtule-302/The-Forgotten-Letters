@@ -275,7 +275,7 @@ namespace _Project.Scripts.Core.Managers
                         databuilder
                             .SetEnergyPoints(data.energyPoints)
                             .SetSkills(data.unlockedSkillNames)
-                            .SetlastTimeEnergyIncreased(data.lastTimeEnergyIncreasedCairoTime);
+                            .SetlastTimeEnergyIncreased(data.lastTimeEnergyIncreasedUTC);
 
                         PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(databuilder);
                     }
