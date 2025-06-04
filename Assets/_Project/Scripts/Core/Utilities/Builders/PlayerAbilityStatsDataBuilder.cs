@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.Utilities;
+using Cysharp.Threading.Tasks;
 
 namespace TheForgottenLetters
 {
@@ -13,6 +13,7 @@ namespace TheForgottenLetters
 
         private PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
 
+        private PlayerAbilityStats SoRef => PersistentSOManager.GetSO<PlayerAbilityStats>();
 
         public PlayerAbilityStatsDataBuilder()
         {
@@ -127,6 +128,35 @@ namespace TheForgottenLetters
             playerSkills.LoadSkillsFromNames();
             unlockedSkills = playerSkills.UnlockedSkills_names;
             return this;
+        }
+
+        public PlayerAbilityStatsDataBuilder UpdateLocalData()
+        {
+            SoRef?.UpdateLocalData(this);
+            return this;
+        }
+
+        public PlayerAbilityStatsDataSerializable SerializePlayerAbilityStatsData()
+        {
+            return new PlayerAbilityStatsDataSerializable(SoRef);
+        }
+
+        public void SaveDataToFirebase()
+        {
+            SaveDataToFirebaseAsync().Forget();
+        }
+
+        public async UniTask SaveDataToFirebaseAsync()
+        {
+            var data = SerializePlayerAbilityStatsData();
+            if (data != null)
+            {
+                await FirebaseManager.Instance.SavePlayerData(data);
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("Failed to serialize PlayerAbilityStats.");
+            }
         }
     }
 }

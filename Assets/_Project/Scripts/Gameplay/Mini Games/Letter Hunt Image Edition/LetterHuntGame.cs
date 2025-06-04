@@ -236,19 +236,18 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Letter_Hunt_Image_Edition
         private async UniTask HandleCorrectChoiceAsync(WordData word)
         {
             var dataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
-            dataBuilder
-                .IncrementCorrectScore()
-                .AddRound(_targetLetter, word.arabicWord, isCorrect: true);
-
-            PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
-            await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
+            await dataBuilder
+                    .IncrementCorrectScore()
+                    .AddRound(_targetLetter, word.arabicWord, isCorrect: true)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
             var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
-            playerDataBuilder
-                .IncrementEnergyPoints()
-                .SetlastTimeEnergyIncreased();
-
-            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
+            await playerDataBuilder
+                    .IncrementEnergyPoints()
+                    .SetlastTimeEnergyIncreased()
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
 
             Debug.Log("✅ " + ArabicSupport.Fix("صحيح!", true, true));
@@ -260,12 +259,11 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Letter_Hunt_Image_Edition
         {
             var dataBuilder = PersistentSOManager.GetSO<LetterHuntData>().GetBuilder();
 
-            dataBuilder
-                .IncrementIncorrectScore()
-                .AddRound(_targetLetter, word.arabicWord, isCorrect: false);
-
-            PersistentSOManager.GetSO<LetterHuntData>().UpdateData(dataBuilder);
-            await FirebaseManager.Instance.SaveLetterHuntData(PersistentSOManager.GetSO<LetterHuntData>());
+            await dataBuilder
+                    .IncrementIncorrectScore()
+                    .AddRound(_targetLetter, word.arabicWord, isCorrect: false)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
             Debug.Log("❌ " + ArabicSupport.Fix("خطأ! حاول مرة أخرى.", true, true));
             await UniTask.Delay(0);

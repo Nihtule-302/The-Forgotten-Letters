@@ -16,28 +16,47 @@ namespace _Project.Scripts.Core.SaveSystem
         public int incorrectScore;
         public List<LetterHuntRound> rounds = new();
 
+        [ContextMenu("Reset and Save Data To Firebase")]
+        public void ResetAndSaveDataToFirebase()
+        {
+            ResetData();
+            SaveData();
+        }
+
         [ContextMenu("Reset Data")]
         public void ResetData()
         {
             correctScore = 0;
             incorrectScore = 0;
             rounds.Clear();
-            SaveDataAfterReset().Forget();
         }
 
-        private async UniTask SaveDataAfterReset()
+        [ContextMenu("Save Data")]
+        private void SaveData()
         {
-            await FirebaseManager.Instance.SaveLetterHuntData(this);
+            SaveDataAsync().Forget();
         }
 
-        public void UpdateData(LetterHuntDataBuilder builder)
+        private async UniTask SaveDataAsync()
+        {
+            var builder = GetBuilder();
+            if (builder == null)
+            {
+                Debug.LogError("LetterHuntDataBuilder is null.");
+                return;
+            }
+
+            await builder.SaveDataToFirebaseAsync();
+        }
+
+        public void UpdateLocalData(LetterHuntDataBuilder builder)
         {
             correctScore = builder.CorrectScore;
             incorrectScore = builder.IncorrectScore;
             rounds = new List<LetterHuntRound>(builder.Rounds);
         }
 
-        public void UpdateData(LetterHuntDataSerializable letterHuntDataSerializable)
+        public void UpdateLocalData(LetterHuntDataSerializable letterHuntDataSerializable)
         {
             correctScore = letterHuntDataSerializable.correctScore;
             incorrectScore = letterHuntDataSerializable.incorrectScore;
@@ -53,6 +72,12 @@ namespace _Project.Scripts.Core.SaveSystem
     [FirestoreData]
     public class LetterHuntDataSerializable
     {
+        [FirestoreProperty] public int correctScore { get; set; }
+
+        [FirestoreProperty] public int incorrectScore { get; set; }
+
+        [FirestoreProperty] public List<LetterHuntRound> rounds { get; set; }
+
         // ✅ Default constructor required for Firestore
         public LetterHuntDataSerializable()
         {
@@ -67,13 +92,7 @@ namespace _Project.Scripts.Core.SaveSystem
             correctScore = data.correctScore;
             incorrectScore = data.incorrectScore;
             rounds = new List<LetterHuntRound>(data.rounds);
-        }
-
-        [FirestoreProperty] public int correctScore { get; set; }
-
-        [FirestoreProperty] public int incorrectScore { get; set; }
-
-        [FirestoreProperty] public List<LetterHuntRound> rounds { get; set; }
+        } 
     }
 
     [Serializable]

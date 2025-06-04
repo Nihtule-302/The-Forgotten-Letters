@@ -21,14 +21,21 @@ namespace _Project.Scripts.Core.Managers
         private const string PlayerDataDoc = "player_data";
 
         private ListenerRegistration drawLetterListener;
-
         private ListenerRegistration letterHuntListener;
         private ListenerRegistration objectDetectionListener;
         private ListenerRegistration playerDataListener;
-        public static FirebaseManager Instance { get; private set; }
-        public FirebaseAuth Auth { get; private set; }
 
+        public FirebaseAuth Auth { get; private set; }
         public FirebaseFirestore Firestore { get; private set; }
+        public static FirebaseManager Instance { get; private set; }
+
+        public bool IsInitialized { get; private set; }
+
+        public event Action OnFirebaseInitialized;
+        public event Action OnLetterHuntDataUpdated;
+        public event Action OnDrawLetterDataUpdated;
+        public event Action OnObjectDetectionDataUpdated;
+        public event Action OnPlayerDataUpdated;
 
         private void Awake()
         {
@@ -52,11 +59,7 @@ namespace _Project.Scripts.Core.Managers
             drawLetterListener?.Stop();
         }
 
-        public event Action OnLetterHuntDataUpdated;
-        public event Action OnDrawLetterDataUpdated;
-        public event Action OnObjectDetectionDataUpdated;
-        public event Action OnPlayerDataUpdated;
-        public event Action OnFirebaseInitialized;
+
 
         private void InitializeFirebase()
         {
@@ -68,18 +71,18 @@ namespace _Project.Scripts.Core.Managers
 
                 Debug.Log("Firebase initialized successfully.");
                 OnFirebaseInitialized?.Invoke();
+                IsInitialized = true;
             });
         }
 
         #region Save Methods
 
-        public async Task SaveLetterHuntData(LetterHuntData data)
+        public async Task SaveLetterHuntData(LetterHuntDataSerializable serializableData)
         {
             if (!IsUserLoggedIn()) return;
 
             try
             {
-                var serializableData = new LetterHuntDataSerializable(data);
                 var docRef = GetUserGameDocRef(LetterHuntDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Letter Hunt data saved successfully!");
@@ -90,13 +93,12 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
-        public async Task SaveDrawLetterData(DrawLetterData data)
+        public async Task SaveDrawLetterData(DrawLetterDataSerializable serializableData)
         {
             if (!IsUserLoggedIn()) return;
 
             try
             {
-                var serializableData = new DrawLetterDataSerializable(data);
                 var docRef = GetUserGameDocRef(DrawLetterDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Draw Letter data saved successfully!");
@@ -107,13 +109,12 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
-        public async Task SaveObjectDetectionData(ObjectDetectionData data)
+        public async Task SaveObjectDetectionData(ObjectDetectionDataSerializable serializableData)
         {
             if (!IsUserLoggedIn()) return;
 
             try
             {
-                var serializableData = new ObjectDetectionDataSerializable(data);
                 var docRef = GetUserGameDocRef(ObjectDetectionDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Object Detection data saved successfully!");
@@ -124,13 +125,12 @@ namespace _Project.Scripts.Core.Managers
             }
         }
 
-        public async Task SavePlayerData(PlayerAbilityStats data)
+        public async Task SavePlayerData(PlayerAbilityStatsDataSerializable serializableData)
         {
             if (!IsUserLoggedIn()) return;
 
             try
             {
-                var serializableData = new PlayerAbilityStatsDataSerializable(data);
                 var docRef = GetUserGameDocRef(PlayerDataDoc);
                 await docRef.SetAsync(serializableData);
                 Debug.Log("Player Ability Stats data saved successfully!");
@@ -178,7 +178,7 @@ namespace _Project.Scripts.Core.Managers
                             $"[REAL-TIME] Letter Hunt Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
 
                         OnLetterHuntDataUpdated?.Invoke();
-                        PersistentSOManager.GetSO<LetterHuntData>()?.UpdateData(data);
+                        PersistentSOManager.GetSO<LetterHuntData>()?.UpdateLocalData(data);
                     }
                     else
                     {
@@ -209,7 +209,7 @@ namespace _Project.Scripts.Core.Managers
                             $"[REAL-TIME] Draw Letter Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
 
                         OnDrawLetterDataUpdated?.Invoke();
-                        PersistentSOManager.GetSO<DrawLetterData>()?.UpdateData(data);
+                        PersistentSOManager.GetSO<DrawLetterData>()?.UpdateLocalData(data);
                     }
                     else
                     {
@@ -240,7 +240,7 @@ namespace _Project.Scripts.Core.Managers
                             $"[REAL-TIME] Object Detection Updated - Correct: {data.correctScore}, Incorrect: {data.incorrectScore}");
 
                         OnObjectDetectionDataUpdated?.Invoke();
-                        PersistentSOManager.GetSO<ObjectDetectionData>()?.UpdateData(data);
+                        PersistentSOManager.GetSO<ObjectDetectionData>()?.UpdateLocalData(data);
                     }
                     else
                     {
@@ -271,13 +271,7 @@ namespace _Project.Scripts.Core.Managers
                         Debug.Log($"[REAL-TIME] Player Stats Updated - Energy Points: {data.energyPoints}");
 
                         OnPlayerDataUpdated?.Invoke();
-                        var databuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
-                        databuilder
-                            .SetEnergyPoints(data.energyPoints)
-                            .SetSkills(data.unlockedSkillNames)
-                            .SetlastTimeEnergyIncreased(data.lastTimeEnergyIncreasedUTC);
-
-                        PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(databuilder);
+                        PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateLocalData(data);
                     }
                     else
                     {
@@ -311,6 +305,11 @@ namespace _Project.Scripts.Core.Managers
 
         private DocumentReference GetUserGameDocRef(string documentId)
         {
+            if (Auth.CurrentUser?.UserId == null)
+            {
+                Debug.LogWarning("User ID is null. Cannot proceed.");
+                return null;
+            }
             return Firestore.Collection(UsersCollection)
                 .Document(Auth.CurrentUser.UserId)
                 .Collection(GameDataCollection)

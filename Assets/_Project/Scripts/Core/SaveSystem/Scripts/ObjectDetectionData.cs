@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using _Project.Scripts.Core.Managers;
 using Cysharp.Threading.Tasks;
 using Firebase.Firestore;
 using UnityEngine;
@@ -12,28 +11,47 @@ public class ObjectDetectionData : ScriptableObject
     public int incorrectScore;
     public List<ObjectDetectionRound> rounds = new();
 
+    [ContextMenu("Reset and Save Data To Firebase")]
+    public void ResetAndSaveDataToFirebase()
+    {
+        ResetData();
+        SaveData();
+    }
+
     [ContextMenu("Reset Data")]
     public void ResetData()
     {
         correctScore = 0;
         incorrectScore = 0;
         rounds.Clear();
-        SaveDataAfterReset().Forget();
     }
 
-    private async UniTask SaveDataAfterReset()
+    [ContextMenu("Save Data")]
+    private void SaveData()
     {
-        await FirebaseManager.Instance.SaveObjectDetectionData(this);
+        SaveDataAsync().Forget();
     }
 
-    public void UpdateData(ObjectDetectionDataBuilder builder)
+    private async UniTask SaveDataAsync()
+    {
+        var builder = GetBuilder();
+        if (builder == null)
+        {
+            Debug.LogError("ObjectDetectionDataBuilder is null.");
+            return;
+        }
+
+        await builder.SaveDataToFirebaseAsync();
+    }
+
+    public void UpdateLocalData(ObjectDetectionDataBuilder builder)
     {
         correctScore = builder.CorrectScore;
         incorrectScore = builder.IncorrectScore;
         rounds = new List<ObjectDetectionRound>(builder.Rounds);
     }
 
-    public void UpdateData(ObjectDetectionDataSerializable objectDetectionDataSerializable)
+    public void UpdateLocalData(ObjectDetectionDataSerializable objectDetectionDataSerializable)
     {
         correctScore = objectDetectionDataSerializable.correctScore;
         incorrectScore = objectDetectionDataSerializable.incorrectScore;
@@ -49,6 +67,13 @@ public class ObjectDetectionData : ScriptableObject
 [FirestoreData]
 public class ObjectDetectionDataSerializable
 {
+    [FirestoreProperty] public int correctScore { get; set; }
+
+    [FirestoreProperty] public int incorrectScore { get; set; }
+
+    [FirestoreProperty] public List<ObjectDetectionRound> rounds { get; set; }
+
+
     // ✅ Default constructor required for Firestore
     public ObjectDetectionDataSerializable()
     {
@@ -64,12 +89,6 @@ public class ObjectDetectionDataSerializable
         incorrectScore = data.incorrectScore;
         rounds = new List<ObjectDetectionRound>(data.rounds);
     }
-
-    [FirestoreProperty] public int correctScore { get; set; }
-
-    [FirestoreProperty] public int incorrectScore { get; set; }
-
-    [FirestoreProperty] public List<ObjectDetectionRound> rounds { get; set; }
 }
 
 [Serializable]

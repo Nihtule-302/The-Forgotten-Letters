@@ -35,9 +35,10 @@ public class Skill : ScriptableObject
             databuilder
                 .DecrementEnergyPoints(energyPointsNeeded)
                 .AddSkill(this)
-                .SetlastTimeEnergyIncreased();
-
-            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(databuilder);
+                .SetlastTimeEnergyIncreased()
+                .UpdateLocalData()
+                .SaveDataToFirebase();
+                
             return true;
         }
 

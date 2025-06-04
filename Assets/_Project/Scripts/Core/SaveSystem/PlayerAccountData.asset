@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbcb43ec9ca1bfe46941c46ebf4a6e6f, type: 3}
-  m_Name: ObjectDetectionData
+  m_Script: {fileID: 11500000, guid: 48082602b09245e449bd1c058af0301e, type: 3}
+  m_Name: PlayerAccountData
   m_EditorClassIdentifier: 
-  correctScore: 0
-  incorrectScore: 0
-  rounds: []
+  fullName: 
+  username: 
+  email: aliwafa@test.com
+  hasDyslexiaTest: 0

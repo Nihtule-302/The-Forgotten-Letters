@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e586f07dc967c42af24f4f46313b46, type: 3}
   m_Name: PlayerSkills
   m_EditorClassIdentifier: 
+  unlockedSkills_names: []
+  unlockedSkills: []

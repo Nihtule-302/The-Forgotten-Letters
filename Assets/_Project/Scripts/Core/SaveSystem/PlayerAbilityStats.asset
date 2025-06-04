@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b0fb32370727b4c8b4b74047acc22a, type: 3}
   m_Name: PlayerAbilityStats
   m_EditorClassIdentifier: 
-  energyPoints: 0
+  energyPoints: 8
+  lastTimeEnergyIncreasedUTC: 2025-06-03T19:08:31.6188473Z
   playerHealth: {fileID: 11400000, guid: 63915225d9dcff144897c9719ee54de7, type: 2}
-  lastTimeEnergyIncreasedUTC: 2025-05-25T14:57:18.1788653Z
   playerAbilityStatsChangedEventRef:
     m_AssetGUID: f1c6e24628e1b5944aedbd4cecdbe3c2
     m_SubObjectName: 

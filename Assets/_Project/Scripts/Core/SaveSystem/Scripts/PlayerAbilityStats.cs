@@ -11,16 +11,27 @@ namespace TheForgottenLetters
     [CreateAssetMenu(fileName = "PlayerAbilityStats", menuName = "Player/Player Ability Stats")]
     public class PlayerAbilityStats : ScriptableObject
     {
+        // ========== Public Fields ==========
         public int energyPoints;
-        [SerializeField] private PlayerHealth playerHealth;
-
         public string lastTimeEnergyIncreasedUTC;
 
+        [SerializeField] private PlayerHealth playerHealth;
+
         public AssetReference playerAbilityStatsChangedEventRef;
+
+        // ========== Cached References ==========
         public PlayerSkills playerSkills => PersistentSOManager.GetSO<PlayerSkills>();
 
         public GameEvent playerAbilityStatsChangedEvent =>
             EventLoader.Instance.GetEvent<GameEvent>(playerAbilityStatsChangedEventRef);
+
+        // ========== Context Menu Actions ==========
+        [ContextMenu("Reset and Save Data To Firebase")]
+        public void ResetAndSaveDataToFirebase()
+        {
+            ResetData();
+            SaveData();
+        }
 
         [ContextMenu("Reset Data")]
         public void ResetData()
@@ -28,76 +39,81 @@ namespace TheForgottenLetters
             energyPoints = 0;
             lastTimeEnergyIncreasedUTC = string.Empty;
             playerSkills.ResetData();
-            FinalizeUpdate();
         }
 
-        public void UpdateData(PlayerAbilityStatsDataBuilder builder)
+        [ContextMenu("Save Data")]
+        private void SaveData()
+        {
+            SaveDataAsync().Forget();
+        }
+
+        // ========== Async Save ==========
+        private async UniTask SaveDataAsync()
+        {
+            var builder = GetBuilder();
+            if (builder == null)
+            {
+                Debug.LogError("PlayerAbilityStatsDataBuilder is null.");
+                return;
+            }
+            await builder.SaveDataToFirebaseAsync();
+        }
+
+        // ========== Data Update Methods ==========
+        public void UpdateLocalData(PlayerAbilityStatsDataBuilder builder)
         {
             energyPoints = builder.energyPoints;
             lastTimeEnergyIncreasedUTC = builder.lastTimeEnergyIncreasedUTC;
-            playerSkills.UpdateData(builder.unlockedSkills);
-            FinalizeUpdate();
+            playerSkills.UpdateLocalData(builder.unlockedSkills);
+            playerAbilityStatsChangedEvent.Raise();
         }
 
-        public void UpdateData(PlayerAbilityStatsDataSerializable playerAbilityStatsData)
+        public void UpdateLocalData(PlayerAbilityStatsDataSerializable data)
         {
-            energyPoints = playerAbilityStatsData.energyPoints;
-            lastTimeEnergyIncreasedUTC = playerAbilityStatsData.lastTimeEnergyIncreasedUTC;
-            playerSkills.UpdateData(playerAbilityStatsData.unlockedSkillNames);
-            FinalizeUpdate();
+            energyPoints = data.energyPoints;
+            lastTimeEnergyIncreasedUTC = data.lastTimeEnergyIncreasedUTC;
+            playerSkills.UpdateLocalData(data.unlockedSkillNames);
+            playerAbilityStatsChangedEvent.Raise();
         }
 
+        // ========== Builder Getter ==========
         public PlayerAbilityStatsDataBuilder GetBuilder()
         {
             return new PlayerAbilityStatsDataBuilder(this);
         }
 
-        [ContextMenu("Add Energy Points")]
+        // ========== Utility Methods ==========
+        [ContextMenu("Add Energy Point")]
         public void AddEnergyPoint()
         {
-            energyPoints += 1;
-            FinalizeUpdate();
-        }
-
-        private void FinalizeUpdate()
-        {
-            // if (SavePlayerDataAsync().Status == UniTaskStatus.Pending)
-            //     return;
-            SavePlayerDataAsync().Forget();
-            playerAbilityStatsChangedEvent.Raise();
-        }
-
-        private async UniTask SavePlayerDataAsync()
-        {
-            await FirebaseManager.Instance.SavePlayerData(PersistentSOManager.GetSO<PlayerAbilityStats>());
+            GetBuilder()
+                .IncrementEnergyPoints(1)
+                .UpdateLocalData()
+                .SaveDataToFirebase();
         }
     }
 
     [FirestoreData]
     public class PlayerAbilityStatsDataSerializable
     {
-
         [FirestoreProperty] public int energyPoints { get; set; }
-
         [FirestoreProperty] public string lastTimeEnergyIncreasedUTC { get; set; }
-
         [FirestoreProperty] public List<string> unlockedSkillNames { get; set; } = new();
-        
-        // ✅ Default constructor required for Firestore
+
+        // Default constructor required for Firestore
         public PlayerAbilityStatsDataSerializable()
         {
             energyPoints = 0;
-            unlockedSkillNames = new List<string>();
             lastTimeEnergyIncreasedUTC = string.Empty;
+            unlockedSkillNames = new List<string>();
         }
 
-        // ✅ Constructor for conversion from LetterHuntData
+        // Constructor for conversion from PlayerAbilityStats
         public PlayerAbilityStatsDataSerializable(PlayerAbilityStats data)
         {
             energyPoints = data.energyPoints;
             unlockedSkillNames = data.playerSkills.UnlockedSkills_names;
             lastTimeEnergyIncreasedUTC = data.lastTimeEnergyIncreasedUTC;
         }
-
     }
 }

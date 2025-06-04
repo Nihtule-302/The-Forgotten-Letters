@@ -60,13 +60,13 @@ namespace TheForgottenLetters
             unlockedSkills.Clear();
         }
 
-        public void UpdateData(PlayerSkillsSerializable playerSkillsSerializable)
+        public void UpdateLocalData(PlayerSkillsSerializable playerSkillsSerializable)
         {
             unlockedSkills_names = playerSkillsSerializable.unlockedSkills_names;
             LoadSkillsFromNames();
         }
 
-        public void UpdateData(List<string> playerSkills_names)
+        public void UpdateLocalData(List<string> playerSkills_names)
         {
             unlockedSkills_names = playerSkills_names;
             LoadSkillsFromNames();

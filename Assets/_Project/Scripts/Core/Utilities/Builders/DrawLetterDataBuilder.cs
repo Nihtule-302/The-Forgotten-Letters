@@ -1,6 +1,8 @@
-using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.Utilities;
+using Cysharp.Threading.Tasks;
 
 public class DrawLetterDataBuilder
 {
@@ -21,6 +23,8 @@ public class DrawLetterDataBuilder
     public int CorrectScore { get; private set; }
     public int IncorrectScore { get; private set; }
     public List<DrawLetterRound> Rounds { get; }
+
+    public DrawLetterData SoRef => PersistentSOManager.GetSO<DrawLetterData>();
 
     public DrawLetterDataBuilder SetCorrectScore(int score)
     {
@@ -58,4 +62,26 @@ public class DrawLetterDataBuilder
         });
         return this;
     }
+
+    public DrawLetterDataBuilder UpdateLocalData()
+    {
+        SoRef.UpdateLocalData(this);
+        return this;
+    }
+
+    public DrawLetterDataSerializable SerializeDrawLetterData()
+    {
+        return new DrawLetterDataSerializable(SoRef);
+    }
+
+    public void SaveDataToFirebase()
+    {
+        SaveDataToFirebaseAsync().Forget();
+    }
+
+    public async UniTask SaveDataToFirebaseAsync()
+    {
+        await FirebaseManager.Instance.SaveDrawLetterData(SerializeDrawLetterData());
+    }
+
 }

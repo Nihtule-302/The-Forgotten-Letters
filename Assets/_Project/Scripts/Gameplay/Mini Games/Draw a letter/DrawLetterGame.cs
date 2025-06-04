@@ -150,19 +150,19 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
             Debug.Log("Correct answer");
             
             var drawLetterDataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
-            drawLetterDataBuilder
-                .IncrementCorrectScore()
-                .AddRound(currentTargetLetter, true);
-
-            PersistentSOManager.GetSO<DrawLetterData>().UpdateData(drawLetterDataBuilder);
-            await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+            await drawLetterDataBuilder
+                    .IncrementCorrectScore()
+                    .AddRound(currentTargetLetter, true)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
+            
 
             var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
-            playerDataBuilder
+            await playerDataBuilder
                 .IncrementEnergyPoints()
-                .SetlastTimeEnergyIncreased();
-
-            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
+                .SetlastTimeEnergyIncreased()
+                .UpdateLocalData()
+                .SaveDataToFirebaseAsync();
 
             if (IsLastRound())
             {
@@ -178,13 +178,11 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
         {
             Debug.Log("Wrong answer");
             var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
-            dataBuilder
-                .IncrementIncorrectScore()
-                .AddRound(currentTargetLetter, false);
-
-            PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
-
-            await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+            await dataBuilder
+                    .IncrementIncorrectScore()
+                    .AddRound(currentTargetLetter, false)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
         }
 
         private bool IsLastRound()

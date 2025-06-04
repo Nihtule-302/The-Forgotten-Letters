@@ -1,9 +1,16 @@
-using System;
 using System.Collections.Generic;
+using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.Utilities;
+using Cysharp.Threading.Tasks;
 
 public class ObjectDetectionDataBuilder
 {
+    public int CorrectScore { get; private set; }
+    public int IncorrectScore { get; private set; }
+    public List<ObjectDetectionRound> Rounds { get; }
+
+    private ObjectDetectionData SoRef => PersistentSOManager.GetSO<ObjectDetectionData>();
+
     public ObjectDetectionDataBuilder()
     {
         CorrectScore = 0;
@@ -17,10 +24,6 @@ public class ObjectDetectionDataBuilder
         IncorrectScore = existingData.incorrectScore;
         Rounds = new List<ObjectDetectionRound>(existingData.rounds);
     }
-
-    public int CorrectScore { get; private set; }
-    public int IncorrectScore { get; private set; }
-    public List<ObjectDetectionRound> Rounds { get; }
 
     public ObjectDetectionDataBuilder SetCorrectScore(int score)
     {
@@ -58,5 +61,34 @@ public class ObjectDetectionDataBuilder
             timestampCairoTime = timeStamp
         });
         return this;
+    }
+
+    public ObjectDetectionDataBuilder UpdateLocalData()
+    {
+        SoRef?.UpdateLocalData(this);
+        return this;
+    }
+
+    public ObjectDetectionDataSerializable SerializeObjectDetectionData()
+    {
+        return new ObjectDetectionDataSerializable(SoRef);
+    }
+
+    public void SaveDataToFirebase()
+    {
+        SaveDataToFirebaseAsync().Forget();
+    }
+
+    public async UniTask SaveDataToFirebaseAsync()
+    {
+        var data = SerializeObjectDetectionData();
+        if (data != null)
+        {
+            await FirebaseManager.Instance.SaveObjectDetectionData(data);
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Failed to serialize ObjectDetectionData.");
+        }
     }
 }

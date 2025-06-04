@@ -87,20 +87,18 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
         private async UniTask HandleCorrectAnswerAsync()
         {
             var dataBuilder = PersistentSOManager.GetSO<ObjectDetectionData>().GetBuilder();
-            dataBuilder
-                .IncrementCorrectScore()
-                .AddRound(targetLetter, true);
-
-            PersistentSOManager.GetSO<ObjectDetectionData>().UpdateData(dataBuilder);
-            await FirebaseManager.Instance.SaveObjectDetectionData(PersistentSOManager.GetSO<ObjectDetectionData>());
+            await dataBuilder
+                    .IncrementCorrectScore()
+                    .AddRound(targetLetter, true)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
             var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
-            playerDataBuilder
-                .IncrementEnergyPoints()
-                .SetlastTimeEnergyIncreased();
-
-            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
-
+            await playerDataBuilder
+                    .IncrementEnergyPoints()
+                    .SetlastTimeEnergyIncreased()
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
             Debug.Log("Correct answer");
             uiManager.CallCorrectScreen();
@@ -110,12 +108,11 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
         private async UniTaskVoid HandleIncorrectAnswerAsync()
         {
             var dataBuilder = PersistentSOManager.GetSO<ObjectDetectionData>().GetBuilder();
-            dataBuilder
-                .IncrementIncorrectScore()
-                .AddRound(targetLetter, false);
-
-            PersistentSOManager.GetSO<ObjectDetectionData>().UpdateData(dataBuilder);
-            await FirebaseManager.Instance.SaveObjectDetectionData(PersistentSOManager.GetSO<ObjectDetectionData>());
+            await dataBuilder
+                    .IncrementIncorrectScore()
+                    .AddRound(targetLetter, false)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
             Debug.Log("Wrong answer");
             uiManager.CallWrongScreen();

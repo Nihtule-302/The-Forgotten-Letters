@@ -116,8 +116,9 @@ namespace _Project.Scripts.Core.Managers
                     var playerAbilityStatsBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
                     playerAbilityStatsBuilder
                         .RemoveLatestSkill()
-                        .SetlastTimeEnergyIncreased();
-                    PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerAbilityStatsBuilder);
+                        .SetlastTimeEnergyIncreased()
+                        .UpdateLocalData()
+                        .SaveDataToFirebase();
                     decayProgressRatio = 0f;
                 }
             }

@@ -52,20 +52,18 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Puzzles
         {
             Debug.Log("Correct answer");
             var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
-            dataBuilder
-                .IncrementCorrectScore()
-                .AddRound(currentTargetLetter, true);
-
-            PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
-            await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+            await dataBuilder
+                    .IncrementCorrectScore()
+                    .AddRound(currentTargetLetter, true)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
             var playerDataBuilder = PersistentSOManager.GetSO<PlayerAbilityStats>().GetBuilder();
-            playerDataBuilder
-                .IncrementEnergyPoints()
-                .SetlastTimeEnergyIncreased();
-
-            PersistentSOManager.GetSO<PlayerAbilityStats>().UpdateData(playerDataBuilder);
-
+            await playerDataBuilder
+                    .IncrementEnergyPoints()
+                    .SetlastTimeEnergyIncreased()
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
 
             hiddenDoor.UnlockDoor();
         }
@@ -74,13 +72,11 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Puzzles
         {
             Debug.Log("Wrong answer");
             var dataBuilder = PersistentSOManager.GetSO<DrawLetterData>().GetBuilder();
-            dataBuilder
-                .IncrementIncorrectScore()
-                .AddRound(currentTargetLetter, false);
-
-            PersistentSOManager.GetSO<DrawLetterData>().UpdateData(dataBuilder);
-
-            await FirebaseManager.Instance.SaveDrawLetterData(PersistentSOManager.GetSO<DrawLetterData>());
+            await dataBuilder
+                    .IncrementIncorrectScore()
+                    .AddRound(currentTargetLetter, false)
+                    .UpdateLocalData()
+                    .SaveDataToFirebaseAsync();
         }
     }
 }
