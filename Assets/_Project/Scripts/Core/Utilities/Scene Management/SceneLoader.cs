@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,28 +12,42 @@ namespace _Project.Scripts.Core.Utilities.Scene_Management
     {
         public event Action<SceneInstance> OnSceneLoaded;
         public event Action<string> OnSceneLoadFailed;
-
-        public void LoadScene(AssetReference sceneReference,
-            Action<AsyncOperationHandle<SceneInstance>> onComplete = null)
+        
+        public void LoadScene(AssetReference sceneReference, Action<AsyncOperationHandle<SceneInstance>> onComplete = null, Action<float> onProgress = null)
         {
-            Addressables.LoadSceneAsync(sceneReference, LoadSceneMode.Additive)
-                .Completed += handle => ProcessLoadCompletion(handle, onComplete);
+            LoadSceneAsync(sceneReference, onComplete, onProgress).Forget(); // Optional, for non-await usage
+        }
+        public async UniTask LoadSceneAsync(AssetReference sceneReference, Action<AsyncOperationHandle<SceneInstance>> onComplete = null, Action<float> onProgress = null)
+        {
+            await UniTask.DelayFrame(2);
+
+            var handle = Addressables.LoadSceneAsync(sceneReference, LoadSceneMode.Additive);
+            handle.Completed += h => ProcessLoadCompletion(h, onComplete);
+
+            while (!handle.IsDone)
+            {
+                onProgress?.Invoke(handle.PercentComplete);
+                await UniTask.Yield();
+            }
+
+            await handle.Task;
         }
 
-        private void ProcessLoadCompletion(AsyncOperationHandle<SceneInstance> handle,
+        private async void ProcessLoadCompletion(
+            AsyncOperationHandle<SceneInstance> handle,
             Action<AsyncOperationHandle<SceneInstance>> onComplete)
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
-                ProcessSuccessfulLoad(handle);
+                await ProcessSuccessfulLoad(handle);
             else
                 ProcessFailedLoad(handle);
 
             onComplete?.Invoke(handle);
         }
 
-        private void ProcessSuccessfulLoad(AsyncOperationHandle<SceneInstance> handle)
+        private async UniTask ProcessSuccessfulLoad(AsyncOperationHandle<SceneInstance> handle)
         {
-            // Set the newly loaded scene as the active scene.
+            await UniTask.DelayFrame(2);
             SceneManager.SetActiveScene(handle.Result.Scene);
             OnSceneLoaded?.Invoke(handle.Result);
         }

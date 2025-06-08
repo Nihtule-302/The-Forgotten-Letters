@@ -1,4 +1,5 @@
 using _Project.Scripts.Core.Managers;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -10,12 +11,22 @@ namespace _Project.Scripts.Core.Utilities.Scene_Management
 
         public void TranstionToScene()
         {
-            SceneTransitionManager.Instance.TransitionScene(SceneToTransitionTo);
+            TranstionToSceneAsync(SceneToTransitionTo).Forget(); // Optional, for non-await usage
         }
 
         public void TranstionToScene(AssetReference chossenScene)
         {
-            SceneTransitionManager.Instance.TransitionScene(chossenScene);
+            TranstionToSceneAsync(chossenScene).Forget(); // Optional, for non-await usage
+        }
+
+        public async UniTask TranstionToSceneAsync()
+        {
+            await SceneTransitionManager.Instance.TransitionSceneAsync(SceneToTransitionTo);
+        }
+
+        public async UniTask TranstionToSceneAsync(AssetReference chossenScene)
+        {
+            await SceneTransitionManager.Instance.TransitionSceneAsync(chossenScene);
         }
     }
 }

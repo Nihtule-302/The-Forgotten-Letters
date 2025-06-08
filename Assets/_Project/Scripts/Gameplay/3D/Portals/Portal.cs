@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay._3D.Portals
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player")) SceneTransitionManager.Instance.TransitionScene(sceneToTravelTo);
+            if (other.gameObject.CompareTag("Player")) SceneTransitionManager.Instance.TransitionSceneAsync(sceneToTravelTo);
         }
     }
 }

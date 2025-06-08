@@ -19,30 +19,42 @@ MonoBehaviour:
     m_Address: PlayerSkills
     m_ReadOnly: 0
     m_SerializedLabels:
+    - DownloadOnStart
     - SaveData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c14fb82c54fa9a4c92775ee63502c82
     m_Address: PlayerAbilityStats
     m_ReadOnly: 0
     m_SerializedLabels:
+    - DownloadOnStart
     - SaveData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7bb733ec0a82a0f4b9d543c107233e00
     m_Address: DrawLetterData
     m_ReadOnly: 0
     m_SerializedLabels:
+    - DownloadOnStart
+    - SaveData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d41927292990a47418c2bce2ec58db93
+    m_Address: PlayerAccountData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DownloadOnStart
     - SaveData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fa3c91e70a03c7841809fada652e6a58
     m_Address: ObjectDetectionData
     m_ReadOnly: 0
     m_SerializedLabels:
+    - DownloadOnStart
     - SaveData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: feb759d472eb5bf45bcc00d80d0fbbb5
     m_Address: LetterHuntData
     m_ReadOnly: 0
     m_SerializedLabels:
+    - DownloadOnStart
     - SaveData
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0

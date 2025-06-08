@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Letter Hunt Image Edition
+  m_EditorClassIdentifier: 
+  m_GroupName: Letter Hunt Image Edition
+  m_GUID: d3c58b046ea55564487ed13d1ba67b5e
+  m_SerializeEntries:
+  - m_GUID: 5b1cb1bc824527e44a975d96f46c54aa
+    m_Address: Letter Hunt Image Edition
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DownloadOnStart
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a091d82ec624f546961d50c51319813
+    m_Address: Letter Hunt Image.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DownloadOnStart
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 58231e9ff24f6334d832a94de83e8dcf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: af1d1a3e257438448aef94f1e334e7e3, type: 2}
+    - {fileID: 11400000, guid: 5944e33f752c6a645a72ebdc9f6ef777, type: 2}

@@ -1,8 +1,10 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Core.Utilities.Scene_Management
 {
@@ -11,7 +13,14 @@ namespace _Project.Scripts.Core.Utilities.Scene_Management
         public event Action OnSceneUnloaded;
         public event Action<string> OnSceneUnloadFailed;
 
-        public void UnloadScene(AsyncOperationHandle<SceneInstance> sceneHandle)
+        public void UnloadScene(AsyncOperationHandle<SceneInstance> sceneHandle, Action<float> onProgress = null)
+        {
+            UnloadSceneAsync(sceneHandle, onProgress).Forget(); // Optional, for non-await usage
+        }
+
+        public async UniTask UnloadSceneAsync(
+            AsyncOperationHandle<SceneInstance> sceneHandle,
+            Action<float> onProgress = null)
         {
             if (!sceneHandle.IsValid())
             {
@@ -19,28 +28,34 @@ namespace _Project.Scripts.Core.Utilities.Scene_Management
                 return;
             }
 
-            Addressables.UnloadSceneAsync(sceneHandle)
-                .Completed += handle => ProcessUnloadCompletion(handle);
-        }
+            var sceneToUnload = sceneHandle.Result.Scene;
 
-        private void ProcessUnloadCompletion(AsyncOperationHandle<SceneInstance> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-                ProcessSuccessfulUnload(handle);
+            await UniTask.NextFrame(); // optional frame delay
+
+            var unloadHandle = Addressables.UnloadSceneAsync(sceneHandle, false);
+
+            while (!unloadHandle.IsDone)
+            {
+                onProgress?.Invoke(unloadHandle.PercentComplete);
+                await UniTask.Yield();
+            }
+
+            if (!unloadHandle.IsValid())
+            {
+                Debug.LogError("Handle is not valid in OnSceneLoadCallback");
+                return;
+            }
+
+            if (unloadHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                Addressables.Release(unloadHandle);
+                OnSceneUnloaded?.Invoke();
+            }
             else
-                ProcessFailedUnload(handle);
-        }
-
-        private void ProcessSuccessfulUnload(AsyncOperationHandle<SceneInstance> handle)
-        {
-            OnSceneUnloaded?.Invoke();
-        }
-
-        private void ProcessFailedUnload(AsyncOperationHandle<SceneInstance> handle)
-        {
-            Debug.LogError($"Failed to unload scene: {handle.DebugName}");
-            OnSceneUnloadFailed?.Invoke(handle.DebugName);
-            Addressables.Release(handle);
+            {
+                Debug.LogError($"Failed to unload scene: {unloadHandle.DebugName}");
+                OnSceneUnloadFailed?.Invoke(unloadHandle.DebugName);
+            }
         }
     }
 }

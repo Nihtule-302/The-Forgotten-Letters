@@ -67,7 +67,7 @@ namespace _Project.Scripts.UI
 
         public void ReturnToMainMenu()
         {
-            SceneTransitionManager.Instance.TransitionScene(MainMenu);
+            SceneTransitionManager.Instance.TransitionSceneAsync(MainMenu);
         }
 
         public void ExitGame()

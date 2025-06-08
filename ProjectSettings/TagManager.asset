@@ -14,8 +14,8 @@ TagManager:
   - UI
   - Player
   - Ground
-  - Scratch
   - 
+  - LoadingUI
   - 
   - 
   - 
@@ -80,6 +80,9 @@ TagManager:
     locked: 0
   - name: On Top
     uniqueID: 3137890231
+    locked: 0
+  - name: Sprite UI
+    uniqueID: 352834311
     locked: 0
   m_RenderingLayers:
   - Default

@@ -10,6 +10,7 @@ namespace _Project.Scripts.Core.Managers
         private void Awake()
         {
             Addressables.LoadSceneAsync(sceneToLoad);
+            
         }
     }
 }

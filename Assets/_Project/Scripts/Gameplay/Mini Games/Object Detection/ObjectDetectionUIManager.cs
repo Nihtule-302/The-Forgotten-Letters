@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Core.Utilities.Scene_Management;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -22,6 +23,9 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
         [SerializeField] private GameObject wrongScreen;
         [SerializeField] private float answerFeedbackScreenDelay = 0.2f;
         [SerializeField] private float answerFeedbackScreenDuration = 1f;
+
+        [Header("Scene Transitioner")]
+        [SerializeField] private SceneTransitioner sceneTransitioner;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
@@ -47,7 +51,7 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             RequestCameraPermissionAsync().Forget();
         }
 
-        private async UniTaskVoid RequestCameraPermissionAsync()
+        public async UniTask RequestCameraPermissionAsync()
         {
             if (!Application.HasUserAuthorization(UserAuthorization.WebCam))
             {
@@ -57,6 +61,7 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
                 if (!granted)
                 {
                     Debug.LogWarning("Camera permission denied.");
+                    sceneTransitioner.TranstionToSceneAsync().Forget();
                     return;
                 }
             }

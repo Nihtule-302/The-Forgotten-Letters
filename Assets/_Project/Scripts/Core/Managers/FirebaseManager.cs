@@ -31,6 +31,7 @@ namespace _Project.Scripts.Core.Managers
 
         public bool IsInitialized { get; private set; }
 
+        public static event Action OnFirebaseManagerReady;
         public event Action OnFirebaseInitialized;
         public event Action OnLetterHuntDataUpdated;
         public event Action OnDrawLetterDataUpdated;
@@ -70,6 +71,7 @@ namespace _Project.Scripts.Core.Managers
                 Auth = FirebaseAuth.DefaultInstance;
 
                 Debug.Log("Firebase initialized successfully.");
+                OnFirebaseManagerReady?.Invoke();
                 OnFirebaseInitialized?.Invoke();
                 IsInitialized = true;
             });

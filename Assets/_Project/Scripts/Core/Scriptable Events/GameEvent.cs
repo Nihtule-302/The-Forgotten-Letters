@@ -9,16 +9,26 @@ namespace _Project.Scripts.Core.Scriptable_Events
 
         public void Raise(T data)
         {
-            for (var i = listeners.Count - 1; i >= 0; i--) listeners[i].OnEvenRaised(data);
+            for (var i = listeners.Count - 1; i >= 0; i--) listeners[i].OnEventRaised(data);
         }
 
         public void RegisterListener(IGameEventListener<T> listener)
         {
+            if(listeners.Contains(listener))
+            {
+                Debug.LogWarning("Listener already registered.");
+                return;
+            }
             listeners.Add(listener);
         }
 
         public void DeregisterListener(IGameEventListener<T> listener)
         {
+            if (!listeners.Contains(listener))
+            {
+                Debug.LogWarning("Listener not registered.");
+                return;
+            }
             listeners.Remove(listener);
         }
     }

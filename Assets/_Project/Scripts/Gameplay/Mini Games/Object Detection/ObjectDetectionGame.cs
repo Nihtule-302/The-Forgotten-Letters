@@ -32,13 +32,18 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
 
         public void StartGame(LetterData customLetter = null)
         {
-            uiManager.StartObjectDetection();
+           CheckConditionsBeforeStartingGameAsync(customLetter).Forget();
+        }
+
+        private async UniTask CheckConditionsBeforeStartingGameAsync(LetterData customLetter = null)
+        {
+            await uiManager.RequestCameraPermissionAsync();
             InitializeGame(customLetter);
         }
 
         public void RestartGame()
         {
-            StartGame();
+            CheckConditionsBeforeStartingGameAsync().Forget();
         }
 
         private void InitializeGame(LetterData customLetter = null)

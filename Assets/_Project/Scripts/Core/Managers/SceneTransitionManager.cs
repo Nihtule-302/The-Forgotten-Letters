@@ -1,15 +1,63 @@
 using System;
+using System.Threading.Tasks;
+using _Project.Scripts.Core.Scriptable_Events;
+using _Project.Scripts.Core.Scriptable_Events.EventTypes.Float;
 using _Project.Scripts.Core.Utilities.Scene_Management;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Core.Managers
 {
     public class SceneTransitionManager : MonoBehaviour
     {
-        #region Unity Methods
+        public static SceneTransitionManager Instance { get; private set; }
+
+        [SerializeField] private AssetReference TempScreen;
+
+        [Header("Event References")]
+        [SerializeField] private AssetReference loadingProgressRef;
+        [SerializeField] private AssetReference hideLoadingScreenRef;
+        [SerializeField] private AssetReference showLoadingScreenRef;
+        [SerializeField] private AssetReference triggerNextSetupStepRef;
+        [SerializeField] private AssetReference sceneTransitionTriggeredRef;
+
+
+        private SceneLoader loader;
+        private SceneUnloader unloader;
+
+        public AsyncOperationHandle<SceneInstance> currentHandle;
+        private AsyncOperationHandle<SceneInstance> TempHandle;
+        private AsyncOperationHandle<SceneInstance> targetHandle;
+
+
+        private AssetReference tempRef;
+        private AssetReference targetRef;
+
+        private bool isTransitioning;
+
+        private enum TransitionState
+        {
+            Idle,
+            LoadingTempScreen,
+            UnloadingCurrent,
+            LoadingTarget,
+            UnloadingTempScreen
+        }
+
+        private TransitionState state = TransitionState.Idle;
+
+        public event Action<SceneInstance> OnSceneLoaded;
+        public event Action OnSceneUnloaded;
+
+        private GameEvent TriggerNextSetupStep => EventLoader.Instance.GetEvent<GameEvent>(triggerNextSetupStepRef);
+        private FloatEvent LoadingProgress => EventLoader.Instance.GetEvent<FloatEvent>(loadingProgressRef);
+        private GameEvent HideLoadingScreen => EventLoader.Instance.GetEvent<GameEvent>(hideLoadingScreenRef);
+        private GameEvent ShowLoadingScreen => EventLoader.Instance.GetEvent<GameEvent>(showLoadingScreenRef);
+        private GameEvent SceneTransitionTriggered => EventLoader.Instance.GetEvent<GameEvent>(sceneTransitionTriggeredRef);
 
         private void Awake()
         {
@@ -22,95 +70,29 @@ namespace _Project.Scripts.Core.Managers
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            InitUtilities();
-            SubscribeEvents();
-        }
+            loader = new SceneLoader();
+            unloader = new SceneUnloader();
 
-        #endregion
+            loader.OnSceneLoaded += HandleSceneLoaded;
+            loader.OnSceneLoadFailed += HandleSceneLoadFailed;
+            unloader.OnSceneUnloaded += HandleSceneUnloaded;
+            unloader.OnSceneUnloadFailed += HandleSceneUnloadFailed;
+        }
 
         private void OnDestroy()
         {
             if (Instance == this)
             {
                 Instance = null;
-                UnsubscribeEvents();
+
+                loader.OnSceneLoaded -= HandleSceneLoaded;
+                loader.OnSceneLoadFailed -= HandleSceneLoadFailed;
+                unloader.OnSceneUnloaded -= HandleSceneUnloaded;
+                unloader.OnSceneUnloadFailed -= HandleSceneUnloadFailed;
             }
         }
 
-        private void UnsubscribeEvents()
-        {
-            if (loader != null)
-            {
-                loader.OnSceneLoaded -= SceneLoadedHandler;
-                loader.OnSceneLoadFailed -= SceneLoadFailedHandler;
-            }
-
-            if (unloader != null)
-            {
-                unloader.OnSceneUnloaded -= SceneUnloadedHandler;
-                unloader.OnSceneUnloadFailed -= SceneUnloadFailedHandler;
-            }
-        }
-
-        #region Fields
-
-        public static SceneTransitionManager Instance { get; private set; }
-        [SerializeField] private AssetReference loaderSceen;
-
-        private SceneLoader loader;
-        private SceneUnloader unloader;
-        private AsyncOperationHandle<SceneInstance> currentScene;
-
-
-        private AsyncOperationHandle<SceneInstance> loadingHandle;
-        private AsyncOperationHandle<SceneInstance> targetHandle;
-        private AssetReference loadingRef;
-        private AssetReference targetRef;
-
-        private bool isTransitioning;
-
-        // Simplified transition states.
-        private enum TransitionState
-        {
-            Idle,
-            LoadingScreenIn,
-            UnloadingCurrent,
-            LoadingTarget,
-            UnloadingScreen
-        }
-
-        private TransitionState state = TransitionState.Idle;
-
-        #endregion
-
-        #region Events
-
-        public event Action<SceneInstance> OnSceneLoaded;
-        public event Action OnSceneUnloaded;
-
-        #endregion
-
-        #region Initialization
-
-        private void InitUtilities()
-        {
-            loader = new SceneLoader();
-            unloader = new SceneUnloader();
-        }
-
-        private void SubscribeEvents()
-        {
-            loader.OnSceneLoaded += SceneLoadedHandler;
-            loader.OnSceneLoadFailed += SceneLoadFailedHandler;
-            unloader.OnSceneUnloaded += SceneUnloadedHandler;
-            unloader.OnSceneUnloadFailed += SceneUnloadFailedHandler;
-        }
-
-        #endregion
-
-        #region Transition Methods
-
-        public void TransitionScene(AssetReference targetScene)
+        public async UniTask TransitionSceneAsync(AssetReference targetScene)
         {
             if (isTransitioning)
             {
@@ -118,120 +100,96 @@ namespace _Project.Scripts.Core.Managers
                 return;
             }
 
+            SceneTransitionTriggered?.Raise();
+            ShowLoadingScreen?.Raise();
+            await UniTask.Delay(TimeSpan.FromSeconds(1.3)); // Small delay to ensure the previous transition is fully reset
+
             isTransitioning = true;
-            state = TransitionState.LoadingScreenIn;
-            loadingRef = loaderSceen;
+            state = TransitionState.LoadingTempScreen;
+
+            tempRef = TempScreen;
             targetRef = targetScene;
 
-            // Step 1: Load the loading screen.
-            loader.LoadScene(loadingRef, OnSceneLoadedCallback);
+            Debug.Log($"currentHandle: {currentHandle.DebugName}");
+
+            await loader.LoadSceneAsync(tempRef, OnSceneLoadCallback);
         }
 
-        private void OnSceneLoadedCallback(AsyncOperationHandle<SceneInstance> handle)
+        private async void OnSceneLoadCallback(AsyncOperationHandle<SceneInstance> handle)
         {
             if (handle.Status != AsyncOperationStatus.Succeeded)
             {
-                HandleLoadFailure(handle);
+                Debug.LogError($"Failed to load scene in state: {state}, scene: {handle.DebugName}");
+                ResetTransition();
                 return;
             }
 
             switch (state)
             {
-                case TransitionState.LoadingScreenIn:
-                    ProcessLoadingScreenIn(handle);
+                case TransitionState.LoadingTempScreen:
+                    TempHandle = handle;
+                    state = TransitionState.UnloadingCurrent;
+                    if (currentHandle.IsValid())
+                        await unloader.UnloadSceneAsync(currentHandle, ReportProgress);
+                    state = TransitionState.LoadingTarget;
+                    await loader.LoadSceneAsync(targetRef, OnSceneLoadCallback, ReportProgress);
                     break;
+
                 case TransitionState.LoadingTarget:
-                    ProcessLoadingTarget(handle);
+                    targetHandle = handle;
+                    state = TransitionState.UnloadingTempScreen;
+                    await unloader.UnloadSceneAsync(TempHandle);
                     break;
+
                 default:
-                    Debug.LogWarning("OnSceneLoadedCallback called in unexpected state: " + state);
+                    Debug.LogWarning("Unexpected load callback state: " + state);
                     break;
             }
         }
 
-        private void ProcessLoadingScreenIn(AsyncOperationHandle<SceneInstance> handle)
+        private async void HandleSceneUnloaded()
         {
-            loadingHandle = handle;
-
-            if (currentScene.IsValid())
+            if (state == TransitionState.UnloadingTempScreen)
             {
-                state = TransitionState.UnloadingCurrent;
-                unloader.UnloadScene(currentScene);
-            }
-            else
-            {
-                state = TransitionState.LoadingTarget;
-                loader.LoadScene(targetRef, OnSceneLoadedCallback);
-            }
-        }
-
-        private void ProcessLoadingTarget(AsyncOperationHandle<SceneInstance> handle)
-        {
-            targetHandle = handle;
-            state = TransitionState.UnloadingScreen;
-            unloader.UnloadScene(loadingHandle);
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void SceneUnloadedHandler()
-        {
-            if (state == TransitionState.UnloadingCurrent)
-            {
-                // Step 3: Load the target scene after unloading the current scene.
-                state = TransitionState.LoadingTarget;
-                loader.LoadScene(targetRef, OnSceneLoadedCallback);
-            }
-            else if (state == TransitionState.UnloadingScreen)
-            {
-                // Transition complete.
-                currentScene = targetHandle;
+                currentHandle = targetHandle;
                 ResetTransition();
                 OnSceneUnloaded?.Invoke();
+                ShowLoadingScreen?.Raise();
+                await UniTask.Delay(TimeSpan.FromSeconds(1)); // Small delay to ensure the scene is fully unloaded
             }
+
         }
 
-        private void SceneLoadedHandler(SceneInstance sceneInstance)
+        private void HandleSceneLoaded(SceneInstance sceneInstance)
         {
-            // For direct loads (like the initial scene), forward the event.
+            if (state == TransitionState.LoadingTarget && sceneInstance.Scene == SceneManager.GetActiveScene())
+                TriggerNextSetupStep?.Raise();
+
             OnSceneLoaded?.Invoke(sceneInstance);
         }
 
-        private void SceneLoadFailedHandler(string debugName)
+        private void HandleSceneLoadFailed(string debugName)
         {
-            Debug.LogError($"Failed to load scene: {debugName}");
+            Debug.LogError($"Scene load failed: {debugName}");
             ResetTransition();
         }
 
-        private void SceneUnloadFailedHandler(string debugName)
+        private void HandleSceneUnloadFailed(string debugName)
         {
-            Debug.LogError($"Failed to unload scene: {debugName}");
+            Debug.LogError($"Scene unload failed: {debugName}");
             ResetTransition();
         }
 
-        #endregion
-
-        #region Helper Methods
-
-        private void OnInitialLoadComplete(AsyncOperationHandle<SceneInstance> handle)
+        private void ReportProgress(float progress)
         {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
+            float adjusted = state switch
             {
-                currentScene = handle;
-                OnSceneLoaded?.Invoke(handle.Result);
-            }
-            else
-            {
-                Debug.LogError($"Failed to load initial scene: {handle.DebugName}");
-            }
-        }
+                TransitionState.UnloadingCurrent => Mathf.Clamp01(progress * 0.5f),
+                TransitionState.LoadingTarget => Mathf.Clamp01(progress * 0.5f + 0.5f),
+                _ => 0f
+            };
 
-        private void HandleLoadFailure(AsyncOperationHandle<SceneInstance> handle)
-        {
-            Debug.LogError($"Failed to load scene: {handle.DebugName} in state: {state}");
-            ResetTransition();
+            LoadingProgress?.Raise(adjusted);
         }
 
         private void ResetTransition()
@@ -239,7 +197,5 @@ namespace _Project.Scripts.Core.Managers
             isTransitioning = false;
             state = TransitionState.Idle;
         }
-
-        #endregion
     }
 }

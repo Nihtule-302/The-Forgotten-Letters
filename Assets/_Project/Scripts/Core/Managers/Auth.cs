@@ -69,7 +69,7 @@ namespace TheForgottenLetters
         private void BeginAuth()
         {
             ActivateAuthScreen();
-            UpdateStatus("Initializing Firebase...");
+            UpdateStatus("Initializing Auth...");
 
             auth = FirebaseManager.Instance.Auth;
             db = FirebaseManager.Instance.Firestore;

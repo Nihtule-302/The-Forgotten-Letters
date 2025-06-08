@@ -58,12 +58,12 @@ namespace _Project.Scripts.UI
 
         public void OpenBahrElSafaScene()
         {
-            SceneTransitionManager.Instance.TransitionScene(bahrElSafa);
+            SceneTransitionManager.Instance.TransitionSceneAsync(bahrElSafa);
         }
 
         public void OpenMoonScene()
         {
-            SceneTransitionManager.Instance.TransitionScene(moon);
+            SceneTransitionManager.Instance.TransitionSceneAsync(moon);
         }
 
         #endregion

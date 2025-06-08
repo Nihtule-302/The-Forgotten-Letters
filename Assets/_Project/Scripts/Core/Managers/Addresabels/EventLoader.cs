@@ -13,6 +13,7 @@ public class EventLoader : MonoBehaviour
     [ShowInInspector] [ReadOnly] private Dictionary<object, ScriptableObject> loadedEvents = new();
 
     public static EventLoader Instance { get; private set; }
+    public static event Action OnInitialized;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class EventLoader : MonoBehaviour
         }
 
         Instance = this;
+        OnInitialized?.Invoke();
         DontDestroyOnLoad(gameObject);
     }
 

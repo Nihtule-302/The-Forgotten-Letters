@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad:
-    m_AssetGUID: 63f958193b16c0d49a1db0792c157620
+    m_AssetGUID: 04bd07352f9f33f41a4ce03bf6d79fbc
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 

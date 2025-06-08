@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using _Project.Scripts.Core.Scriptable_Events;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -20,6 +21,8 @@ namespace _Project.Scripts.Core.Managers
         private int completedLoads;
         private int totalLoads;
         public static PersistentSOManager Instance { get; private set; }
+
+        
 
         private void Awake()
         {
