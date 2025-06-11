@@ -17,7 +17,7 @@ public class AdressableLoadingManager : MonoBehaviour
 
     [Header("Are Assets Loaded")] public bool areEventsReady;
 
-    // public bool areModelsReady = false;
+    public bool areModelsReady = false;
     public bool areLogicalSOsReady;
     private bool finished;
 
@@ -51,7 +51,7 @@ public class AdressableLoadingManager : MonoBehaviour
     private void Start()
     {
         EventLoader.Instance.OnAllEventsLoaded += OnEventsReady;
-        // SentisModelLoader.Instance.OnAllModelsLoaded += OnModelsReady;
+        SentisModelLoader.Instance.OnAllModelsLoaded += OnModelsReady;
         PersistentSOManager.Instance.OnAllSOsLoaded += OnLogicalSOsReady;
         transitioning = false;
         ShowLoadingScreenTrue?.Raise();
@@ -62,7 +62,7 @@ public class AdressableLoadingManager : MonoBehaviour
         if (finished) return;
         if (transitioning) return;
         // Check if all addressables are loaded
-        if (areEventsReady && areLogicalSOsReady)
+        if (areEventsReady && areLogicalSOsReady && areModelsReady)
         {
             transitioning = true;
             CheckAllAddressablesReady();
@@ -72,7 +72,7 @@ public class AdressableLoadingManager : MonoBehaviour
     private void OnDestroy()
     {
         EventLoader.Instance.OnAllEventsLoaded -= OnEventsReady;
-        // SentisModelLoader.Instance.OnAllModelsLoaded -= OnModelsReady;
+        SentisModelLoader.Instance.OnAllModelsLoaded -= OnModelsReady;
         PersistentSOManager.Instance.OnAllSOsLoaded -= OnLogicalSOsReady;
     }
 
@@ -83,11 +83,10 @@ public class AdressableLoadingManager : MonoBehaviour
         areEventsReady = true;
     }
 
-    // private void OnModelsReady()
-    // {
-    //     areModelsReady = true;
-    //     CheckAllAddressablesReady();
-    // }
+    private void OnModelsReady()
+    {
+        areModelsReady = true;
+    }
 
     private void OnLogicalSOsReady()
     {

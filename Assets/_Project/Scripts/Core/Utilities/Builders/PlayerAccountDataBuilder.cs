@@ -62,6 +62,6 @@ public class PlayerAccountDataBuilder
 
     public async UniTask SaveDataToFirebaseAsync()
     {
-        await Auth.Instance.SaveAuthInfoAsync();
+        await Auth.Instance.SaveAuthInfoAsync(fullName, username, email);
     }
 }

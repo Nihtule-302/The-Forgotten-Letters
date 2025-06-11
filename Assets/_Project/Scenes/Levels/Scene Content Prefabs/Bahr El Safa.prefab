@@ -2286,7 +2286,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611133995609011400, guid: c17558cee726fbe4b8cdf089364edf1c, type: 3}
       propertyPath: m_text
-      value: Meditation
+      value: "\uFEDE\uFEE3\uFE84\uFE97"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6611133995609011400, guid: c17558cee726fbe4b8cdf089364edf1c, type: 3}
+      propertyPath: m_fontSize
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6611133995609011400, guid: c17558cee726fbe4b8cdf089364edf1c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e342401408337c42bd9bb7183bfe3c2, type: 2}
+    - target: {fileID: 6611133995609011400, guid: c17558cee726fbe4b8cdf089364edf1c, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6611133995609011400, guid: c17558cee726fbe4b8cdf089364edf1c, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5131178249145375835, guid: 7e342401408337c42bd9bb7183bfe3c2, type: 2}
+    - target: {fileID: 6611133995609011400, guid: c17558cee726fbe4b8cdf089364edf1c, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1090999934270031502, guid: d9bb1ba8c4dec4d4b8af9125eab5d6b8, type: 3}
       propertyPath: m_text
@@ -4101,31 +4121,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 11.338154
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.606
+      value: -11.632887
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -16.644913
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.02930073
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.40450576
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.066038094
       objectReference: {fileID: 0}
     - target: {fileID: 3647487396234148643, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0.9116773
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_HDR
@@ -4133,7 +4153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_Depth
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_ClearFlags
@@ -4145,7 +4165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: field of view
-      value: 60
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_RenderingPath
@@ -4153,31 +4173,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: near clip plane
-      value: 0.3
+      value: 0.043614134
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 904.5496
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_OcclusionCulling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
-      propertyPath: m_BackGroundColor.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.4745098
+      value: 0.278431
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.3019608
+      value: 0.278431
       objectReference: {fileID: 0}
     - target: {fileID: 7009888253943141338, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.19215687
+      value: 0.278431
       objectReference: {fileID: 0}
     - target: {fileID: 8154746218628466118, guid: d579fda8b502e034d8388c5863b7004d, type: 3}
       propertyPath: m_Enabled

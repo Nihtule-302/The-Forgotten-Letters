@@ -31,6 +31,7 @@ namespace TheForgottenLetters
         {
             ResetData();
             SaveData();
+            playerAbilityStatsChangedEvent.Raise();
         }
 
         [ContextMenu("Reset Data")]
@@ -39,6 +40,8 @@ namespace TheForgottenLetters
             energyPoints = 0;
             lastTimeEnergyIncreasedUTC = string.Empty;
             playerSkills.ResetData();
+            playerAbilityStatsChangedEvent.Raise();
+            
         }
 
         [ContextMenu("Save Data")]

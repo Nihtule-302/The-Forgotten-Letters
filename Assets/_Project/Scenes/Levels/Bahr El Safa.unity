@@ -184,7 +184,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8efe9ef95901d624a9774d9930283104, type: 3}
---- !u!84 &1403193944
+--- !u!84 &1646087076
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,8 +196,8 @@ RenderTexture:
     Hash: 00000000000000000000000000000000
   m_IsAlphaChannelOptional: 0
   serializedVersion: 6
-  m_Width: 2960
-  m_Height: 1440
+  m_Width: 676
+  m_Height: 641
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthStencilFormat: 90
@@ -232,7 +232,7 @@ PrefabInstance:
     - target: {fileID: 606832370803369331, guid: 50e279a915015a541a5fb86338fa8394, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1403193944}
+      objectReference: {fileID: 1646087076}
     - target: {fileID: 1359841131957386821, guid: 50e279a915015a541a5fb86338fa8394, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

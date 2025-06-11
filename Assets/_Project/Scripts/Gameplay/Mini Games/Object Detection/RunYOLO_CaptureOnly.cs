@@ -19,11 +19,13 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
 
     public class RunYoloCaptureOnly : MonoBehaviour
     {
+        
         private const int ImageWidth = 640;
         private const int ImageHeight = 640;
 
         [Header("References")] [Tooltip("Drag a YOLO model .onnx file here")]
-        public ModelAsset modelAsset;
+        public AssetReference modelAssetRef;
+        public ModelAsset modelAsset => SentisModelLoader.Instance.GetModel(modelAssetRef);
 
         [Tooltip("Drag the classes.txt here")] public TextAsset classesAsset;
 
@@ -102,6 +104,12 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
 
         private void Start()
         {
+            if (_activeCameraTexture != null && _activeCameraTexture.isPlaying)
+            {
+                _activeCameraTexture.Stop();
+                _activeCameraTexture = null;
+            }
+
             displayImage.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
             displayImage.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
             displayImage.rectTransform.pivot = new Vector2(0.5f, 0.5f);
@@ -126,6 +134,17 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             if (tryAgainButton != null) tryAgainButton.gameObject.SetActive(false);
 
             UpdateDetectionZoneVisual(); // Initial update for the detection zone visual
+        }
+
+        void OnDestroy()
+        {
+            if (_activeCameraTexture != null)
+            {
+                if (_activeCameraTexture.isPlaying)
+                    _activeCameraTexture.Stop();
+
+                _activeCameraTexture = null;
+            }
         }
 
         private void Update()
@@ -192,7 +211,8 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
                 height = closest.height;
             }
 #endif
-
+            Debug.Log($"Using front camera: {frontDevice.name} with resolution {width}x{height}");
+            Debug.Log($"Using back camera: {backDevice.name} with resolution {width}x{height}");
             _frontCameraTexture = new WebCamTexture(_frontCameraDevice.name, width, height);
             _backCameraTexture = new WebCamTexture(_backCameraDevice.name, width, height);
         }
@@ -208,14 +228,24 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
         {
             // Set the camera to use by default based on selected camera type
             if (cameraType == CameraTypes.Front)
+            {
                 SetActiveCamera(_frontCameraTexture);
+                Debug.Log($"Using front camera: {_frontCameraTexture.deviceName}");
+            }
             else // default to back camera
+            {
                 SetActiveCamera(_backCameraTexture);
+                Debug.Log($"Using back camera: {_backCameraTexture.deviceName}");
+            }
         }
 
         public void SetActiveCamera(WebCamTexture cameraToUse)
         {
-            if (_activeCameraTexture != null) _activeCameraTexture.Stop();
+            if (_activeCameraTexture != null)
+            {
+                _activeCameraTexture.Stop();
+                Debug.Log($"Stopping previous camera: {_activeCameraTexture.deviceName}");
+            }
 
             _activeCameraTexture = cameraToUse;
             _webcamTexture = _activeCameraTexture; // Keep reference for compatibility with existing code
@@ -237,17 +267,20 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             {
                 cameraType = CameraTypes.Back;
                 SetActiveCamera(_backCameraTexture);
+                Debug.Log($"Switched to back camera: {_backCameraTexture.deviceName}");
             }
             else
             {
                 cameraType = CameraTypes.Front;
                 SetActiveCamera(_frontCameraTexture);
+                Debug.Log($"Switched to front camera: {_frontCameraTexture.deviceName}");
             }
         }
 
         public void CaptureFrame()
         {
             _webcamTexture.Pause();
+            Debug.Log("Capturing frame from webcam...");
 
             _capturedImage = new Texture2D(_webcamTexture.width, _webcamTexture.height);
             _capturedImage.SetPixels(_webcamTexture.GetPixels());
@@ -276,6 +309,7 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
         /// </summary>
         public void ResumeCamera()
         {
+            Debug.Log("Resuming camera feed...");
             // Clear any previous annotations
             ClearAnnotations();
 
@@ -289,6 +323,7 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
                 displayImage.texture = _webcamTexture;
                 // Start playing the webcam again
                 _webcamTexture.Play();
+                Debug.Log($"Resumed camera: {_webcamTexture.deviceName}");
             }
 
             UpdateDetectionZoneVisual(); // Update visual when resuming camera
@@ -303,6 +338,7 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             result.ReadPixels(new Rect(0, 0, width, height), 0, 0);
             result.Apply();
             RenderTexture.ReleaseTemporary(rt);
+            Debug.Log($"Resized texture from {source.width}x{source.height} to {width}x{height}");
             return result;
         }
 
@@ -334,6 +370,8 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             _model = graph.Compile(coords, labelIDs);
             SetupEngine(_model, backend);
             _inputTensor = new Tensor<float>(new TensorShape(1, 3, ImageHeight, ImageWidth));
+
+            Debug.Log($"input shape {_inputTensor.shape}");
         }
 
         public void ExecuteMl()
@@ -684,6 +722,8 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
         {
             if (_worker != null) _worker.Dispose();
             _worker = new Worker(model, backendType);
+
+            Debug.Log($"Worker initialized with backend: {backendType}");
         }
 
         private void UpdateDetectionZoneVisual()
@@ -706,12 +746,19 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             // and its pivot is also centered (0.5, 0.5).
             detectionZoneOverlay.rectTransform.anchoredPosition = Vector2.zero;
             detectionZoneOverlay.gameObject.SetActive(true);
+            Debug.Log($"Detection zone visual updated: {zoneWidthUI}x{zoneHeightUI} at center of display.");
         }
 
         private void HandleCameraDisplay()
         {
             if (!_isCamAvailable || _activeCameraTexture == null || !_activeCameraTexture.isPlaying)
+            {
+                Debug.Log("No active camera available or camera is not playing.");
+                Debug.Log("isCamAvailable: " + _isCamAvailable);
+                Debug.Log("activeCameraTexture isPlaying: " + (_activeCameraTexture != null && _activeCameraTexture.isPlaying));
+                Debug.Log("activeCameraTexture: " + (_activeCameraTexture != null ? _activeCameraTexture.deviceName : "null"));
                 return;
+            }
 
             // Wait for camera to initialize properly
             if (_activeCameraTexture.width < 100) return;
@@ -753,6 +800,8 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
 
             // Handle vertical mirroring
             displayImage.uvRect = _activeCameraTexture.videoVerticallyMirrored ? _fixedRect : _defaultRect;
+
+            Debug.Log($"Camera display updated: {finalWidth}x{finalHeight} at rotation {_activeCameraTexture.videoRotationAngle}°");
 
             UpdateDetectionZoneVisual(); // Update the detection zone visual whenever the displayImage changes
         }

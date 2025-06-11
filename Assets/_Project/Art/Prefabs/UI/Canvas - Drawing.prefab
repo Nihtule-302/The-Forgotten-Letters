@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayImage: {fileID: 2146463590563585815}
-  Classifier: {fileID: 0}
+  classifier: {fileID: 0}
   delayToSend: 1
   input: {fileID: 11400000, guid: 0c5e1e3deabc86e44b17a8aa3c125447, type: 2}
   imageSize: 32
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 247
 --- !u!1 &8364957989098966658
 GameObject:
   m_ObjectHideFlags: 0

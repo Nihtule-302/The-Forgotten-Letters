@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &634654170
 Transform:
   m_ObjectHideFlags: 0
@@ -163,7 +163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9dc4c47b40b2f408ce94133eba65e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sentisModelReferences: []
+  sentisModelReferences:
+  - m_AssetGUID: 231880c5dc220624f82bd3447a9a2a78
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: 838a546b5eeb8f54d950f5909fd4856d
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
 --- !u!1 &1338655876
 GameObject:
   m_ObjectHideFlags: 0

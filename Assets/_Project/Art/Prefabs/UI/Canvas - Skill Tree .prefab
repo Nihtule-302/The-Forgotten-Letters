@@ -306,7 +306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4708257016693015895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1760757179601615900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -826,6 +826,7 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 1
+  fallbackEvent: {fileID: 0}
   responce:
     m_PersistentCalls:
       m_Calls:
@@ -1122,6 +1123,7 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 1
+  fallbackEvent: {fileID: 0}
   responce:
     m_PersistentCalls:
       m_Calls:
@@ -1243,7 +1245,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 247
 --- !u!1 &9165697654721486798
 GameObject:
   m_ObjectHideFlags: 0

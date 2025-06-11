@@ -13,6 +13,7 @@ namespace _Project.Scripts._2DGameManger
 
         [SerializeField] private GameObject skillTreeMenu;
 
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {

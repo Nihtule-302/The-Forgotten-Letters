@@ -18,7 +18,9 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Draw_a_letter
         [Header("Letter Prediction Data")] [SerializeField]
         private LetterPredictionData[] letterProbability = new LetterPredictionData[28]; // Initialized size here
 
-        [Header("Model")] [SerializeField] private ModelAsset modelAsset;
+        // [Header("Model")] [SerializeField] private ModelAsset modelAsset;
+        [Header("Model")] [SerializeField] private AssetReference modelAssetRef;
+        private ModelAsset modelAsset => SentisModelLoader.Instance.GetModel(modelAssetRef);
 
         [SerializeField] private BackendType backendType = BackendType.GPUCompute;
 

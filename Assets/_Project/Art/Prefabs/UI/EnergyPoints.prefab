@@ -65,13 +65,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9be10a819c5764ab41f38f0486159b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: f1c6e24628e1b5944aedbd4cecdbe3c2, type: 2}
   assetReferenceEvent:
     m_AssetGUID: f1c6e24628e1b5944aedbd4cecdbe3c2
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 1
+  fallbackEvent: {fileID: 0}
   responce:
     m_PersistentCalls:
       m_Calls:
@@ -569,4 +569,4 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 247

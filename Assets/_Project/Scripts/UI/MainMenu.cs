@@ -12,7 +12,6 @@ namespace _Project.Scripts.UI
         private GameObject mainMenu;
 
         [SerializeField] private GameObject scenesMenu;
-        [SerializeField] private GameObject settingsMenu;
 
         [Header("Buttons")] [SerializeField] private GameObject StartGameButton;
 
@@ -38,10 +37,10 @@ namespace _Project.Scripts.UI
             ShowMenu(scenesMenu);
         }
 
-        public void OpenSettings()
-        {
-            ShowMenu(settingsMenu);
-        }
+        // public void OpenSettings()
+        // {
+        //     ShowMenu(settingsMenu);
+        // }
 
         public void ExitGame()
         {
@@ -103,7 +102,7 @@ namespace _Project.Scripts.UI
 
             mainMenu.SetActive(menuToShow == mainMenu);
             scenesMenu.SetActive(menuToShow == scenesMenu);
-            settingsMenu.SetActive(menuToShow == settingsMenu);
+            // settingsMenu.SetActive(menuToShow == settingsMenu);
         }
 
         private void ShowAuthButtons()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using Unity.Sentis;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -9,8 +10,10 @@ public class SentisModelLoader : MonoBehaviour
 {
     [SerializeField] private List<AssetReference> sentisModelReferences;
 
-    private readonly Dictionary<AssetReference, ScriptableObject> loadedModels = new();
+    private readonly Dictionary<object, ModelAsset> loadedModels = new();
+    private readonly Dictionary<object, AsyncOperationHandle> modelHandles = new();
     public static SentisModelLoader Instance { get; private set; }
+    public static event Action OnInitialized;
 
     private void Awake()
     {
@@ -21,49 +24,106 @@ public class SentisModelLoader : MonoBehaviour
         }
 
         Instance = this;
+        OnInitialized?.Invoke();
+        LoadAllModelsAsync().Forget();
         DontDestroyOnLoad(gameObject);
-        LoadAllModelsAsync().ContinueWith(t =>
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
         {
-            if (t.IsFaulted)
-            {
-                Debug.LogError("Failed to load all models.");
-            }
-            else
-            {
-                Debug.Log("All models loaded successfully.");
-                OnAllModelsLoaded?.Invoke();
-            }
-        });
+            foreach (var kvp in loadedModels) Addressables.Release(kvp.Value);
+            loadedModels.Clear();
+            Instance = null;
+        }
     }
 
     public event Action OnAllModelsLoaded;
 
-    public async Task LoadAllModelsAsync()
+    public async UniTask LoadAllModelsAsync()
     {
-        if (sentisModelReferences.Count == 0 || sentisModelReferences == null)
+        if (sentisModelReferences.Count == 0)
         {
-            Debug.LogWarning("No Sentis models to load.");
             OnAllModelsLoaded?.Invoke();
             return;
         }
 
+        List<UniTask> loadTasks = new List<UniTask>();
         foreach (var assetRef in sentisModelReferences)
         {
-            var handle = assetRef.LoadAssetAsync<ScriptableObject>();
-            await handle.Task;
+            loadTasks.Add(LoadModelAsync(assetRef));
+        }
 
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-                loadedModels[assetRef] = handle.Result;
-            else
-                Debug.LogError($"Failed to load asset: {assetRef.RuntimeKey}");
+        // Wait for all tasks to complete with a timeout
+        await UniTask.WhenAll(loadTasks).Timeout(TimeSpan.FromSeconds(30));
+
+        OnAllModelsLoaded?.Invoke();
+        Debug.Log("All models loaded successfully.");
+    }
+
+    // Load a specific model on demand
+    public async UniTask LoadModelAsync(AssetReference reference) 
+    {
+        if (reference == null)
+        {
+            Debug.LogWarning("Tried to load a null reference.");
+            return;
+        }
+
+        if (IsModelLoaded(reference))
+        {
+            Debug.Log($"Model already loaded: {reference.RuntimeKey}");
+            return;
+        }
+
+        object key = reference.RuntimeKey;
+
+        var handle = reference.LoadAssetAsync<ModelAsset>();
+        await handle.ToUniTask();
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            loadedModels[key] = handle.Result;
+            modelHandles[key] = handle;
+            Debug.Log($"Loaded model on demand: {key}");
+            return; // Return after success
+        }
+
+        Debug.LogError($"Failed to load model: {key}");
+    }
+
+    public void UnloadModel(AssetReference reference)
+    {
+        if (!IsModelLoaded(reference))
+        {
+            Debug.LogWarning($"Model not loaded for reference: {reference.RuntimeKey}");
+            return;
+        }
+
+        if (loadedModels.TryGetValue(reference.RuntimeKey, out var model))
+        {
+            Addressables.Release(model);
+            loadedModels.Remove(reference.RuntimeKey);
+        }
+
+        if (modelHandles.TryGetValue(reference.RuntimeKey, out var handle))
+        {
+            Addressables.Release(handle);
+            modelHandles.Remove(reference.RuntimeKey);
         }
     }
 
-    public T GetModel<T>(AssetReference reference) where T : ScriptableObject
+    public ModelAsset GetModel(AssetReference reference)
     {
-        if (loadedModels.TryGetValue(reference, out var so)) return so as T;
+        if (loadedModels.TryGetValue(reference.RuntimeKey, out ModelAsset model)) return model;
 
         Debug.LogWarning($"Model not found for reference: {reference.RuntimeKey}");
         return null;
+    }
+
+    public bool IsModelLoaded(AssetReference reference)
+    {
+        return loadedModels.ContainsKey(reference.RuntimeKey);
     }
 }

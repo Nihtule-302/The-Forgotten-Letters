@@ -5,11 +5,11 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Puzzles
 {
     public class InGameDrawLetterUIManager : MonoBehaviour
     {
-        [FormerlySerializedAs("Trigger")] [SerializeField] private GameObject trigger;
-        [FormerlySerializedAs("VisualCue")] [SerializeField] private GameObject visualCue;
+        [SerializeField] private GameObject trigger;
+        [SerializeField] private GameObject visualCue;
 
-        [FormerlySerializedAs("DrawLetterPuzzelScreen")] [SerializeField] private GameObject drawLetterPuzzelScreen;
-        [FormerlySerializedAs("Game2DUI")] [SerializeField] private GameObject game2Dui;
+        [SerializeField] private GameObject drawLetterPuzzelScreen;
+        [SerializeField] private GameObject game2Dui;
 
         private void Awake()
         {

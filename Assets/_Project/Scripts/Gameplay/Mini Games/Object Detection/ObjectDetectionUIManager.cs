@@ -57,6 +57,7 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             {
                 await Application.RequestUserAuthorization(UserAuthorization.WebCam);
                 var granted = Application.HasUserAuthorization(UserAuthorization.WebCam);
+                Debug.Log($"Camera permission granted: {granted}");
 
                 if (!granted)
                 {

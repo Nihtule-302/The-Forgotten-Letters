@@ -1,14 +1,11 @@
 using System;
-using _Project.Scripts.Core.DataTypes;
 using _Project.Scripts.Core.Managers;
 using _Project.Scripts.Core.SaveSystem;
 using _Project.Scripts.Core.Scriptable_Events;
 using Cysharp.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
-using Firebase.Extensions;
 using Firebase.Firestore;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -17,10 +14,7 @@ namespace TheForgottenLetters
     public class Auth : MonoBehaviour
     {
         [Header("UI Elements")]
-        [SerializeField] private GameObject authPanel;
-        [SerializeField] private TMP_InputField emailInputField;
-        [SerializeField] private TMP_InputField passwordInputField;
-        [SerializeField] private TMP_Text statusText;
+        [SerializeField] private AuthUIManager authUIManager;
 
         [Header("Configuration")]
         [SerializeField] private double delayBeforeContinue = 2f;
@@ -64,12 +58,12 @@ namespace TheForgottenLetters
         {
             if (FirebaseManager.Instance != null)
                 FirebaseManager.Instance.OnFirebaseInitialized -= BeginAuth;
+            authUIManager?.HideAuthRoot();
         }
 
         private void BeginAuth()
         {
-            ActivateAuthScreen();
-            UpdateStatus("Initializing Auth...");
+            // UpdateStatus("Initializing Auth...");
 
             auth = FirebaseManager.Instance.Auth;
             db = FirebaseManager.Instance.Firestore;
@@ -77,19 +71,19 @@ namespace TheForgottenLetters
             if (auth == null)
             {
                 Debug.LogError("Firebase Auth is not initialized.");
-                UpdateStatus("Firebase is not ready.");
+                authUIManager.ShowStatusMessage("Firebase is not ready.");
                 return;
             }
 
             if (auth.CurrentUser != null)
             {
-                UpdateStatus($"User already signed in: {UserEmail}");
+                // UpdateStatus($"User already signed in: {UserEmail}");
                 FirebaseManager.Instance.StartListeningForChanges();
                 Continue();
             }
             else
             {
-                UpdateStatus("No user is currently signed in.");
+                // UpdateStatus("No user is currently signed in.");
             }
         }
 
@@ -97,16 +91,10 @@ namespace TheForgottenLetters
         public void LoginButton() => Login().Forget();
         public void SignOutButton() => SignOut().Forget();
 
-        public void ActivateAuthScreen() => authPanel.SetActive(true);
-        public void DeactivateAuthScreen() => authPanel.SetActive(false);
+        public void ActivateAuthScreen() => authUIManager.ShowAuthRoot();
+        public void DeactivateAuthScreen() => authUIManager.HideAuthRoot();
 
-        private void UpdateStatus(string message)
-        {
-            statusText.text = message;
-            Debug.Log(message);
-        }
-
-        private bool IsInputValid(string email, string password)
+        private bool IsInputValid(string email, string password, string confirmPassword = null)
         {
             return !string.IsNullOrEmpty(email) &&
                    email.Contains("@") &&
@@ -116,21 +104,35 @@ namespace TheForgottenLetters
 
         public async UniTask SignUp()
         {
-            var email = emailInputField.text;
-            var password = passwordInputField.text;
+            var fullName = authUIManager.regFullNameInput.text;
+            var username = authUIManager.regUsernameInput.text;
+            var email = authUIManager.regEmailInput.text;
+            var password = authUIManager.regPasswordInput.text;
+            var confirmPassword = authUIManager.regConfirmPasswordInput.text;
+
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(username))
+            {
+                authUIManager.ShowStatusMessage("Full name and username are required.");
+                return;
+            }
+            if (password != confirmPassword)
+            {
+                authUIManager.ShowStatusMessage("Passwords do not match.");
+                return;
+            }
 
             if (!IsInputValid(email, password))
             {
-                UpdateStatus("Invalid email or weak password.");
+                authUIManager.ShowStatusMessage("Invalid email or weak password.");
                 return;
             }
 
             try
             {
                 await auth.CreateUserWithEmailAndPasswordAsync(email, password);
-                UpdateStatus("Sign Up Successful!");
+                // UpdateStatus("Sign Up Successful!");
                 FirebaseManager.Instance.StartListeningForChanges();
-                await SaveAuthInfoAsync();
+                await SaveAuthInfoAsync(fullName, username, email);
                 ListenToProfileChanges();
                 await ContinueAfterDelay();
                 onLoginOrSignUp.Raise();
@@ -143,19 +145,25 @@ namespace TheForgottenLetters
 
         public async UniTask Login()
         {
-            var email = emailInputField.text;
-            var password = passwordInputField.text;
+            var email = authUIManager.loginEmailInput.text;
+            var password = authUIManager.loginPasswordInput.text;
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                authUIManager.ShowStatusMessage("Email and password are required.");
+                return;
+            }
 
             if (!IsInputValid(email, password))
             {
-                UpdateStatus("Invalid email or password.");
+                authUIManager.ShowStatusMessage("Invalid email or password.");
                 return;
             }
+
 
             try
             {
                 await auth.SignInWithEmailAndPasswordAsync(email, password);
-                UpdateStatus("Login Successful!");
+                // UpdateStatus("Login Successful!");
                 FirebaseManager.Instance.StartListeningForChanges();
                 ListenToProfileChanges();
                 await ContinueAfterDelay();
@@ -171,7 +179,7 @@ namespace TheForgottenLetters
         {
             if (!IsLoggedIn)
             {
-                UpdateStatus("No user is currently signed in.");
+                authUIManager.ShowStatusMessage("No user is currently signed in.");
                 return;
             }
 
@@ -181,12 +189,12 @@ namespace TheForgottenLetters
                 ResetAllData();
                 FirebaseManager.Instance.StopListeningForChanges();
                 StopListenToProfileChanges();
-                UpdateStatus("Sign Out Successful!");
+                // UpdateStatus("Sign Out Successful!");
                 await ContinueAfterDelay();
             }
             catch (Exception ex)
             {
-                UpdateStatus("Sign Out Failed: " + ex.Message);
+                authUIManager.ShowStatusMessage("Sign Out Failed: " + ex.Message);
             }
         }
 
@@ -199,34 +207,36 @@ namespace TheForgottenLetters
             PersistentSOManager.GetSO<LetterHuntData>().ResetData();
         }
 
-        public async UniTask SaveAuthInfoAsync()
+        public async UniTask SaveAuthInfoAsync(string fullName = null, string username = null, string email = null)
         {
             if (!IsLoggedIn || db == null)
             {
-                UpdateStatus("Error: Must be logged in and have Firestore initialized to save data.");
+                authUIManager.ShowStatusMessage("Error: Must be logged in and have Firestore initialized to save data.");
                 return;
             }
 
             var userData = PersistentSOManager.GetSO<PlayerAccountData>()
                                               .GetBuilder()
-                                              .SetEmail(UserEmail)
+                                              .SetEmail(email)
+                                              .SetFullName(fullName)
+                                              .SetUsername(username)
                                               .UpdateLocalData()
                                               .SerializePlayerAccountData();
 
-            UpdateStatus("Saving Data...");
+            // UpdateStatus("Saving Data...");
 
             try
             {
                 await db.Collection("users").Document(UserId).SetAsync(userData, SetOptions.MergeAll);
-                UpdateStatus("Data saved successfully!");
+                // UpdateStatus("Data saved successfully!");
             }
             catch (OperationCanceledException)
             {
-                UpdateStatus("Saving Data was cancelled.");
+                authUIManager.ShowStatusMessage("Saving Data was cancelled.");
             }
             catch (Exception ex)
             {
-                UpdateStatus("Error saving Data: " + ex.Message);
+                authUIManager.ShowStatusMessage("Error saving Data: " + ex.Message);
             }
         }
 
@@ -234,7 +244,7 @@ namespace TheForgottenLetters
         {
             if (!IsLoggedIn || db == null)
             {
-                UpdateStatus("Error: Must be logged in and have Firestore initialized.");
+                authUIManager.ShowStatusMessage("Error: Must be logged in and have Firestore initialized to listen for changes.");
                 return;
             }
 
@@ -274,8 +284,8 @@ namespace TheForgottenLetters
 
         private void Continue()
         {
-            UpdateStatus("Ready to proceed...");
-            DeactivateAuthScreen();
+            // UpdateStatus("Ready to proceed...");
+            authUIManager.HideAuthRoot();
         }
 
         private void HandleFirebaseError(FirebaseException ex, string context)
@@ -296,7 +306,7 @@ namespace TheForgottenLetters
                     message = "User not found.";
                     break;
             }
-            UpdateStatus($"{context}: {message}");
+            authUIManager.ShowStatusMessage($"{context}: {message}");
         }
     }
 }

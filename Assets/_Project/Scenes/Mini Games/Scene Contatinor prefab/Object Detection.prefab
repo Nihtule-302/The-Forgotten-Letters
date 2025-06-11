@@ -294,7 +294,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 247
 --- !u!1 &896983352797401428
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 247
 --- !u!1 &1275410119618453472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,7 +1385,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb84ec4e1da3dd5458165e1c736952aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 838a546b5eeb8f54d950f5909fd4856d, type: 3}
+  modelAssetRef:
+    m_AssetGUID: 838a546b5eeb8f54d950f5909fd4856d
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   classesAsset: {fileID: 4900000, guid: 2ed2b59682b9d534bb4df27504545190, type: 3}
   displayImage: {fileID: 7578359974275213938}
   borderTexture: {fileID: 2800000, guid: de77c006fa3970e458d4bfa0be082800, type: 3}
@@ -1395,7 +1400,7 @@ MonoBehaviour:
   cameraType: 0
   maxDisplayWidth: 1280
   maxDisplayHeight: 720
-  screenSizeRatio: 2
+  screenSizeRatio: 1.46
   predectionLabelRef:
     m_AssetGUID: 8f1b4e79a20021b4da4248a965cadfa0
     m_SubObjectName: 
@@ -1786,7 +1791,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 247
 --- !u!1 &6035667997559960649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2532,11 +2537,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1168669466721524841, guid: b298b3375a6085740a39f0f78413fe1f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 188.3274
+      value: 214.04
       objectReference: {fileID: 0}
     - target: {fileID: 1168669466721524841, guid: b298b3375a6085740a39f0f78413fe1f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 119.875
+      value: 107.02
       objectReference: {fileID: 0}
     - target: {fileID: 2383172960255918129, guid: b298b3375a6085740a39f0f78413fe1f, type: 3}
       propertyPath: m_Color.a
@@ -2556,7 +2561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882840270529438913, guid: b298b3375a6085740a39f0f78413fe1f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 99
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
