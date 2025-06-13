@@ -197,42 +197,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_fontSize
-      value: 57.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 73.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_fontSizeMin
-      value: 57.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -7475387370809638775, guid: fba73819c1ede6749839e6bbc26d86e2, type: 2}
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 418131492189170705, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 518283518109358192, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4648083192713680003, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -273,72 +237,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5642745757104626612, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5716149152592003093, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5716149152592003093, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5716149152592003093, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 233.6325
-      objectReference: {fileID: 0}
-    - target: {fileID: 5716149152592003093, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -173.6415
-      objectReference: {fileID: 0}
-    - target: {fileID: 5986832982184786222, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5986832982184786222, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5986832982184786222, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 233.6325
-      objectReference: {fileID: 0}
-    - target: {fileID: 5986832982184786222, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -43.806
-      objectReference: {fileID: 0}
     - target: {fileID: 7095830825501044594, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
       propertyPath: m_Name
       value: Main Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 8229349803953664197, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_fontSize
-      value: 69.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229349803953664197, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 499.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229349803953664197, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_fontSizeMin
-      value: 69.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229349803953664197, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229349803953664197, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229349803953664197, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 32
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3712260684582051988, guid: 6f8959830d88cd347bd186c48e856a10, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

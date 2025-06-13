@@ -215,6 +215,8 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
             Debug.Log($"Using back camera: {backDevice.name} with resolution {width}x{height}");
             _frontCameraTexture = new WebCamTexture(_frontCameraDevice.name, width, height);
             _backCameraTexture = new WebCamTexture(_backCameraDevice.name, width, height);
+
+            
         }
 
         private void SetCameraFilterModes()
@@ -253,6 +255,7 @@ namespace _Project.Scripts.Gameplay.Mini_Games.Object_Detection
                 device.name == cameraToUse.deviceName);
 
             displayImage.texture = _activeCameraTexture;
+            _activeCameraTexture.Stop();
             _activeCameraTexture.Play();
         }
 
