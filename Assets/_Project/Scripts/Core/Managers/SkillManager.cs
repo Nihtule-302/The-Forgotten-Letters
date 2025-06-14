@@ -18,7 +18,7 @@ namespace _Project.Scripts.Core.Managers
         [SerializeField] private float decayIntervalMinutes = 1f; // Time before skill decay
         [SerializeField] private double decayProgressRatio = 0f;
 
-        [SerializeField] private float decayCheckCooldown = 10f; // Check every X seconds
+        [SerializeField] private float decayCheckCooldown = 60f; // Check every X seconds
         private float decayCheckTimerElapsed = 0f;
 
         [Header("Events")]

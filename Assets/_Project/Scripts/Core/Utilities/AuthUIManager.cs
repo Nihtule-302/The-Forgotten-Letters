@@ -31,11 +31,6 @@ namespace TheForgottenLetters
         public GameObject statusPanel;
         public TMP_Text statusMessageText;
 
-        void Awake()
-        {
-            ShowAuthRoot();
-        }
-
         public void BeginLoginFlow()
         {
             SwitchToLoginPanel();
@@ -48,9 +43,9 @@ namespace TheForgottenLetters
 
         public void ShowAuthRoot()
         {
+            authRoot.SetActive(true);
             ClearLoginInputs();
             ClearRegistrationInputs();
-            authRoot.SetActive(true);
             HideRegisterPanel();
             SwitchToLoginPanel();
         }

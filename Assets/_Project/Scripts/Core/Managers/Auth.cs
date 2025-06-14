@@ -21,6 +21,7 @@ namespace TheForgottenLetters
 
         [Header("Events")]
         [SerializeField] private AssetReference OnLoginOrSignUp;
+        [SerializeField] private AssetReference activateAuthScreenRef;
 
         private FirebaseAuth auth;
         private FirebaseFirestore db;
@@ -83,6 +84,7 @@ namespace TheForgottenLetters
             }
             else
             {
+                ActivateAuthScreen();
                 // UpdateStatus("No user is currently signed in.");
             }
         }
